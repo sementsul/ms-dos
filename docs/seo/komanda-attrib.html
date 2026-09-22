@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда ATTRIB MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда ATTRIB в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда ATTRIB MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда ATTRIB: полный синтаксис, все ключи (5), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-attrib.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,25 @@
 <main>
 <article>
 <h1>Команда ATTRIB</h1>
-<p class="lead">Меняет атрибуты файлов: только чтение, архивный, системный, скрытый.</p>
+<p class="lead">ATTRIB ставит и снимает атрибуты: R только чтение, A архивный, S системный, H скрытый.</p>
 <h2>Синтаксис</h2>
-<pre>ATTRIB [+R|-R] [+A|-A] [+S|-S] [+H|-H] файл</pre>
-<h2>Пример</h2>
-<pre>ATTRIB -R -S -H C:\MSDOS.SYS</pre>
-<h2>Заметка</h2>
-<p>Без снятия атрибутов системные файлы не скопировать и не удалить.</p>
+<pre>ATTRIB [+R | -R] [+A | -A] [+S | -S] [+H | -H] [диск:][путь]имя [/S]</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>+R / -R</code></td><td>Только чтение вкл/выкл.</td></tr><tr><td><code>+A / -A</code></td><td>Архивный флаг (для бэкапов XCOPY /M).</td></tr><tr><td><code>+S / -S</code></td><td>Системный.</td></tr><tr><td><code>+H / -H</code></td><td>Скрытый.</td></tr><tr><td><code>/S</code></td><td>Рекурсивно с подкаталогами.</td></tr></table>
+<h2>Примеры</h2>
+<pre>ATTRIB -R -S -H *.*</pre>
+<p>Снять защиту перед копированием системы.</p>
+<pre>ATTRIB +H SECRET.TXT</pre>
+<p>Спрятать файл от DIR.</p>
+<pre>ATTRIB C:\DOS\*.COM</pre>
+<p>Показать атрибуты группы.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Без параметров ATTRIB показывает атрибуты, а не меняет.</li><li>Системные файлы трогайте осознанно: MSDOS.SYS с +R переживет случайное удаление.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду ATTRIB?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>Файл не удаляется — что делать?</b><br>ATTRIB -R -S -H файл, затем DEL. Чаще всего виноват read-only.</p>
+<p><b>Как найти все скрытые файлы диска?</b><br>DIR /A:H покажет, ATTRIB /S выведет атрибуты рекурсивно.</p>
 
 </article>
 <aside>

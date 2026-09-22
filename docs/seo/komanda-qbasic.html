@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда QBASIC MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда QBASIC в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда QBASIC MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда QBASIC: полный синтаксис, все ключи (3), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-qbasic.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,25 @@
 <main>
 <article>
 <h1>Команда QBASIC</h1>
-<p class="lead">Среда QuickBASIC: редактор и интерпретатор Бейсика. Шла с MS-DOS 5.0+.</p>
+<p class="lead">QBASIC — редактор и интерпретатор Бейсика из MS-DOS 5.0+. Пишете код, F5 — выполняется. Компиляции в EXE нет (это умеет полный QuickBASIC).</p>
 <h2>Синтаксис</h2>
-<pre>QBASIC [/EDITOR] [программа.BAS]</pre>
-<h2>Пример</h2>
+<pre>QBASIC [/EDITOR] [/NOHI] [/RUN программа] [программа.BAS]</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>/EDITOR</code></td><td>Только редактор без запуска.</td></tr><tr><td><code>/NOHI</code></td><td>Без ярких цветов (совместимость).</td></tr><tr><td><code>/RUN программа</code></td><td>Сразу выполнить и выйти.</td></tr></table>
+<h2>Примеры</h2>
+<pre>QBASIC</pre>
+<p>Пустой редактор.</p>
 <pre>QBASIC GORILLA.BAS</pre>
-<h2>Заметка</h2>
-<p>В комплекте были игры-примеры Gorilla и Nibbles — на них учились программировать.</p>
+<p>Открыть игру-пример.</p>
+<pre>QBASIC /RUN TEST.BAS</pre>
+<p>Выполнить скрипт.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Файлы .BAS — обычный текст, правятся любым редактором.</li><li>Русские буквы — кодовая страница 866 + KEYRUS.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду QBASIC?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>QBASIC и QuickBASIC — одно и то же?</b><br>Нет: QBASIC — бесплатный интерпретатор из DOS, QuickBASIC 4.5 — полный продукт с компилятором.</p>
+<p><b>Где взять примеры?</b><br>GORILLA.BAS и NIBBLES.BAS лежали рядом с QBASIC.EXE — откройте через File — Open.</p>
 
 </article>
 <aside>

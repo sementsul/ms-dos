@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда SET MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда SET в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда SET MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда SET: полный синтаксис, все ключи (0), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-set.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,25 @@
 <main>
 <article>
 <h1>Команда SET</h1>
-<p class="lead">Работа с переменными окружения: TEMP, BLASTER для Sound Blaster и свои.</p>
+<p class="lead">SET показывает и задает переменные окружения: PATH, TEMP, BLASTER и свои. Пустое значение удаляет переменную.</p>
 <h2>Синтаксис</h2>
 <pre>SET [переменная=[значение]]</pre>
-<h2>Пример</h2>
+<h2>Примеры</h2>
+<pre>SET</pre>
+<p>Все переменные.</p>
 <pre>SET TEMP=C:\TEMP</pre>
-<h2>Заметка</h2>
-<p>Многие игры требуют SET BLASTER=A220 I7 D1 для звука.</p>
+<p>Каталог временных файлов.</p>
+<pre>SET BLASTER=A220 I7 D1</pre>
+<p>Настройки Sound Blaster для игр.</p>
+<pre>SET MYDIR=C:\GAMES</pre>
+<p>Своя переменная для BAT-файлов.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Переменные живут до перезагрузки, постоянство — через AUTOEXEC.BAT.</li><li>Пробелы вокруг = считаются частью значения — пишите слитно.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду SET?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>Зачем играм SET BLASTER?</b><br>Игра читает адрес/IRQ/DMA карты из переменной. Нет строки — нет звука.</p>
+<p><b>Как удалить переменную?</b><br>SET ИМЯ= с пустым значением.</p>
 
 </article>
 <aside>

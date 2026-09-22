@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда DATE и TIME MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда DATE и TIME в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда DATE и TIME MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда DATE и TIME: полный синтаксис, все ключи (0), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-date-time.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,23 @@
 <main>
 <article>
 <h1>Команда DATE и TIME</h1>
-<p class="lead">Показывают и устанавливают системную дату и время. Без параметров — просто вывод.</p>
+<p class="lead">DATE и TIME показывают и устанавливают системную дату и время. Без параметров — просто выводят.</p>
 <h2>Синтаксис</h2>
-<pre>DATE [дата]  TIME [время]</pre>
-<h2>Пример</h2>
+<pre>DATE [мм-дд-гг]    TIME [чч:мм[:сс[.сс]]]</pre>
+<h2>Примеры</h2>
 <pre>DATE</pre>
-<h2>Заметка</h2>
-<p>На старых ПК без батарейки CMOS дату спрашивали при каждой загрузке.</p>
+<p>Какое сегодня число по мнению ПК.</p>
+<pre>DATE 06-12-94</pre>
+<p>Установить дату.</p>
+<pre>TIME 14:30</pre>
+<p>Установить время.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Формат даты зависит от COUNTRY.SYS.</li><li>На севшей батарейке CMOS дата слетает при каждой перезагрузке.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду DATE и TIME?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>Почему игры спрашивают дату?</b><br>Защита и сохранения эпохи читали системную дату. Ставьте реальную.</p>
+<p><b>Как убрать запрос даты при загрузке?</b><br>Уберите DATE/TIME из AUTOEXEC.BAT — запрос идет оттуда, а не из BIOS.</p>
 
 </article>
 <aside>

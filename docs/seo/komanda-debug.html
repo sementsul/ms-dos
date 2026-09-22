@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда DEBUG MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда DEBUG в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда DEBUG MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда DEBUG: полный синтаксис, все ключи (13), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-debug.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,25 @@
 <main>
 <article>
 <h1>Команда DEBUG</h1>
-<p class="lead">Отладчик и ассемблер машинного кода: дампы памяти, ввод hex, точки останова.</p>
+<p class="lead">DEBUG — отладчик машинного кода: ассемблирование (A), дампы (D), ввод (E), трассировка (T), точки (G). Через него правили сектора и писали tiny-утилиты.</p>
 <h2>Синтаксис</h2>
-<pre>DEBUG [файл]</pre>
-<h2>Пример</h2>
+<pre>DEBUG [[диск:][путь]файл [параметры]]</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>A [адрес]</code></td><td>Ассемблировать инструкции.</td></tr><tr><td><code>D [диапазон]</code></td><td>Дамп памяти.</td></tr><tr><td><code>E адрес [значения]</code></td><td>Ввести байты.</td></tr><tr><td><code>R</code></td><td>Регистры и флаги.</td></tr><tr><td><code>T [=адрес] [число]</code></td><td>Трассировка по шагам.</td></tr><tr><td><code>G [=адрес]</code></td><td>Выполнить до точки.</td></tr><tr><td><code>U [диапазон]</code></td><td>Дизассемблировать.</td></tr><tr><td><code>N имя / L / W</code></td><td>Имя файла, загрузка, запись.</td></tr><tr><td><code>Q</code></td><td>Выход.</td></tr><tr><td><code>H числа</code></td><td>Hex+dec калькулятор.</td></tr><tr><td><code>M, C, F, S</code></td><td>Копировать, сравнить, заполнить, найти в памяти.</td></tr><tr><td><code>I/O порт</code></td><td>Ввод/вывод в порты.</td></tr><tr><td><code>XA/XD/XM/XS</code></td><td>Работа с EMS.</td></tr></table>
+<h2>Примеры</h2>
 <pre>DEBUG</pre>
-<h2>Заметка</h2>
-<p>Через DEBUG правили загрузочные сектора и писали tiny-утилиты. Для профи.</p>
+<p>Пустой сеанс.</p>
+<pre>H 10 20</pre>
+<p>0x10 = 16 dec, сумма/разность.</p>
+<pre>D 0:0 FF</pre>
+<p>Дамп таблицы векторов.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Одна опечатка в E — и правите не ту память. Сначала D, потом E.</li><li>W без N перезапишет файл программы — держите копии.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду DEBUG?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>Что можно сделать DEBUG без ассемблера?</b><br>Смотреть дампы, править байты в файлах, считать hex, чинить boot-сектор.</p>
+<p><b>Почему DEBUG нет в 64-бит Windows?</b><br>NTVDM вырезан. Пользуйтесь DOSBox или флешкой MBFU.</p>
 
 </article>
 <aside>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда MOVE MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда MOVE в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда MOVE MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда MOVE: полный синтаксис, все ключи (2), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-move.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,25 @@
 <main>
 <article>
 <h1>Команда MOVE</h1>
-<p class="lead">Перемещает файлы и переименовывает каталоги. Появилась в MS-DOS 6.0.</p>
+<p class="lead">MOVE перемещает файлы и переименовывает каталоги (новинка MS-DOS 6.0). Внутри диска — мгновенно, между дисками — через копирование.</p>
 <h2>Синтаксис</h2>
-<pre>MOVE источник приемник</pre>
-<h2>Пример</h2>
+<pre>MOVE [/Y | /-Y] источник приемник</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>/Y</code></td><td>Перезаписывать без вопросов.</td></tr><tr><td><code>/-Y</code></td><td>Спрашивать перед перезаписью.</td></tr></table>
+<h2>Примеры</h2>
 <pre>MOVE C:\*.BAK D:\BACKUP</pre>
-<h2>Заметка</h2>
-<p>Внутри одного диска — мгновенно, между дисками — копирование с удалением.</p>
+<p>Переместить бэкапы.</p>
+<pre>MOVE OLD NEW</pre>
+<p>Переименовать каталог.</p>
+<pre>MOVE /Y REPORT.TXT D:\</pre>
+<p>Молча заменить.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Перемещение между дисками вдвое дольше копирования и неатомарно: при сбое файл может оказаться в двух местах.</li><li>MOVE не объединяет каталоги: приемник-каталог должен не существовать.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду MOVE?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>Чем MOVE отличается от COPY + DEL?</b><br>На одном диске MOVE только переписывает записи FAT — мгновенно. COPY+DEL гоняет данные.</p>
+<p><b>Почему MOVE спрашивает про перезапись?</b><br>В приемнике уже есть такой файл. /Y — молча заменить, /-Y — спрашивать всегда.</p>
 
 </article>
 <aside>

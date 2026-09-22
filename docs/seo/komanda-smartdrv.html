@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда SMARTDRV MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда SMARTDRV в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда SMARTDRV MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда SMARTDRV: полный синтаксис, все ключи (9), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-smartdrv.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,25 @@
 <main>
 <article>
 <h1>Команда SMARTDRV</h1>
-<p class="lead">Дисковый кэш MS-DOS: ускоряет чтение/запись в разы. Обычная строка CONFIG.SYS эпохи.</p>
+<p class="lead">SMARTDRV — дисковый кэш MS-DOS: держит данные в XMS и ускоряет дискеты/HDD в разы. Плюс — отложенная запись, минус — риск при сбое питания.</p>
 <h2>Синтаксис</h2>
-<pre>SMARTDRV [диск...] [размер_кэша]</pre>
-<h2>Пример</h2>
+<pre>SMARTDRV [/X] [[диск[+|-]]...] [/U] [/C | /R] [/F] [/N] [/L] [/E:байты] [/B:байты]</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>/X</code></td><td>Без отложенной записи (безопаснее).</td></tr><tr><td><code>диск+ / диск-</code></td><td>Кэшировать / не кэшировать конкретный диск.</td></tr><tr><td><code>/U</code></td><td>Не грузить CD-блок (экономия памяти).</td></tr><tr><td><code>/C</code></td><td>Сбросить кэш на диск сейчас.</td></tr><tr><td><code>/R</code></td><td>Уменьшить кэш, освободить XMS.</td></tr><tr><td><code>/F</code></td><td>Сбросить и продолжать.</td></tr><tr><td><code>/N</code></td><td>Не спрашивать при загрузке.</td></tr><tr><td><code>/E</code></td><td>Размер элемента кэша.</td></tr><tr><td><code>/B</code></td><td>Размер буфера упреждающего чтения.</td></tr></table>
+<h2>Примеры</h2>
+<pre>SMARTDRV</pre>
+<p>Статус кэша.</p>
 <pre>SMARTDRV 2048</pre>
-<h2>Заметка</h2>
-<p>Без кэша установка с дискет/CD шла мучительно медленно.</p>
+<p>Кэш 2 МБ.</p>
+<pre>SMARTDRV C+ D-</pre>
+<p>Кэшировать C, не трогать D:.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>При зависании с включенной отложенной записью данные теряются — на важных машинах /X.</li><li>SMARTDRV жрет XMS: на 4 МБ больше 1 МБ кэша не ставьте.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду SMARTDRV?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>SMARTDRV нужен на флешке MBFU?</b><br>Для установки — нет, копирование и так быстрое. Для ежедневной DOS-машины — да.</p>
+<p><b>Чем заменить на современных системах?</b><br>Ничем: кэш эпохи. В DOSBox скорость и так избыточна.</p>
 
 </article>
 <aside>

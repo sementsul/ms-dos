@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда SYS MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда SYS в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда SYS MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда SYS: полный синтаксис, все ключи (0), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-sys.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,21 @@
 <main>
 <article>
 <h1>Команда SYS</h1>
-<p class="lead">Переносит системные файлы (IO.SYS, MSDOS.SYS, COMMAND.COM) и делает диск загрузочным без форматирования.</p>
+<p class="lead">SYS делает диск загрузочным без форматирования: переносит IO.SYS, MSDOS.SYS и COMMAND.COM. Первый параметр (откуда брать систему) можно опускать — возьмет с текущего диска.</p>
 <h2>Синтаксис</h2>
-<pre>SYS диск:</pre>
-<h2>Пример</h2>
+<pre>SYS [диск1:][путь] диск2:</pre>
+<h2>Примеры</h2>
 <pre>SYS C:</pre>
-<h2>Заметка</h2>
-<p>Требует, чтобы версия SYS совпадала с версией системных файлов, иначе диск не загрузится.</p>
+<p>Сделать диск C: загрузочным.</p>
+<pre>SYS A: C:</pre>
+<p>Перенести систему с дискеты на C:.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Версия SYS обязана совпадать с версией переносимых файлов, иначе «Non-System disk».</li><li>На диске должно хватать места в начале: IO.SYS требует первые записи корня.</li><li>Скрытые системные файлы обычным COPY не перенести — только SYS.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду SYS?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>SYS или FORMAT /S — что лучше?</b><br>FORMAT /S — для нового диска, SYS — когда данные на диске нужно сохранить.</p>
+<p><b>Почему после SYS диск все равно не грузится?</b><br>Проверьте: раздел активный (FDISK), версии совпадают, BIOS грузится с этого диска.</p>
 
 </article>
 <aside>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда UNDELETE MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда UNDELETE в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда UNDELETE MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда UNDELETE: полный синтаксис, все ключи (7), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-undelete.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,25 @@
 <main>
 <article>
 <h1>Команда UNDELETE</h1>
-<p class="lead">Восстановление удаленных файлов, пока место не перезаписано.</p>
+<p class="lead">UNDELETE возвращает удаленные файлы, пока их место не перезаписано. Режимы: /DOS — по следам FAT, /DT — через сторожевой файл, /DS — стандартный.</p>
 <h2>Синтаксис</h2>
-<pre>UNDELETE [файл] [/DOS | /LIST | /ALL]</pre>
-<h2>Пример</h2>
+<pre>UNDELETE [[диск:][путь]файл] [/DT | /DS | /DOS] [/LIST | /ALL] [/S[диск:] | /Tдиск-записи | /LOAD | /U]</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>/LIST</code></td><td>Показать, что можно спасти, ничего не трогая.</td></tr><tr><td><code>/ALL</code></td><td>Восстановить все без вопросов.</td></tr><tr><td><code>/DOS</code></td><td>Только по остаткам FAT.</td></tr><tr><td><code>/DT</code></td><td>Через файл-сторож MIRROR (лучшие шансы).</td></tr><tr><td><code>/DS</code></td><td>Стандартный метод.</td></tr><tr><td><code>/S</code></td><td>Включить сторожа на диске.</td></tr><tr><td><code>/T</code></td><td>Сколько записей хранить для восстановления.</td></tr></table>
+<h2>Примеры</h2>
 <pre>UNDELETE *.DOC /LIST</pre>
-<h2>Заметка</h2>
-<p>Шансы выше сразу после удаления и при настроенной защите MIRROR.</p>
+<p>Оценить шансы.</p>
+<pre>UNDELETE REPORT.TXT</pre>
+<p>Вернуть один файл.</p>
+<pre>MIRROR /TC</pre>
+<p>Включить сторожа заранее (DOS 5.x).</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Правило №1: после удаления ничего не писать на диск.</li><li>Первая буква имени теряется — UNDELETE попросит ее ввести.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду UNDELETE?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>Что за первая буква, которую просит ввести?</b><br>DOS помечает удаленный файл символом в первом байте имени. Вспомните имя — введите букву.</p>
+<p><b>Как повысить шансы заранее?</b><br>MIRROR/UNDELETE /S: сторож ведет журнал удалений.</p>
 
 </article>
 <aside>

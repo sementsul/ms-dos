@@ -75,18 +75,27 @@ def esc(s):
 
 def build_pages():
     pages = []
-    for slug, cmd, syntax, purpose, ex, note in COMMANDS:
+    for slug, cmd, syntax, purpose, params, examples, pitfalls, faq in COMMANDS:
+        secs = [('Синтаксис', '<pre>%s</pre>' % esc(syntax))]
+        if params:
+            rows = ''.join('<tr><td><code>%s</code></td><td>%s</td></tr>' % (esc(k), v)
+                           for k, v in params)
+            secs.append(('Все параметры',
+                         '<table><tr><th>Ключ</th><th>Что делает</th></tr>%s</table>' % rows))
+        if examples:
+            secs.append(('Примеры',
+                         ''.join('<pre>%s</pre>\n<p>%s</p>\n' % (esc(c), cm)
+                                 for c, cm in examples)))
+        if pitfalls:
+            secs.append(('Типичные ошибки',
+                         '<ul>%s</ul>' % ''.join('<li>%s</li>' % p for p in pitfalls)))
         pages.append(dict(
             slug=slug, cat='Команды MS-DOS',
-            title='Команда %s MS-DOS: синтаксис и примеры | ms-dos.su' % cmd,
-            desc='Команда %s в MS-DOS: синтаксис, ключи и примеры использования.' % cmd,
+            title='Команда %s MS-DOS: все параметры и примеры | ms-dos.su' % cmd,
+            desc='Команда %s: полный синтаксис, все ключи (%d), примеры и типичные ошибки.' % (cmd, len(params)),
             h1='Команда %s' % cmd,
             lead=purpose,
-            sections=[('Синтаксис', '<pre>%s</pre>' % esc(syntax)),
-                      ('Пример', '<pre>%s</pre>' % esc(ex)),
-                      ('Заметка', '<p>%s</p>' % note)],
-            faq=[('Где вводить команду %s?' % cmd,
-                  'В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.')]))
+            sections=secs, faq=faq))
     for slug, vendor, lead, steps, note in VENDORS:
         pages.append(dict(
             slug=slug, cat='Secure Boot',

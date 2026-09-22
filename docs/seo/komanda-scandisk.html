@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда SCANDISK MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда SCANDISK в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда SCANDISK MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда SCANDISK: полный синтаксис, все ключи (9), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-scandisk.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,25 @@
 <main>
 <article>
 <h1>Команда SCANDISK</h1>
-<p class="lead">Проверка и восстановление дисков из MS-DOS 6.2: файлы, структура, поверхность. Замена CHKDSK.</p>
+<p class="lead">SCANDISK из MS-DOS 6.2 — проверка дисков с ремонтом: файлы, FAT, структура, поверхность. Умеет Undo — откат лечения.</p>
 <h2>Синтаксис</h2>
-<pre>SCANDISK [диск:]</pre>
-<h2>Пример</h2>
+<pre>SCANDISK [диск:] [/ALL] [/AUTOFIX | /CHECKONLY] [/CUSTOM] [/SURFACE] [/NOSAVE] [/NOSUMMARY] [/MONO] [/TEXT]</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>/ALL</code></td><td>Проверить все локальные диски подряд.</td></tr><tr><td><code>/AUTOFIX</code></td><td>Чинить без вопросов.</td></tr><tr><td><code>/CHECKONLY</code></td><td>Только проверка.</td></tr><tr><td><code>/SURFACE</code></td><td>Проверка поверхности (долго).</td></tr><tr><td><code>/CUSTOM</code></td><td>Настройки из SCANDISK.INI.</td></tr><tr><td><code>/NOSAVE</code></td><td>Потерянные кластеры не сохранять.</td></tr><tr><td><code>/NOSUMMARY</code></td><td>Без итогового экрана.</td></tr><tr><td><code>/MONO</code></td><td>Черно-белый режим.</td></tr><tr><td><code>/TEXT</code></td><td>Текстовый режим без графики.</td></tr></table>
+<h2>Примеры</h2>
 <pre>SCANDISK C:</pre>
-<h2>Заметка</h2>
-<p>Умеет отмену изменений (Undo-дискета) — перед лечением создает страховку.</p>
+<p>Стандартная проверка.</p>
+<pre>SCANDISK /ALL /AUTOFIX</pre>
+<p>Ночной прогон всех дисков.</p>
+<pre>SCANDISK A:</pre>
+<p>Проверка дискеты.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Проверка поверхности на большом диске — надолго, планируйте время.</li><li>Undo-файл храните до уверенности, что все цело.</li><li>SCANDISK не лечит физические bad-блоки — он их помечает.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду SCANDISK?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>Чем SCANDISK лучше CHKDSK?</b><br>Поверхность, Undo-откат, понятный интерфейс. CHKDSK остался для быстрой проверки.</p>
+<p><b>SCANDISK завис на поверхности — что делать?</b><br>Дождаться или Esc и прогнать /CHECKONLY: возможно, сыплется диск.</p>
 
 </article>
 <aside>

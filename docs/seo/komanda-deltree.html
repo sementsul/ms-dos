@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда DELTREE MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда DELTREE в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда DELTREE MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда DELTREE: полный синтаксис, все ключи (1), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-deltree.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,23 @@
 <main>
 <article>
 <h1>Команда DELTREE</h1>
-<p class="lead">Удаляет каталог вместе со всеми подкаталогами и файлами. DEL так не умеет.</p>
+<p class="lead">DELTREE удаляет дерево целиком: каталог со всеми вложенными файлами и папками. DEL так не умеет.</p>
 <h2>Синтаксис</h2>
-<pre>DELTREE [/Y] путь</pre>
-<h2>Пример</h2>
+<pre>DELTREE [/Y] [диск:]путь</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>/Y</code></td><td>Без подтверждения на каждый каталог.</td></tr></table>
+<h2>Примеры</h2>
 <pre>DELTREE C:\TEMP</pre>
-<h2>Заметка</h2>
-<p>ОСТОРОЖНО: восстановления нет, спрашивает подтверждение (снимается /Y).</p>
+<p>Снести временный каталог.</p>
+<pre>DELTREE C:\GAMES\OLD /Y</pre>
+<p>Молча удалить старое.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Восстановления нет — UNDELETE деревья не возвращает.</li><li>DELTREE C:\WINDOWS в шутку не набирают. Проверяйте путь дважды.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду DELTREE?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>Чем DELTREE отличается от DEL *.*?</b><br>DEL чистит только файлы текущего каталога, DELTREE — все дерево включая подпапки.</p>
+<p><b>Случайно удалил нужное — что делать?</b><br>Сразу UNDELETE /ALL и ничего не писать на диск. Шансы есть, пока место не перезаписано.</p>
 
 </article>
 <aside>

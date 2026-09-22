@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда TYPE MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда TYPE в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда TYPE MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда TYPE: полный синтаксис, все ключи (0), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-type.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,23 @@
 <main>
 <article>
 <h1>Команда TYPE</h1>
-<p class="lead">Выводит текстовый файл на экран. Быстрый просмотр README без редактора.</p>
+<p class="lead">TYPE выводит текстовый файл на экран. Быстрый просмотр README, BAT и CONFIG без редактора.</p>
 <h2>Синтаксис</h2>
 <pre>TYPE файл</pre>
-<h2>Пример</h2>
+<h2>Примеры</h2>
 <pre>TYPE C:\README.TXT</pre>
-<h2>Заметка</h2>
-<p>Двоичные файлы через TYPE смотреть нельзя — будет мусор и писк.</p>
+<p>Прочитать ридми.</p>
+<pre>TYPE AUTOEXEC.BAT | MORE</pre>
+<p>Постранично.</p>
+<pre>TYPE A.TXT+B.TXT</pre>
+<p>TYPE тоже умеет склейку при выводе.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Двоичный файл через TYPE — мусор на экране и писк динамика. Ctrl+C останавливает.</li><li>Длинный файл уносится вверх — добавляйте | MORE.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду TYPE?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>TYPE или EDIT?</b><br>TYPE — глянуть, EDIT/F3 в NC — править. Не путайте.</p>
+<p><b>Как вывести файл на принтер?</b><br>TYPE FILE.TXT &gt; PRN — перенаправление на устройство.</p>
 
 </article>
 <aside>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда REN MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда REN в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда REN MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда REN: полный синтаксис, все ключи (0), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-ren.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,23 @@
 <main>
 <article>
 <h1>Команда REN</h1>
-<p class="lead">Переименовывает файлы и каталоги.</p>
+<p class="lead">REN переименовывает файлы и каталоги. Новое имя — без пути, только имя.</p>
 <h2>Синтаксис</h2>
-<pre>REN старое_имя новое_имя</pre>
-<h2>Пример</h2>
+<pre>REN [диск:][путь]старое новое_имя</pre>
+<h2>Примеры</h2>
 <pre>REN REPORT.TXT OTCHET.TXT</pre>
-<h2>Заметка</h2>
-<p>Маски работают: REN *.TXT *.BAK переименует группу.</p>
+<p>Переименовать.</p>
+<pre>REN *.TXT *.BAK</pre>
+<p>Пакетное переименование группы.</p>
+<pre>REN C:\DOCS\OLD NEW</pre>
+<p>Переименовать каталог.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Переместить в другой каталог через REN нельзя — это делает MOVE.</li><li>Новое имя обязано укладываться в 8.3.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду REN?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>Как переименовать сразу сто файлов?</b><br>Маской: REN *.TXT *.OLD. Для хитрого — BAT-файл с циклом FOR.</p>
+<p><b>REN или MOVE?</b><br>Внутри каталога — REN, между каталогами — MOVE.</p>
 
 </article>
 <aside>

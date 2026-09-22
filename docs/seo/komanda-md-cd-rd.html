@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда MD, CD, RD MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда MD, CD, RD в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда MD, CD, RD MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда MD, CD, RD: полный синтаксис, все ключи (0), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-md-cd-rd.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,27 @@
 <main>
 <article>
 <h1>Команда MD, CD, RD</h1>
-<p class="lead">Создание, смена и удаление каталогов. Троица навигации по дереву.</p>
+<p class="lead">Троица навигации: MD создает каталог, CD переходит, RD удаляет пустой. CD.. — вверх, CD\ — в корень.</p>
 <h2>Синтаксис</h2>
-<pre>MD имя | CD путь | RD имя</pre>
-<h2>Пример</h2>
+<pre>MD [диск:]путь | CD [диск:][путь] | RD [диск:]путь</pre>
+<h2>Примеры</h2>
 <pre>MD GAMES</pre>
-<h2>Заметка</h2>
-<p>RD удаляет только пустой каталог. CD.. — на уровень вверх, CD\ — в корень.</p>
+<p>Создать каталог.</p>
+<pre>CD GAMES</pre>
+<p>Войти.</p>
+<pre>CD..</pre>
+<p>На уровень вверх.</p>
+<pre>CD\</pre>
+<p>В корень диска.</p>
+<pre>RD EMPTY</pre>
+<p>Удалить пустой.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>RD непустого каталога — ошибка, нужен DELTREE.</li><li>Имена длиннее 8 символов DOS обрежет — планируйте короткие.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду MD, CD, RD?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>Как быстро вернуться в корень?</b><br>CD\ — один слеш решает.</p>
+<p><b>CD не переходит на другой диск — почему?</b><br>CD меняет каталог, а диск — командой буквы: D: и Enter. Сначала диск, потом CD.</p>
 
 </article>
 <aside>

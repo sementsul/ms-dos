@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Команда FDISK MS-DOS: синтаксис и примеры | ms-dos.su</title>
-<meta name="description" content="Команда FDISK в MS-DOS: синтаксис, ключи и примеры использования.">
+<title>Команда FDISK MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда FDISK: полный синтаксис, все ключи (2), примеры и типичные ошибки.">
 <link rel="canonical" href="https://ms-dos.su/seo/komanda-fdisk.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
@@ -32,16 +32,23 @@
 <main>
 <article>
 <h1>Команда FDISK</h1>
-<p class="lead">Разбивает жесткий диск на разделы и назначает активный (загрузочный) раздел. Без него новый диск не разметить.</p>
+<p class="lead">FDISK разбивает жесткий диск на разделы: создает Primary DOS Partition, Extended с логическими дисками, назначает активный (загрузочный) раздел.</p>
 <h2>Синтаксис</h2>
-<pre>FDISK [/STATUS]</pre>
-<h2>Пример</h2>
+<pre>FDISK [/STATUS] [/MBR]</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>/STATUS</code></td><td>Показать разделы без входа в меню.</td></tr><tr><td><code>/MBR</code></td><td>Перезаписать главную загрузочную запись (лечит загрузочные вирусы).</td></tr></table>
+<h2>Примеры</h2>
 <pre>FDISK</pre>
-<h2>Заметка</h2>
-<p>После изменения разделов обычно нужна перезагрузка и FORMAT каждого раздела.</p>
+<p>Интерактивное меню: создать/удалить/активировать.</p>
+<pre>FDISK /STATUS</pre>
+<p>Быстро посмотреть разбивку.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>После FDISK нужна перезагрузка, затем FORMAT каждого раздела.</li><li>Активным может быть только один primary-раздел — с него грузится DOS.</li><li>Удаление раздела = потеря всех его данных.</li></ul>
 
 <h2>Вопросы и ответы</h2>
-<p><b>Где вводить команду FDISK?</b><br>В командной строке MS-DOS: загрузитесь с флешки MBFU и наберите команду.</p>
+<p><b>Зачем FDISK, если есть FORMAT?</b><br>FORMAT работает с готовым разделом, а создает разделы именно FDISK. Новому диску нужны оба шага.</p>
+<p><b>Что делает FDISK /MBR?</b><br>Перезаписывает загрузочный код MBR, не трогая таблицу разделов. Классика лечения boot-вирусов.</p>
 
 </article>
 <aside>
