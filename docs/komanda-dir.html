@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Команда DIR MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда DIR: полный синтаксис, все ключи (7), примеры и типичные ошибки.">
+<link rel="canonical" href="https://ms-dos.su/komanda-dir.html">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Y8PG2P181B');
+</script>
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106570050', 'ym');
+    ym(106570050, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106570050" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="assets/icon-64.png">
+</head>
+<body>
+<nav class="crumbs"><a href="./">MBFU</a> / <a href="stati.html">Статьи</a></nav>
+<main>
+<article>
+<h1>Команда DIR</h1>
+<p class="lead">DIR показывает список файлов и каталогов: имена, размеры, даты. Это самая частая команда DOS — без нее не понять, что лежит на диске и куда вы попали.</p>
+<h2>Синтаксис</h2>
+<pre>DIR [диск:][путь][имя_файла] [/P] [/W] [/A[[:]атрибуты]] [/O[[:]порядок]] [/S] [/B] [/L]</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>/P</code></td><td>Постраничный вывод: пауза после каждого экрана.</td></tr><tr><td><code>/W</code></td><td>Краткий вывод в несколько колонок: только имена.</td></tr><tr><td><code>/A</code></td><td>Показать файлы с атрибутами: D каталоги, R только чтение, H скрытые, A архивные, S системные. Пример: DIR /A:H.</td></tr><tr><td><code>/O</code></td><td>Сортировка: N по имени, E по расширению, D по дате, S по размеру, G сначала каталоги. Пример: DIR /O:-S (сначала большие).</td></tr><tr><td><code>/S</code></td><td>Включая все подкаталоги.</td></tr><tr><td><code>/B</code></td><td>Голый формат: только имена, удобно для перенаправления в файл.</td></tr><tr><td><code>/L</code></td><td>Имена строчными буквами.</td></tr></table>
+<h2>Примеры</h2>
+<pre>DIR</pre>
+<p>Все в текущем каталоге.</p>
+<pre>DIR C:\DOS /W</pre>
+<p>Компактный список каталога DOS.</p>
+<pre>DIR *.TXT /S /P</pre>
+<p>Все текстовые файлы дерева постранично.</p>
+<pre>DIR /A:H</pre>
+<p>Показать скрытые файлы.</p>
+<pre>DIR /O:-D</pre>
+<p>Сначала самые свежие.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Маска *. * — это все файлы, а *.* без точки в DOS не работает как в Windows.</li><li>«File not found» при маске — норма: совпадений просто нет.</li><li>Русские имена в кодировке 866: набирайте их так же, иначе не найдет.</li></ul>
+
+<h2>Вопросы и ответы</h2>
+<p><b>Как посмотреть скрытые и системные файлы?</b><br>DIR /A — покажет все, включая скрытые (H) и системные (S). По умолчанию DIR их прячет.</p>
+<p><b>Как сохранить список файлов в файл?</b><br>DIR /S /B &gt; LIST.TXT — перенаправление работает со всеми командами.</p>
+
+</article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="komanda-copy.html">Команда COPY</a></li>
+<li><a href="komanda-format.html">Команда FORMAT</a></li>
+<li><a href="komanda-fdisk.html">Команда FDISK</a></li>
+<li><a href="komanda-sys.html">Команда SYS</a></li>
+<li><a href="komanda-edit.html">Команда EDIT</a></li>
+<li><a href="komanda-xcopy.html">Команда XCOPY</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>MBFU сделает ее за пару кликов: MS-DOS 5.00/6.22 + Norton Commander.</p>
+<p><a class="btn" href="https://github.com/sementsul/ms-dos/releases">Скачать MBFU</a></p>
+</div>
+</aside>
+</main>
+<footer>
+<p><a href="../">MBFU</a> · (c) 2025 Sementsul Maxim · MIT · MS-DOS (c) Microsoft</p>
+</footer>
+</body>
+</html>

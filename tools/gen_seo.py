@@ -3,7 +3,7 @@
 import os, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SEO = os.path.join(ROOT, 'docs', 'seo')
+DOCS = os.path.join(ROOT, 'docs')
 SITE = 'https://ms-dos.su'
 
 from seo_data_1 import COMMANDS
@@ -18,7 +18,7 @@ HEAD = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<link rel="canonical" href="{site}/seo/{slug}.html">
+<link rel="canonical" href="{site}/{slug}.html">
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
 <script>
@@ -37,11 +37,11 @@ HEAD = """<!DOCTYPE html>
     ym(106570050, 'init', {{ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true}});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/106570050" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<link rel="stylesheet" href="../style.css">
-<link rel="icon" type="image/png" href="../assets/icon-64.png">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="assets/icon-64.png">
 </head>
 <body>
-<nav class="crumbs"><a href="../">MBFU</a> / <a href="./">Статьи</a></nav>
+<nav class="crumbs"><a href="./">MBFU</a> / <a href="stati.html">Статьи</a></nav>
 <main>
 <article>
 <h1>{h1}</h1>
@@ -165,27 +165,27 @@ def main():
     pages = build_pages()
     assert len(pages) == 100, 'страниц: %d, надо 100' % len(pages)
     assert len({p['slug'] for p in pages}) == 100, 'дубли слагов!'
-    os.makedirs(SEO, exist_ok=True)
+    os.makedirs(DOCS, exist_ok=True)
     bycat = {}
     for p in pages:
         bycat.setdefault(p['cat'], []).append(p)
     for p in pages:
         rel = [r for r in bycat[p['cat']] if r['slug'] != p['slug']][:6]
-        with open(os.path.join(SEO, p['slug'] + '.html'), 'w', encoding='utf-8') as f:
+        with open(os.path.join(DOCS, p['slug'] + '.html'), 'w', encoding='utf-8') as f:
             f.write(render(p, rel))
     # каталог
     cats = ''.join(
         '<h2>%s</h2>\n<ul>\n%s\n</ul>\n' % (c, '\n'.join(
             '<li><a href="%s.html">%s</a></li>' % (p['slug'], esc(p['h1']))
             for p in lst)) for c, lst in bycat.items())
-    with open(os.path.join(SEO, 'index.html'), 'w', encoding='utf-8') as f:
+    with open(os.path.join(DOCS, 'stati.html'), 'w', encoding='utf-8') as f:
         f.write(HEAD.format(
-            site=SITE, slug='index', title='Статьи про MS-DOS, DOS и загрузочные флешки | ms-dos.su',
+            site=SITE, slug='stati', title='Статьи про MS-DOS, DOS и загрузочные флешки | ms-dos.su',
             desc='100 статей: команды DOS, версии MS-DOS, Secure Boot, Norton Commander, ошибки и гайды.',
             h1='Статьи', lead='Вся база знаний: от первой команды DIR до мультизагрузки.',
             sections=cats, faq='', related=''))
     # sitemap
-    urls = [SITE + '/', SITE + '/seo/'] + [SITE + '/seo/%s.html' % p['slug'] for p in pages]
+    urls = [SITE + '/', SITE + '/stati.html'] + [SITE + '/%s.html' % p['slug'] for p in pages]
     sm = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
           ''.join('<url><loc>%s</loc></url>\n' % u for u in urls) + '</urlset>\n')
     with open(os.path.join(ROOT, 'docs', 'sitemap.xml'), 'w', encoding='utf-8') as f:

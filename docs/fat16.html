@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAT16: пределы файловой системы DOS | ms-dos.su</title>
+<meta name="description" content="FAT16: лимиты и совместимость с DOS.">
+<link rel="canonical" href="https://ms-dos.su/fat16.html">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Y8PG2P181B');
+</script>
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106570050', 'ym');
+    ym(106570050, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106570050" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="assets/icon-64.png">
+</head>
+<body>
+<nav class="crumbs"><a href="./">MBFU</a> / <a href="stati.html">Статьи</a></nav>
+<main>
+<article>
+<h1>FAT16: пределы файловой системы DOS</h1>
+<p class="lead">FAT16 — родная система MS-DOS: максимальный раздел 4 ГБ (на практике 2 ГБ без больших кластеров), файл — до 4 ГБ, имен 8.3. Именно поэтому MBFU требует флешки до 4 ГБ.</p>
+<h2>Факты</h2>
+<ul><li>Раздел: до 4 ГБ (реально 2 ГБ).</li><li>Файл: до 4 ГБ.</li><li>Имена: 8.3, кириллицы нет.</li><li>Загрузка DOS: да.</li></ul>
+<h2>Вывод</h2>
+<p>Для MS-DOS альтернатив нет: только FAT16 (FAT12 — для дискет).</p>
+
+
+</article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="fat32-dos.html">FAT32 и DOS: совместимость</a></li>
+<li><a href="exfat-dos.html">exFAT и MS-DOS</a></li>
+<li><a href="ntfs-dos.html">NTFS и MS-DOS</a></li>
+<li><a href="razmer-klastera.html">Размер кластера FAT16</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>MBFU сделает ее за пару кликов: MS-DOS 5.00/6.22 + Norton Commander.</p>
+<p><a class="btn" href="https://github.com/sementsul/ms-dos/releases">Скачать MBFU</a></p>
+</div>
+</aside>
+</main>
+<footer>
+<p><a href="../">MBFU</a> · (c) 2025 Sementsul Maxim · MIT · MS-DOS (c) Microsoft</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Команда UNDELETE MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда UNDELETE: полный синтаксис, все ключи (7), примеры и типичные ошибки.">
+<link rel="canonical" href="https://ms-dos.su/komanda-undelete.html">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Y8PG2P181B');
+</script>
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106570050', 'ym');
+    ym(106570050, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106570050" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="assets/icon-64.png">
+</head>
+<body>
+<nav class="crumbs"><a href="./">MBFU</a> / <a href="stati.html">Статьи</a></nav>
+<main>
+<article>
+<h1>Команда UNDELETE</h1>
+<p class="lead">UNDELETE возвращает удаленные файлы, пока их место не перезаписано. Режимы: /DOS — по следам FAT, /DT — через сторожевой файл, /DS — стандартный.</p>
+<h2>Синтаксис</h2>
+<pre>UNDELETE [[диск:][путь]файл] [/DT | /DS | /DOS] [/LIST | /ALL] [/S[диск:] | /Tдиск-записи | /LOAD | /U]</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>/LIST</code></td><td>Показать, что можно спасти, ничего не трогая.</td></tr><tr><td><code>/ALL</code></td><td>Восстановить все без вопросов.</td></tr><tr><td><code>/DOS</code></td><td>Только по остаткам FAT.</td></tr><tr><td><code>/DT</code></td><td>Через файл-сторож MIRROR (лучшие шансы).</td></tr><tr><td><code>/DS</code></td><td>Стандартный метод.</td></tr><tr><td><code>/S</code></td><td>Включить сторожа на диске.</td></tr><tr><td><code>/T</code></td><td>Сколько записей хранить для восстановления.</td></tr></table>
+<h2>Примеры</h2>
+<pre>UNDELETE *.DOC /LIST</pre>
+<p>Оценить шансы.</p>
+<pre>UNDELETE REPORT.TXT</pre>
+<p>Вернуть один файл.</p>
+<pre>MIRROR /TC</pre>
+<p>Включить сторожа заранее (DOS 5.x).</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>Правило №1: после удаления ничего не писать на диск.</li><li>Первая буква имени теряется — UNDELETE попросит ее ввести.</li></ul>
+
+<h2>Вопросы и ответы</h2>
+<p><b>Что за первая буква, которую просит ввести?</b><br>DOS помечает удаленный файл символом в первом байте имени. Вспомните имя — введите букву.</p>
+<p><b>Как повысить шансы заранее?</b><br>MIRROR/UNDELETE /S: сторож ведет журнал удалений.</p>
+
+</article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="komanda-dir.html">Команда DIR</a></li>
+<li><a href="komanda-copy.html">Команда COPY</a></li>
+<li><a href="komanda-format.html">Команда FORMAT</a></li>
+<li><a href="komanda-fdisk.html">Команда FDISK</a></li>
+<li><a href="komanda-sys.html">Команда SYS</a></li>
+<li><a href="komanda-edit.html">Команда EDIT</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>MBFU сделает ее за пару кликов: MS-DOS 5.00/6.22 + Norton Commander.</p>
+<p><a class="btn" href="https://github.com/sementsul/ms-dos/releases">Скачать MBFU</a></p>
+</div>
+</aside>
+</main>
+<footer>
+<p><a href="../">MBFU</a> · (c) 2025 Sementsul Maxim · MIT · MS-DOS (c) Microsoft</p>
+</footer>
+</body>
+</html>

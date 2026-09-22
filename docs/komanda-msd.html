@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Команда MSD MS-DOS: все параметры и примеры | ms-dos.su</title>
+<meta name="description" content="Команда MSD: полный синтаксис, все ключи (4), примеры и типичные ошибки.">
+<link rel="canonical" href="https://ms-dos.su/komanda-msd.html">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Y8PG2P181B');
+</script>
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106570050', 'ym');
+    ym(106570050, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106570050" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="assets/icon-64.png">
+</head>
+<body>
+<nav class="crumbs"><a href="./">MBFU</a> / <a href="stati.html">Статьи</a></nav>
+<main>
+<article>
+<h1>Команда MSD</h1>
+<p class="lead">MSD (Microsoft Diagnostics) из MS-DOS 6.x показывает железо: CPU, память, видео, COM/LPT, IRQ, драйверы, TSR.</p>
+<h2>Синтаксис</h2>
+<pre>MSD [/I] [/Fфайл] [/P] [/B]</pre>
+<h2>Все параметры</h2>
+<table><tr><th>Ключ</th><th>Что делает</th></tr><tr><td><code>/I</code></td><td>Пропустить первичное определение железа.</td></tr><tr><td><code>/Fфайл</code></td><td>Записать отчет в файл: MSD /FFREPORT.TXT.</td></tr><tr><td><code>/P</code></td><td>Отчет в текущем видеорежиме.</td></tr><tr><td><code>/B</code></td><td>Черно-белый режим.</td></tr></table>
+<h2>Примеры</h2>
+<pre>MSD</pre>
+<p>Интерактивный осмотр.</p>
+<pre>MSD /F C:\REPORT.TXT</pre>
+<p>Отчет для письма в поддержку.</p>
+
+<h2>Типичные ошибки</h2>
+<ul><li>На экзотике MSD может подвиснуть при детекте — запускайте с /I.</li><li>Данные для настройки игр: IRQ/DMA звука и свободные прерывания.</li></ul>
+
+<h2>Вопросы и ответы</h2>
+<p><b>Что смотреть в MSD перед установкой игры?</b><br>Память (MEM), IRQ звуковой карты, свободные прерывания и UMB.</p>
+<p><b>MSD врет про процессор?</b><br>На новых CPU старый детект ошибается — верьте BIOS, а не MSD.</p>
+
+</article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="komanda-dir.html">Команда DIR</a></li>
+<li><a href="komanda-copy.html">Команда COPY</a></li>
+<li><a href="komanda-format.html">Команда FORMAT</a></li>
+<li><a href="komanda-fdisk.html">Команда FDISK</a></li>
+<li><a href="komanda-sys.html">Команда SYS</a></li>
+<li><a href="komanda-edit.html">Команда EDIT</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>MBFU сделает ее за пару кликов: MS-DOS 5.00/6.22 + Norton Commander.</p>
+<p><a class="btn" href="https://github.com/sementsul/ms-dos/releases">Скачать MBFU</a></p>
+</div>
+</aside>
+</main>
+<footer>
+<p><a href="../">MBFU</a> · (c) 2025 Sementsul Maxim · MIT · MS-DOS (c) Microsoft</p>
+</footer>
+</body>
+</html>
