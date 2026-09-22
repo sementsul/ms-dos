@@ -1,0 +1,47 @@
+       
+       ���������������������������������������������������������������� 
+       
+                           MS-BOS BOOT FROM USB (c) 2025 
+                                 Version 1.0
+                   The author of the program Sementsul Maxim 2025
+                       MS-DOS licensing: HTTPS:\\WWW.MICROSOFT.COM
+                          E-MAIL: SEMENTSULMS@GMAIL.COM
+       ���������������������������������������������������������������� 
+       
+       MS-DOS BOOT FROM USB is a free utility for creating bootable USB
+	   drives (flash drives and external hard drives) from the MS-DOS 
+	   operating system: 5.0, 6.22
+       
+                INSTRUCTIONS FOR USING A BOOTABLE USB DRIVE
+
+       To boot from a bootable flash drive created in MS-DOS BOOT FROM 
+	   USB on computers with UEFI (modern BIOS architecture), you need 
+	   to disable Secure Boot in the BIOS/UEFI settings of the computer. 
+	   The process of disabling varies depending on the manufacturer and
+	   model of the motherboard, but, as a rule, you need to enter the
+	   BIOS/UEFI during the initial boot (usually by pressing the Del, 
+	   F2, F10, F12 or other key indicated on the boot screen) and find
+	   the corresponding item in the settings menu.
+
+       Important: after working with MS-DOS and turning off the computer
+	   to start other operating systems, you may need to re-enable Secure
+	   Boot to improve system security. For more information, see the
+	   BIOS/UEFI instructions.
+
+       ����������������������������������������������������������������
+       
+                             Benefits of MBFU
+     
+       ����������������������������������������������������������������
+       
+       The uniqueness of MBFU is the ability to write full MS-DOS
+	   images, and not just transfer files from floppy disks, as many 
+	   other utilities do. What's the difference? Other programs often
+	   limit themselves to copying the contents of floppy disks to the
+	   boot sector of a USB drive. This leads to the system loading only
+	   into RAM, all changes are not saved, and after rebooting you get
+	   an empty flash drive. MS-DOS BOOT FROM USB, in contrast, provides
+	   a full image recording to the disk, ensuring the preservation of
+	   all settings and installed programs.
+
+

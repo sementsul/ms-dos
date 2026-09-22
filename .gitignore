@@ -1,0 +1,22 @@
+# Сборка и полезное (не публикуется)
+MBFU_GUI.exe
+MBFU-*-setup.exe
+MBFU-*-portable.zip
+build-tmp/
+*.spec
+__pycache__/
+temp.txt
+dosbox.conf
+
+# Проприетарная нагрузка — НЕ MIT, в репозиторий не коммитить (см. PAYLOAD.md)
+DOS/sourcr/
+DOS/VENDOR.TXT
+DOS/WHATSNEW.TXT
+DOS/BEN*.EXE
+DOS/BEN*.HLP
+DOS/MDESIGN.EXE
+DOS/!BEN*.EXE
+*.exe
+*.dll
+*.com
+*.sys
