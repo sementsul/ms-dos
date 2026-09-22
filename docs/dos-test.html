@@ -150,6 +150,7 @@ button { cursor:pointer; }
     setStatus("Загрузка " + label + " …");
     var cfg = {
       screen_container: screenEl,
+      wasm_path: "./assets/v86/v86.wasm",
       bios: { url: "./assets/v86/bios/seabios.bin" },
       vga_bios: { url: "./assets/v86/bios/vgabios.bin" },
       autostart: true,
@@ -170,12 +171,23 @@ button { cursor:pointer; }
       }
     });
     emulator.add_listener("emulator-ready", function () {
+      if (readyTimer) { clearTimeout(readyTimer); readyTimer = null; }
       setStatus(label + " запущен. Кликните по экрану.");
     });
     emulator.add_listener("emulator-stopped", function () {
       setStatus("Эмулятор остановлен.");
     });
+    // если за 60 секунд не стартовал — не висеть молча, а сказать причину
+    var readyTimer = setTimeout(function () {
+      readyTimer = null;
+      setStatus("Не стартовало за 60 секунд. Проверьте интернет (нужны файлы движка ~2.5 МБ) "
+        + "и обновите страницу через Ctrl+F5.");
+    }, 60000);
   }
+
+  window.addEventListener("error", function (e) {
+    setStatus("Ошибка страницы: " + (e.message || e.type) + ". Обновите через Ctrl+F5.");
+  });
 
   function bootFromInput(inputId, label) {
     var f = document.getElementById(inputId).files[0];
