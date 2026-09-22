@@ -57,20 +57,36 @@ button { cursor:pointer; }
 Файл никуда не отправляется: все считается локально.</p>
 
 <h2>1. Выберите образ</h2>
+<h2>1. Демо «как на флешке»</h2>
 <div class="os-cards">
   <div class="os-card">
     <h3>MS-DOS 5.00</h3>
+    <p>Готовый образ с системными файлами, Norton Commander и автостартом — как ставит MBFU.</p>
+    <div class="row"><button id="demo5">Запустить демо 5.00</button></div>
+  </div>
+  <div class="os-card">
+    <h3>MS-DOS 6.22</h3>
+    <p>То же для 6.22: SCANDISK, DriveSpace, QBASIC уже внутри.</p>
+    <div class="row"><button id="demo6">Запустить демо 6.22</button></div>
+  </div>
+</div>
+<p id="demo-note" style="display:none">Демо-образы на сайте отсутствуют — используйте свой образ ниже.</p>
+
+<h2>2. Или свой образ</h2>
+<div class="os-cards">
+  <div class="os-card">
+    <h3>Свой образ 5.00</h3>
     <input type="file" id="file5" accept=".img,.ima,.bin,.flp,.dsk">
     <div class="row"><button id="boot5">Загрузить 5.00</button></div>
   </div>
   <div class="os-card">
-    <h3>MS-DOS 6.22</h3>
+    <h3>Свой образ 6.22</h3>
     <input type="file" id="file6" accept=".img,.ima,.bin,.flp,.dsk">
     <div class="row"><button id="boot6">Загрузить 6.22</button></div>
   </div>
 </div>
 
-<h2>2. Экран</h2>
+<h2>3. Экран</h2>
 <p id="emu-status">Эмулятор готов. Выберите образ и нажмите «Загрузить».</p>
 <div id="screen_container"></div>
 <div class="row">
@@ -129,23 +145,30 @@ button { cursor:pointer; }
     screenEl.innerHTML = "";
   }
 
-  function boot(fdaBuffer, label) {
+  function boot(opts, label) {
     destroy();
     setStatus("Загрузка " + label + " …");
+    var cfg = {
+      screen_container: screenEl,
+      bios: { url: "./assets/v86/bios/seabios.bin" },
+      vga_bios: { url: "./assets/v86/bios/vgabios.bin" },
+      autostart: true,
+      memory_size: 16 * 1024 * 1024,
+      vga_memory_size: 2 * 1024 * 1024
+    };
+    if (opts.fda) cfg.fda = { buffer: opts.fda };
+    if (opts.hda_url) cfg.hda = { url: opts.hda_url, async: true };
     try {
-      emulator = new V86({
-        screen_container: screenEl,
-        bios: { url: "./assets/v86/bios/seabios.bin" },
-        vga_bios: { url: "./assets/v86/bios/vgabios.bin" },
-        fda: fdaBuffer ? { buffer: fdaBuffer } : undefined,
-        autostart: true,
-        memory_size: 16 * 1024 * 1024,
-        vga_memory_size: 2 * 1024 * 1024
-      });
+      emulator = new V86(cfg);
     } catch (e) {
       setStatus("Не стартовало: " + e.message);
       return;
     }
+    emulator.add_listener("download-progress", function (e) {
+      if (e && e.total) {
+        setStatus("Загрузка образа … " + Math.round(e.loaded / e.total * 100) + "%");
+      }
+    });
     emulator.add_listener("emulator-ready", function () {
       setStatus(label + " запущен. Кликните по экрану.");
     });
@@ -159,15 +182,35 @@ button { cursor:pointer; }
     if (!f) { setStatus("Сначала выберите файл образа для " + label + "."); return; }
     setStatus("Читаю " + f.name + " (" + Math.round(f.size / 1024) + " КБ) …");
     var rd = new FileReader();
-    rd.onload = function () { boot(rd.result, label); };
+    rd.onload = function () { boot({ fda: rd.result }, label); };
     rd.onerror = function () { setStatus("Не прочитался файл."); };
     rd.readAsArrayBuffer(f);
   }
 
+  function probe(url) {
+    return fetch(url, { method: "HEAD" }).then(function (r) { return r.ok; })
+      .catch(function () { return false; });
+  }
+
   document.getElementById("boot5").onclick = function () { bootFromInput("file5", "MS-DOS 5.00"); };
   document.getElementById("boot6").onclick = function () { bootFromInput("file6", "MS-DOS 6.22"); };
-  document.getElementById("btn-bios").onclick = function () { boot(undefined, "SeaBIOS (без диска)"); };
+  document.getElementById("btn-bios").onclick = function () { boot({}, "SeaBIOS (без диска)"); };
   document.getElementById("btn-stop").onclick = function () { destroy(); setStatus("Остановлено."); };
+  document.getElementById("demo5").onclick = function () {
+    boot({ hda_url: "./assets/demo/msdos5.img" }, "Демо MS-DOS 5.00");
+  };
+  document.getElementById("demo6").onclick = function () {
+    boot({ hda_url: "./assets/demo/msdos6.img" }, "Демо MS-DOS 6.22");
+  };
+  // демо-кнопки живы, только если образы лежат рядом; иначе — только свой файл
+  Promise.all([probe("./assets/demo/msdos5.img"), probe("./assets/demo/msdos6.img")])
+    .then(function (r) {
+      document.getElementById("demo5").disabled = !r[0];
+      document.getElementById("demo6").disabled = !r[1];
+      if (!r[0] && !r[1]) {
+        document.getElementById("demo-note").style.display = "block";
+      }
+    });
 })();
 </script>
 </body>
