@@ -6,6 +6,22 @@
 <title>Invalid media type — причины и решение | ms-dos.su</title>
 <meta name="description" content="Invalid media type: почему возникает и как исправить.">
 <link rel="canonical" href="https://ms-dos.su/oshibka-invalid-media.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ms-dos.su — MBFU">
+<meta property="og:title" content="Invalid media type — причины и решение | ms-dos.su">
+<meta property="og:description" content="Invalid media type: почему возникает и как исправить.">
+<meta property="og:url" content="https://ms-dos.su/oshibka-invalid-media.html">
+<meta property="og:image" content="https://ms-dos.su/assets/icon-64.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Invalid media type — причины и решение | ms-dos.su">
+<meta name="twitter:description" content="Invalid media type: почему возникает и как исправить.">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://mc.yandex.ru">
+<link rel="dns-prefetch" href="https://github.com">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Invalid media type", "description": "Invalid media type: почему возникает и как исправить.", "inLanguage": "ru", "author": {"@type": "Organization", "name": "MBFU"}, "publisher": {"@type": "Organization", "name": "MBFU"}, "mainEntityOfPage": "https://ms-dos.su/oshibka-invalid-media.html", "datePublished": "2026-09-22", "dateModified": "2026-09-22", "mainEntity": [{"@type": "Question", "name": "Флешка новая из магазина — почему Invalid media?", "acceptedAnswer": {"@type": "Answer", "text": "Новые флешки идут в exFAT/NTFS. DOS их не читает: пересоздайте флешку через MBFU в FAT16."}}, {"@type": "Question", "name": "Ошибка появилась на рабочей флешке — что случилось?", "acceptedAnswer": {"@type": "Answer", "text": "Вероятно, побился boot-сектор или FAT. Прогоните SCANDISK, не поможет — пересоздайте."}}]}
+</script>
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
 <script>
@@ -39,7 +55,8 @@
 <ol><li>Пересоздайте флешку через MBFU — будет FAT16.</li><li>Если нужно вручную: FDISK → удалить раздел → создать Primary DOS → FORMAT.</li></ol>
 
 <h2>Вопросы и ответы</h2>
-<p><b>MBFU покажет причину?</b><br>Да: программа разбирает вывод и показывает понятную ошибку вместо кода.</p>
+<p><b>Флешка новая из магазина — почему Invalid media?</b><br>Новые флешки идут в exFAT/NTFS. DOS их не читает: пересоздайте флешку через MBFU в FAT16.</p>
+<p><b>Ошибка появилась на рабочей флешке — что случилось?</b><br>Вероятно, побился boot-сектор или FAT. Прогоните SCANDISK, не поможет — пересоздайте.</p>
 
 </article>
 <aside>

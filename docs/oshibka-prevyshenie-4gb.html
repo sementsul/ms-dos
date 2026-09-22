@@ -6,6 +6,22 @@
 <title>Cannot exceed 4GB for FAT16 — причины и решение | ms-dos.su</title>
 <meta name="description" content="Cannot exceed 4GB for FAT16: почему возникает и как исправить.">
 <link rel="canonical" href="https://ms-dos.su/oshibka-prevyshenie-4gb.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ms-dos.su — MBFU">
+<meta property="og:title" content="Cannot exceed 4GB for FAT16 — причины и решение | ms-dos.su">
+<meta property="og:description" content="Cannot exceed 4GB for FAT16: почему возникает и как исправить.">
+<meta property="og:url" content="https://ms-dos.su/oshibka-prevyshenie-4gb.html">
+<meta property="og:image" content="https://ms-dos.su/assets/icon-64.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cannot exceed 4GB for FAT16 — причины и решение | ms-dos.su">
+<meta name="twitter:description" content="Cannot exceed 4GB for FAT16: почему возникает и как исправить.">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://mc.yandex.ru">
+<link rel="dns-prefetch" href="https://github.com">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Cannot exceed 4GB for FAT16", "description": "Cannot exceed 4GB for FAT16: почему возникает и как исправить.", "inLanguage": "ru", "author": {"@type": "Organization", "name": "MBFU"}, "publisher": {"@type": "Organization", "name": "MBFU"}, "mainEntityOfPage": "https://ms-dos.su/oshibka-prevyshenie-4gb.html", "datePublished": "2026-09-22", "dateModified": "2026-09-22", "mainEntity": [{"@type": "Question", "name": "А MS-DOS 6.22 на FAT32 никак?", "acceptedAnswer": {"@type": "Answer", "text": "Никак: 6.22 не понимает FAT32. Варианты: флешка до 4 ГБ под 6.22, FreeDOS под FAT32 либо DOS 7.1 из Windows 98."}}, {"@type": "Question", "name": "Флешка 16 ГБ: сделать первый раздел 4 ГБ — сработает?", "acceptedAnswer": {"@type": "Answer", "text": "Да, если первый раздел FAT16, активный и в начале диска. Остальное место DOS не увидит."}}]}
+</script>
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
 <script>
@@ -39,7 +55,8 @@
 <ol><li>Возьмите флешку до 4 ГБ — это штатное требование, а не поломка.</li><li>Либо разбейте большую флешку: первый раздел FAT16 до 4 ГБ сделать активным (инструкция — в статье про разделы).</li></ol>
 
 <h2>Вопросы и ответы</h2>
-<p><b>MBFU покажет причину?</b><br>Да: программа разбирает вывод и показывает понятную ошибку вместо кода.</p>
+<p><b>А MS-DOS 6.22 на FAT32 никак?</b><br>Никак: 6.22 не понимает FAT32. Варианты: флешка до 4 ГБ под 6.22, FreeDOS под FAT32 либо DOS 7.1 из Windows 98.</p>
+<p><b>Флешка 16 ГБ: сделать первый раздел 4 ГБ — сработает?</b><br>Да, если первый раздел FAT16, активный и в начале диска. Остальное место DOS не увидит.</p>
 
 </article>
 <aside>

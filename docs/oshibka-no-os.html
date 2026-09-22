@@ -6,6 +6,22 @@
 <title>Missing operating system — причины и решение | ms-dos.su</title>
 <meta name="description" content="Missing operating system: почему возникает и как исправить.">
 <link rel="canonical" href="https://ms-dos.su/oshibka-no-os.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ms-dos.su — MBFU">
+<meta property="og:title" content="Missing operating system — причины и решение | ms-dos.su">
+<meta property="og:description" content="Missing operating system: почему возникает и как исправить.">
+<meta property="og:url" content="https://ms-dos.su/oshibka-no-os.html">
+<meta property="og:image" content="https://ms-dos.su/assets/icon-64.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Missing operating system — причины и решение | ms-dos.su">
+<meta name="twitter:description" content="Missing operating system: почему возникает и как исправить.">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://mc.yandex.ru">
+<link rel="dns-prefetch" href="https://github.com">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Missing operating system", "description": "Missing operating system: почему возникает и как исправить.", "inLanguage": "ru", "author": {"@type": "Organization", "name": "MBFU"}, "publisher": {"@type": "Organization", "name": "MBFU"}, "mainEntityOfPage": "https://ms-dos.su/oshibka-no-os.html", "datePublished": "2026-09-22", "dateModified": "2026-09-22", "mainEntity": [{"@type": "Question", "name": "Чем отличается от Non-System disk?", "acceptedAnswer": {"@type": "Answer", "text": "Missing operating system — MBR есть, но активный раздел не загрузочный. Non-System disk — нет системных файлов."}}, {"@type": "Question", "name": "Исправит ли FDISK /MBR?", "acceptedAnswer": {"@type": "Answer", "text": "Если слетел только загрузочный код — да. Если нет системных файлов — нужен SYS или пересоздание."}}]}
+</script>
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
 <script>
@@ -39,7 +55,8 @@
 <ol><li>FDISK → назначить раздел активным (Set active partition).</li><li>Либо пересоздать флешку через MBFU целиком.</li></ol>
 
 <h2>Вопросы и ответы</h2>
-<p><b>MBFU покажет причину?</b><br>Да: программа разбирает вывод и показывает понятную ошибку вместо кода.</p>
+<p><b>Чем отличается от Non-System disk?</b><br>Missing operating system — MBR есть, но активный раздел не загрузочный. Non-System disk — нет системных файлов.</p>
+<p><b>Исправит ли FDISK /MBR?</b><br>Если слетел только загрузочный код — да. Если нет системных файлов — нужен SYS или пересоздание.</p>
 
 </article>
 <aside>

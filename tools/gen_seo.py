@@ -10,6 +10,7 @@ from seo_data_1 import COMMANDS
 from seo_data_2 import VENDORS, ERRORS, FILESYSTEMS
 from seo_data_3 import NC, QBASIC, DOSBOX, MEMORY
 from seo_data_4 import VERSIONS, COMPARE, GUIDES
+from seo_data_faq import VENDOR_FAQ, ERROR_FAQ
 
 HEAD = """<!DOCTYPE html>
 <html lang="ru">
@@ -19,6 +20,20 @@ HEAD = """<!DOCTYPE html>
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{site}/{slug}.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ms-dos.su — MBFU">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:url" content="{site}/{slug}.html">
+<meta property="og:image" content="{site}/assets/icon-64.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://mc.yandex.ru">
+<link rel="dns-prefetch" href="https://github.com">
+{jsonld}
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
 <script>
@@ -105,8 +120,7 @@ def build_pages():
             lead=lead,
             sections=[('Пошагово', '<ol>%s</ol>' % ''.join('<li>%s</li>' % s for s in steps)),
                       ('Нюанс', '<p>%s</p>' % note)],
-            faq=[('Это безопасно?',
-                  'Да, если вернуть Secure Boot обратно после работы с DOS.')]))
+            faq=VENDOR_FAQ[slug]))
     for slug, err, lead, causes, fixes in ERRORS:
         pages.append(dict(
             slug=slug, cat='Ошибки',
@@ -115,8 +129,7 @@ def build_pages():
             h1=err, lead=lead,
             sections=[('Причины', '<ul>%s</ul>' % ''.join('<li>%s</li>' % c for c in causes)),
                       ('Решение', '<ol>%s</ol>' % ''.join('<li>%s</li>' % f for f in fixes))],
-            faq=[('MBFU покажет причину?',
-                  'Да: программа разбирает вывод и показывает понятную ошибку вместо кода.')]))
+            faq=ERROR_FAQ[slug]))
     for slug, h1, lead, facts, note in FILESYSTEMS:
         pages.append(dict(
             slug=slug, cat='Файловые системы',
@@ -148,6 +161,32 @@ def build_pages():
     return pages
 
 
+import json as _json
+
+
+def jsonld(p):
+    data = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": p['h1'],
+        "description": p['desc'],
+        "inLanguage": "ru",
+        "author": {"@type": "Organization", "name": "MBFU"},
+        "publisher": {"@type": "Organization", "name": "MBFU"},
+        "mainEntityOfPage": SITE + '/' + p['slug'] + '.html',
+        "datePublished": "2026-09-22",
+        "dateModified": "2026-09-22",
+    }
+    if p['faq']:
+        data["mainEntity"] = [{
+            "@type": "Question",
+            "name": q,
+            "acceptedAnswer": {"@type": "Answer", "text": a},
+        } for q, a in p['faq']]
+    return ('<script type="application/ld+json">\n%s\n</script>' %
+            _json.dumps(data, ensure_ascii=False))
+
+
 def render(p, related):
     secs = ''.join('<h2>%s</h2>\n%s\n' % (h, b) for h, b in p['sections'])
     faq = ''
@@ -158,7 +197,8 @@ def render(p, related):
                     for r in related)
     return HEAD.format(site=SITE, slug=p['slug'], title=esc(p['title']),
                        desc=esc(p['desc']), h1=esc(p['h1']),
-                       lead=p['lead'], sections=secs, faq=faq, related=rel)
+                       lead=p['lead'], sections=secs, faq=faq, related=rel,
+                       jsonld=jsonld(p))
 
 
 def main():
@@ -183,9 +223,12 @@ def main():
             site=SITE, slug='stati', title='Статьи про MS-DOS, DOS и загрузочные флешки | ms-dos.su',
             desc='100 статей: команды DOS, версии MS-DOS, Secure Boot, Norton Commander, ошибки и гайды.',
             h1='Статьи', lead='Вся база знаний: от первой команды DIR до мультизагрузки.',
-            sections=cats, faq='', related=''))
+            sections=cats, faq='', related='',
+            jsonld=jsonld({'slug': 'stati', 'h1': 'Статьи про MS-DOS',
+                           'desc': 'Каталог из 100 статей про MS-DOS.', 'faq': []})))
     # sitemap
-    urls = [SITE + '/', SITE + '/stati.html'] + [SITE + '/%s.html' % p['slug'] for p in pages]
+    urls = ([SITE + '/', SITE + '/stati.html', SITE + '/dos-test.html'] +
+            [SITE + '/%s.html' % p['slug'] for p in pages])
     sm = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
           ''.join('<url><loc>%s</loc></url>\n' % u for u in urls) + '</urlset>\n')
     with open(os.path.join(ROOT, 'docs', 'sitemap.xml'), 'w', encoding='utf-8') as f:

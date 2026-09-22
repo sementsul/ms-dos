@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Протестировать MS-DOS 5.00 и 6.22 онлайн в браузере | ms-dos.su</title>
+<meta name="description" content="Онлайн-эмулятор MS-DOS: загрузите свой образ MS-DOS 5.00 или 6.22 (IMG/IMA) и протестируйте прямо в браузере. Файлы никуда не отправляются.">
+<link rel="canonical" href="https://ms-dos.su/dos-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ms-dos.su — MBFU">
+<meta property="og:title" content="Протестировать MS-DOS онлайн">
+<meta property="og:description" content="Эмулятор MS-DOS 5.00/6.22 в браузере: подсуньте свой загрузочный образ и гоняйте.">
+<meta property="og:url" content="https://ms-dos.su/dos-test.html">
+<meta property="og:image" content="https://ms-dos.su/assets/icon-64.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Y8PG2P181B');
+</script>
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106570050', 'ym');
+    ym(106570050, 'init', {ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106570050" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Онлайн-тест MS-DOS 5.00/6.22","applicationCategory":"Emulator","operatingSystem":"Any (Web)","inLanguage":"ru","url":"https://ms-dos.su/dos-test.html","offers":{"@type":"Offer","price":"0"}}
+</script>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="assets/icon-64.png">
+<style>
+#screen_container { background:#000; border:2px solid #3ddc84; border-radius:8px; }
+#screen_container canvas { display:block; width:100%; image-rendering:pixelated; }
+.os-cards { display:flex; gap:16px; flex-wrap:wrap; }
+.os-card { flex:1 1 280px; border:1px solid #9aa3c0; border-radius:8px; padding:14px 16px; }
+#emu-status { min-height:1.6em; color:#ffb000; }
+.row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:8px; }
+button { cursor:pointer; }
+</style>
+</head>
+<body>
+<nav class="crumbs"><a href="./">MBFU</a> / Тест MS-DOS онлайн</nav>
+<main>
+<article>
+<h1>Протестировать MS-DOS 5.00 и 6.22 онлайн</h1>
+<p class="lead">Эмулятор прямо в браузере: подсуньте <b>свой</b> загрузочный образ дискеты
+(IMG/IMA, 1.44 МБ) MS-DOS 5.00 или 6.22 — и гоняйте команды, как на настоящей машине.
+Файл никуда не отправляется: все считается локально.</p>
+
+<h2>1. Выберите образ</h2>
+<div class="os-cards">
+  <div class="os-card">
+    <h3>MS-DOS 5.00</h3>
+    <input type="file" id="file5" accept=".img,.ima,.bin,.flp,.dsk">
+    <div class="row"><button id="boot5">Загрузить 5.00</button></div>
+  </div>
+  <div class="os-card">
+    <h3>MS-DOS 6.22</h3>
+    <input type="file" id="file6" accept=".img,.ima,.bin,.flp,.dsk">
+    <div class="row"><button id="boot6">Загрузить 6.22</button></div>
+  </div>
+</div>
+
+<h2>2. Экран</h2>
+<p id="emu-status">Эмулятор готов. Выберите образ и нажмите «Загрузить».</p>
+<div id="screen_container"></div>
+<div class="row">
+  <button id="btn-bios">Проверить эмулятор (старт без диска)</button>
+  <button id="btn-stop">Остановить</button>
+</div>
+<p>Кликните по экрану, чтобы клавиатура ушла в эмулятор. Выход мыши/клавиатуры — как обычно в браузере.</p>
+
+<h2>Где взять образ</h2>
+<ul>
+  <li>Используйте <b>свою лицензионную копию</b> MS-DOS: образ загрузочной дискеты можно снять с оригинала.</li>
+  <li>Флешку, созданную MBFU, в браузер не подсунуть — нужен именно файл-образ дискеты (IMG/IMA).</li>
+  <li>MS-DOS принадлежит Microsoft: чужие образы из интернета качаете на свой риск.</li>
+</ul>
+
+<h2>Вопросы и ответы</h2>
+<p><b>Чем 5.00 отличается от 6.22 в эмуляторе?</b><br>
+Наберите VER: увидите 5.00 или 6.22. В 6.22 есть SCANDISK, DriveSpace, MemMaker; 5.00 легче и ближе к оригиналу эпохи 286.</p>
+<p><b>Эмулятор пишет «No bootable device» — что не так?</b><br>
+Образ не загрузочный или не дискетный (например, ISO). Нужен bootable IMG 1.44 МБ.</p>
+</article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="ms-dos-5-0.html">MS-DOS 5.0: зрелость</a></li>
+<li><a href="ms-dos-6-22.html">MS-DOS 6.22: последняя классика</a></li>
+<li><a href="kak-sozdat-zagruzochnuyu-fleshku.html">Как создать загрузочную флешку</a></li>
+<li><a href="dos-klony.html">Клоны DOS: FreeDOS, DR-DOS, PC DOS</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Понравилось в браузере?</b></p>
+<p>Сделайте настоящую загрузочную флешку программой MBFU.</p>
+<p><a class="btn" href="https://github.com/sementsul/ms-dos/releases">Скачать MBFU</a></p>
+</div>
+</aside>
+</main>
+<footer>
+<p><a href="./">MBFU</a> · (c) 2025 Sementsul Maxim · MIT · MS-DOS (c) Microsoft · Эмулятор: v86 (BSD)</p>
+</footer>
+<script src="assets/v86/libv86.js"></script>
+<script>
+(function () {
+  "use strict";
+  var emulator = null;
+  var statusEl = document.getElementById("emu-status");
+  var screenEl = document.getElementById("screen_container");
+
+  function setStatus(t) { statusEl.textContent = t; }
+
+  function destroy() {
+    if (emulator) {
+      try { emulator.stop(); } catch (e) {}
+      try { if (emulator.destroy) emulator.destroy(); } catch (e) {}
+      emulator = null;
+    }
+    screenEl.innerHTML = "";
+  }
+
+  function boot(fdaBuffer, label) {
+    destroy();
+    setStatus("Загрузка " + label + " …");
+    try {
+      emulator = new V86({
+        screen_container: screenEl,
+        bios: { url: "./assets/v86/bios/seabios.bin" },
+        vga_bios: { url: "./assets/v86/bios/vgabios.bin" },
+        fda: fdaBuffer ? { buffer: fdaBuffer } : undefined,
+        autostart: true,
+        memory_size: 16 * 1024 * 1024,
+        vga_memory_size: 2 * 1024 * 1024
+      });
+    } catch (e) {
+      setStatus("Не стартовало: " + e.message);
+      return;
+    }
+    emulator.add_listener("emulator-ready", function () {
+      setStatus(label + " запущен. Кликните по экрану.");
+    });
+    emulator.add_listener("emulator-stopped", function () {
+      setStatus("Эмулятор остановлен.");
+    });
+  }
+
+  function bootFromInput(inputId, label) {
+    var f = document.getElementById(inputId).files[0];
+    if (!f) { setStatus("Сначала выберите файл образа для " + label + "."); return; }
+    setStatus("Читаю " + f.name + " (" + Math.round(f.size / 1024) + " КБ) …");
+    var rd = new FileReader();
+    rd.onload = function () { boot(rd.result, label); };
+    rd.onerror = function () { setStatus("Не прочитался файл."); };
+    rd.readAsArrayBuffer(f);
+  }
+
+  document.getElementById("boot5").onclick = function () { bootFromInput("file5", "MS-DOS 5.00"); };
+  document.getElementById("boot6").onclick = function () { bootFromInput("file6", "MS-DOS 6.22"); };
+  document.getElementById("btn-bios").onclick = function () { boot(undefined, "SeaBIOS (без диска)"); };
+  document.getElementById("btn-stop").onclick = function () { destroy(); setStatus("Остановлено."); };
+})();
+</script>
+</body>
+</html>

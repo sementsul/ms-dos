@@ -6,6 +6,22 @@
 <title>HIMEM.SYS error / Missing HIMEM — причины и решение | ms-dos.su</title>
 <meta name="description" content="HIMEM.SYS error / Missing HIMEM: почему возникает и как исправить.">
 <link rel="canonical" href="https://ms-dos.su/oshibka-himem.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ms-dos.su — MBFU">
+<meta property="og:title" content="HIMEM.SYS error / Missing HIMEM — причины и решение | ms-dos.su">
+<meta property="og:description" content="HIMEM.SYS error / Missing HIMEM: почему возникает и как исправить.">
+<meta property="og:url" content="https://ms-dos.su/oshibka-himem.html">
+<meta property="og:image" content="https://ms-dos.su/assets/icon-64.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HIMEM.SYS error / Missing HIMEM — причины и решение | ms-dos.su">
+<meta name="twitter:description" content="HIMEM.SYS error / Missing HIMEM: почему возникает и как исправить.">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://mc.yandex.ru">
+<link rel="dns-prefetch" href="https://github.com">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "HIMEM.SYS error / Missing HIMEM", "description": "HIMEM.SYS error / Missing HIMEM: почему возникает и как исправить.", "inLanguage": "ru", "author": {"@type": "Organization", "name": "MBFU"}, "publisher": {"@type": "Organization", "name": "MBFU"}, "mainEntityOfPage": "https://ms-dos.su/oshibka-himem.html", "datePublished": "2026-09-22", "dateModified": "2026-09-22", "mainEntity": [{"@type": "Question", "name": "HIMEM нужен обязательно?", "acceptedAnswer": {"@type": "Answer", "text": "Для DOS 5.0/6.22 с DOS=HIGH — да. Без него ядро не загрузится выше 640 КБ и посыпятся ошибки."}}, {"@type": "Question", "name": "Ошибка на 286 — это нормально?", "acceptedAnswer": {"@type": "Answer", "text": "HIMEM требует 286+, EMM386 — 386+. На 8088/8086 используйте голый DOS без этих драйверов."}}]}
+</script>
 <meta name="yandex-verification" content="bb775f01a3383d99">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
 <script>
@@ -39,7 +55,8 @@
 <ol><li>Проверьте CONFIG.SYS: DEVICE=C:\DOS\HIMEM.SYS должен быть первым.</li><li>На эмуляторах (DOSBox) XMS включается в конфиге: xms=true.</li></ol>
 
 <h2>Вопросы и ответы</h2>
-<p><b>MBFU покажет причину?</b><br>Да: программа разбирает вывод и показывает понятную ошибку вместо кода.</p>
+<p><b>HIMEM нужен обязательно?</b><br>Для DOS 5.0/6.22 с DOS=HIGH — да. Без него ядро не загрузится выше 640 КБ и посыпятся ошибки.</p>
+<p><b>Ошибка на 286 — это нормально?</b><br>HIMEM требует 286+, EMM386 — 386+. На 8088/8086 используйте голый DOS без этих драйверов.</p>
 
 </article>
 <aside>
