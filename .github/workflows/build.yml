@@ -22,8 +22,9 @@ jobs:
       - name: Build MBFU_GUI.exe
         run: >
           pyinstaller --noconfirm --clean --onefile --windowed
-          --uac-admin --noupx --name MBFU_GUI --icon MBFU.ico
-          --version-file version_info.txt
+          --uac-admin --noupx --name MBFU_GUI
+          --icon "${{ github.workspace }}/MBFU.ico"
+          --version-file "${{ github.workspace }}/version_info.txt"
           --distpath MBFU_clean --workpath build-tmp --specpath build-tmp
           MBFU_clean/MBFU_GUI.py
 
