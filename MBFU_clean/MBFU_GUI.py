@@ -10,9 +10,11 @@ import ctypes
 import json
 import os
 import queue
+import re
 import subprocess
 import sys
 import threading
+import time
 import tkinter as tk
 from tkinter import messagebox, ttk
 from datetime import datetime
@@ -726,5 +728,307 @@ class App(tk.Tk):
             self.log_line("Активного процесса нет.")
 
 
+# ==================== SETUP-режим (--setup) ====================
+# Маленькое окно -> сканирование -> скрытый хелпер + весь интерфейс в DOSBox.
+# Связь с DOS-сессией — через файлы DOS\IPC\: хелпер пишет DRIVES/STATUS/OK/ERR,
+# DOS-меню (SETUP.BAT) пишет REQUEST. Ожидания в DOS — циклами SLEEP (свой SLEEP.COM,
+# т.к. CHOICE /T в DOSBox не работает).
+
+IPC_DIRNAME = "IPC"
+SETUP_BAT = "SETUP.BAT"
+
+
+def ipc_sanitize(s):
+    """ASCII для DOS-экрана: без кириллицы и мусора."""
+    return ''.join(c if 32 <= ord(c) < 127 else '?' for c in str(s))[:40]
+
+
+def build_drives_txt(drives):
+    """drives: список list_usb_drives() -> (текст DRIVES.TXT, {idx: строка}, empty).
+    Только флешки С БУКВАМИ, максимум 4: строго 1:1 с файлами D1-D4.TXT,
+    по которым DOS-меню предлагает выбор."""
+    usb = [d for d in drives
+           if (d.get('bus') or '').upper() == 'USB' and d.get('letters')][:4]
+    lines = []
+    per = {}
+    for i, d in enumerate(usb, 1):
+        letters = ','.join(l + ':' for l in d['letters'])
+        label = ipc_sanitize((d.get('labels') or [''])[0])
+        model = ipc_sanitize(d.get('model', ''))
+        line = '%d. %s %s %sGB %s' % (i, letters, label, d.get('size_gb', '?'), model)
+        lines.append(line.strip())
+        per[i] = line.strip()
+    return '\n'.join(lines) + ('\n' if lines else ''), per, (len(usb) == 0)
+
+
+def parse_request(text):
+    parts = (text or '').strip().split()
+    if not parts:
+        return '', ''
+    cmd = parts[0].upper()
+    return cmd, (parts[1] if len(parts) > 1 else '')
+
+
+def setup_map_letter(letter, ipc_dir):
+    """Буква тома -> номер PHYSICALDRIVE через Get-UsbDrive.ps1. Только чтение."""
+    ps1 = os.path.join(APP_DIR, 'Get-UsbDrive.ps1')
+    tmp = os.path.join(ipc_dir, 'tmpmap.txt')
+    want = (letter or '').strip().upper().rstrip(':')
+    for n in range(1, 31):
+        try:
+            subprocess.run(
+                ['powershell', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass',
+                 '-File', ps1, '-DiskNumber', str(n), '-OutFile', tmp],
+                capture_output=True, timeout=30,
+                creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+            if os.path.isfile(tmp):
+                with open(tmp, encoding='utf-8', errors='replace') as f:
+                    got = f.read().upper()
+                if want and want in re.split(r'[^A-Z]+', got):
+                    return n
+        except Exception:
+            continue
+    return 0
+
+
+def setup_format(letter):
+    """Форматирование для SETUP-режима. Возвращает (ok, текст для ERR.TXT)."""
+    exe = os.path.join(APP_DIR, 'MSDOSBOOT.exe')
+    if not os.path.isfile(exe):
+        return False, 'Нет MSDOSBOOT.exe рядом с программой.'
+    n = setup_map_letter(letter, os.path.join(APP_DIR, IPC_DIRNAME))
+    if not n:
+        return False, 'Не сопоставлена буква %s с физическим диском.' % letter
+    try:
+        p = subprocess.run(
+            [exe, 'DRIVE=%d' % n, 'MSDOS', 'CHS', 'VOLUME', 'dos'],
+            cwd=APP_DIR, capture_output=True, text=True, errors='replace', timeout=600,
+            creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+        out = (p.stdout or '') + '\n' + (p.stderr or '')
+        if p.returncode == 0:
+            return True, ''
+        title, text = explain_backend_error(p.returncode, out)
+        return False, '%s: %s' % (title, text.split('\n\n')[0])
+    except Exception as e:
+        return False, 'Не запустился бэкенд: %s' % e
+
+
+def _ipc_wipe(ipc):
+    """Чистит все IPC-файлы, включая USE_<буква>.TXT."""
+    names = ['REQUEST.TXT', 'OK.TXT', 'ERR.TXT', 'STATUS.TXT', 'DRIVES.TXT',
+             'EMPTY.TXT', 'tmpmap.txt', 'D1.TXT', 'D2.TXT', 'D3.TXT', 'D4.TXT']
+    names += ['USE_%s.TXT' % c for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
+    for f in names:
+        try:
+            os.remove(os.path.join(ipc, f))
+        except OSError:
+            pass
+
+
+def run_setup():
+    ipc = os.path.join(APP_DIR, IPC_DIRNAME)
+    os.makedirs(ipc, exist_ok=True)
+    _ipc_wipe(ipc)
+
+    dosbox = os.path.join(APP_DIR, 'dosbox.exe')
+    if not os.path.isfile(dosbox):
+        messagebox.showerror('MS-DOS SETUP FOR USB SEMENTSUL MAXIM 2026', 'Не найден dosbox.exe рядом с программой.')
+        return
+
+    root = tk.Tk()
+    root.title('MS-DOS SETUP FOR USB SEMENTSUL MAXIM 2026')
+    root.geometry('340x150')
+    root.resizable(False, False)
+    status = tk.StringVar(value='Сканирование дисков…')
+    ttk.Label(root, textvariable=status, wraplength=320).pack(padx=12, pady=10)
+    bar = ttk.Progressbar(root, mode='indeterminate')
+    bar.pack(fill='x', padx=12)
+    bar.start(20)
+    cancelled = {'v': False}
+
+    def cancel():
+        cancelled['v'] = True
+        try:
+            root.destroy()
+        except Exception:
+            pass
+
+    ttk.Button(root, text='Отмена', command=cancel).pack(pady=8)
+
+    def write_scan():
+        try:
+            drives = list_usb_drives()
+        except Exception:
+            drives = []
+        # скрытые системные не предлагаем, но и не прячем C: от проверки формата
+        txt, per, empty = build_drives_txt(drives)
+        with open(os.path.join(ipc, 'DRIVES.TXT'), 'w', encoding='ascii') as f:
+            f.write(txt)
+        for i in range(1, 5):
+            p = os.path.join(ipc, 'D%d.TXT' % i)
+            try:
+                os.remove(p)
+            except OSError:
+                pass
+            if i in per:
+                with open(p, 'w', encoding='ascii') as f:
+                    f.write(per[i] + '\n')
+        if empty:
+            open(os.path.join(ipc, 'EMPTY.TXT'), 'w').close()
+        else:
+            try:
+                os.remove(os.path.join(ipc, 'EMPTY.TXT'))
+            except OSError:
+                pass
+        with open(os.path.join(ipc, 'STATUS.TXT'), 'w', encoding='ascii') as f:
+            f.write('READY\n')
+        return drives
+
+    def set_status(s):
+        try:
+            status.set(s)
+        except Exception:
+            pass
+
+    proc = {'p': None}
+
+    def poll():
+        """Фоновый опрос REQUEST.TXT. Tk не трогаем напрямую — только через очередь."""
+        rq = os.path.join(ipc, 'REQUEST.TXT')
+        while True:
+            if cancelled['v']:
+                break
+            p = proc['p']
+            if p is not None and p.poll() is not None:
+                break  # DOSBox закрыт — выходим
+            try:
+                if os.path.isfile(rq):
+                    with open(rq, encoding='utf-8', errors='replace') as f:
+                        cmd, arg = parse_request(f.read())
+                    try:
+                        os.remove(rq)
+                    except OSError:
+                        pass
+                    if cmd == 'QUIT':
+                        break
+                    elif cmd == 'SCAN':
+                        q.put(('status', 'Сканирование дисков…'))
+                        write_scan()
+                        q.put(('status', 'DOSBox запущен. Работайте в DOS-окне.'))
+                    elif cmd == 'FORMAT':
+                        idx = int(arg) if arg.isdigit() else 0
+                        _do_format(idx)
+                    elif cmd:
+                        pass  # неизвестная команда — игнор
+            except Exception:
+                pass
+            time.sleep(0.5)
+
+    def _do_format(idx):
+        # индекс -> буква из свежего скана (тот же отбор, что в DRIVES.TXT)
+        try:
+            drives = list_usb_drives()
+        except Exception:
+            drives = []
+        txt, per, empty = build_drives_txt(drives)
+        usb = [d for d in drives
+               if (d.get('bus') or '').upper() == 'USB' and d.get('letters')][:4]
+        if idx < 1 or idx > len(usb):
+            write_file('ERR.TXT', 'Нет такой флешки. Обновите список (R).')
+            return
+        letter = (usb[idx - 1]['letters'][0] + ':').upper()
+        if letter == 'C:':
+            write_file('ERR.TXT', 'Системный диск заблокирован.')
+            return
+        # маркер для DOS: какую Windows-букву монтировать как D:
+        for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+            try:
+                os.remove(os.path.join(ipc, 'USE_%s.TXT' % c))
+            except OSError:
+                pass
+        write_file('USE_%s.TXT' % letter[0], letter + '\n')
+        for f in ('OK.TXT', 'ERR.TXT'):
+            try:
+                os.remove(os.path.join(ipc, f))
+            except OSError:
+                pass
+        write_file('STATUS.TXT', 'FORMATTING ' + letter + '\n')
+        q.put(('status', 'Форматирование %s… Не вынимайте флешку.' % letter))
+        ok, msg = setup_format(letter)
+        write_file('STATUS.TXT', 'READY\n')
+        q.put(('status', 'DOSBox запущен. Работайте в DOS-окне.'))
+        write_file('OK.TXT' if ok else 'ERR.TXT', 'OK\n' if ok else msg + '\n')
+
+    def write_file(name, text):
+        with open(os.path.join(ipc, name), 'w', encoding='utf-8', errors='replace') as f:
+            f.write(text)
+
+    q = queue.Queue()
+
+    def pump():
+        try:
+            while True:
+                kind, val = q.get_nowait()
+                if kind == 'status':
+                    set_status(val)
+        except Exception:
+            pass
+        try:
+            root.after(200, pump)
+        except Exception:
+            pass
+
+    # стартовый скан + запуск DOSBox
+    try:
+        write_scan()
+    except Exception as e:
+        messagebox.showerror('MS-DOS SETUP FOR USB SEMENTSUL MAXIM 2026', 'Не опросить диски: %s' % e)
+        root.destroy()
+        return
+    # dosbox.conf: монтируем флешку позже нельзя — D: подставит msd-батник;
+    # здесь монтируем только IPC как E: и стартуем SETUP.BAT
+    try:
+        with open(os.path.join(APP_DIR, 'cfg.conf'), encoding='utf-8', errors='replace') as f:
+            conf = f.read()
+    except Exception:
+        conf = ''
+    with open(os.path.join(APP_DIR, 'dosbox.conf'), 'w', encoding='utf-8') as f:
+        f.write(conf)
+        if not conf.endswith('\n'):
+            f.write('\n')
+        f.write('mount e "%s"\n' % ipc)
+    try:
+        proc['p'] = subprocess.Popen(
+            [dosbox, '-conf', os.path.join(APP_DIR, 'dosbox.conf'),
+                    os.path.join('DOS', SETUP_BAT)],
+            cwd=APP_DIR)
+    except Exception as e:
+        messagebox.showerror('MS-DOS SETUP FOR USB SEMENTSUL MAXIM 2026', 'Не запустился DOSBox: %s' % e)
+        root.destroy()
+        return
+    set_status('DOSBox запущен. Работайте в DOS-окне.')
+    bar.stop()
+    root.withdraw()  # окно прячется — дальше только DOSBox + скрытый опрос
+    threading.Thread(target=poll, daemon=True).start()
+    # вернуть окно, если DOSBox закрыли
+    def watch():
+        p = proc['p']
+        while p.poll() is None and not cancelled['v']:
+            time.sleep(0.5)
+        try:
+            root.after(0, root.destroy)
+        except Exception:
+            pass
+    threading.Thread(target=watch, daemon=True).start()
+    root.after(200, pump)
+    root.mainloop()
+    # уборка IPC
+    _ipc_wipe(ipc)
+
+
 if __name__ == "__main__":
-    App().mainloop()
+    import sys as _sys
+    if '--setup' in _sys.argv:
+        run_setup()
+    else:
+        App().mainloop()
