@@ -4,6 +4,7 @@ rem
 rem  Использование:
 rem    MSDOSBOOT.bat /MSD5 E: [метка] [NC]
 rem    MSDOSBOOT.bat /MSD6 E: [метка] [NC]
+rem    MSDOSBOOT.bat /MENU E: [метка] [NC] - DOS-мастер (Retro Edition)
 rem  где E: - буква целевой USB-флешки (только буква с двоеточием!)
 rem  метка - необязательно, латиница до 11 символов (по умолч. dos).
 rem  NC    - программы для DOS: 1 = ставить Norton Commander без вопросов,
@@ -27,6 +28,7 @@ if "%MODE%"=="" goto usage
 if "%TARGET%"=="" goto usage
 if /I "%MODE%"=="/MSD5" goto check_target
 if /I "%MODE%"=="/MSD6" goto check_target
+if /I "%MODE%"=="/MENU" goto check_target
 if /I "%MODE%"=="/HELP" goto usage
 if /I "%MODE%"=="/?" goto usage
 echo Unknown mode "%MODE%". Expected /MSD5 or /MSD6.
@@ -86,6 +88,7 @@ copy /Y "%~dp0cfg.conf" "%~dp0dosbox.conf" >nul
 echo mount d %TARGET%\>> "%~dp0dosbox.conf"
 if /I "%MODE%"=="/MSD5" "%~dp0dosbox.exe" -conf "%~dp0dosbox.conf" "DOS\msd5s.BAT"
 if /I "%MODE%"=="/MSD6" "%~dp0dosbox.exe" -conf "%~dp0dosbox.conf" "DOS\msd6s.BAT"
+if /I "%MODE%"=="/MENU" "%~dp0dosbox.exe" -conf "%~dp0dosbox.conf" "DOS\MENU.BAT"
 if errorlevel 1 (
   echo DOSBox file-copy stage failed with code %ERRORLEVEL%.
   del "%~dp0DOS\SKIP_NC" >nul 2>nul
@@ -103,8 +106,10 @@ exit /b 0
 echo Usage:
 echo   MSDOSBOOT.bat /MSD5 E: [label] [NC]
 echo   MSDOSBOOT.bat /MSD6 E: [label] [NC]
+echo   MSDOSBOOT.bat /MENU E: [label] [NC] - DOS wizard (Retro Edition)
 echo.
 echo   /MSD5 - install MS-DOS 5.00, /MSD6 - install MS-DOS 6.22
+echo   /MENU - ask version and NC inside DOSBox
 echo   E:    - target USB drive letter (must exist, must NOT be C:)
 echo   label - optional volume label, A-Z 0-9, default dos
 echo   NC    - 1 install Norton Commander, 0 skip, empty ask inside

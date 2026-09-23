@@ -51,8 +51,10 @@ Source: "{#SrcDir}\LICENSE-NC-RU.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SrcDir}\LICENSE-SETUP-RU.txt"; DestDir: "{app}"; Flags: ignoreversion
 ; бэкенд
 Source: "{#SrcDir}\MSDOSBOOT.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SrcDir}\MBFU-RETRO.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SrcDir}\dskn.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SrcDir}\Get-UsbDrive.ps1"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SrcDir}\Find-UsbDrive.ps1"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SrcDir}\MSDOSBOOT.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SrcDir}\MSDOSBOOT.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SrcDir}\dosbox.exe"; DestDir: "{app}"; Flags: ignoreversion
@@ -66,6 +68,7 @@ Source: "{#SrcDir}\DOS\*"; DestDir: "{app}\DOS"; Flags: ignoreversion recursesub
 ; EXE сам запрашивает права администратора (UAC-манифест внутри).
 Name: "{group}\MBFU — графический интерфейс"; Filename: "{app}\MBFU_GUI.exe"; WorkingDir: "{app}"; Comment: "Создание загрузочной флешки MS-DOS (GUI)"
 Name: "{group}\MBFU — командная строка"; Filename: "{app}\MSDOSBOOT.bat"; WorkingDir: "{app}"; Comment: "MSDOSBOOT.bat /MSD5 E: или /MSD6 E: [метка]"
+Name: "{group}\MBFU Retro — интерфейс в DOSBox"; Filename: "{app}\MBFU-RETRO.bat"; WorkingDir: "{app}"; Comment: "Весь интерфейс внутри DOSBox"
 Name: "{group}\Лицензия MS-DOS"; Filename: "notepad.exe"; Parameters: """{app}\LICENSE-MS-DOS-RU.txt"""; WorkingDir: "{app}"
 Name: "{group}\Лицензия Norton Commander"; Filename: "notepad.exe"; Parameters: """{app}\LICENSE-NC-RU.txt"""; WorkingDir: "{app}"
 Name: "{group}\Удалить MBFU"; Filename: "{uninstallexe}"
