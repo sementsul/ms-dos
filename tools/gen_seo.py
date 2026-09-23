@@ -213,10 +213,10 @@ def main():
         rel = [r for r in bycat[p['cat']] if r['slug'] != p['slug']][:6]
         with open(os.path.join(DOCS, p['slug'] + '.html'), 'w', encoding='utf-8') as f:
             f.write(render(p, rel))
-    # каталог
+    # каталог-мегаиндекс: все статьи с описаниями
     cats = ''.join(
-        '<h2>%s</h2>\n<ul>\n%s\n</ul>\n' % (c, '\n'.join(
-            '<li><a href="%s.html">%s</a></li>' % (p['slug'], esc(p['h1']))
+        '<h2>%s</h2>\n<ul class="mega">\n%s\n</ul>\n' % (c, '\n'.join(
+            '<li><a href="%s.html">%s</a><br><small>%s</small></li>' % (p['slug'], esc(p['h1']), esc(p['desc']))
             for p in lst)) for c, lst in bycat.items())
     with open(os.path.join(DOCS, 'stati.html'), 'w', encoding='utf-8') as f:
         f.write(HEAD.format(
@@ -226,13 +226,20 @@ def main():
             sections=cats, faq='', related='',
             jsonld=jsonld({'slug': 'stati', 'h1': 'Статьи про MS-DOS',
                            'desc': 'Каталог из 100 статей про MS-DOS.', 'faq': []})))
-    # sitemap
-    urls = ([SITE + '/', SITE + '/stati.html', SITE + '/dos-test.html'] +
-            [SITE + '/%s.html' % p['slug'] for p in pages])
-    sm = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-          ''.join('<url><loc>%s</loc></url>\n' % u for u in urls) + '</urlset>\n')
+    # sitemap-мегаиндекс: общий + по разделам
+    art = [SITE + '/%s.html' % p['slug'] for p in pages]
+    main_urls = [SITE + '/', SITE + '/stati.html', SITE + '/dos-test.html']
+    def sitemap(urls):
+        return ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+                ''.join('<url><loc>%s</loc></url>\n' % u for u in urls) + '</urlset>\n')
+    with open(os.path.join(ROOT, 'docs', 'sitemap-main.xml'), 'w', encoding='utf-8') as f:
+        f.write(sitemap(main_urls))
+    with open(os.path.join(ROOT, 'docs', 'sitemap-articles.xml'), 'w', encoding='utf-8') as f:
+        f.write(sitemap(art))
     with open(os.path.join(ROOT, 'docs', 'sitemap.xml'), 'w', encoding='utf-8') as f:
-        f.write(sm)
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+                ''.join('<sitemap><loc>%s/sitemap-%s.xml</loc></sitemap>\n' % (SITE, n)
+                        for n in ('main', 'articles')) + '</sitemapindex>\n')
     with open(os.path.join(ROOT, 'docs', 'robots.txt'), 'w', encoding='utf-8') as f:
         f.write('User-agent: *\nAllow: /\nSitemap: %s/sitemap.xml\n' % SITE)
     print('OK: %d страниц + каталог + sitemap' % len(pages))

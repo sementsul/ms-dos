@@ -100,6 +100,9 @@ th, td {
   vertical-align: top;
 }
 th { color: var(--acc); }
+ul.mega { list-style: none; padding: 0; }
+ul.mega li { margin-bottom: 10px; }
+ul.mega small { color: var(--dim); }
 code {
   background: #000;
   padding: 1px 6px;
