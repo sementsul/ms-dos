@@ -1,7 +1,9 @@
 @ECHO Off
-BEN Cls LightGray / GrowFilledBox 5 3 76 23 White Blue 1 / GetCD
+BEN Cls Blue
+BEN FilledBox 10 5 70 20 LightGray LightGray 0
+BEN Locate 12 6 / WriteC Yellow Blue MS-DOS~SETUP~FOR~USB~-~step~2
+BEN Locate 10 23 / WriteC White Blue F1=Help~~~F3=Exit
 Set S=%BEN%
-BEN Locate 1 5 / WriteC Yellow Blue MS-DOS~SETUP~FOR~USB~-~step~2
 IF EXIST E:\ERR.TXT GOTO BAD
 IF NOT EXIST E:\OK.TXT GOTO NORESULT
 DEL E:\OK.TXT > Nul
@@ -31,15 +33,19 @@ IF EXIST E:\USE_W.TXT MOUNT D W:\ > Nul
 IF EXIST E:\USE_X.TXT MOUNT D X:\ > Nul
 IF EXIST E:\USE_Y.TXT MOUNT D Y:\ > Nul
 IF EXIST E:\USE_Z.TXT MOUNT D Z:\ > Nul
-BEN FilledBox 6 11 75 21 Blue Blue 0 / Locate 1 12 / WriteC LightGreen Blue Disk~ready.
-BEN Locate 1 14 / WriteC White Blue MS-DOS~is~(c)~Microsoft.~You~must~own~a~license.
-BEN Locate 1 15 / WriteC White Blue Norton~Commander~has~its~own~owner.~License~needed.
-BEN Locate 1 21 / WriteC Cyan LightBlue Accept~both~licenses?~(Y/N) / Ask YN / Sound 50 50
+BEN Locate 12 8 / WriteC Black LightGray Disk~ready.
+BEN Locate 12 10 / WriteC Black LightGray MS-DOS~is~(c)~Microsoft.
+BEN Locate 12 11 / WriteC Black LightGray You~must~own~a~license.
+BEN Locate 12 12 / WriteC Black LightGray Norton~Commander~has~its~own~owner.
+BEN Locate 12 14 / WriteC Black LightGray Accept~both~licenses?~(Y/N) / Ask YN / Sound 50 50
 If Errorlevel 2 Goto Quit
 
 :NCQ
-BEN FilledBox 6 11 75 21 Blue Blue 0 / Locate 1 12 / WriteC LightCyan Blue Install~Norton~Commander~4.0?
-BEN Locate 1 21 / WriteC Cyan LightBlue Install~NC?~(Y/N) / Ask YN
+BEN FilledBox 10 5 70 20 LightGray LightGray 0
+BEN Locate 12 6 / WriteC Yellow Blue Install~Norton~Commander~4.0
+BEN Locate 12 10 / WriteC Black LightGray Two-panel~file~manager,~the~classic~choice.
+BEN Locate 12 12 / WriteC Black LightGray Install~NC?~(Y/N) / Ask YN
+BEN Locate 10 23 / WriteC White Blue F1=Help~~~F3=Exit
 If Errorlevel 2 Goto SkipNC
 echo FORCE > FORCE_NC
 Goto VERQ
@@ -47,10 +53,12 @@ Goto VERQ
 echo SKIP > SKIP_NC
 
 :VERQ
-BEN FilledBox 6 11 75 21 Blue Blue 0 / Locate 1 12 / WriteC LightCyan Blue Which~MS-DOS?
-BEN Locate 1 15 / WriteC White Blue 6.22~-~latest~classic~(recommended)
-BEN Locate 1 16 / WriteC White Blue 5.00~-~lighter,~good~for~286
-BEN Locate 1 21 / WriteC Cyan LightBlue Install~6.22?~Y=6.22,~N=5.00 / Ask YN
+BEN FilledBox 10 5 70 20 LightGray LightGray 0
+BEN Locate 12 6 / WriteC Yellow Blue Which~MS-DOS~to~install?
+BEN Locate 12 10 / WriteC Black LightGray 6.22~-~latest~classic~(recommended)
+BEN Locate 12 11 / WriteC Black LightGray 5.00~-~lighter,~good~for~286
+BEN Locate 12 13 / WriteC Black LightGray Install~6.22?~Y=6.22,~N=5.00 / Ask YN
+BEN Locate 10 23 / WriteC White Blue F1=Help~~~F3=Exit
 If Errorlevel 2 Goto Do5
 msd6s.BAT
 Goto End
@@ -60,15 +68,20 @@ Goto End
 
 :BAD
 TYPE E:\ERR.TXT
-BEN Locate 1 21 / WriteC Cyan LightBlue Back~to~menu?~Y=menu,~N=quit / Ask YN
+BEN Locate 12 14 / WriteC Black LightGray Back~to~menu?~Y=menu,~N=quit / Ask YN
+BEN Locate 10 23 / WriteC White Blue F1=Help~~~F3=Exit
 If Errorlevel 2 Goto Quit
 ECHO BACK> E:\BACK.TXT
 Goto End
 
 :NORESULT
-BEN FilledBox 6 11 75 21 Blue Blue 0 / Locate 1 12 / WriteC LightRed Blue No~result~from~helper.~Restart~program.
-BEN Locate 1 21 / WriteC Cyan LightBlue Press~any~key...
+BEN FilledBox 10 5 70 20 LightGray LightGray 0
+BEN Locate 12 6 / WriteC Yellow Blue MS-DOS~SETUP~FOR~USB~-~step~2
+BEN Locate 12 10 / WriteC LightRed LightGray No~result~from~helper.
+BEN Locate 12 12 / WriteC Black LightGray Restart~the~program.
+BEN Locate 12 14 / WriteC Black LightGray Press~any~key...
 pause > Nul
+BEN Locate 10 23 / WriteC White Blue F1=Help~~~F3=Exit
 Goto End
 
 :Quit
