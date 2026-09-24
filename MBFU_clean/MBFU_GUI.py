@@ -237,6 +237,28 @@ def list_usb_drives():
     return sorted(result, key=lambda r: r["number"])
 
 
+# Коды возврата RMPARTUSB (из встроенной справки /?):
+# 0 OK, 1 плохие параметры, 2 отмена пользователем, 3 не найден,
+# 4 не USB-устройство, 5 неизвестно, 6 ошибка диска/операции, 7 ошибка записи.
+RMPARTUSB_ERRORS = {
+    1: 'Плохие параметры бэкенда.',
+    2: 'Операция отменена.',
+    3: 'Диск не найден.',
+    4: 'Это не USB-устройство.',
+    6: 'Ошибка диска или операции.',
+    7: 'Ошибка записи на диск.',
+}
+
+
+def decide_size_param(size_gb):
+    """Больше 4 ГБ — режем раздел SIZE=4000 (МБ), иначе штатно целиком."""
+    try:
+        big = float(size_gb) > 4.0
+    except (TypeError, ValueError):
+        big = False
+    return 'SIZE=4000' if big else ''
+
+
 # Соответствие "сырой вывод бэкенда" -> понятная ошибка.
 # Порядок важен: первые совпадения приоритетнее.
 # Каждый элемент: (подстрока для поиска в нижнем регистре, заголовок, текст).
@@ -294,6 +316,9 @@ def explain_backend_error(code, output):
     for needle, title, text in BACKEND_ERRORS:
         if needle in low:
             return title, text
+    if code in RMPARTUSB_ERRORS:
+        return ('Ошибка диска',
+                '%s\n\nПодробности — в журнале выше.' % RMPARTUSB_ERRORS[code])
     return ("Ошибка",
             "Создание флешки не удалось (код %d).\n\n"
             "Смотрите журнал выше — там строка с причиной." % code)
@@ -791,26 +816,49 @@ def setup_map_letter(letter, ipc_dir):
     return 0
 
 
-def setup_format(letter):
-    """Форматирование для SETUP-режима. Возвращает (ok, текст для ERR.TXT)."""
+def setup_format(letter, size_gb=0):
+    """Форматирование для SETUP-режима. Возвращает (ok, текст, номер_диска).
+    Диски больше 4 ГБ режутся ключом SIZE=4000 (см. RMPARTUSB /?)."""
     exe = os.path.join(APP_DIR, 'MSDOSBOOT.exe')
     if not os.path.isfile(exe):
-        return False, 'Нет MSDOSBOOT.exe рядом с программой.'
+        return False, 'Нет MSDOSBOOT.exe рядом с программой.', 0
     n = setup_map_letter(letter, os.path.join(APP_DIR, IPC_DIRNAME))
     if not n:
-        return False, 'Не сопоставлена буква %s с физическим диском.' % letter
+        return False, 'Не сопоставлена буква %s с физическим диском.' % letter, 0
+    args = [exe, 'DRIVE=%d' % n, 'MSDOS', 'CHS']
+    sizep = decide_size_param(size_gb)
+    if sizep:
+        args.append(sizep)
+    args += ['VOLUME', 'dos']  # VOLUME обязано быть последним
     try:
         p = subprocess.run(
-            [exe, 'DRIVE=%d' % n, 'MSDOS', 'CHS', 'VOLUME', 'dos'],
-            cwd=APP_DIR, capture_output=True, text=True, errors='replace', timeout=600,
+            args, cwd=APP_DIR, capture_output=True, text=True, errors='replace',
+            timeout=600,
             creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
         out = (p.stdout or '') + '\n' + (p.stderr or '')
         if p.returncode == 0:
-            return True, ''
+            return True, '', n
         title, text = explain_backend_error(p.returncode, out)
-        return False, '%s: %s' % (title, text.split('\n\n')[0])
+        return False, '%s: %s' % (title, text.split('\n\n')[0]), n
     except Exception as e:
-        return False, 'Не запустился бэкенд: %s' % e
+        return False, 'Не запустился бэкенд: %s' % e, n
+
+
+def setup_disk_letter(n):
+    """Буква первого тома диска N (после переразметки буква могла смениться)."""
+    try:
+        out = subprocess.run(
+            ['powershell', '-NoProfile', '-NonInteractive', '-Command',
+             "(@(Get-Partition -DiskNumber %d | Where-Object {$_.DriveLetter}) | "
+             "Select-Object -First 1).DriveLetter" % n],
+            capture_output=True, text=True, timeout=30,
+            creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+        letter = (out.stdout or '').strip().upper()
+        if len(letter) == 1 and letter != 'C':
+            return letter + ':'
+    except Exception:
+        pass
+    return ''
 
 
 def _ipc_wipe(ipc):
@@ -825,10 +873,36 @@ def _ipc_wipe(ipc):
             pass
 
 
+def supervise_decision(back, cmd, fmt_started, fmt_done):
+    """Чистое решение supervisor по состоянию маркеров.
+    Возвращает: 'stage1' | 'stage2' | 'bye'.
+    Воркер формата нельзя бросать на полпути: если он стартовал —
+    всегда дожимаем до конца и идем в STAGE2."""
+    if back:
+        return 'stage1'
+    if cmd == 'QUIT':
+        return 'bye'
+    if cmd == 'SCAN':
+        return 'stage1'
+    if cmd == 'FORMAT' or fmt_started or fmt_done:
+        return 'stage2'
+    return 'bye'
+
+
+def _trace(ipc, msg):
+    import datetime as _dt
+    try:
+        with open(os.path.join(ipc, 'TRACE.LOG'), 'a', encoding='utf-8') as _f:
+            _f.write('%s %s\n' % (_dt.datetime.now().strftime('%H:%M:%S'), msg))
+    except OSError:
+        pass
+
+
 def run_setup():
     ipc = os.path.join(APP_DIR, IPC_DIRNAME)
     os.makedirs(ipc, exist_ok=True)
     _ipc_wipe(ipc)
+    _trace(ipc, 'start')
 
     dosbox = os.path.join(APP_DIR, 'dosbox.exe')
     if not os.path.isfile(dosbox):
@@ -848,6 +922,19 @@ def run_setup():
 
     def cancel():
         cancelled['v'] = True
+        q.put(('status', 'Отмена… ждем фоновые операции.'))
+        if fmt['started'] and not fmt['done']:
+            q.put(('status', 'Идет форматирование — дождитесь окончания.'))
+            t = 0
+            while not fmt['done'] and t < 900:
+                time.sleep(1)
+                t += 1
+        try:
+            p = proc['p']
+            if p is not None and p.poll() is None:
+                p.terminate()
+        except Exception:
+            pass
         try:
             root.destroy()
         except Exception:
@@ -891,38 +978,147 @@ def run_setup():
             pass
 
     proc = {'p': None}
+    fmt = {'started': False, 'done': False}
+    stage = {'name': 'STAGE1.BAT'}
+
+    def launch_stage(batname, label):
+        """Запуск (перезапуск) DOSBox с нужным батом. Возвращает процесс."""
+        try:
+            with open(os.path.join(APP_DIR, 'cfg.conf'), encoding='utf-8', errors='replace') as f:
+                conf = f.read()
+        except Exception:
+            conf = ''
+        with open(os.path.join(APP_DIR, 'dosbox.conf'), 'w', encoding='utf-8') as f:
+            f.write(conf)
+            if not conf.endswith('\n'):
+                f.write('\n')
+            f.write('mount e "%s"\n' % ipc)
+        p = subprocess.Popen(
+            [dosbox, '-conf', os.path.join(APP_DIR, 'dosbox.conf'),
+             os.path.join('DOS', batname)],
+            cwd=APP_DIR)
+        proc['p'] = p
+        stage['name'] = batname
+        _trace(ipc, 'dosbox launched ' + batname)
+        q.put(('status', label))
+        return p
+
+    def peek_request():
+        try:
+            if os.path.isfile(os.path.join(ipc, 'REQUEST.TXT')):
+                with open(os.path.join(ipc, 'REQUEST.TXT'), encoding='utf-8', errors='replace') as f:
+                    return parse_request(f.read())
+        except OSError:
+            pass
+        return '', ''
+
+    def del_request():
+        try:
+            os.remove(os.path.join(ipc, 'REQUEST.TXT'))
+        except OSError:
+            pass
+
+    def format_worker(idx):
+        try:
+            _do_format(idx)
+        finally:
+            fmt['done'] = True
+            _trace(ipc, 'worker done')
+            p = proc['p']  # сразу гасим DOS-сессию — дальше STAGE2 с новым кэшем
+            try:
+                if p is not None and p.poll() is None:
+                    p.terminate()
+            except Exception:
+                pass
 
     def poll():
-        """Фоновый опрос REQUEST.TXT. Tk не трогаем напрямую — только через очередь."""
-        rq = os.path.join(ipc, 'REQUEST.TXT')
+        """Пока DOSBox жив: ранний старт форматирования. Остальное решает supervisor."""
         while True:
             if cancelled['v']:
                 break
             p = proc['p']
             if p is not None and p.poll() is not None:
-                break  # DOSBox закрыт — выходим
+                break
             try:
-                if os.path.isfile(rq):
-                    with open(rq, encoding='utf-8', errors='replace') as f:
-                        cmd, arg = parse_request(f.read())
-                    try:
-                        os.remove(rq)
-                    except OSError:
-                        pass
-                    if cmd == 'QUIT':
-                        break
-                    elif cmd == 'SCAN':
-                        q.put(('status', 'Сканирование дисков…'))
-                        write_scan()
-                        q.put(('status', 'DOSBox запущен. Работайте в DOS-окне.'))
-                    elif cmd == 'FORMAT':
-                        idx = int(arg) if arg.isdigit() else 0
-                        _do_format(idx)
-                    elif cmd:
-                        pass  # неизвестная команда — игнор
+                cmd, arg = peek_request()
+                if cmd == 'FORMAT' and not fmt['started']:
+                    fmt['started'] = True
+                    del_request()
+                    threading.Thread(
+                        target=format_worker,
+                        args=(int(arg) if arg.isdigit() else 0,),
+                        daemon=True).start()
             except Exception:
                 pass
             time.sleep(0.5)
+
+    def rescan_relaunch(batname, label):
+        del_request()
+        try:
+            os.remove(os.path.join(ipc, 'BACK.TXT'))
+        except OSError:
+            pass
+        q.put(('status', 'Сканирование дисков…'))
+        write_scan()
+        time.sleep(1)
+        launch_stage(batname, label)
+
+    def ensure_format(idx):
+        """Дожать форматирование до конца (если воркер еще не стартовал — стартуем)."""
+        if not fmt['started']:
+            fmt['started'] = True
+            del_request()
+            threading.Thread(target=format_worker, args=(idx,),
+                             daemon=True).start()
+        t = 0
+        while not fmt['done'] and t < 900:
+            time.sleep(1)
+            t += 1
+        fmt['started'] = fmt['done'] = False
+
+    def supervise():
+        """Ждем закрытия DOSBox и решаем, что дальше. Цикл до cleanup."""
+        while not cancelled['v']:
+            p = proc['p']
+            if p is None:
+                break
+            while p.poll() is None and not cancelled['v']:
+                time.sleep(0.5)
+            if cancelled['v']:
+                break
+            _trace(ipc, 'dosbox exited, supervise')
+            back = os.path.isfile(os.path.join(ipc, 'BACK.TXT'))
+            cmd, arg = peek_request()
+            action = supervise_decision(back, cmd, fmt['started'], fmt['done'])
+            _trace(ipc, 'decision=%s back=%s cmd=%s fmt=%s/%s' % (
+                action, back, cmd, fmt['started'], fmt['done']))
+            if back:
+                try:
+                    os.remove(os.path.join(ipc, 'BACK.TXT'))
+                except OSError:
+                    pass
+                rescan_relaunch('STAGE1.BAT', 'DOSBox запущен. Работайте в DOS-окне.')
+                continue
+            if action == 'bye':
+                if cmd:
+                    del_request()
+                _trace(ipc, 'bye')
+                break
+            if action == 'stage1':
+                _trace(ipc, 'go STAGE1')
+                rescan_relaunch('STAGE1.BAT', 'DOSBox запущен. Работайте в DOS-окне.')
+                continue
+            # stage2
+            del_request()
+            ensure_format(int(arg) if arg.isdigit() else 0)
+            _trace(ipc, 'go STAGE2')
+            fmt['started'] = fmt['done'] = False
+            launch_stage('STAGE2.BAT', 'Этап 2: установка системы в DOS-окне.')
+            continue
+        try:
+            root.after(0, root.destroy)
+        except Exception:
+            pass
 
     def _do_format(idx):
         # индекс -> буква из свежего скана (тот же отбор, что в DRIVES.TXT)
@@ -937,16 +1133,11 @@ def run_setup():
             write_file('ERR.TXT', 'Нет такой флешки. Обновите список (R).')
             return
         letter = (usb[idx - 1]['letters'][0] + ':').upper()
+        size_gb = usb[idx - 1].get('size_gb', 0)
         if letter == 'C:':
             write_file('ERR.TXT', 'Системный диск заблокирован.')
             return
-        # маркер для DOS: какую Windows-букву монтировать как D:
-        for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
-            try:
-                os.remove(os.path.join(ipc, 'USE_%s.TXT' % c))
-            except OSError:
-                pass
-        write_file('USE_%s.TXT' % letter[0], letter + '\n')
+        # маркер USE_<буква> запишем после формата (буква может смениться)
         for f in ('OK.TXT', 'ERR.TXT'):
             try:
                 os.remove(os.path.join(ipc, f))
@@ -954,7 +1145,21 @@ def run_setup():
                 pass
         write_file('STATUS.TXT', 'FORMATTING ' + letter + '\n')
         q.put(('status', 'Форматирование %s… Не вынимайте флешку.' % letter))
-        ok, msg = setup_format(letter)
+        _trace(ipc, 'format start ' + letter)
+        ok, msg, disk_n = setup_format(letter, size_gb)
+        _trace(ipc, 'format end ok=%s' % ok)
+        if ok:
+            # после переразметки буква могла смениться — перечитываем по номеру диска
+            new_letter = setup_disk_letter(disk_n) if disk_n else ''
+            if new_letter:
+                letter = new_letter
+            for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+                try:
+                    os.remove(os.path.join(ipc, 'USE_%s.TXT' % c))
+                except OSError:
+                    pass
+            write_file('USE_%s.TXT' % letter[0], letter + '\n')
+            _trace(ipc, 'use letter ' + letter)
         write_file('STATUS.TXT', 'READY\n')
         q.put(('status', 'DOSBox запущен. Работайте в DOS-окне.'))
         write_file('OK.TXT' if ok else 'ERR.TXT', 'OK\n' if ok else msg + '\n')
@@ -978,48 +1183,23 @@ def run_setup():
         except Exception:
             pass
 
-    # стартовый скан + запуск DOSBox
+    # стартовый скан + запуск DOSBox (этап 1)
     try:
         write_scan()
     except Exception as e:
         messagebox.showerror('MS-DOS SETUP FOR USB SEMENTSUL MAXIM 2026', 'Не опросить диски: %s' % e)
         root.destroy()
         return
-    # dosbox.conf: монтируем флешку позже нельзя — D: подставит msd-батник;
-    # здесь монтируем только IPC как E: и стартуем SETUP.BAT
     try:
-        with open(os.path.join(APP_DIR, 'cfg.conf'), encoding='utf-8', errors='replace') as f:
-            conf = f.read()
-    except Exception:
-        conf = ''
-    with open(os.path.join(APP_DIR, 'dosbox.conf'), 'w', encoding='utf-8') as f:
-        f.write(conf)
-        if not conf.endswith('\n'):
-            f.write('\n')
-        f.write('mount e "%s"\n' % ipc)
-    try:
-        proc['p'] = subprocess.Popen(
-            [dosbox, '-conf', os.path.join(APP_DIR, 'dosbox.conf'),
-                    os.path.join('DOS', SETUP_BAT)],
-            cwd=APP_DIR)
+        launch_stage('STAGE1.BAT', 'Этап 1: выбор флешки в DOS-окне.')
     except Exception as e:
         messagebox.showerror('MS-DOS SETUP FOR USB SEMENTSUL MAXIM 2026', 'Не запустился DOSBox: %s' % e)
         root.destroy()
         return
-    set_status('DOSBox запущен. Работайте в DOS-окне.')
     bar.stop()
     root.withdraw()  # окно прячется — дальше только DOSBox + скрытый опрос
     threading.Thread(target=poll, daemon=True).start()
-    # вернуть окно, если DOSBox закрыли
-    def watch():
-        p = proc['p']
-        while p.poll() is None and not cancelled['v']:
-            time.sleep(0.5)
-        try:
-            root.after(0, root.destroy)
-        except Exception:
-            pass
-    threading.Thread(target=watch, daemon=True).start()
+    threading.Thread(target=supervise, daemon=True).start()
     root.after(200, pump)
     root.mainloop()
     # уборка IPC

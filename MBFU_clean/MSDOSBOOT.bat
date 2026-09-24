@@ -19,6 +19,9 @@ set "VOLLABEL=%~3"
 if "%VOLLABEL%"=="" set "VOLLABEL=dos"
 set "NCFLAG=%~4"
 if "%NCFLAG%"=="" set "NCFLAG=ask"
+set "SIZEP=%~5"
+rem SIZEP: например SIZE=4000 для флешек больше 4 ГБ (лимит FAT16).
+rem VOLUME обязано быть последним параметром RMPARTUSB.
 
 echo MBFU MS-DOS Boot From USB
 echo Mode=%MODE% Target=%TARGET% Label=%VOLLABEL% NC=%NCFLAG%
@@ -70,7 +73,7 @@ if not defined FOUND_DRIVE (
 
 echo Found %TARGET% = PHYSICALDRIVE!FOUND_DRIVE!
 echo Installing MBR / partitioning via RMPARTUSB backend...
-"%~dp0MSDOSBOOT.exe" DRIVE=!FOUND_DRIVE! MSDOS CHS VOLUME %VOLLABEL%
+"%~dp0MSDOSBOOT.exe" DRIVE=!FOUND_DRIVE! MSDOS CHS %SIZEP% VOLUME %VOLLABEL%
 if errorlevel 1 (
   echo MSDOSBOOT.exe failed with code %ERRORLEVEL%.
   exit /b %ERRORLEVEL%
@@ -101,12 +104,13 @@ exit /b 0
 
 :usage
 echo Usage:
-echo   MSDOSBOOT.bat /MSD5 E: [label] [NC]
-echo   MSDOSBOOT.bat /MSD6 E: [label] [NC]
+echo   MSDOSBOOT.bat /MSD5 E: [label] [NC] [SIZE]
+echo   MSDOSBOOT.bat /MSD6 E: [label] [NC] [SIZE]
 echo.
 echo   /MSD5 - install MS-DOS 5.00, /MSD6 - install MS-DOS 6.22
 echo   E:    - target USB drive letter (must exist, must NOT be C:)
 echo   label - optional volume label, A-Z 0-9, default dos
 echo   NC    - 1 install Norton Commander, 0 skip, empty ask inside
+echo   SIZE  - e.g. SIZE=4000 for drives over 4 GB (FAT16 limit)
 echo   Run as Administrator.
 exit /b 2
