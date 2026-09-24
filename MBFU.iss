@@ -62,18 +62,18 @@ Source: "{#SrcDir}\cfg.conf"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SrcDir}\DOS\*"; DestDir: "{app}\DOS"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-; Автономный EXE — никаких Python/доп. программ на ПК пользователя.
+; Основной режим — DOS-интерфейс (--setup). Оконный GUI оставлен запасным.
 ; EXE сам запрашивает права администратора (UAC-манифест внутри).
-Name: "{group}\MBFU — графический интерфейс"; Filename: "{app}\MBFU_GUI.exe"; WorkingDir: "{app}"; Comment: "Создание загрузочной флешки MS-DOS (GUI)"
-Name: "{group}\MBFU — командная строка"; Filename: "{app}\MSDOSBOOT.bat"; WorkingDir: "{app}"; Comment: "MSDOSBOOT.bat /MSD5 E: или /MSD6 E: [метка]"
 Name: "{group}\MS-DOS SETUP FOR USB"; Filename: "{app}\MBFU_GUI.exe"; Parameters: "--setup"; WorkingDir: "{app}"; Comment: "Выбор флешки и установка полностью в DOS-окне"
+Name: "{group}\MBFU — графический интерфейс"; Filename: "{app}\MBFU_GUI.exe"; WorkingDir: "{app}"; Comment: "Запасной оконный интерфейс"
+Name: "{group}\MBFU — командная строка"; Filename: "{app}\MSDOSBOOT.bat"; WorkingDir: "{app}"; Comment: "MSDOSBOOT.bat /MSD5 E: или /MSD6 E: [метка]"
 Name: "{group}\Лицензия MS-DOS"; Filename: "notepad.exe"; Parameters: """{app}\LICENSE-MS-DOS-RU.txt"""; WorkingDir: "{app}"
 Name: "{group}\Лицензия Norton Commander"; Filename: "notepad.exe"; Parameters: """{app}\LICENSE-NC-RU.txt"""; WorkingDir: "{app}"
 Name: "{group}\Удалить MBFU"; Filename: "{uninstallexe}"
-Name: "{autodesktop}\MBFU"; Filename: "{app}\MBFU_GUI.exe"; WorkingDir: "{app}"; Tasks: desktopicon
+Name: "{autodesktop}\MS-DOS SETUP FOR USB"; Filename: "{app}\MBFU_GUI.exe"; Parameters: "--setup"; WorkingDir: "{app}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\MBFU_GUI.exe"; WorkingDir: "{app}"; Flags: postinstall skipifsilent shellexec runascurrentuser; Description: "Запустить MBFU GUI после установки"
+Filename: "{app}\MBFU_GUI.exe"; Parameters: "--setup"; WorkingDir: "{app}"; Flags: postinstall skipifsilent shellexec runascurrentuser; Description: "Запустить MS-DOS SETUP после установки"
 
 [UninstallDelete]
 Type: files; Name: "{commonappdata}\MBFU\license_accepted.json"
