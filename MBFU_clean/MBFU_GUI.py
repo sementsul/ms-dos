@@ -913,7 +913,7 @@ def run_setup():
     root.title('MS-DOS SETUP FOR USB SEMENTSUL MAXIM 2026')
     root.geometry('340x150')
     root.resizable(False, False)
-    status = tk.StringVar(value='Сканирование дисков…')
+    status = tk.StringVar(value='Подождите, идёт определение флешки…')
     ttk.Label(root, textvariable=status, wraplength=320).pack(padx=12, pady=10)
     bar = ttk.Progressbar(root, mode='indeterminate')
     bar.pack(fill='x', padx=12)
@@ -1058,7 +1058,7 @@ def run_setup():
             os.remove(os.path.join(ipc, 'BACK.TXT'))
         except OSError:
             pass
-        q.put(('status', 'Сканирование дисков…'))
+        q.put(('status', 'Подождите, идёт определение флешки…'))
         write_scan()
         time.sleep(1)
         launch_stage(batname, label)
