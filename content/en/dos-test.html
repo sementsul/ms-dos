@@ -1,0 +1,100 @@
+<section class="block">
+  <div class="wrap legal">
+    <h1>Test MS-DOS 5.00 and 6.22 online</h1>
+    <p class="lead">An emulator right in the browser: load <b>your own</b> MS-DOS 5.00 or
+    6.22 boot floppy image (IMG/IMA, 1.44 MB) and run commands as on a real machine.
+    The file never leaves your computer — everything runs locally.</p>
+
+    <h2>1. Ready-made demo</h2>
+    <div class="os-cards">
+      <div class="os-card">
+        <h3>MS-DOS 5.00</h3>
+        <p>A ready image with system files, Norton Commander and autostart — the way MBFU installs it.</p>
+        <div class="row"><button id="demo5">Start the 5.00 demo</button></div>
+      </div>
+      <div class="os-card">
+        <h3>MS-DOS 6.22</h3>
+        <p>The same for 6.22: SCANDISK, DriveSpace and QBASIC are already inside.</p>
+        <div class="row"><button id="demo6">Start the 6.22 demo</button></div>
+      </div>
+    </div>
+    <p id="demo-note" style="display:none">The demo images are not published here — use your own image below.</p>
+
+    <h2>2. Or your own image</h2>
+    <div class="os-cards">
+      <div class="os-card">
+        <h3>Your own 5.00 image</h3>
+        <input type="file" id="file5" accept=".img,.ima,.bin,.flp,.dsk">
+        <div class="row"><button id="boot5">Boot 5.00</button></div>
+      </div>
+      <div class="os-card">
+        <h3>Your own 6.22 image</h3>
+        <input type="file" id="file6" accept=".img,.ima,.bin,.flp,.dsk">
+        <div class="row"><button id="boot6">Boot 6.22</button></div>
+      </div>
+    </div>
+
+    <h2>3. Screen</h2>
+    <p id="emu-status">The emulator is ready. Choose an image and press “Boot”.</p>
+    <div id="screen_container"></div>
+    <div class="row">
+      <button id="btn-bios">Test the emulator (boot without a disk)</button>
+      <button id="btn-stop">Stop</button>
+    </div>
+    <p>Click the screen so the keyboard goes to the emulator. Mouse and keyboard release
+    work as usual in the browser.</p>
+
+    <h2>Where to get an image</h2>
+    <ul>
+      <li>Use <b>your own licensed copy</b> of MS-DOS: a boot floppy image can be made from the original.</li>
+      <li>A USB drive made by MBFU cannot be used here — the emulator needs a floppy image file (IMG/IMA).</li>
+      <li>MS-DOS belongs to Microsoft: downloading third-party images from the internet is at your own risk.</li>
+    </ul>
+
+    <h2>Questions and answers</h2>
+    <p><b>What is the difference between 5.00 and 6.22 in the emulator?</b><br>
+    Type VER: you will see 5.00 or 6.22. 6.22 includes SCANDISK, DriveSpace and MemMaker;
+    5.00 is lighter and closer to the 286-era original.</p>
+    <p><b>The emulator says “No bootable device” — what is wrong?</b><br>
+    The image is not bootable or is not a floppy image (an ISO, for example). You need a
+    bootable 1.44 MB IMG.</p>
+
+    <div class="cta-box">
+      <p><b>Like it in the browser?</b></p>
+      <p>Make a real bootable USB drive with MBFUTool: the demo gives you every feature for
+      {{TRIAL_DAYS}} days.</p>
+      <p><a class="btn" href="/{{DEMO_ZIP}}" download>Download the demo</a>
+         <a class="btn ghost" href="{{BUY_URL}}" rel="noopener">Full version</a></p>
+    </div>
+  </div>
+</section>
+
+<script>
+window.DOSTEST = {
+  i18n: {
+    loading: "Loading %s …",
+    loadingProgress: "Loading the image … %s%%",
+    reading: "Reading %s …",
+    noFile: "Choose an image file for %s first.",
+    readError: "Could not read the file.",
+    started: "%s is running. Click the screen.",
+    stopped: "The emulator has stopped.",
+    stoppedMsg: "Stopped.",
+    timeout: "It did not start within 60 seconds. Check your connection (the engine needs ~2.5 MB of files) and reload with Ctrl+F5.",
+    error: "It did not start: %s",
+    pageError: "Page error: %s. Reload with Ctrl+F5.",
+    biosLabel: "SeaBIOS (no disk)",
+    demo5Label: "MS-DOS 5.00 demo",
+    demo6Label: "MS-DOS 6.22 demo"
+  },
+  assets: {
+    wasm: "/assets/v86/v86.wasm",
+    bios: "/assets/v86/bios/seabios.bin",
+    vgaBios: "/assets/v86/bios/vgabios.bin",
+    demo5: "/assets/demo/msdos5.img",
+    demo6: "/assets/demo/msdos6.img"
+  }
+};
+</script>
+<script src="/assets/v86/libv86.js"></script>
+<script src="/assets/dos-test.js" defer></script>

@@ -1,6 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://ms-dos.su/</loc></url>
-<url><loc>https://ms-dos.su/stati.html</loc></url>
-<url><loc>https://ms-dos.su/dos-test.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ms-dos.su/accessibility.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/accessibility.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/accessibility.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/accessibility.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/contacts.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/contacts.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/contacts.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/contacts.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/cookies.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/cookies.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/cookies.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/cookies.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/dmca.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/dmca.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/dmca.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/dmca.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/dos-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/dos-test.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/dos-test.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/dos-test.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/licenses.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/licenses.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/licenses.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/licenses.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/privacy.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/refund.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/refund.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/refund.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/refund.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/stati.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/stati.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/stati.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/stati.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/terms.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/accessibility.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/accessibility.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/accessibility.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/accessibility.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/contacts.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/contacts.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/contacts.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/contacts.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/cookies.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/cookies.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/cookies.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/cookies.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/dmca.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/dmca.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/dmca.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/dmca.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/dos-test.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/dos-test.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/dos-test.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/dos-test.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/licenses.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/licenses.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/licenses.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/licenses.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/privacy.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/refund.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/refund.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/refund.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/refund.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/stati.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/stati.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/stati.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/stati.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/terms.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
 </urlset>

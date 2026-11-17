@@ -1,0 +1,304 @@
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Образы MS-DOS: <span class="accent">создать, открыть, записать на USB</span></h1>
+      <p class="lead">
+        MBFUTool 2.0 — утилита для Windows, которая работает с образами MS-DOS 5.x и 6.x:
+        пишет образ на флешку, снимает образ с диска или дискеты, клонирует носители
+        и открывает образ в DOSBox для правки обычными командами DOS.
+      </p>
+      <ul class="badges">
+        <li>Windows 10/11 x64</li>
+        <li>MS-DOS 5.x / 6.x</li>
+        <li>Демо {{TRIAL_DAYS}} дней</li>
+        <li>Без установки Python</li>
+      </ul>
+      <p class="hero-cta">
+        <a class="btn" href="{{DEMO_ZIP}}" download>Скачать демо 2.0<span class="sub">Portable ZIP · {{DEMO_SIZE}}</span></a>
+        <a class="btn ghost" href="{{BUY_URL}}" rel="noopener">Купить полную версию<span class="sub">Boosty · разовая покупка, не подписка</span></a>
+      </p>
+      <p class="note">
+        Демо — все функции, {{TRIAL_DAYS}} дней. Полная версия — тот же набор без срока.
+        SHA-256 архива: <code>{{DEMO_SHA}}</code>
+      </p>
+    </div>
+
+    <div class="screen" role="img" aria-label="Главное меню MBFUTool в окне DOSBox: пункты Write image to USB, Create MBFU image, Clone MS-DOS media to USB, Edit MS-DOS image, Exit; строка с остатком пробного периода">
+      <div class="box">
+        <div class="title">MBFU - MS-DOS IMAGE TOOLS   [DEMO]</div>
+        <div>&nbsp;</div>
+        <div class="item">Write MS-DOS image to USB flash</div>
+        <div class="item">Create MBFU image from disk/floppy/USB</div>
+        <div class="item">Clone MS-DOS disk/floppy/USB to USB</div>
+        <div class="item">Edit MS-DOS image with DOS commands</div>
+        <div class="item">Exit</div>
+        <div>&nbsp;</div>
+        <div class="trial">Trial: {{TRIAL_DAYS}} day(s) left - boosty.to/mbfu</div>
+        <div class="meta">Author: Sementsul Maxim</div>
+        <div class="meta">Use arrow keys and Enter</div>
+      </div>
+      <div>&nbsp;</div>
+      <div>Z:\&gt;<span class="hl">&nbsp;</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="features">
+  <div class="wrap">
+    <h2>Что умеет</h2>
+    <p class="intro">
+      Четыре действия закрывают весь цикл работы с образом: получить, изменить, размножить,
+      записать на носитель. Интерфейс — меню в DOSBox, управление стрелками и Enter,
+      без всплывающих окон и консольных миганий.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <span class="tag">Запись</span>
+        <h3>Записать образ на USB</h3>
+        <p>Флешка форматируется через MSDOSBOOT, файлы образа копируются средствами самого
+        DOS. Работает и с дискетными образами, и с жёсткими дисками.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Создание</span>
+        <h3>Снять образ в .mbfu</h3>
+        <p>Собственный контейнер: заголовок, zlib-сжатие и SHA-256. Обычные .img, .ima,
+        .vhd, .vfd тоже читаются и пишутся.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Копирование</span>
+        <h3>Клонировать носитель</h3>
+        <p>Перенос содержимого MS-DOS-диска или дискеты на подготовленную флешку —
+        без ручной возни с буквами дисков.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Правка</span>
+        <h3>Редактировать в DOSBox</h3>
+        <p>Образ открывается как A: или C: — работают copy, del, md, rd, edit.
+        Изменения .mbfu сохраняются обратно в образ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="demo">
+  <div class="wrap">
+    <h2>Демо-версия: {{TRIAL_DAYS}} дней, все функции</h2>
+    <p class="intro">
+      Демо — это не урезанная программа. В ней есть всё: запись на USB, создание образа,
+      клонирование и редактирование. Ограничение одно — срок: {{TRIAL_DAYS}} дней с первого
+      запуска, после чего программа перестаёт запускаться и предлагает полную версию.
+    </p>
+
+    <div class="split">
+      <div class="panel">
+        <h3>Что входит в демо</h3>
+        <p class="price">Бесплатно · {{TRIAL_DAYS}} дней · без ключа активации</p>
+        <ul>
+          <li>полный набор действий без функциональных ограничений;</li>
+          <li>работа с дискетами и HDD-образами до 4 ГБ;</li>
+          <li>редактирование образа в DOSBox;</li>
+          <li>portable-сборка: распаковал и запустил;</li>
+          <li>счётчик оставшихся дней в окне и в меню.</li>
+        </ul>
+        <p><a class="btn" href="{{DEMO_ZIP}}" download>Скачать демо ({{DEMO_SIZE}})</a></p>
+        <p class="fine">Архив: MBFUTool_2.0_Demo_Portable.zip. Хэш SHA-256 — ниже.</p>
+      </div>
+
+      <div class="panel accent">
+        <h3>Что даёт полная версия</h3>
+        <p class="price">Разовая покупка · без подписки · цена на Boosty</p>
+        <ul>
+          <li>тот же полный набор функций без пробного срока;</li>
+          <li>критические обновления версии 2.x — бесплатно;</li>
+          <li>поддержка по установке — 30 дней с покупки;</li>
+          <li>личная лицензия на 1 ПК; для организаций и нескольких
+              компьютеров — коммерческая лицензия по запросу.</li>
+        </ul>
+        <p><a class="btn" href="{{BUY_URL}}" rel="noopener">Открыть Boosty</a></p>
+        <p class="fine">
+          Деньги списываются один раз, доступ к файлам и обновлениям 2.x сохраняется.
+          Цена и условия покупки указаны на странице Boosty.
+        </p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:28px">Как проверить загрузку</h3>
+    <ol class="steps">
+      <li>Распакуйте архив в папку с латинскими буквами в пути — так надёжнее.</li>
+      <li>Запустите <b>MBFUTool_Demo.exe</b> от имени администратора: без этого запись на диск невозможна.</li>
+      <li>Примите лицензионное соглашение, затем выберите действие в меню DOSBox.</li>
+    </ol>
+
+    <div class="callout">
+      <p><b>Проверка целостности.</b> SHA-256 архива:
+      <code style="word-break:break-all">{{DEMO_SHA}}</code></p>
+      <pre>Get-FileHash .\MBFUTool_2.0_Demo_Portable.zip -Algorithm SHA256</pre>
+      <p>Если хэш не совпал — файл повреждён или подменён, запускать его не нужно.</p>
+    </div>
+
+    <div class="callout">
+      <p><b>Windows Defender.</b> Сборка не подписана сертификатом code signing,
+      поэтому возможны эвристические срабатывания. Не отключайте защиту целиком:
+      проверьте хэш и добавьте в исключения только папку программы.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="how">
+  <div class="wrap">
+    <h2>Как это работает</h2>
+    <p class="intro">
+      Программа — это окно DOSBox с меню и набор системных операций Windows. Ничего
+      не устанавливается в систему, кроме самой программы.
+    </p>
+    <ol class="steps">
+      <li><b>Выбор образа или диска.</b> Открывается стандартный диалог Windows или меню
+      со списком дисков: модель, размер, буква.</li>
+      <li><b>Подготовка.</b> Образ распаковывается во временную папку, проверяется таблица
+      разделов, целевая флешка форматируется.</li>
+      <li><b>Копирование.</b> Файлы переносятся командой COPY внутри DOSBox — так флешка
+      остаётся загрузочной.</li>
+      <li><b>Проверка.</b> На экране состояния видно, что копирование закончилось, а не
+      повисло.</li>
+      <li><b>Результат.</b> Флешка загружается в режиме Legacy/CSM при отключённом
+      Secure Boot.</li>
+    </ol>
+    <p>
+      <a href="/stati.html">База знаний</a> — 100 статей: команды DOS, версии MS-DOS,
+      Secure Boot у разных производителей, файловые системы и разбор ошибок.
+      Плюс <a href="/dos-test.html">эмулятор MS-DOS в браузере</a>, чтобы вспомнить команды.
+    </p>
+  </div>
+</section>
+
+<section class="block" id="buy">
+  <div class="wrap">
+    <h2>Купить полную версию</h2>
+    <p class="intro">
+      Полная версия — разовая покупка, а не подписка: деньги списываются один раз,
+      доступ к файлам и обновлениям версии 2.x остаётся. Оплата проходит через Boosty —
+      на странице проекта указана актуальная цена, для организаций есть коммерческая
+      лицензия.
+    </p>
+    <div class="split">
+      <div class="panel">
+        <h3>Порядок покупки</h3>
+        <ol>
+          <li>Откройте <a href="{{BUY_URL}}" rel="noopener">страницу проекта на Boosty</a>.</li>
+          <li>Оформите разовую покупку — цена указана на странице Boosty.</li>
+          <li>Оплатите удобным способом, который предлагает Boosty.</li>
+          <li>Скачайте сборку из закрытого поста или сообщения.</li>
+        </ol>
+        <p class="fine">Boosty — платформа приёма платежей и доставки файлов; лицензиар — автор
+        программы. Чек по НПД формируется продавцом.</p>
+      </div>
+      <div class="panel">
+        <h3>Что вы получаете</h3>
+        <ul>
+          <li>MBFUTool 2.0 без пробного срока;</li>
+          <li>критические обновления версии 2.x бесплатно;</li>
+          <li>поддержку по установке 30 дней: <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>;</li>
+          <li>личную лицензию на 1 ПК; для организаций — коммерческую по запросу.</li>
+        </ul>
+        <p class="fine">
+          Условия — в <a href="/terms.html">лицензионном соглашении</a>.
+          Возврат — в разделе <a href="/refund.html">«Оплата и возврат»</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="faq">
+  <div class="wrap">
+    <h2>Частые вопросы</h2>
+
+    <details class="faq">
+      <summary>Демо действительно бесплатная?</summary>
+      <p>Да. {{TRIAL_DAYS}} дней, все функции, без ключа и без привязки карты. Платная —
+      только полная версия без ограничения по времени.</p>
+    </details>
+    <details class="faq">
+      <summary>Что произойдёт через {{TRIAL_DAYS}} дней?</summary>
+      <p>Программа перестанет запускаться и покажет ссылку на Boosty. Ваши образы,
+      флешки и файлы это никак не затрагивает — программа ничего не удаляет.</p>
+    </details>
+    <details class="faq">
+      <summary>Можно ли продлить или сбросить пробный период?</summary>
+      <p>Нет. Дата первого запуска хранится в нескольких местах и подписана; повторная
+      установка не даёт новых {{TRIAL_DAYS}} дней.</p>
+    </details>
+    <details class="faq">
+      <summary>Это подписка?</summary>
+      <p>Нет. Полная версия — разовая покупка: деньги списываются один раз, доступ к
+      файлам и критическим обновлениям 2.x сохраняется. Ежемесячных платежей нет.</p>
+    </details>
+    <details class="faq">
+      <summary>Нужен ли ключ активации для полной версии?</summary>
+      <p>Нет. Демо и полная версия — отдельные сборки. После покупки вы скачиваете
+      полную сборку, ключ вводить не нужно.</p>
+    </details>
+    <details class="faq">
+      <summary>Где взять образ MS-DOS?</summary>
+      <p>Программа не содержит MS-DOS. Нужен ваш законный образ MS-DOS 5.x или 6.x —
+      с дискеты, диска или архивной копии. Программа спросит подтверждение, что право
+      на образ у вас есть.</p>
+    </details>
+    <details class="faq">
+      <summary>Флешка больше 4 ГБ подойдёт?</summary>
+      <p>Да. DOSBox не монтирует образы больше 4 ГБ, поэтому для больших носителей
+      используется DOS-раздел примерно на 4 ГБ по FAT16.</p>
+    </details>
+    <details class="faq">
+      <summary>Почему компьютер не грузится с флешки?</summary>
+      <p>MS-DOS не умеет UEFI. Нужен режим Legacy/CSM и отключённый Secure Boot.
+      Инструкции для ASUS, MSI, Gigabyte, Lenovo, HP, Dell и Acer — в
+      <a href="/stati.html">базе знаний</a>.</p>
+    </details>
+    <details class="faq">
+      <summary>Почему антивирус ругается на сборку?</summary>
+      <p>У программы нет платного сертификата подписи кода, поэтому эвристика иногда
+      срабатывает. Сверьте SHA-256 с указанным на этой странице и не отключайте защиту
+      глобально.</p>
+    </details>
+    <details class="faq">
+      <summary>Можно вернуть деньги?</summary>
+      <p>Порядок и сроки — в разделе <a href="/refund.html">«Оплата и возврат»</a>.
+      Там же — как написать заявление и что происходит дальше.</p>
+    </details>
+    <details class="faq">
+      <summary>Программа работает без интернета?</summary>
+      <p>Да, полностью офлайн. Демо считает срок локально, полная версия в сеть
+      не обращается.</p>
+    </details>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Демо действительно бесплатная?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Да. 30 дней, все функции, без ключа и без привязки карты. Платная — только полная версия без ограничения по времени."}},
+    {"@type": "Question", "name": "Что произойдёт через 30 дней?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Программа перестанет запускаться и покажет ссылку на Boosty. Образы и флешки не затрагиваются."}},
+    {"@type": "Question", "name": "Можно ли продлить или сбросить пробный период?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Нет. Дата первого запуска хранится в нескольких местах и подписана."}},
+    {"@type": "Question", "name": "Нужен ли ключ активации для полной версии?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Нет. Демо и полная версия — отдельные сборки, ключ вводить не нужно."}},
+    {"@type": "Question", "name": "Где взять образ MS-DOS?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Программа не содержит MS-DOS. Нужен ваш законный образ MS-DOS 5.x или 6.x."}},
+    {"@type": "Question", "name": "Флешка больше 4 ГБ подойдёт?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Да, используется DOS-раздел примерно на 4 ГБ по FAT16."}},
+    {"@type": "Question", "name": "Почему компьютер не грузится с флешки?",
+     "acceptedAnswer": {"@type": "Answer", "text": "MS-DOS не умеет UEFI: нужен режим Legacy/CSM и отключённый Secure Boot."}},
+    {"@type": "Question", "name": "Почему антивирус ругается на сборку?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Нет сертификата подписи кода — возможны эвристические срабатывания. Сверьте SHA-256."}},
+    {"@type": "Question", "name": "Можно вернуть деньги?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Порядок и сроки описаны в разделе «Оплата и возврат»."}},
+    {"@type": "Question", "name": "Программа работает без интернета?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Да, полностью офлайн."}}
+  ]
+}
+</script>

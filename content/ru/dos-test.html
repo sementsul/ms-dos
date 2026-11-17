@@ -1,0 +1,101 @@
+<section class="block">
+  <div class="wrap legal">
+    <h1>Протестировать MS-DOS 5.00 и 6.22 онлайн</h1>
+    <p class="lead">Эмулятор прямо в браузере: подсуньте <b>свой</b> загрузочный образ
+    дискеты (IMG/IMA, 1.44 МБ) MS-DOS 5.00 или 6.22 — и гоняйте команды, как на
+    настоящей машине. Файл никуда не отправляется: всё считается локально.</p>
+
+    <h2>1. Готовое демо</h2>
+    <div class="os-cards">
+      <div class="os-card">
+        <h3>MS-DOS 5.00</h3>
+        <p>Готовый образ с системными файлами, Norton Commander и автостартом — как ставит MBFU.</p>
+        <div class="row"><button id="demo5">Запустить демо 5.00</button></div>
+      </div>
+      <div class="os-card">
+        <h3>MS-DOS 6.22</h3>
+        <p>То же для 6.22: SCANDISK, DriveSpace, QBASIC уже внутри.</p>
+        <div class="row"><button id="demo6">Запустить демо 6.22</button></div>
+      </div>
+    </div>
+    <p id="demo-note" style="display:none">Демо-образы на сайте отсутствуют — используйте свой образ ниже.</p>
+
+    <h2>2. Или свой образ</h2>
+    <div class="os-cards">
+      <div class="os-card">
+        <h3>Свой образ 5.00</h3>
+        <input type="file" id="file5" accept=".img,.ima,.bin,.flp,.dsk">
+        <div class="row"><button id="boot5">Загрузить 5.00</button></div>
+      </div>
+      <div class="os-card">
+        <h3>Свой образ 6.22</h3>
+        <input type="file" id="file6" accept=".img,.ima,.bin,.flp,.dsk">
+        <div class="row"><button id="boot6">Загрузить 6.22</button></div>
+      </div>
+    </div>
+
+    <h2>3. Экран</h2>
+    <p id="emu-status">Эмулятор готов. Выберите образ и нажмите «Загрузить».</p>
+    <div id="screen_container"></div>
+    <div class="row">
+      <button id="btn-bios">Проверить эмулятор (старт без диска)</button>
+      <button id="btn-stop">Остановить</button>
+    </div>
+    <p>Кликните по экрану, чтобы клавиатура ушла в эмулятор. Выход мыши и клавиатуры —
+    как обычно в браузере.</p>
+
+    <h2>Где взять образ</h2>
+    <ul>
+      <li>Используйте <b>свою лицензионную копию</b> MS-DOS: образ загрузочной дискеты
+          можно снять с оригинала.</li>
+      <li>Флешку, созданную MBFU, в браузер не подсунуть — нужен именно файл-образ
+          дискеты (IMG/IMA).</li>
+      <li>MS-DOS принадлежит Microsoft: чужие образы из интернета качаете на свой риск.</li>
+    </ul>
+
+    <h2>Вопросы и ответы</h2>
+    <p><b>Чем 5.00 отличается от 6.22 в эмуляторе?</b><br>
+    Наберите VER: увидите 5.00 или 6.22. В 6.22 есть SCANDISK, DriveSpace, MemMaker;
+    5.00 легче и ближе к оригиналу эпохи 286.</p>
+    <p><b>Эмулятор пишет «No bootable device» — что не так?</b><br>
+    Образ не загрузочный или не дискетный (например, ISO). Нужен bootable IMG 1.44 МБ.</p>
+
+    <div class="cta-box">
+      <p><b>Понравилось в браузере?</b></p>
+      <p>Сделайте настоящую загрузочную флешку программой MBFUTool: демо — {{TRIAL_DAYS}}
+      дней со всеми функциями.</p>
+      <p><a class="btn" href="/{{DEMO_ZIP}}" download>Скачать демо</a>
+         <a class="btn ghost" href="{{BUY_URL}}" rel="noopener">Полная версия</a></p>
+    </div>
+  </div>
+</section>
+
+<script>
+window.DOSTEST = {
+  i18n: {
+    loading: "Загрузка %s …",
+    loadingProgress: "Загрузка образа … %s%%",
+    reading: "Читаю %s …",
+    noFile: "Сначала выберите файл образа для %s.",
+    readError: "Не прочитался файл.",
+    started: "%s запущен. Кликните по экрану.",
+    stopped: "Эмулятор остановлен.",
+    stoppedMsg: "Остановлено.",
+    timeout: "Не стартовало за 60 секунд. Проверьте интернет (нужны файлы движка ~2.5 МБ) и обновите страницу через Ctrl+F5.",
+    error: "Не стартовало: %s",
+    pageError: "Ошибка страницы: %s. Обновите через Ctrl+F5.",
+    biosLabel: "SeaBIOS (без диска)",
+    demo5Label: "Демо MS-DOS 5.00",
+    demo6Label: "Демо MS-DOS 6.22"
+  },
+  assets: {
+    wasm: "/assets/v86/v86.wasm",
+    bios: "/assets/v86/bios/seabios.bin",
+    vgaBios: "/assets/v86/bios/vgabios.bin",
+    demo5: "/assets/demo/msdos5.img",
+    demo6: "/assets/demo/msdos6.img"
+  }
+};
+</script>
+<script src="/assets/v86/libv86.js"></script>
+<script src="/assets/dos-test.js" defer></script>

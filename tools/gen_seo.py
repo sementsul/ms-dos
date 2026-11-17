@@ -1,10 +1,19 @@
 # -*- coding: utf-8 -*-
-"""Генератор SEO-раздела ms-dos.su: 100 статей + каталог + sitemap + robots."""
-import os, html
+"""Генератор SEO-раздела ms-dos.su: 100 статей + каталог.
+
+Шапка, подвал и баннер согласия берутся из layout.py, чтобы статьи выглядели
+так же, как остальные страницы сайта.
+"""
+import html
+import json
+import os
+
+import layout
+import site_config as cfg
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOCS = os.path.join(ROOT, 'docs')
-SITE = 'https://ms-dos.su'
+DOCS = os.path.join(ROOT, "docs")
+SITE = cfg.SITE
 
 from seo_data_1 import COMMANDS
 from seo_data_2 import VENDORS, ERRORS, FILESYSTEMS
@@ -12,80 +21,9 @@ from seo_data_3 import NC, QBASIC, DOSBOX, MEMORY
 from seo_data_4 import VERSIONS, COMPARE, GUIDES
 from seo_data_faq import VENDOR_FAQ, ERROR_FAQ
 
-HEAD = """<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title}</title>
-<meta name="description" content="{desc}">
-<link rel="canonical" href="{site}/{slug}.html">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="ms-dos.su — MBFU">
-<meta property="og:title" content="{title}">
-<meta property="og:description" content="{desc}">
-<meta property="og:url" content="{site}/{slug}.html">
-<meta property="og:image" content="{site}/assets/icon-64.png">
-<meta property="og:locale" content="ru_RU">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="{title}">
-<meta name="twitter:description" content="{desc}">
-<link rel="preconnect" href="https://www.googletagmanager.com">
-<link rel="preconnect" href="https://mc.yandex.ru">
-<link rel="dns-prefetch" href="https://github.com">
-{jsonld}
-<meta name="yandex-verification" content="bb775f01a3383d99">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8PG2P181B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-  gtag('config', 'G-Y8PG2P181B');
-</script>
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){{
-        m[i]=m[i]||function(){{(m[i].a=m[i].a||[]).push(arguments)}};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {{if (document.scripts[j].src === r) {{ return; }}}}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    }})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106570050', 'ym');
-    ym(106570050, 'init', {{ssr:true, webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true}});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/106570050" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/png" href="assets/icon-64.png">
-</head>
-<body>
-<nav class="crumbs"><a href="./">MBFU</a> / <a href="stati.html">Статьи</a></nav>
-<main>
-<article>
-<h1>{h1}</h1>
-<p class="lead">{lead}</p>
-{sections}
-{faq}
-</article>
-<aside>
-<h2>Читайте также</h2>
-<ul>
-{related}
-</ul>
-<div class="cta-box">
-<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
-<p>MBFU сделает ее за пару кликов: MS-DOS 5.00/6.22 + Norton Commander.</p>
-<p><a class="btn" href="https://github.com/sementsul/ms-dos/releases">Скачать MBFU</a></p>
-</div>
-</aside>
-</main>
-<footer>
-<p><a href="../">MBFU</a> · (c) 2025 Sementsul Maxim · MIT · MS-DOS (c) Microsoft</p>
-</footer>
-</body>
-</html>
-"""
-
 
 def esc(s):
-    return html.escape(s, quote=True)
+    return html.escape(str(s), quote=True)
 
 
 def build_pages():
@@ -161,21 +99,21 @@ def build_pages():
     return pages
 
 
-import json as _json
-
-
-def jsonld(p):
+def jsonld(p, lang="ru"):
+    url = SITE + ("/" + p['slug'] + ".html" if lang == "ru"
+                  else "/en/" + p['slug'] + ".html")
     data = {
         "@context": "https://schema.org",
-        "@type": "Article",
+        "@type": "TechArticle" if p['cat'] in ('Команды MS-DOS', 'DOSBox') else "Article",
         "headline": p['h1'],
         "description": p['desc'],
-        "inLanguage": "ru",
-        "author": {"@type": "Organization", "name": "MBFU"},
-        "publisher": {"@type": "Organization", "name": "MBFU"},
-        "mainEntityOfPage": SITE + '/' + p['slug'] + '.html',
+        "inLanguage": lang,
+        "author": {"@type": "Person", "name": cfg.AUTHOR},
+        "publisher": {"@type": "Organization", "name": cfg.BRAND},
+        "mainEntityOfPage": url,
         "datePublished": "2026-09-22",
-        "dateModified": "2026-09-22",
+        "dateModified": "2026-11-17",
+        "isPartOf": {"@type": "WebSite", "name": cfg.BRAND, "url": SITE},
     }
     if p['faq']:
         data["mainEntity"] = [{
@@ -183,22 +121,55 @@ def jsonld(p):
             "name": q,
             "acceptedAnswer": {"@type": "Answer", "text": a},
         } for q, a in p['faq']]
-    return ('<script type="application/ld+json">\n%s\n</script>' %
-            _json.dumps(data, ensure_ascii=False))
+    return data
+
+
+def related_block(items):
+    """Cross-links plus the demo / full-version call to action."""
+    rel = '\n'.join('<li><a href="%s.html">%s</a></li>' % (r['slug'], esc(r['h1']))
+                    for r in items)
+    return """<aside>
+<h2>Читайте также</h2>
+<ul>
+%s
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>Демо MBFUTool 2.0 — все функции на %d дней, без ключа активации.</p>
+<p><a class="btn" href="/%s" download>Скачать демо</a>
+   <a class="btn ghost" href="%s" rel="noopener">Полная версия</a></p>
+</div>
+</aside>""" % (rel, cfg.TRIAL_DAYS, cfg.DEMO_ZIP,
+               cfg.BUY_URL)
 
 
 def render(p, related):
     secs = ''.join('<h2>%s</h2>\n%s\n' % (h, b) for h, b in p['sections'])
     faq = ''
     if p['faq']:
-        faq = '<h2>Вопросы и ответы</h2>\n' + ''.join(
-            '<p><b>%s</b><br>%s</p>\n' % (q, a) for q, a in p['faq'])
-    rel = '\n'.join('<li><a href="%s.html">%s</a></li>' % (r['slug'], esc(r['h1']))
-                    for r in related)
-    return HEAD.format(site=SITE, slug=p['slug'], title=esc(p['title']),
-                       desc=esc(p['desc']), h1=esc(p['h1']),
-                       lead=p['lead'], sections=secs, faq=faq, related=rel,
-                       jsonld=jsonld(p))
+        faq = ('<h2>Вопросы и ответы</h2>\n'
+               + ''.join('<p><b>%s</b><br>%s</p>\n' % (q, a) for q, a in p['faq']))
+
+    body = """<nav class="crumbs" aria-label="Хлебные крошки">
+<a href="/">MBFU</a> / <a href="/stati.html">Статьи</a> / %s
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>%s</h1>
+      <p class="lead">%s</p>
+%s
+%s
+    </article>
+%s
+  </div>
+</section>
+""" % (esc(p['cat']), esc(p['h1']), p['lead'], secs, faq, related_block(related))
+
+    head = layout.head("ru", p['slug'], esc(p['title']), esc(p['desc']),
+                       jsonld=jsonld(p), has_en=False)
+    return head + body + layout.footer("ru", p['slug'], has_en=False)
 
 
 def main():
@@ -213,36 +184,121 @@ def main():
         rel = [r for r in bycat[p['cat']] if r['slug'] != p['slug']][:6]
         with open(os.path.join(DOCS, p['slug'] + '.html'), 'w', encoding='utf-8') as f:
             f.write(render(p, rel))
-    # каталог-мегаиндекс: все статьи с описаниями
+
     cats = ''.join(
         '<h2>%s</h2>\n<ul class="mega">\n%s\n</ul>\n' % (c, '\n'.join(
             '<li><a href="%s.html">%s</a><br><small>%s</small></li>' % (p['slug'], esc(p['h1']), esc(p['desc']))
             for p in lst)) for c, lst in bycat.items())
+
+    catalog = """<nav class="crumbs" aria-label="Хлебные крошки">
+<a href="/">MBFU</a> / Статьи
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <h2>Статьи</h2>
+    <p class="intro">Вся база знаний: от первой команды DIR до мультизагрузки.
+    Сто статей про MS-DOS 5.00/6.22, DOSBox, Secure Boot и типичные ошибки.</p>
+%s
+    <div class="cta-box">
+      <p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+      <p>Демо MBFUTool 2.0 — все функции на %d дней.</p>
+      <p><a class="btn" href="/%s" download>Скачать демо</a>
+         <a class="btn ghost" href="%s" rel="noopener">Полная версия</a></p>
+    </div>
+  </div>
+</section>
+""" % (cats, cfg.TRIAL_DAYS, cfg.DEMO_ZIP, cfg.BUY_URL)
+
+    catalog_head = layout.head(
+        "ru", "stati", "Статьи про MS-DOS, DOS и загрузочные флешки | ms-dos.su",
+        "100 статей: команды DOS, версии MS-DOS, Secure Boot, Norton Commander, "
+        "ошибки и гайды.", jsonld=jsonld({'slug': 'stati', 'cat': '', 'h1': 'База знаний MS-DOS',
+                                          'desc': 'Каталог из 100 статей про MS-DOS.',
+                                          'faq': []}), has_en=True)
     with open(os.path.join(DOCS, 'stati.html'), 'w', encoding='utf-8') as f:
-        f.write(HEAD.format(
-            site=SITE, slug='stati', title='Статьи про MS-DOS, DOS и загрузочные флешки | ms-dos.su',
-            desc='100 статей: команды DOS, версии MS-DOS, Secure Boot, Norton Commander, ошибки и гайды.',
-            h1='Статьи', lead='Вся база знаний: от первой команды DIR до мультизагрузки.',
-            sections=cats, faq='', related='',
-            jsonld=jsonld({'slug': 'stati', 'h1': 'Статьи про MS-DOS',
-                           'desc': 'Каталог из 100 статей про MS-DOS.', 'faq': []})))
-    # sitemap-мегаиндекс: общий + по разделам
-    art = [SITE + '/%s.html' % p['slug'] for p in pages]
-    main_urls = [SITE + '/', SITE + '/stati.html', SITE + '/dos-test.html']
-    def sitemap(urls):
-        return ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-                ''.join('<url><loc>%s</loc></url>\n' % u for u in urls) + '</urlset>\n')
-    with open(os.path.join(ROOT, 'docs', 'sitemap-main.xml'), 'w', encoding='utf-8') as f:
-        f.write(sitemap(main_urls))
-    with open(os.path.join(ROOT, 'docs', 'sitemap-articles.xml'), 'w', encoding='utf-8') as f:
-        f.write(sitemap(art))
-    with open(os.path.join(ROOT, 'docs', 'sitemap.xml'), 'w', encoding='utf-8') as f:
-        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-                ''.join('<sitemap><loc>%s/sitemap-%s.xml</loc></sitemap>\n' % (SITE, n)
-                        for n in ('main', 'articles')) + '</sitemapindex>\n')
-    with open(os.path.join(ROOT, 'docs', 'robots.txt'), 'w', encoding='utf-8') as f:
-        f.write('User-agent: *\nAllow: /\nSitemap: %s/sitemap.xml\n' % SITE)
-    print('OK: %d страниц + каталог + sitemap' % len(pages))
+        f.write(catalog_head + catalog + layout.footer("ru", "stati"))
+
+    write_en_catalog(pages, bycat)
+    print('OK: %d статей + каталог' % len(pages))
+
+
+def write_en_catalog(pages, bycat):
+    """English index of the knowledge base.
+
+    The 100 reference articles are written in Russian; the English catalogue
+    explains that and points to them instead of shipping machine translation.
+    """
+    rows = ''.join(
+        '<tr><td>%s</td><td>%d</td></tr>' % (esc(cat), len(items))
+        for cat, items in bycat.items())
+    body = """<nav class="crumbs" aria-label="Breadcrumb">
+<a href="/en/">MBFU</a> / Guides
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <h1>MS-DOS guides and reference</h1>
+    <p class="lead">The knowledge base has 100 articles: DOS commands, MS-DOS 5.00 and
+    6.22 internals, DOSBox, Secure Boot and typical errors. They are written in
+    Russian — the language of the DOS documentation this project grew from — and are
+    listed below by topic.</p>
+
+    <table>
+      <tr><th>Topic</th><th>Articles</th></tr>
+      %s
+      <tr><td><b>Total</b></td><td><b>%d</b></td></tr>
+    </table>
+
+    <p><a class="btn" href="/stati.html" hreflang="ru" lang="ru">Open the catalogue (RU)</a>
+       <a class="btn ghost" href="/en/dos-test.html">Try MS-DOS in the browser</a></p>
+
+    <h2>What is covered</h2>
+    <ul>
+      <li>every internal and external DOS command with all switches and examples;</li>
+      <li>MS-DOS 5.00 vs 6.22, memory management, Himem.sys, Emm386, MemMaker;</li>
+      <li>FAT12/FAT16 limits, 4 GB partitions on large USB drives, cluster size;</li>
+      <li>Secure Boot and CSM on ASUS, MSI, Gigabyte, ASRock, Lenovo, Dell, HP;</li>
+      <li>DOSBox configuration, mounting images, keyboard and mouse quirks;</li>
+      <li>“No bootable device”, “Non-system disk”, “Bad command or file name” and
+          other errors with fixes.</li>
+    </ul>
+
+    <div class="cta-box">
+      <p><b>Need a bootable MS-DOS USB drive?</b></p>
+      <p>The MBFUTool 2.0 demo gives you every feature for {{TRIAL_DAYS}} days, no key
+      required.</p>
+      <p><a class="btn" href="/{{DEMO_ZIP}}" download>Download the demo</a>
+         <a class="btn ghost" href="{{BUY_URL}}" rel="noopener">Full version</a></p>
+    </div>
+  </div>
+</section>
+""" % (rows, len(pages))
+
+    body = render_body(body)
+    head = layout.head(
+        "en", "stati", "MS-DOS guides and reference | ms-dos.su",
+        "100 articles on DOS commands, MS-DOS 5.00/6.22, DOSBox, Secure Boot and "
+        "typical errors. Written in Russian.",
+        jsonld=jsonld({'slug': 'stati', 'cat': '', 'h1': 'MS-DOS guides',
+                       'desc': 'Knowledge base index', 'faq': []}, lang="en"),
+        has_en=True)
+    path = os.path.join(DOCS, "en", "stati.html")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(head + body + layout.footer("en", "stati"))
+
+
+def render_body(text):
+    """Substitute the tokens that the catalogue uses."""
+    values = {
+        "TRIAL_DAYS": str(cfg.TRIAL_DAYS),
+        "DEMO_ZIP": cfg.DEMO_ZIP,
+        "BUY_URL": cfg.BUY_URL,
+    }
+    for key, value in values.items():
+        text = text.replace("{{%s}}" % key, value)
+    return text
 
 
 if __name__ == '__main__':
