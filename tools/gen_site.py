@@ -8,6 +8,7 @@ site tokens, and writes docs/<slug>.html (ru) or docs/en/<slug>.html (en).
 Run:  python tools/gen_site.py
 """
 import glob
+import hashlib
 import os
 import re
 import sys
@@ -123,7 +124,7 @@ def load_sums():
         os.path.join(os.path.dirname(ROOT), "mbfu-work", "demo", "out", "SHA256SUMS.txt"),
     ]
     path = next((p for p in candidates if os.path.isfile(p)), None)
-    data = {"sha": "", "mb": 0.0}
+    data = {"sha": "", "mb": 0.0, "setup_sha": "", "setup_mb": 0.0}
     if not path:
         return data
     with open(path, encoding="utf-8") as f:
@@ -131,9 +132,20 @@ def load_sums():
             parts = line.split()
             if len(parts) == 2 and parts[1].endswith("_Portable.zip"):
                 data["sha"] = parts[0]
+            if len(parts) == 2 and parts[1].endswith("_Demo_Setup.exe"):
+                data["setup_sha"] = parts[0]
     zip_path = os.path.join(DOCS, "downloads", "MBFUTool_2.0_Demo_Portable.zip")
     if os.path.isfile(zip_path):
         data["mb"] = os.path.getsize(zip_path) / 1024 / 1024
+    setup_path = os.path.join(DOCS, "downloads", "MBFUTool_2.0_Demo_Setup.exe")
+    if os.path.isfile(setup_path):
+        data["setup_mb"] = os.path.getsize(setup_path) / 1024 / 1024
+        if not data["setup_sha"]:
+            h = hashlib.sha256()
+            with open(setup_path, "rb") as f:
+                for chunk in iter(lambda: f.read(1 << 20), b""):
+                    h.update(chunk)
+            data["setup_sha"] = h.hexdigest()
     return data
 
 
@@ -152,6 +164,8 @@ def tokens(lang, sums):
         "DEMO_ZIP": "/" + cfg.DEMO_ZIP,
         "DEMO_SHA": sums["sha"] or "—",
         "DEMO_SIZE": ("%.1f МБ" % sums["mb"]) if lang == "ru" else ("%.1f MB" % sums["mb"]),
+        "SETUP_SIZE": ("%.1f МБ" % sums["setup_mb"]) if lang == "ru" else ("%.1f MB" % sums["setup_mb"]),
+        "SETUP_SHA": sums["setup_sha"] or "—",
         "TRIAL_DAYS": str(cfg.TRIAL_DAYS),
         "VERSION": cfg.LATEST_VERSION,
         "EMAIL": cfg.SELLER["email"],
