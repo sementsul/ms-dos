@@ -26,6 +26,7 @@ CONSENT_VERSION = "1"
 # script as a blocker and must be replaced before the site is published.
 SELLER = {
     "name": "Семенцул Максим Геннадиевич",
+    "name_en": "Sementsul Maxim Gennadievich",
     "status_ru": "самозанятый (налог на профессиональный доход, НПД)",
     "status_en": "self-employed individual under the Russian professional "
                  "income tax regime (NPD)",

@@ -4,7 +4,7 @@ import json
 
 from site_config import (SITE, BRAND, PRODUCT, AUTHOR, COPYRIGHT, BUY_URL,
                          GITHUB, DEMO_ZIP, TRIAL_DAYS, GA_ID, METRIKA_ID,
-                         YANDEX_VERIFICATION, CONSENT_VERSION)
+                         YANDEX_VERIFICATION, CONSENT_VERSION, SELLER)
 
 NAV = {
     "ru": [("Возможности", "/#features"), ("Демо", "/#demo"),
@@ -198,6 +198,16 @@ def footer(lang, slug, has_en=True):
     lang_href = "/" if lang == "en" else "/en/"
     if not has_en:
         lang_href = "/en/" if lang == "ru" else "/"
+    if lang == "ru":
+        seller_line = ('Самозанятый %s, ИНН %s · '
+                       '<a href="mailto:%s">%s</a>' % (
+                           SELLER["name"], SELLER["inn"],
+                           SELLER["email"], SELLER["email"]))
+    else:
+        seller_line = ('Self-employed %s, INN %s · '
+                       '<a href="mailto:%s">%s</a>' % (
+                           SELLER.get("name_en") or SELLER["name"],
+                           SELLER["inn"], SELLER["email"], SELLER["email"]))
     return """</main>
 <footer class="site-footer">
   <div class="wrap">
@@ -205,6 +215,7 @@ def footer(lang, slug, has_en=True):
       <div>
         <p><b>{brand}</b> — {tag}.</p>
         <p>© {copyright} {author}</p>
+        <p class="seller">{seller_line}</p>
         <p><a href="{github}" rel="noopener">{github_label}</a></p>
       </div>
       <div>
@@ -231,6 +242,7 @@ def footer(lang, slug, has_en=True):
 </body>
 </html>
 """.format(brand=BRAND, tag=t["brand_tag"], copyright=COPYRIGHT, author=AUTHOR,
+           seller_line=seller_line,
            github=GITHUB, github_label="github.com/sementsul/ms-dos",
            docs=t["footer_docs"], project=t["footer_project"], links=links,
            articles=articles, articles_label=t["articles"], buy=BUY_URL,
