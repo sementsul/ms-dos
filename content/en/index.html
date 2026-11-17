@@ -10,22 +10,22 @@
       <ul class="badges">
         <li>Windows 10/11 x64</li>
         <li>MS-DOS 5.x / 6.x</li>
-        <li>Demo: {{TRIAL_DAYS}} days</li>
+        <li>Trial: {{TRIAL_DAYS}} days</li>
         <li>No Python required</li>
       </ul>
       <p class="hero-cta">
-        <a class="btn" href="{{DEMO_ZIP}}" download>Download demo 2.0<span class="sub">Portable ZIP · {{DEMO_SIZE}}</span></a>
+        <a class="btn" href="{{TRIAL_ZIP}}" download>Download trial 2.0<span class="sub">Portable ZIP · {{TRIAL_SIZE}}</span></a>
         <a class="btn ghost" href="{{BUY_URL}}" rel="noopener">Buy the full version<span class="sub">Boosty · one-time purchase, not a subscription</span></a>
       </p>
       <p class="note">
-        The demo is the full feature set for {{TRIAL_DAYS}} days. The full version is the same
-        set with no time limit. Archive SHA-256: <code>{{DEMO_SHA}}</code>
+        The trial is the full feature set for {{TRIAL_DAYS}} days. The full version is the same
+        set with no time limit. Archive SHA-256: <code>{{TRIAL_SHA}}</code>
       </p>
     </div>
 
     <div class="screen" role="img" aria-label="MBFUTool main menu in a DOSBox window: items Write image to USB, Create MBFU image, Clone MS-DOS media to USB, Edit MS-DOS image, Exit; a line showing the trial period remaining">
       <div class="box">
-        <div class="title">MBFU - MS-DOS IMAGE TOOLS   [DEMO]</div>
+        <div class="title">MBFU - MS-DOS IMAGE TOOLS   [TRIAL]</div>
         <div>&nbsp;</div>
         <div class="item">Write MS-DOS image to USB flash</div>
         <div class="item">Create MBFU image from disk/floppy/USB</div>
@@ -80,11 +80,11 @@
   </div>
 </section>
 
-<section class="block" id="demo">
+<section class="block" id="trial">
   <div class="wrap">
-    <h2>Demo: {{TRIAL_DAYS}} days, every feature</h2>
+    <h2>Trial: {{TRIAL_DAYS}} days, every feature</h2>
     <p class="intro">
-      The demo is not a cut-down program. Everything is there: writing to USB, creating
+      The trial is not a cut-down program. Everything is there: writing to USB, creating
       images, cloning and editing. There is one limit, and it is time: {{TRIAL_DAYS}} days
       from the first launch, after which the program stops starting and offers the full
       version.
@@ -92,7 +92,7 @@
 
     <div class="split">
       <div class="panel">
-        <h3>What the demo includes</h3>
+        <h3>What the trial includes</h3>
         <p class="price">Free · {{TRIAL_DAYS}} days · no activation key</p>
         <ul>
           <li>the full set of actions with no feature limits;</li>
@@ -101,12 +101,12 @@
           <li>portable build: unpack it and run;</li>
           <li>a counter of days left in the window and in the menu.</li>
         </ul>
-        <p><a class="btn" href="{{DEMO_ZIP}}" download>Download the demo ({{DEMO_SIZE}})</a></p>
-        <p class="fine">Archive: MBFUTool_2.0_Demo_Portable.zip. The SHA-256 hash is below.</p>
+        <p><a class="btn" href="{{TRIAL_ZIP}}" download>Download the trial ({{TRIAL_SIZE}})</a></p>
+        <p class="fine">Archive: MBFUTool_2.0_Trial_Portable.zip. The SHA-256 hash is below.</p>
         <p class="fine">
           Want a Start-menu shortcut and an entry in “Apps &amp; features”?
           There is an installer:
-          <a href="/downloads/MBFUTool_2.0_Demo_Setup.exe" download>MBFUTool_2.0_Demo_Setup.exe</a>
+          <a href="/downloads/MBFUTool_2.0_Trial_Setup.exe" download>MBFUTool_2.0_Trial_Setup.exe</a>
           · {{SETUP_SIZE}} · requires administrator rights.
           Installer SHA-256: <code style="word-break:break-all">{{SETUP_SHA}}</code>
         </p>
@@ -133,14 +133,14 @@
     <h3 style="margin-top:28px">How to check your download</h3>
     <ol class="steps">
       <li>Unpack the archive into a folder whose path uses Latin letters — that is the safer choice.</li>
-      <li>Run <b>MBFUTool_Demo.exe</b> as administrator: without that, writing to a disk is not possible.</li>
+      <li>Run <b>MBFUTool_Trial.exe</b> as administrator: without that, writing to a disk is not possible.</li>
       <li>Accept the licence agreement, then choose an action in the DOSBox menu.</li>
     </ol>
 
     <div class="callout">
       <p><b>Integrity check.</b> SHA-256 of the archive:
-      <code style="word-break:break-all">{{DEMO_SHA}}</code></p>
-      <pre>Get-FileHash .\MBFUTool_2.0_Demo_Portable.zip -Algorithm SHA256</pre>
+      <code style="word-break:break-all">{{TRIAL_SHA}}</code></p>
+      <pre>Get-FileHash .\MBFUTool_2.0_Trial_Portable.zip -Algorithm SHA256</pre>
       <p>If the hash does not match, the file is damaged or has been swapped — do not run it.</p>
     </div>
 
@@ -221,7 +221,7 @@
     <h2>Frequently asked questions</h2>
 
     <details class="faq">
-      <summary>Is the demo really free?</summary>
+      <summary>Is the trial really free?</summary>
       <p>Yes. {{TRIAL_DAYS}} days, every feature, no key and no card on file. Only the full
       version, which has no time limit, is paid.</p>
     </details>
@@ -242,7 +242,7 @@
     </details>
     <details class="faq">
       <summary>Do I need an activation key for the full version?</summary>
-      <p>No. The demo and the full version are separate builds. After purchase you download
+      <p>No. The trial and the full version are separate builds. After purchase you download
       the full build; there is no key to enter.</p>
     </details>
     <details class="faq">
@@ -275,7 +275,7 @@
     </details>
     <details class="faq">
       <summary>Does the program work without internet?</summary>
-      <p>Yes, fully offline. The demo counts the trial locally, and the full version never
+      <p>Yes, fully offline. The trial counts the trial locally, and the full version never
       contacts the network.</p>
     </details>
   </div>
@@ -286,7 +286,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "Is the demo really free?",
+    {"@type": "Question", "name": "Is the trial really free?",
      "acceptedAnswer": {"@type": "Answer", "text": "Yes. {{TRIAL_DAYS}} days, every feature, no key and no card on file. Only the full version, which has no time limit, is paid."}},
     {"@type": "Question", "name": "What happens after {{TRIAL_DAYS}} days?",
      "acceptedAnswer": {"@type": "Answer", "text": "The program stops starting and shows a link to Boosty. Your images, sticks and files are not affected."}},
@@ -295,7 +295,7 @@
     {"@type": "Question", "name": "Is this a subscription?",
      "acceptedAnswer": {"@type": "Answer", "text": "No. The full version is a one-time purchase: you are charged once and keep access to the files and to critical 2.x updates."}},
     {"@type": "Question", "name": "Do I need an activation key for the full version?",
-     "acceptedAnswer": {"@type": "Answer", "text": "No. The demo and the full version are separate builds, and there is no key to enter."}},
+     "acceptedAnswer": {"@type": "Answer", "text": "No. The trial and the full version are separate builds, and there is no key to enter."}},
     {"@type": "Question", "name": "Where do I get an MS-DOS image?",
      "acceptedAnswer": {"@type": "Answer", "text": "The program does not include MS-DOS. You need your own lawful MS-DOS 5.x or 6.x image."}},
     {"@type": "Question", "name": "Will a stick larger than 4 GB work?",

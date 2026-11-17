@@ -3,14 +3,14 @@
 import json
 
 from site_config import (SITE, BRAND, PRODUCT, AUTHOR, COPYRIGHT, BUY_URL,
-                         GITHUB, DEMO_ZIP, TRIAL_DAYS, GA_ID, METRIKA_ID,
+                         GITHUB, TRIAL_ZIP, TRIAL_DAYS, GA_ID, METRIKA_ID,
                          YANDEX_VERIFICATION, CONSENT_VERSION, SELLER)
 
 NAV = {
-    "ru": [("Возможности", "/#features"), ("Демо", "/#demo"),
+    "ru": [("Возможности", "/#features"), ("Trial", "/#trial"),
            ("Купить", "/#buy"), ("Статьи", "/stati.html"),
            ("Контакты", "/contacts.html")],
-    "en": [("Features", "/en/#features"), ("Demo", "/en/#demo"),
+    "en": [("Features", "/en/#features"), ("Trial", "/en/#trial"),
            ("Buy", "/en/#buy"), ("Guides", "/en/stati.html"),
            ("Contact", "/en/contacts.html")],
 }
@@ -40,7 +40,7 @@ T = {
         "home": "Главная",
         "articles": "Статьи",
         "buy": "Полная версия на Boosty",
-        "buy_note": "Демо — 30 дней бесплатно",
+        "buy_note": "Trial — 30 дней бесплатно",
         "brand_tag": "Утилита для работы с образами MS-DOS",
         "legal_note": ("MS-DOS — товарный знак Microsoft Corporation. "
                        "Norton Commander — товарный знак соответствующего "
@@ -68,7 +68,7 @@ T = {
         "home": "Home",
         "articles": "Guides",
         "buy": "Full version on Boosty",
-        "buy_note": "Demo — 30 days free",
+        "buy_note": "Trial — 30 days free",
         "brand_tag": "MS-DOS image toolkit",
         "legal_note": ("MS-DOS is a trademark of Microsoft Corporation. "
                        "Norton Commander is a trademark of its respective owner. "

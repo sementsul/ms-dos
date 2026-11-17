@@ -1,21 +1,98 @@
-MIT License
+END-USER LICENSE AGREEMENT (EULA) — MBFUTool 2.x
+ЛИЦЕНЗИОННОЕ СОГЛАШЕНИЕ КОНЕЧНОГО ПОЛЬЗОВАТЕЛЯ
 
-Copyright (c) 2025 Sementsul Maxim
+Licensor / Лицензиар:
+  Sementsul Maxim Gennadievich (Семенцул Максим Геннадиевич),
+  self-employed under the Russian professional income tax regime (НПД),
+  INN 381616884622, e-mail: sementsul.maksim@yandex.ru
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Product / Программа: MBFUTool 2.x, including the Trial and the Full edition.
+Document version 1.0, 18 November 2026.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+--------------------------------------------------------------------------------
+SCOPE OF THIS FILE / НАЗНАЧЕНИЕ ЭТОГО ФАЙЛА
+--------------------------------------------------------------------------------
+MBFUTool 2.x is proprietary software. This file is the licence under which the
+program is distributed; it is not an open-source licence, and no source code of
+MBFUTool 2.x is published or provided.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+The source code of the earlier MBFUTool 1.x line, previously published in this
+repository, remains available under the MIT licence (see LICENSE-MIT-1.x.md).
+That grant cannot be revoked for the versions already published, and it does not
+extend to MBFUTool 2.x.
+
+Исходный код MBFUTool 1.x, опубликованный ранее в этом репозитории, остаётся
+доступным по лицензии MIT (файл LICENSE-MIT-1.x.md). На MBFUTool 2.x лицензия
+MIT не распространяется: программа распространяется по настоящему EULA, её
+исходный код не публикуется.
+
+Third-party components keep their own licences / Сторонние компоненты сохраняют
+свои лицензии: DOSBox — GNU GPL v2 (unmodified, source at dosbox.com);
+SDL and SDL_net — GNU LGPL v2.1 (libsdl.org). They are listed on
+https://ms-dos.su/licenses.html.
+
+--------------------------------------------------------------------------------
+1. GRANT OF RIGHTS
+--------------------------------------------------------------------------------
+1.1. Subject to payment (for the Full edition) and to this Agreement, the
+Licensor grants you a non-exclusive, non-transferable, revocable right to
+install and use one copy of the program on one computer, for personal use.
+1.2. A commercial licence for organisations, or for use on several computers,
+is granted separately on request.
+1.3. The Trial edition is granted free of charge for evaluation during thirty
+(30) days from the first start, with the full feature set.
+
+--------------------------------------------------------------------------------
+2. RESTRICTIONS
+--------------------------------------------------------------------------------
+You may not:
+  a) copy, distribute, rent, lease, lend or publicly offer the program or its
+     access keys, except as expressly permitted by law;
+  b) modify, translate, decompile, disassemble or otherwise attempt to derive
+     the source code, except to the extent such restriction is prohibited by
+     applicable law;
+  c) remove or alter copyright notices, licence texts or the trial-time counter;
+  d) use the program to infringe third-party rights, including rights in MS-DOS
+     or other proprietary operating systems, disk images or software;
+  e) build a competing implementation of the .mbfu format for distribution
+     without written permission.
+
+--------------------------------------------------------------------------------
+3. DATA LOSS AND MEDIA OPERATIONS
+--------------------------------------------------------------------------------
+Writing an image or cloning media destroys all data on the target device. The
+program contains safeguards against writing to the system disk, but the choice of
+the target device is yours. The Licensor is not liable for data loss.
+
+--------------------------------------------------------------------------------
+4. WARRANTY AND LIABILITY
+--------------------------------------------------------------------------------
+The program is provided "AS IS", without warranty of any kind. To the maximum
+extent permitted by law, the Licensor's total liability is limited to the amount
+paid for the licence (zero for the Trial). Nothing in this Agreement limits
+mandatory consumer rights under the law of your country of residence, including
+the Russian Federation, the European Union and the United States.
+
+--------------------------------------------------------------------------------
+5. TERM AND TERMINATION
+--------------------------------------------------------------------------------
+The licence is effective until terminated. It terminates automatically if you
+breach sections 1-2. On termination you must stop using the program and delete
+all copies.
+
+--------------------------------------------------------------------------------
+6. APPLICABLE LAW
+--------------------------------------------------------------------------------
+This Agreement is governed by the law of the Russian Federation. Consumers keep
+the mandatory protections of their place of residence.
+
+--------------------------------------------------------------------------------
+7. ACCEPTANCE
+--------------------------------------------------------------------------------
+Installing, copying or using the program means that you have read this Agreement,
+understand it and accept its terms. If you do not accept them, do not install or
+use the program.
+
+Full text in Russian, together with the purchase and refund terms, is published
+at https://ms-dos.su/terms.html and https://ms-dos.su/refund.html.
+Полный текст на русском языке — https://ms-dos.su/terms.html

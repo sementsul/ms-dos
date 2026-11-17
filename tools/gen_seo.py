@@ -125,7 +125,7 @@ def jsonld(p, lang="ru"):
 
 
 def related_block(items):
-    """Cross-links plus the demo / full-version call to action."""
+    """Cross-links plus the trial / full-version call to action."""
     rel = '\n'.join('<li><a href="%s.html">%s</a></li>' % (r['slug'], esc(r['h1']))
                     for r in items)
     return """<aside>
@@ -135,11 +135,11 @@ def related_block(items):
 </ul>
 <div class="cta-box">
 <p><b>Нужна загрузочная флешка MS-DOS?</b></p>
-<p>Демо MBFUTool 2.0 — все функции на %d дней, без ключа активации.</p>
-<p><a class="btn" href="/%s" download>Скачать демо</a>
+<p>Trial MBFUTool 2.0 — все функции на %d дней, без ключа активации.</p>
+<p><a class="btn" href="/%s" download>Скачать Trial</a>
    <a class="btn ghost" href="%s" rel="noopener">Полная версия</a></p>
 </div>
-</aside>""" % (rel, cfg.TRIAL_DAYS, cfg.DEMO_ZIP,
+</aside>""" % (rel, cfg.TRIAL_DAYS, cfg.TRIAL_ZIP,
                cfg.BUY_URL)
 
 
@@ -202,13 +202,13 @@ def main():
 %s
     <div class="cta-box">
       <p><b>Нужна загрузочная флешка MS-DOS?</b></p>
-      <p>Демо MBFUTool 2.0 — все функции на %d дней.</p>
-      <p><a class="btn" href="/%s" download>Скачать демо</a>
+      <p>Trial MBFUTool 2.0 — все функции на %d дней.</p>
+      <p><a class="btn" href="/%s" download>Скачать Trial</a>
          <a class="btn ghost" href="%s" rel="noopener">Полная версия</a></p>
     </div>
   </div>
 </section>
-""" % (cats, cfg.TRIAL_DAYS, cfg.DEMO_ZIP, cfg.BUY_URL)
+""" % (cats, cfg.TRIAL_DAYS, cfg.TRIAL_ZIP, cfg.BUY_URL)
 
     catalog_head = layout.head(
         "ru", "stati", "Статьи про MS-DOS, DOS и загрузочные флешки | ms-dos.su",
@@ -266,9 +266,9 @@ def write_en_catalog(pages, bycat):
 
     <div class="cta-box">
       <p><b>Need a bootable MS-DOS USB drive?</b></p>
-      <p>The MBFUTool 2.0 demo gives you every feature for {{TRIAL_DAYS}} days, no key
+      <p>The MBFUTool 2.0 trial gives you every feature for {{TRIAL_DAYS}} days, no key
       required.</p>
-      <p><a class="btn" href="/{{DEMO_ZIP}}" download>Download the demo</a>
+      <p><a class="btn" href="/{{TRIAL_ZIP}}" download>Download the trial</a>
          <a class="btn ghost" href="{{BUY_URL}}" rel="noopener">Full version</a></p>
     </div>
   </div>
@@ -293,7 +293,7 @@ def render_body(text):
     """Substitute the tokens that the catalogue uses."""
     values = {
         "TRIAL_DAYS": str(cfg.TRIAL_DAYS),
-        "DEMO_ZIP": cfg.DEMO_ZIP,
+        "TRIAL_ZIP": cfg.TRIAL_ZIP,
         "BUY_URL": cfg.BUY_URL,
     }
     for key, value in values.items():

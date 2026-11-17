@@ -5,20 +5,20 @@
     6.22 boot floppy image (IMG/IMA, 1.44 MB) and run commands as on a real machine.
     The file never leaves your computer — everything runs locally.</p>
 
-    <h2>1. Ready-made demo</h2>
+    <h2>1. Ready-made trial</h2>
     <div class="os-cards">
       <div class="os-card">
         <h3>MS-DOS 5.00</h3>
         <p>A ready image with system files, Norton Commander and autostart — the way MBFU installs it.</p>
-        <div class="row"><button id="demo5">Start the 5.00 demo</button></div>
+        <div class="row"><button id="trial5">Start the 5.00 trial</button></div>
       </div>
       <div class="os-card">
         <h3>MS-DOS 6.22</h3>
         <p>The same for 6.22: SCANDISK, DriveSpace and QBASIC are already inside.</p>
-        <div class="row"><button id="demo6">Start the 6.22 demo</button></div>
+        <div class="row"><button id="trial6">Start the 6.22 trial</button></div>
       </div>
     </div>
-    <p id="demo-note" style="display:none">The demo images are not published here — use your own image below.</p>
+    <p id="trial-note" style="display:none">The trial images are not published here — use your own image below.</p>
 
     <h2>2. Or your own image</h2>
     <div class="os-cards">
@@ -61,9 +61,9 @@
 
     <div class="cta-box">
       <p><b>Like it in the browser?</b></p>
-      <p>Make a real bootable USB drive with MBFUTool: the demo gives you every feature for
+      <p>Make a real bootable USB drive with MBFUTool: the trial gives you every feature for
       {{TRIAL_DAYS}} days.</p>
-      <p><a class="btn" href="/{{DEMO_ZIP}}" download>Download the demo</a>
+      <p><a class="btn" href="/{{TRIAL_ZIP}}" download>Download the trial</a>
          <a class="btn ghost" href="{{BUY_URL}}" rel="noopener">Full version</a></p>
     </div>
   </div>
@@ -84,15 +84,15 @@ window.DOSTEST = {
     error: "It did not start: %s",
     pageError: "Page error: %s. Reload with Ctrl+F5.",
     biosLabel: "SeaBIOS (no disk)",
-    demo5Label: "MS-DOS 5.00 demo",
-    demo6Label: "MS-DOS 6.22 demo"
+    trial5Label: "MS-DOS 5.00 trial",
+    trial6Label: "MS-DOS 6.22 trial"
   },
   assets: {
     wasm: "/assets/v86/v86.wasm",
     bios: "/assets/v86/bios/seabios.bin",
     vgaBios: "/assets/v86/bios/vgabios.bin",
-    demo5: "/assets/demo/msdos5.img",
-    demo6: "/assets/demo/msdos6.img"
+    trial5: "/assets/trial/msdos5.img",
+    trial6: "/assets/trial/msdos6.img"
   }
 };
 </script>

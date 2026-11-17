@@ -25,11 +25,11 @@ PAGES = {
     "index": (
         "MBFUTool 2.0 — образы MS-DOS: создать, открыть, записать на USB",
         "MBFUTool 2.0 для Windows: запись образов MS-DOS на USB, создание .mbfu, "
-        "клонирование носителей и редактирование в DOSBox. Демо — 30 дней без "
+        "клонирование носителей и редактирование в DOSBox. Trial — 30 дней без "
         "ограничений функций, полная версия на Boosty.",
         "MBFUTool 2.0 — create, edit and write MS-DOS images to USB",
         "MBFUTool 2.0 for Windows: write MS-DOS images to USB, create .mbfu "
-        "images, clone media and edit images in DOSBox. 30-day demo with all "
+        "images, clone media and edit images in DOSBox. 30-day trial with all "
         "features, full version on Boosty.",
         "software",
     ),
@@ -118,10 +118,10 @@ PAGES = {
 
 
 def load_sums():
-    """Read the demo archive checksum produced by the build."""
+    """Read the trial archive checksum produced by the build."""
     candidates = [
-        os.path.join(ROOT, "mbfu-work", "demo", "out", "SHA256SUMS.txt"),
-        os.path.join(os.path.dirname(ROOT), "mbfu-work", "demo", "out", "SHA256SUMS.txt"),
+        os.path.join(ROOT, "mbfu-work", "trial", "out", "SHA256SUMS.txt"),
+        os.path.join(os.path.dirname(ROOT), "mbfu-work", "trial", "out", "SHA256SUMS.txt"),
     ]
     path = next((p for p in candidates if os.path.isfile(p)), None)
     data = {"sha": "", "mb": 0.0, "setup_sha": "", "setup_mb": 0.0}
@@ -132,12 +132,12 @@ def load_sums():
             parts = line.split()
             if len(parts) == 2 and parts[1].endswith("_Portable.zip"):
                 data["sha"] = parts[0]
-            if len(parts) == 2 and parts[1].endswith("_Demo_Setup.exe"):
+            if len(parts) == 2 and parts[1].endswith("_Trial_Setup.exe"):
                 data["setup_sha"] = parts[0]
-    zip_path = os.path.join(DOCS, "downloads", "MBFUTool_2.0_Demo_Portable.zip")
+    zip_path = os.path.join(DOCS, "downloads", "MBFUTool_2.0_Trial_Portable.zip")
     if os.path.isfile(zip_path):
         data["mb"] = os.path.getsize(zip_path) / 1024 / 1024
-    setup_path = os.path.join(DOCS, "downloads", "MBFUTool_2.0_Demo_Setup.exe")
+    setup_path = os.path.join(DOCS, "downloads", "MBFUTool_2.0_Trial_Setup.exe")
     if os.path.isfile(setup_path):
         data["setup_mb"] = os.path.getsize(setup_path) / 1024 / 1024
         if not data["setup_sha"]:
@@ -161,10 +161,10 @@ def tokens(lang, sums):
         "BUY_LABEL": cfg.BUY_LABEL,
         "GITHUB": cfg.GITHUB,
         "RELEASES": cfg.RELEASES,
-        "DEMO_ZIP": "/" + cfg.DEMO_ZIP,
-        "DEMO_SHA": sums["sha"] or "—",
-        "DEMO_SIZE": ("%.1f МБ" % sums["mb"]) if lang == "ru" else ("%.1f MB" % sums["mb"]),
-        "SETUP_SIZE": ("%.1f МБ" % sums["setup_mb"]) if lang == "ru" else ("%.1f MB" % sums["setup_mb"]),
+        "TRIAL_ZIP": "/" + cfg.TRIAL_ZIP,
+        "TRIAL_SHA": sums["sha"] or "—",
+        "TRIAL_SIZE": ("%.1f МБ" % sums["mb"]).replace(".", ",") if lang == "ru" else ("%.1f MB" % sums["mb"]),
+        "SETUP_SIZE": ("%.1f МБ" % sums["setup_mb"]).replace(".", ",") if lang == "ru" else ("%.1f MB" % sums["setup_mb"]),
         "SETUP_SHA": sums["setup_sha"] or "—",
         "TRIAL_DAYS": str(cfg.TRIAL_DAYS),
         "VERSION": cfg.LATEST_VERSION,
@@ -205,15 +205,15 @@ def jsonld_for(kind, lang, slug, title, desc):
             "inLanguage": ["ru", "en"],
             "description": desc,
             "url": layout.url_for(lang, slug),
-            "downloadUrl": cfg.SITE + "/" + cfg.DEMO_ZIP,
+            "downloadUrl": cfg.SITE + "/" + cfg.TRIAL_ZIP,
             "author": {"@type": "Person", "name": cfg.AUTHOR},
             "offers": {
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "RUB",
-                "description": ("Демо-версия: 30 дней, все функции. "
+                "description": ("Пробная версия (Trial): 30 дней, все функции. "
                                 "Полная версия — на Boosty." if lang == "ru" else
-                                "Demo: 30 days, all features. Full version on Boosty."),
+                                "Trial: 30 days, all features. Full version on Boosty."),
                 "url": cfg.BUY_URL,
             },
         }

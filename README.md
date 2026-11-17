@@ -2,12 +2,23 @@
 
 [![build](https://github.com/sementsul/ms-dos/actions/workflows/build.yml/badge.svg)](https://github.com/sementsul/ms-dos/actions/workflows/build.yml)
 [![pages](https://github.com/sementsul/ms-dos/actions/workflows/pages.yml/badge.svg)](https://github.com/sementsul/ms-dos/actions/workflows/pages.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License: EULA](https://img.shields.io/badge/License-EULA%20(proprietary)-blue.svg)](LICENSE)
 
 Графическая утилита для создания загрузочных USB-флешек **MS-DOS 5.00 / 6.22**.
 Сайт проекта: https://ms-dos.su/
 
 ![MBFU](docs/assets/icon-64.png)
+
+## Что в репозитории, а что нет
+
+Здесь лежат **сайт** (`docs/`), **генераторы сайта** (`tools/`, `content/`) и
+**исходники MBFU 1.x** (`MBFU_clean/`), опубликованные ранее по MIT.
+
+**MBFUTool 2.0 — проприетарная программа.** Её исходный код в репозитории
+отсутствует: распространяются только готовые сборки (Trial и полная версия).
+Условия использования — [EULA](LICENSE). Лицензия MIT к версии 2.x не
+применяется; для ранее опубликованного кода 1.x она сохранена в
+[LICENSE-MIT-1.x.md](LICENSE-MIT-1.x.md) и отозвана быть не может.
 
 ## Возможности
 
@@ -21,30 +32,30 @@
 
 ## Скачать
 
-Готовые сборки — в [Releases](https://github.com/sementsul/ms-dos/releases):
-`MBFU-*-portable.zip` (распаковал и запустил) или `MBFU-*-setup.exe` (установщик Inno Setup).
-Запускать от имени администратора — иначе запись MBR невозможна.
+- **Trial 2.0** — https://ms-dos.su/#trial (30 дней, все функции, без ключа)
+- **Полная версия** — https://boosty.to/mbfu (разовая покупка)
+- Сборки 1.x — в [Releases](https://github.com/sementsul/ms-dos/releases)
 
-## Собрать из исходников
-
-Нужны: Windows, Python 3.12+, [Inno Setup 6](https://jrsoftware.org/isinfo.php)
-и лицензионная нагрузка из `PAYLOAD.md` (в репозитории ее нет — см. ниже).
+## Собрать сайт
 
 ```bat
-pip install pyinstaller
-pyinstaller --noconfirm --clean --onefile --windowed --uac-admin --noupx ^
-  --name MBFU_GUI --icon MBFU.ico --version-file version_info.txt ^
-  --distpath MBFU_clean MBFU_clean\MBFU_GUI.py
-"C:\Program Files (x86)\Inno Setup 6\ISCC.exe" MBFU.iss
+cd tools
+python gen_site.py      :: 10 страниц × 2 языка
+python gen_seo.py       :: 100 статей + каталоги
+python gen_sitemap.py   :: карты сайта и robots.txt
+python check_site.py    :: битые ссылки, JSON-LD, токены
 ```
 
-## Важно про лицензии
+Подробности — в [DEPLOY.md](DEPLOY.md), правовые требования — в
+[COMPLIANCE.md](COMPLIANCE.md).
 
-- **Код MBFU** (GUI, скрипты, установщик, сайт) — [MIT](LICENSE), делайте что хотите.
+## Важно про сторонние лицензии
+
 - **MS-DOS 5.00/6.22** — собственность Microsoft. **Norton Commander** — собственность
   правообладателя линейки Norton. **BEN-утилиты, DOSBox, SDL, RMPARTUSB** — их авторов.
   Эти файлы в репозитории **отсутствуют сознательно**: используйте свои законные копии,
-  раскладка — в [PAYLOAD.md](PAYLOAD.md). Публикация чужих файлов под MIT была бы
-  нарушением — не делайте так и вы.
-- Программа при первом запуске требует принять лицензии MS-DOS и NC, иначе кнопки
-  заблокированы.
+  раскладка — в [PAYLOAD.md](PAYLOAD.md).
+- **DOSBox** поставляется в составе 2.0 в неизменном виде под GPLv2; исходники —
+  на dosbox.com. Условия и ссылки: https://ms-dos.su/licenses.html
+- Программа при первом запуске требует принять лицензионное соглашение, иначе
+  работа заблокирована.

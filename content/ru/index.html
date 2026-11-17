@@ -10,22 +10,22 @@
       <ul class="badges">
         <li>Windows 10/11 x64</li>
         <li>MS-DOS 5.x / 6.x</li>
-        <li>Демо {{TRIAL_DAYS}} дней</li>
+        <li>Trial {{TRIAL_DAYS}} дней</li>
         <li>Без установки Python</li>
       </ul>
       <p class="hero-cta">
-        <a class="btn" href="{{DEMO_ZIP}}" download>Скачать демо 2.0<span class="sub">Portable ZIP · {{DEMO_SIZE}}</span></a>
+        <a class="btn" href="{{TRIAL_ZIP}}" download>Скачать Trial 2.0<span class="sub">Portable ZIP · {{TRIAL_SIZE}}</span></a>
         <a class="btn ghost" href="{{BUY_URL}}" rel="noopener">Купить полную версию<span class="sub">Boosty · разовая покупка, не подписка</span></a>
       </p>
       <p class="note">
-        Демо — все функции, {{TRIAL_DAYS}} дней. Полная версия — тот же набор без срока.
-        SHA-256 архива: <code>{{DEMO_SHA}}</code>
+        Trial — все функции, {{TRIAL_DAYS}} дней. Полная версия — тот же набор без срока.
+        SHA-256 архива: <code>{{TRIAL_SHA}}</code>
       </p>
     </div>
 
     <div class="screen" role="img" aria-label="Главное меню MBFUTool в окне DOSBox: пункты Write image to USB, Create MBFU image, Clone MS-DOS media to USB, Edit MS-DOS image, Exit; строка с остатком пробного периода">
       <div class="box">
-        <div class="title">MBFU - MS-DOS IMAGE TOOLS   [DEMO]</div>
+        <div class="title">MBFU - MS-DOS IMAGE TOOLS   [TRIAL]</div>
         <div>&nbsp;</div>
         <div class="item">Write MS-DOS image to USB flash</div>
         <div class="item">Create MBFU image from disk/floppy/USB</div>
@@ -80,18 +80,18 @@
   </div>
 </section>
 
-<section class="block" id="demo">
+<section class="block" id="trial">
   <div class="wrap">
-    <h2>Демо-версия: {{TRIAL_DAYS}} дней, все функции</h2>
+    <h2>Пробная версия (Trial): {{TRIAL_DAYS}} дней, все функции</h2>
     <p class="intro">
-      Демо — это не урезанная программа. В ней есть всё: запись на USB, создание образа,
+      Trial — это не урезанная программа. В ней есть всё: запись на USB, создание образа,
       клонирование и редактирование. Ограничение одно — срок: {{TRIAL_DAYS}} дней с первого
       запуска, после чего программа перестаёт запускаться и предлагает полную версию.
     </p>
 
     <div class="split">
       <div class="panel">
-        <h3>Что входит в демо</h3>
+        <h3>Что входит в Trial</h3>
         <p class="price">Бесплатно · {{TRIAL_DAYS}} дней · без ключа активации</p>
         <ul>
           <li>полный набор действий без функциональных ограничений;</li>
@@ -100,12 +100,12 @@
           <li>portable-сборка: распаковал и запустил;</li>
           <li>счётчик оставшихся дней в окне и в меню.</li>
         </ul>
-        <p><a class="btn" href="{{DEMO_ZIP}}" download>Скачать демо ({{DEMO_SIZE}})</a></p>
-        <p class="fine">Архив: MBFUTool_2.0_Demo_Portable.zip. Хэш SHA-256 — ниже.</p>
+        <p><a class="btn" href="{{TRIAL_ZIP}}" download>Скачать Trial ({{TRIAL_SIZE}})</a></p>
+        <p class="fine">Архив: MBFUTool_2.0_Trial_Portable.zip. Хэш SHA-256 — ниже.</p>
         <p class="fine">
           Нужны ярлык в меню «Пуск» и удаление через «Программы и компоненты»?
           Есть установщик:
-          <a href="/downloads/MBFUTool_2.0_Demo_Setup.exe" download>MBFUTool_2.0_Demo_Setup.exe</a>
+          <a href="/downloads/MBFUTool_2.0_Trial_Setup.exe" download>MBFUTool_2.0_Trial_Setup.exe</a>
           · {{SETUP_SIZE}} · требует прав администратора.
           SHA-256 установщика: <code style="word-break:break-all">{{SETUP_SHA}}</code>
         </p>
@@ -132,14 +132,14 @@
     <h3 style="margin-top:28px">Как проверить загрузку</h3>
     <ol class="steps">
       <li>Распакуйте архив в папку с латинскими буквами в пути — так надёжнее.</li>
-      <li>Запустите <b>MBFUTool_Demo.exe</b> от имени администратора: без этого запись на диск невозможна.</li>
+      <li>Запустите <b>MBFUTool_Trial.exe</b> от имени администратора: без этого запись на диск невозможна.</li>
       <li>Примите лицензионное соглашение, затем выберите действие в меню DOSBox.</li>
     </ol>
 
     <div class="callout">
       <p><b>Проверка целостности.</b> SHA-256 архива:
-      <code style="word-break:break-all">{{DEMO_SHA}}</code></p>
-      <pre>Get-FileHash .\MBFUTool_2.0_Demo_Portable.zip -Algorithm SHA256</pre>
+      <code style="word-break:break-all">{{TRIAL_SHA}}</code></p>
+      <pre>Get-FileHash .\MBFUTool_2.0_Trial_Portable.zip -Algorithm SHA256</pre>
       <p>Если хэш не совпал — файл повреждён или подменён, запускать его не нужно.</p>
     </div>
 
@@ -221,7 +221,7 @@
     <h2>Частые вопросы</h2>
 
     <details class="faq">
-      <summary>Демо действительно бесплатная?</summary>
+      <summary>Trial действительно бесплатная?</summary>
       <p>Да. {{TRIAL_DAYS}} дней, все функции, без ключа и без привязки карты. Платная —
       только полная версия без ограничения по времени.</p>
     </details>
@@ -242,7 +242,7 @@
     </details>
     <details class="faq">
       <summary>Нужен ли ключ активации для полной версии?</summary>
-      <p>Нет. Демо и полная версия — отдельные сборки. После покупки вы скачиваете
+      <p>Нет. Trial и полная версия — отдельные сборки. После покупки вы скачиваете
       полную сборку, ключ вводить не нужно.</p>
     </details>
     <details class="faq">
@@ -275,7 +275,7 @@
     </details>
     <details class="faq">
       <summary>Программа работает без интернета?</summary>
-      <p>Да, полностью офлайн. Демо считает срок локально, полная версия в сеть
+      <p>Да, полностью офлайн. Trial считает срок локально, полная версия в сеть
       не обращается.</p>
     </details>
   </div>
@@ -286,14 +286,14 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "Демо действительно бесплатная?",
+    {"@type": "Question", "name": "Trial действительно бесплатная?",
      "acceptedAnswer": {"@type": "Answer", "text": "Да. 30 дней, все функции, без ключа и без привязки карты. Платная — только полная версия без ограничения по времени."}},
     {"@type": "Question", "name": "Что произойдёт через 30 дней?",
      "acceptedAnswer": {"@type": "Answer", "text": "Программа перестанет запускаться и покажет ссылку на Boosty. Образы и флешки не затрагиваются."}},
     {"@type": "Question", "name": "Можно ли продлить или сбросить пробный период?",
      "acceptedAnswer": {"@type": "Answer", "text": "Нет. Дата первого запуска хранится в нескольких местах и подписана."}},
     {"@type": "Question", "name": "Нужен ли ключ активации для полной версии?",
-     "acceptedAnswer": {"@type": "Answer", "text": "Нет. Демо и полная версия — отдельные сборки, ключ вводить не нужно."}},
+     "acceptedAnswer": {"@type": "Answer", "text": "Нет. Trial и полная версия — отдельные сборки, ключ вводить не нужно."}},
     {"@type": "Question", "name": "Где взять образ MS-DOS?",
      "acceptedAnswer": {"@type": "Answer", "text": "Программа не содержит MS-DOS. Нужен ваш законный образ MS-DOS 5.x или 6.x."}},
     {"@type": "Question", "name": "Флешка больше 4 ГБ подойдёт?",

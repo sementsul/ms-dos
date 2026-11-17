@@ -11,8 +11,8 @@ BUY_URL = "https://boosty.to/mbfu"
 BUY_LABEL = "boosty.to/mbfu"
 GITHUB = "https://github.com/sementsul/ms-dos"
 RELEASES = GITHUB + "/releases"
-DEMO_ZIP = "downloads/MBFUTool_2.0_Demo_Portable.zip"
-LATEST_VERSION = "2.0.0-demo"
+TRIAL_ZIP = "downloads/MBFUTool_2.0_Trial_Portable.zip"
+LATEST_VERSION = "2.0.0-trial"
 TRIAL_DAYS = 30
 
 # Analytics IDs. Both are only loaded after an explicit consent click.

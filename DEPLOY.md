@@ -2,12 +2,12 @@
 
 Сайт — статические файлы в `docs/`, раздаются GitHub Pages с домена `ms-dos.su`
 (файл `docs/CNAME`). Никакого серверного кода нет: только HTML, CSS, JS,
-картинки и ZIP с демо.
+картинки и ZIP с пробной версией.
 
 ## 1. Сборка
 
 Нужен Python 3.11+ (в этой среде — встроенный интерпретатор DSH) и файлы
-демо-сборки в `../mbfu-work/demo/out/` (ZIP и `SHA256SUMS.txt`).
+пробной сборки в `../mbfu-work/trial/out/` (ZIP и `SHA256SUMS.txt`).
 
 ```powershell
 cd tools
@@ -17,14 +17,14 @@ python gen_sitemap.py   # sitemap-main.xml, sitemap-articles.xml, robots.txt
 python check_site.py    # битые ссылки, JSON-LD, alt, незаменённые токены
 ```
 
-Перед сборкой положите свежий архив демо в `docs/downloads/`:
+Перед сборкой положите свежий архив Trial в `docs/downloads/`:
 
 ```powershell
-Copy-Item ..\mbfu-work\demo\out\MBFUTool_2.0_Demo_Portable.zip docs\downloads\ -Force
+Copy-Item ..\mbfu-work\trial\out\MBFUTool_2.0_Trial_Portable.zip docs\downloads\ -Force
 ```
 
 `gen_site.py` подставит в главную страницу SHA-256 и размер из
-`mbfu-work/demo/out/SHA256SUMS.txt` и напечатает список блокеров, если не
+`mbfu-work/trial/out/SHA256SUMS.txt` и напечатает список блокеров, если не
 заполнены реквизиты продавца.
 
 ## 2. Что нужно заполнить один раз
@@ -64,7 +64,7 @@ GitHub Pages обновится через 1–2 минуты. Проверьт�
 - <https://ms-dos.su/> — главная;
 - <https://ms-dos.su/en/> — английская версия;
 - <https://ms-dos.su/sitemap.xml> — индекс карт сайта;
-- <https://ms-dos.su/downloads/MBFUTool_2.0_Demo_Portable.zip> — скачивание демо.
+- <https://ms-dos.su/downloads/MBFUTool_2.0_Trial_Portable.zip> — скачивание Trial.
 
 ### Вариант Б. Пуш из другой среды
 
@@ -100,9 +100,9 @@ git -c http.sslBackend=openssl push origin main
 - [ ] В Яндекс.Вебмастере и Google Search Console добавлены `sitemap.xml`.
 - [ ] Реквизиты продавца видны на `/contacts.html` и в футере.
 
-## 6. Обновление демо
+## 6. Обновление Trial
 
-1. `tools/build_demo.py` — собирает onedir и ZIP, пишет `SHA256SUMS.txt`.
+1. `tools/build_trial.py` — собирает onedir и ZIP, пишет `SHA256SUMS.txt`.
 2. Скопируйте ZIP в `docs/downloads/`.
 3. Пересоберите сайт (`gen_site.py`, `gen_seo.py`, `gen_sitemap.py`).
 4. Закоммитьте `docs/` — SHA-256 на главной обновится автоматически.
