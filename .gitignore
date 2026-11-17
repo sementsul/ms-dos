@@ -23,3 +23,6 @@ DOS/!BEN*.EXE
 *.dll
 *.com
 *.sys
+
+# Installer published on the site (demo download)
+!docs/downloads/*.exe
