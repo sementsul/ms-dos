@@ -21,14 +21,15 @@ python tools/indexnow.py --dry    # что будет отправлено
 python tools/indexnow.py          # отправка в IndexNow (Bing, Yandex, Seznam)
 ```
 
-Перед сборкой положите свежий архив Trial в `docs/downloads/`:
+Перед сборкой положите свежий установщик Trial в `docs/downloads/`:
 
 ```powershell
-Copy-Item ..\mbfu-work\trial\out\MBFUTool_2.0_Trial_Portable.zip docs\downloads\ -Force
+Copy-Item ..\mbfu-work\trial\installer\MBFUTool_2.0_Trial_Setup.exe docs\downloads\ -Force
 ```
 
-`gen_site.py` подставит в главную страницу SHA-256 и размер из
-`mbfu-work/trial/out/SHA256SUMS.txt` и напечатает список блокеров, если не
+Портабл-сборка больше не публикуется: единственный файл для скачивания —
+`MBFUTool_2.0_Trial_Setup.exe`. `gen_site.py` подставит в главную страницу его
+SHA-256 и размер из `mbfu-work/trial/out/SHA256SUMS.txt` (строка `*_Trial_Setup.exe`) и напечатает список блокеров, если не
 заполнены реквизиты продавца.
 
 ## 2. Что нужно заполнить один раз
