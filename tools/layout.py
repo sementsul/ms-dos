@@ -22,6 +22,7 @@ FOOT = {
            ("/refund.html", "Оплата и возврат"),
            ("/contacts.html", "Контакты и реквизиты"),
            ("/licenses.html", "Сторонние лицензии"),
+           ("/ms-dos-license.html", "Где взять MS-DOS"),
            ("/dmca.html", "Правообладателям"),
            ("/accessibility.html", "Доступность")],
     "en": [("/en/terms.html", "Terms and licence"),
@@ -30,6 +31,7 @@ FOOT = {
            ("/en/refund.html", "Payment and refunds"),
            ("/en/contacts.html", "Contacts and seller details"),
            ("/en/licenses.html", "Third-party licences"),
+           ("/en/ms-dos-license.html", "Where to get MS-DOS"),
            ("/en/dmca.html", "Rights holders"),
            ("/en/accessibility.html", "Accessibility")],
 }

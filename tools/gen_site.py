@@ -96,6 +96,17 @@ PAGES = {
         "their source code, and the MS-DOS trademark.",
         "webpage",
     ),
+    "ms-dos-license": (
+        "Где взять лицензионную копию MS-DOS — ms-dos.su",
+        "Законные способы получить MS-DOS 5.00/6.22: каталог подписки Visual Studio "
+        "my.visualstudio.com, ранее купленный экземпляр, образ со своих носителей "
+        "и свободная альтернатива FreeDOS.",
+        "Where to get a licensed MS-DOS copy — ms-dos.su",
+        "Lawful ways to obtain MS-DOS 5.00/6.22: the Visual Studio subscription "
+        "catalogue at my.visualstudio.com, a copy you already own, imaging your own "
+        "media, and the free FreeDOS alternative.",
+        "webpage",
+    ),
     "dmca": (
         "Правообладателям: уведомления и удаление — ms-dos.su",
         "Куда направить уведомление о нарушении авторских прав (DMCA и ст. 1253.1 "

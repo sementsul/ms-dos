@@ -1,0 +1,144 @@
+<section class="block">
+  <div class="wrap legal">
+    <h1>Where to get a licensed copy of MS-DOS</h1>
+    <p class="updated">Version dated 18 November 2026.</p>
+
+    <p class="lead">
+      MBFUTool ships no MS-DOS files: they belong to Microsoft and cannot be
+      redistributed with the program. You bring your own MS-DOS image — here is how
+      to obtain one lawfully and what to watch out for.
+    </p>
+
+    <h2 id="why">Why MS-DOS is not included</h2>
+    <p>
+      MS-DOS 5.00 and 6.22 are proprietary Microsoft operating systems. Support ended in
+      2001, you cannot buy a new copy from Microsoft, and there is no official free
+      download. MBFUTool only works
+      with images: it clones media, writes partitions and edits files. The system files
+      are yours to supply, as with any imaging utility.
+    </p>
+
+    <h2 id="vs">Option 1: a Visual Studio subscription (formerly MSDN)</h2>
+    <p>
+      The cleanest route is Microsoft's subscriber catalogue. Open
+      <a href="https://my.visualstudio.com/downloads" rel="noopener">my.visualstudio.com/downloads</a>
+      and sign in with the account your Visual Studio subscription is tied to
+      (Professional, Enterprise or a corporate subscription).
+    </p>
+    <ul>
+      <li>Search the catalogue for <code>MS-DOS</code>; DOS images appear among the
+          operating systems.</li>
+      <li>Availability depends on the subscription level: if MS-DOS is not listed,
+          your subscription does not include it — check another level or ask your
+          company's subscription administrator.</li>
+      <li>You get an ISO or an archive of installation files — exactly what MBFUTool
+          needs.</li>
+      <li>Subscription terms allow development and testing use, not resale. For a
+          production machine a separate licence for the operating system is cleaner.</li>
+    </ul>
+    <p>
+      <a class="btn" href="https://my.visualstudio.com/downloads" rel="noopener">Open the my.visualstudio.com catalogue</a>
+    </p>
+
+    <h2 id="used">Option 2: a copy you already own</h2>
+    <p>
+      Original floppies, a boxed copy or a computer with MS-DOS preinstalled is a
+      lawful copy. Under the first-sale doctrine (US), the EU exhaustion rule and
+      art. 1272 of the Russian Civil Code, a lawfully acquired copy may be resold
+      without the rights holder's consent.
+    </p>
+    <ul>
+      <li>Check completeness: disks, licence agreement, product number label.</li>
+      <li>OEM copies shipped with a PC are tied to that machine and formally cannot be
+          moved to other hardware.</li>
+      <li>Before buying second-hand media, make sure the disks still read: 30-year-old
+          floppies often have a rotted coating.</li>
+    </ul>
+
+    <h2 id="image">Option 3: image your own media</h2>
+    <p>
+      If MS-DOS already runs on an old machine or sits on floppies, make an image —
+      MBFUTool works with that.
+    </p>
+    <ul>
+      <li>Floppies: read them on a working drive and save an IMG/IMA image.</li>
+      <li>Hard disk: image the whole partition while the system still boots, or from
+          bootable media.</li>
+      <li>Check the result in DOSBox — it ships with MBFUTool.</li>
+    </ul>
+    <p>
+      Step-by-step instructions (in Russian): <a href="/dd-obraz-dos.html">“Writing a DOS
+      image with dd and Win32DiskImager”</a>.
+    </p>
+
+    <h2 id="freedos">Option 4: FreeDOS, a free alternative</h2>
+    <p>
+      If nothing requires MS-DOS specifically, use FreeDOS: it is free, downloadable
+      without restrictions and compatible with most DOS software. Note that MBFUTool
+      targets MS-DOS 5.00/6.22, so verify a particular FreeDOS build against your task.
+    </p>
+    <p>
+      <a class="btn ghost" href="https://www.freedos.org/download/" rel="noopener">Download FreeDOS</a>
+    </p>
+
+    <h2 id="illegal">What not to do</h2>
+    <ul>
+      <li>Downloading “MS-DOS 6.22 ISO” from file-sharing or warez sites: that is
+          counterfeit, even if you later buy something from the utility's author.</li>
+      <li>Using someone else's serial numbers or cracks.</li>
+      <li>Redistributing MS-DOS images, including “for testing” on forums.</li>
+    </ul>
+    <p>
+      Infringement exposes you to damages or statutory compensation and, depending on
+      the jurisdiction, administrative or criminal liability.
+    </p>
+
+    <h2 id="next">What next</h2>
+    <p>
+      With an MS-DOS image at hand, start MBFUTool: pick an operation, point it at the
+      image and the target device. The program refuses to write to the system disk and
+      asks for confirmation — everything on the USB stick will be erased.
+    </p>
+    <p>
+      <a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Download Trial 2.0</a>
+      <a class="btn ghost" href="/en/#trial">What the Trial includes</a>
+    </p>
+
+    <h2 id="faq">Quick answers</h2>
+    <details>
+      <summary>Can MS-DOS be downloaded for free legally?</summary>
+      <p>
+        Microsoft offers no free download. FreeDOS is the free and lawful option;
+        MS-DOS comes with a Visual Studio subscription or with a copy you already own.
+      </p>
+    </details>
+    <details>
+      <summary>I still have original MS-DOS floppies — is that enough?</summary>
+      <p>
+        Yes, provided the copy was lawfully acquired. Image the floppies and point the
+        program at the image.
+      </p>
+    </details>
+    <details>
+      <summary>Is an image from the internet fine?</summary>
+      <p>
+        Only if it comes from the rights holder or through a subscription. An image
+        downloaded from a file-sharing site is counterfeit, and the user bears the
+        consequences.
+      </p>
+    </details>
+    <details>
+      <summary>What if MS-DOS is needed for a commercial service?</summary>
+      <p>
+        Then you need your own operating-system licence, not a development
+        subscription. For commercial use of MBFUTool write to
+        <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a>.
+      </p>
+    </details>
+
+    <p class="fine">
+      Microsoft and MS-DOS are trademarks of Microsoft Corporation. This page is
+      informational and is not legal advice.
+    </p>
+  </div>
+</section>

@@ -58,6 +58,14 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/ms-dos-license.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-license.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/ms-dos-license.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-license.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/privacy.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/privacy.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/privacy.html"/>
@@ -144,6 +152,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/licenses.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/ms-dos-license.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-license.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/ms-dos-license.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-license.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://ms-dos.su/en/privacy.html</loc>
