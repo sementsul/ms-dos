@@ -167,6 +167,9 @@ DEVICEHIGH=C:\DOS\MOUSE.SYS</pre>
 <h2>DEVICEHIGH and LH</h2>
 <p><code>DEVICEHIGH</code> in CONFIG.SYS and <code>LH</code> in AUTOEXEC.BAT both try to load a driver or program into a UMB instead of conventional memory. They only work if EMM386 is loaded and UMBs are enabled with <code>DOS=UMB</code>. If a driver fails to load high, DOS falls back to conventional memory, so the machine still boots.</p>
 <p>MEMMAKER, available from MS-DOS 6.x, automates this tuning by trying combinations and rewriting the two files. On 5.00 the work is manual.</p>
+<h2>When EMM386 helps and when it hurts</h2>
+<p>EMM386 is needed when a program requires EMS, which is common for older games and some CAD and spreadsheet software. It is also needed for <code>DEVICEHIGH</code> and <code>LH</code> to have anywhere to put things.</p>
+<p>It gets in the way on a 286, where it cannot run, and on machines where nothing needs EMS and upper memory is already sufficient. If everything runs and MEM shows enough free conventional memory, EMM386 only costs a driver and boot time.</p>
 <h2>Checking the result</h2>
 <p><code>MEM</code> prints a summary of conventional, upper, extended and expanded memory. <code>MEM /C</code> adds a list of loaded programs and drivers grouped by the region they occupy, which is the fastest way to see what is still in conventional memory. <code>MEM /F</code> shows free regions instead.</p>
 <p>Read the largest free block, not the total. A program that needs 580 KB will not start if the total is 600 KB but fragmented into 400 KB and 200 KB pieces. Removing one resident program or moving it high often solves it.</p>

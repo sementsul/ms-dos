@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DOSBox mount and imgmount: folders, images and drives | ms-dos.su</title>
-<meta name="description" content="How MOUNT exposes a folder as a DOS drive and IMGMOUNT attaches a floppy, hard disk or ISO image in DOSBox, with examples and the 4 GB image limit.">
+<meta name="description" content="How MOUNT exposes a folder as a DOS drive and IMGMOUNT attaches a floppy, hard disk or ISO image in DOSBox, with examples and the 4 GB limit.">
 <link rel="canonical" href="https://ms-dos.su/en/dosbox-mount-and-imgmount.html">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MBFU — ms-dos.su">
 <meta property="og:title" content="DOSBox mount and imgmount: folders, images and drives | ms-dos.su">
-<meta property="og:description" content="How MOUNT exposes a folder as a DOS drive and IMGMOUNT attaches a floppy, hard disk or ISO image in DOSBox, with examples and the 4 GB image limit.">
+<meta property="og:description" content="How MOUNT exposes a folder as a DOS drive and IMGMOUNT attaches a floppy, hard disk or ISO image in DOSBox, with examples and the 4 GB limit.">
 <meta property="og:url" content="https://ms-dos.su/en/dosbox-mount-and-imgmount.html">
 <meta property="og:image" content="https://ms-dos.su/assets/og.png">
 <meta property="og:locale" content="en_US">
@@ -28,7 +28,7 @@
    "@context": "https://schema.org",
    "@type": "Article",
    "headline": "DOSBox mount and imgmount: folders, images and drives",
-   "description": "How MOUNT exposes a folder as a DOS drive and IMGMOUNT attaches a floppy, hard disk or ISO image in DOSBox, with examples and the 4 GB image limit.",
+   "description": "How MOUNT exposes a folder as a DOS drive and IMGMOUNT attaches a floppy, hard disk or ISO image in DOSBox, with examples and the 4 GB limit.",
    "inLanguage": "en",
    "author": {
     "@type": "Person",
@@ -149,20 +149,20 @@
   <div class="wrap">
     <article>
       <h1>DOSBox mount and imgmount: folders, images and drives</h1>
-      <p class="lead">DOSBox gives you a Z: drive with its own commands and nothing else. To reach real files you either mount a folder as a drive or attach a disk image. The two commands look similar and behave very differently, and mixing them up is the usual reason a program cannot find its files.</p>
+      <p class="lead">DOSBox gives you a Z: drive and nothing else. To reach real files you mount a folder as a drive or attach a disk image. The commands look similar and behave very differently, and mixing them up is the usual reason a program cannot find its files.</p>
 <h2>MOUNT: a folder becomes a drive</h2>
 <p><code>MOUNT</code> maps a host directory to a drive letter inside DOSBox. Files are read and written directly on the host, so changes are visible immediately on both sides.</p>
 <pre>MOUNT C C:\DOSGAMES
 C:</pre>
-<p>The first path is the DOS drive letter, the second is the host folder. Once mounted, <code>C:</code> switches to it and normal DOS commands work. A folder mounted this way is not a disk image: there is no partition table, no boot sector and no FAT16 volume of a fixed size. It is a window onto your file system.</p>
+<p>The first path is the DOS drive letter, the second is the host folder. Once mounted, <code>C:</code> switches to it and normal DOS commands work. A folder mounted this way is not a disk image: there is no partition table, no boot sector and no fixed-size volume.</p>
 <h2>IMGMOUNT: an image becomes a drive</h2>
 <p><code>IMGMOUNT</code> attaches a disk image file. DOSBox reads the image as if it were physical media, which is what you need for bootable disks and for software that reads raw sectors.</p>
 <pre>IMGMOUNT A C:\IMAGES\BOOT.IMG -t floppy
 IMGMOUNT C C:\IMAGES\DOS622.IMG -t hdd
 IMGMOUNT D C:\IMAGES\CD.ISO -t iso</pre>
-<p>The <code>-t</code> parameter states the media type: <code>floppy</code>, <code>hdd</code> or <code>iso</code>. Getting it wrong produces a drive that mounts but cannot be read, because the geometry or sector size does not match. A floppy image is typically 1.44 MB, a hard disk image carries a partition table, and an ISO is a CD file system.</p>
+<p>The <code>-t</code> parameter states the media type: <code>floppy</code>, <code>hdd</code> or <code>iso</code>. Getting it wrong produces a drive that mounts but cannot be read, because the geometry or sector size does not match. A hard disk image carries a partition table, and an ISO is a CD file system.</p>
 <h2>Why a mounted image is not a written USB stick</h2>
-<p>Mounting an image in DOSBox changes the image file on your host disk. It does not touch any USB stick. If you want the image on real media, it has to be written to the stick by a tool that writes raw sectors, and that is a separate step with its own risks: the target is erased, and the result depends on the BIOS being able to boot from it.</p>
+<p>Mounting an image in DOSBox changes the image file on your host disk. It does not touch any USB stick. To put the image on real media it has to be written by a tool that writes raw sectors, which is a separate step with its own risks: the target is erased, and the result depends on the BIOS booting from it.</p>
 <p>MBFUTool 2.0 performs that step on Windows x64: it writes an MS-DOS image to a USB stick, creates an .mbfu image from a disk, floppy or USB device, clones MS-DOS media to a stick, and edits an image with DOS commands. It requires administrator rights, blocks writes to the system disk, and uses FAT16 up to 4 GB with about 2 GB practical. Paths must be latin-only. No MS-DOS files are shipped; you supply a lawful image, as described at <a href="https://ms-dos.su/en/ms-dos-license.html">ms-dos.su/en/ms-dos-license.html</a>.</p>
 <h2>The [autoexec] section</h2>
 <p>Commands typed at the DOSBox prompt disappear when you exit. Put them in the <code>[autoexec]</code> section of <code>dosbox.conf</code> and they run at every start.</p>
@@ -170,9 +170,9 @@ IMGMOUNT D C:\IMAGES\CD.ISO -t iso</pre>
 MOUNT C C:\DOSGAMES
 C:
 SET PATH=C:\;C:\DOS</pre>
-<p>Keep the section short and put the mount first, because later commands depend on the drive existing. If a path contains spaces, quote it. A wrong path fails silently at startup, so test by typing the same MOUNT line by hand once.</p>
+<p>Keep the section short and put the mount first, because later commands depend on the drive existing. A wrong path fails silently at startup, so test the MOUNT line by hand once.</p>
 <h2>The 4 GB limit</h2>
-<p>DOSBox 0.72 cannot mount images larger than 4 GB. A larger image may be created and written to a stick by a Windows tool, but it cannot be attached inside DOSBox 0.72 for testing or editing. Keep images at or below 4 GB, and prefer FAT16 sizes that DOS handles comfortably, which in practice means staying near 2 GB. The trial of MBFUTool runs 30 days with all features, offline and without a key; the full version is a one-time purchase on Boosty, one computer per licence.</p>
+<p>DOSBox 0.72 cannot mount images larger than 4 GB. A larger image can be written to a stick by a Windows tool, but it cannot be attached in DOSBox 0.72 for testing or editing. Keep images at or below 4 GB, staying near 2 GB, which is a FAT16 size DOS handles comfortably. The MBFUTool trial runs 30 days with all features, offline and without a key; the full version is a one-time purchase on Boosty, one computer per licence.</p>
 
 <h2>Step by step</h2>
 <ol class="steps">

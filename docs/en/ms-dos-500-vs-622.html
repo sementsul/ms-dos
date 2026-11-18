@@ -149,7 +149,7 @@
   <div class="wrap">
     <article>
       <h1>MS-DOS 5.00 vs 6.22: which one to put on a USB drive</h1>
-      <p class="lead">The choice between MS-DOS 5.00 and 6.22 is not about which is newer. It is about which machine the stick will be plugged into and what size media it has to handle. Both fit on a single floppy, and both boot from a USB stick prepared with an image.</p>
+      <p class="lead">The choice between MS-DOS 5.00 and 6.22 is not about which is newer. It is about which machine the stick will boot and what size media it must handle. Both fit on a single floppy and both boot from a USB stick prepared with an image.</p>
 <h2>What MS-DOS 5.00 brought</h2>
 <p>Version 5.00 was a large step. It introduced EDIT, a full-screen text editor that replaced the line editor EDLIN for everyday work, and QBASIC, a structured BASIC interpreter with a built-in editor. It added HIMEM.SYS as the standard way to manage extended memory, and it allowed DOS itself to load above 640 KB on 286 and later processors, freeing conventional memory.</p>
 <p>It also added a shell and UNDELETE, and it made the memory story understandable: HIMEM.SYS loaded the XMS driver, and DOS could then be placed in the high memory area.</p>
@@ -163,7 +163,7 @@
 <p>An MS-DOS boot image is small, but the stick does not have to be. MBFUTool 2.0 writes an MS-DOS image to a USB stick, creates an .mbfu image from a disk, floppy or USB device, clones MS-DOS media to a stick, and lets you edit an image with DOS commands. It runs on Windows x64 and asks for administrator rights. Writes to the system disk are blocked and the target USB stick is erased, so move anything you want to keep first.</p>
 <p>The file system is FAT16, up to 4 GB with about 2 GB practical. Images above 4 GB cannot be mounted in DOSBox 0.72, and paths must be latin-only. No MS-DOS files are shipped: you supply a lawful image; the licence notes are at <a href="https://ms-dos.su/en/ms-dos-license.html">ms-dos.su/en/ms-dos-license.html</a>. The trial runs 30 days with all features, offline and without a key; the full version is a one-time purchase on Boosty, one computer per licence.</p>
 <h2>What not to expect</h2>
-<p>Neither version turns a modern PC into a retro machine. USB boot support depends on the BIOS, and some boards will not boot from a stick prepared this way. Test the boot before you rely on it.</p>
+<p>Neither version turns a modern PC into a retro machine. USB boot support depends on the BIOS, and some boards will not boot from a stick prepared this way. Test the boot first.</p>
 
 <h2>Step by step</h2>
 <ol class="steps">

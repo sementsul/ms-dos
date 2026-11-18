@@ -68,7 +68,7 @@
      "name": "Why does RD refuse to delete my directory?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "RD only removes empty directories. Delete the files inside first, or use DELTREE if you want the whole tree gone."
+      "text": "RD only removes empty directories. Delete the files inside first, or use DELTREE."
      }
     }
    ]
@@ -108,7 +108,7 @@
     {
      "@type": "HowToStep",
      "name": "Identify the drive",
-     "text": "Run DIR on the letter you intend to use and confirm the volume label and files match the disk you mean."
+     "text": "Run DIR on the letter you intend to use and confirm the files match the disk you mean."
     },
     {
      "@type": "HowToStep",
@@ -151,28 +151,26 @@
       <h1>MS-DOS command reference: the commands you actually use</h1>
       <p class="lead">Most MS-DOS work is done with a dozen commands. This reference lists them one line at a time, with the switch that usually matters, plus warnings for the commands that destroy data.</p>
 <h2>Files and directories</h2>
-<p>These commands cover listing, moving around and managing directories. They are safe to try on any disk.</p>
+<p>These commands list, navigate and manage directories. They are safe to try on any disk.</p>
 <ul>
-<li><b>DIR</b> — list a directory. <code>/P</code> pauses after each screen, <code>/W</code> gives the wide format, <code>/A</code> shows hidden and system files.</li>
+<li><b>DIR</b> — list a directory. <code>/P</code> pauses after each screen, <code>/W</code> gives the wide format, <code>/A</code> shows hidden and system files. See the <a href="https://ms-dos.su/komanda-dir.html">DIR command page</a>.</li>
 <li><b>CD</b> — change directory. <code>CD \</code> goes to the root, <code>CD ..</code> goes up one level.</li>
 <li><b>MD</b> — make a directory. <b>RD</b> removes an empty one only.</li>
 <li><b>PATH</b> — set the directories searched for programs, for example <code>PATH C:\;C:\DOS</code>.</li>
 <li><b>SET</b> — show or set environment variables such as <code>COMSPEC</code> or <code>TEMP</code>.</li>
 </ul>
-<p>See the full <a href="https://ms-dos.su/komanda-dir.html">DIR command page</a>.</p>
 <h2>Copying and renaming</h2>
-<p>COPY handles single files and simple concatenation. XCOPY handles directory trees and is the right tool when you need to move a whole folder structure between disks.</p>
+<p>COPY handles single files and simple concatenation. XCOPY handles directory trees, which is what you need when moving a whole folder structure between disks.</p>
 <ul>
-<li><b>COPY</b> — copy one file or several. Wildcards work: <code>COPY *.TXT A:</code>.</li>
+<li><b>COPY</b> — copy one file or several. Wildcards work: <code>COPY *.TXT A:</code>. Examples are on the <a href="https://ms-dos.su/komanda-copy.html">COPY command page</a>.</li>
 <li><b>XCOPY</b> — copy directories. <code>/S</code> includes subdirectories, <code>/E</code> also copies empty ones.</li>
 <li><b>REN</b> — rename a file in place. It cannot move a file to another directory.</li>
 <li><b>ATTRIB</b> — show or change attributes. <code>+R</code> sets read-only, <code>-H</code> clears hidden.</li>
 <li><b>TYPE</b> — print a text file to the screen, or <code>TYPE FILE.TXT | MORE</code> for long files.</li>
 <li><b>EDIT</b> — the full-screen text editor that arrived with MS-DOS 5.00.</li>
 </ul>
-<p>More examples are on the <a href="https://ms-dos.su/komanda-copy.html">COPY command page</a>.</p>
 <h2>Deleting and recovering</h2>
-<p>Deletion in DOS is immediate. There is no recycle bin, so the only recovery route is UNDELETE, and even that depends on the file not being overwritten.</p>
+<p>Deletion in DOS is immediate. There is no recycle bin, so the only recovery route is UNDELETE, and only if the file has not been overwritten.</p>
 <ul>
 <li><b>DEL</b> — delete files. <code>/P</code> asks for confirmation before each file.</li>
 <li><b>DELTREE</b> — delete a directory and everything inside it, without prompting.</li>
@@ -180,7 +178,7 @@
 </ul>
 <h2>Disks, system files and diagnostics</h2>
 <p>The commands in this group change the disk itself. Read the warning below first.</p>
-<p><b>Warning:</b> FORMAT, FDISK and DEL destroy data permanently. FORMAT erases the file system on the selected partition, FDISK can delete partitions and rewrite the partition table, and DEL removes files with no undo. Check the drive letter twice before you press Enter.</p>
+<p><b>Warning:</b> FORMAT, FDISK and DEL destroy data permanently. FORMAT erases the file system on the selected partition, FDISK can delete partitions and rewrite the partition table, and DEL removes files with no undo. Check the drive letter twice.</p>
 <ul>
 <li><b>FORMAT</b> — prepare a partition. <code>/S</code> also copies the system files, <code>/Q</code> does a quick format, <code>/U</code> forces an unconditional format.</li>
 <li><b>FDISK</b> — create and delete partitions and set the active one.</li>
@@ -193,15 +191,12 @@
 </ul>
 <p>Command pages for the destructive tools: <a href="https://ms-dos.su/komanda-format.html">FORMAT</a>, <a href="https://ms-dos.su/komanda-fdisk.html">FDISK</a>, <a href="https://ms-dos.su/komanda-sys.html">SYS</a>.</p>
 <h2>Switches worth remembering</h2>
-<p>Five switches cover most daily work. <code>/S</code> means include subdirectories for XCOPY and copy system files for FORMAT. <code>/P</code> means pause or prompt. <code>/W</code> means wide listing for DIR. <code>/A</code> means attributes for DIR and ATTRIB. <code>/Y</code> means answer yes to overwrite prompts.</p>
-<p>Two more appear on old disks: <code>/Q</code> for a quick format, which skips the surface scan, and <code>/U</code> for an unconditional one.</p>
-<h2>Working safely from a USB stick</h2>
-<p>When you boot from a USB stick and work on an internal disk, drive letters can shift depending on what the BIOS exposes. Run <code>DIR</code> on each letter before you touch anything. A stick made with MBFUTool 2.0 carries a BEN menu for the DOS tools, and writes to the system disk are blocked.</p>
+<p>Five switches cover most daily work. <code>/S</code> means include subdirectories for XCOPY and copy system files for FORMAT. <code>/P</code> means pause or prompt. <code>/W</code> means wide listing for DIR. <code>/A</code> means attributes for DIR and ATTRIB. <code>/Y</code> means answer yes to overwrite prompts. A stick made with MBFUTool 2.0 boots into a BEN menu for these tools, and writes to the system disk are blocked.</p>
 
 <h2>Step by step</h2>
 <ol class="steps">
 <li><b>Open a command prompt.</b> Boot MS-DOS, or start the DOS prompt from the BEN menu on an MBFUTool stick.</li>
-<li><b>Identify the drive.</b> Run DIR on the letter you intend to use and confirm the volume label and files match the disk you mean.</li>
+<li><b>Identify the drive.</b> Run DIR on the letter you intend to use and confirm the files match the disk you mean.</li>
 <li><b>Run the command.</b> Type the command with its switch, for example DIR /P or COPY *.TXT A:.</li>
 <li><b>Verify the result.</b> List the directory again, or run CHKDSK on the disk, before you unplug anything.</li>
 </ol>
@@ -209,7 +204,7 @@
 <h2>Questions</h2>
 <p><b>Do I need to memorise all of these?</b><br>No. DIR, CD, COPY, DEL, MD and RD cover most work. The rest are needed when something breaks or when you prepare a disk.</p>
 <p><b>Is DELTREE recoverable?</b><br>Only with UNDELETE, and only if nothing has been written to the disk since.</p>
-<p><b>Why does RD refuse to delete my directory?</b><br>RD only removes empty directories. Delete the files inside first, or use DELTREE if you want the whole tree gone.</p>
+<p><b>Why does RD refuse to delete my directory?</b><br>RD only removes empty directories. Delete the files inside first, or use DELTREE.</p>
 
     </article>
 <aside>

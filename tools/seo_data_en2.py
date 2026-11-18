@@ -10,33 +10,31 @@ ARTICLES = [
         "desc": "A practical one-line reference for the MS-DOS commands people really use: DIR, COPY, XCOPY, FORMAT, FDISK, SYS, MEM and more, with the switches that matter.",
         "lead": "Most MS-DOS work is done with a dozen commands. This reference lists them one line at a time, with the switch that usually matters, plus warnings for the commands that destroy data.",
         "sections": [
-            ("Files and directories", """<p>These commands cover listing, moving around and managing directories. They are safe to try on any disk.</p>
+            ("Files and directories", """<p>These commands list, navigate and manage directories. They are safe to try on any disk.</p>
 <ul>
-<li><b>DIR</b> — list a directory. <code>/P</code> pauses after each screen, <code>/W</code> gives the wide format, <code>/A</code> shows hidden and system files.</li>
+<li><b>DIR</b> — list a directory. <code>/P</code> pauses after each screen, <code>/W</code> gives the wide format, <code>/A</code> shows hidden and system files. See the <a href="https://ms-dos.su/komanda-dir.html">DIR command page</a>.</li>
 <li><b>CD</b> — change directory. <code>CD \\</code> goes to the root, <code>CD ..</code> goes up one level.</li>
 <li><b>MD</b> — make a directory. <b>RD</b> removes an empty one only.</li>
 <li><b>PATH</b> — set the directories searched for programs, for example <code>PATH C:\\;C:\\DOS</code>.</li>
 <li><b>SET</b> — show or set environment variables such as <code>COMSPEC</code> or <code>TEMP</code>.</li>
-</ul>
-<p>See the full <a href="https://ms-dos.su/komanda-dir.html">DIR command page</a>.</p>"""),
-            ("Copying and renaming", """<p>COPY handles single files and simple concatenation. XCOPY handles directory trees and is the right tool when you need to move a whole folder structure between disks.</p>
+</ul>"""),
+            ("Copying and renaming", """<p>COPY handles single files and simple concatenation. XCOPY handles directory trees, which is what you need when moving a whole folder structure between disks.</p>
 <ul>
-<li><b>COPY</b> — copy one file or several. Wildcards work: <code>COPY *.TXT A:</code>.</li>
+<li><b>COPY</b> — copy one file or several. Wildcards work: <code>COPY *.TXT A:</code>. Examples are on the <a href="https://ms-dos.su/komanda-copy.html">COPY command page</a>.</li>
 <li><b>XCOPY</b> — copy directories. <code>/S</code> includes subdirectories, <code>/E</code> also copies empty ones.</li>
 <li><b>REN</b> — rename a file in place. It cannot move a file to another directory.</li>
 <li><b>ATTRIB</b> — show or change attributes. <code>+R</code> sets read-only, <code>-H</code> clears hidden.</li>
 <li><b>TYPE</b> — print a text file to the screen, or <code>TYPE FILE.TXT | MORE</code> for long files.</li>
 <li><b>EDIT</b> — the full-screen text editor that arrived with MS-DOS 5.00.</li>
-</ul>
-<p>More examples are on the <a href="https://ms-dos.su/komanda-copy.html">COPY command page</a>.</p>"""),
-            ("Deleting and recovering", """<p>Deletion in DOS is immediate. There is no recycle bin, so the only recovery route is UNDELETE, and even that depends on the file not being overwritten.</p>
+</ul>"""),
+            ("Deleting and recovering", """<p>Deletion in DOS is immediate. There is no recycle bin, so the only recovery route is UNDELETE, and only if the file has not been overwritten.</p>
 <ul>
 <li><b>DEL</b> — delete files. <code>/P</code> asks for confirmation before each file.</li>
 <li><b>DELTREE</b> — delete a directory and everything inside it, without prompting.</li>
 <li><b>UNDELETE</b> — try to restore deleted files. Stop writing to the disk first.</li>
 </ul>"""),
             ("Disks, system files and diagnostics", """<p>The commands in this group change the disk itself. Read the warning below first.</p>
-<p><b>Warning:</b> FORMAT, FDISK and DEL destroy data permanently. FORMAT erases the file system on the selected partition, FDISK can delete partitions and rewrite the partition table, and DEL removes files with no undo. Check the drive letter twice before you press Enter.</p>
+<p><b>Warning:</b> FORMAT, FDISK and DEL destroy data permanently. FORMAT erases the file system on the selected partition, FDISK can delete partitions and rewrite the partition table, and DEL removes files with no undo. Check the drive letter twice.</p>
 <ul>
 <li><b>FORMAT</b> — prepare a partition. <code>/S</code> also copies the system files, <code>/Q</code> does a quick format, <code>/U</code> forces an unconditional format.</li>
 <li><b>FDISK</b> — create and delete partitions and set the active one.</li>
@@ -48,18 +46,16 @@ ARTICLES = [
 <li><b>SMARTDRV</b> — install a disk cache to speed up repeated reads.</li>
 </ul>
 <p>Command pages for the destructive tools: <a href="https://ms-dos.su/komanda-format.html">FORMAT</a>, <a href="https://ms-dos.su/komanda-fdisk.html">FDISK</a>, <a href="https://ms-dos.su/komanda-sys.html">SYS</a>.</p>"""),
-            ("Switches worth remembering", """<p>Five switches cover most daily work. <code>/S</code> means include subdirectories for XCOPY and copy system files for FORMAT. <code>/P</code> means pause or prompt. <code>/W</code> means wide listing for DIR. <code>/A</code> means attributes for DIR and ATTRIB. <code>/Y</code> means answer yes to overwrite prompts.</p>
-<p>Two more appear on old disks: <code>/Q</code> for a quick format, which skips the surface scan, and <code>/U</code> for an unconditional one.</p>"""),
-            ("Working safely from a USB stick", """<p>When you boot from a USB stick and work on an internal disk, drive letters can shift depending on what the BIOS exposes. Run <code>DIR</code> on each letter before you touch anything. A stick made with MBFUTool 2.0 carries a BEN menu for the DOS tools, and writes to the system disk are blocked.</p>"""),
+            ("Switches worth remembering", """<p>Five switches cover most daily work. <code>/S</code> means include subdirectories for XCOPY and copy system files for FORMAT. <code>/P</code> means pause or prompt. <code>/W</code> means wide listing for DIR. <code>/A</code> means attributes for DIR and ATTRIB. <code>/Y</code> means answer yes to overwrite prompts. A stick made with MBFUTool 2.0 boots into a BEN menu for these tools, and writes to the system disk are blocked.</p>"""),
         ],
         "faq": [
             ("Do I need to memorise all of these?", "No. DIR, CD, COPY, DEL, MD and RD cover most work. The rest are needed when something breaks or when you prepare a disk."),
             ("Is DELTREE recoverable?", "Only with UNDELETE, and only if nothing has been written to the disk since."),
-            ("Why does RD refuse to delete my directory?", "RD only removes empty directories. Delete the files inside first, or use DELTREE if you want the whole tree gone."),
+            ("Why does RD refuse to delete my directory?", "RD only removes empty directories. Delete the files inside first, or use DELTREE."),
         ],
         "howto": [
             ("Open a command prompt", "Boot MS-DOS, or start the DOS prompt from the BEN menu on an MBFUTool stick."),
-            ("Identify the drive", "Run DIR on the letter you intend to use and confirm the volume label and files match the disk you mean."),
+            ("Identify the drive", "Run DIR on the letter you intend to use and confirm the files match the disk you mean."),
             ("Run the command", "Type the command with its switch, for example DIR /P or COPY *.TXT A:."),
             ("Verify the result", "List the directory again, or run CHKDSK on the disk, before you unplug anything."),
         ],
@@ -70,7 +66,7 @@ ARTICLES = [
         "h1": "MS-DOS 5.00 vs 6.22: which one to put on a USB drive",
         "title": "MS-DOS 5.00 vs 6.22: which one to put on a USB drive | ms-dos.su",
         "desc": "MS-DOS 5.00 brought EDIT, QBASIC and HIMEM.SYS. MS-DOS 6.22 added SCANDISK, DEFRAG, MSAV and DriveSpace. Here is how to choose for real hardware.",
-        "lead": "The choice between MS-DOS 5.00 and 6.22 is not about which is newer. It is about which machine the stick will be plugged into and what size media it has to handle. Both fit on a single floppy, and both boot from a USB stick prepared with an image.",
+        "lead": "The choice between MS-DOS 5.00 and 6.22 is not about which is newer. It is about which machine the stick will boot and what size media it must handle. Both fit on a single floppy and both boot from a USB stick prepared with an image.",
         "sections": [
             ("What MS-DOS 5.00 brought", """<p>Version 5.00 was a large step. It introduced EDIT, a full-screen text editor that replaced the line editor EDLIN for everyday work, and QBASIC, a structured BASIC interpreter with a built-in editor. It added HIMEM.SYS as the standard way to manage extended memory, and it allowed DOS itself to load above 640 KB on 286 and later processors, freeing conventional memory.</p>
 <p>It also added a shell and UNDELETE, and it made the memory story understandable: HIMEM.SYS loaded the XMS driver, and DOS could then be placed in the high memory area.</p>"""),
@@ -80,7 +76,7 @@ ARTICLES = [
 <p>For a period-correct machine, choose 5.00. On a 286 or an early 386 with a small hard disk, 5.00 is lighter and matches the hardware. For very old machines, 3.3 remains the safe choice: it works on hardware that predates the 286 memory model and does not need HIMEM.SYS.</p>"""),
             ("Fitting a version onto a USB stick", """<p>An MS-DOS boot image is small, but the stick does not have to be. MBFUTool 2.0 writes an MS-DOS image to a USB stick, creates an .mbfu image from a disk, floppy or USB device, clones MS-DOS media to a stick, and lets you edit an image with DOS commands. It runs on Windows x64 and asks for administrator rights. Writes to the system disk are blocked and the target USB stick is erased, so move anything you want to keep first.</p>
 <p>The file system is FAT16, up to 4 GB with about 2 GB practical. Images above 4 GB cannot be mounted in DOSBox 0.72, and paths must be latin-only. No MS-DOS files are shipped: you supply a lawful image; the licence notes are at <a href="https://ms-dos.su/en/ms-dos-license.html">ms-dos.su/en/ms-dos-license.html</a>. The trial runs 30 days with all features, offline and without a key; the full version is a one-time purchase on Boosty, one computer per licence.</p>"""),
-            ("What not to expect", """<p>Neither version turns a modern PC into a retro machine. USB boot support depends on the BIOS, and some boards will not boot from a stick prepared this way. Test the boot before you rely on it.</p>"""),
+            ("What not to expect", """<p>Neither version turns a modern PC into a retro machine. USB boot support depends on the BIOS, and some boards will not boot from a stick prepared this way. Test the boot first.</p>"""),
         ],
         "faq": [
             ("Can I run 6.22 on a 286?", "It will boot, but MEMMAKER and some tools expect a 386 or later. On a 286, 5.00 is the more comfortable fit."),
@@ -139,27 +135,27 @@ DEVICEHIGH=C:\\DOS\\MOUSE.SYS</pre>
         "cat": "Guides",
         "h1": "DOSBox mount and imgmount: folders, images and drives",
         "title": "DOSBox mount and imgmount: folders, images and drives | ms-dos.su",
-        "desc": "How MOUNT exposes a folder as a DOS drive and IMGMOUNT attaches a floppy, hard disk or ISO image in DOSBox, with examples and the 4 GB image limit.",
-        "lead": "DOSBox gives you a Z: drive with its own commands and nothing else. To reach real files you either mount a folder as a drive or attach a disk image. The two commands look similar and behave very differently, and mixing them up is the usual reason a program cannot find its files.",
+        "desc": "How MOUNT exposes a folder as a DOS drive and IMGMOUNT attaches a floppy, hard disk or ISO image in DOSBox, with examples and the 4 GB limit.",
+        "lead": "DOSBox gives you a Z: drive and nothing else. To reach real files you mount a folder as a drive or attach a disk image. The commands look similar and behave very differently, and mixing them up is the usual reason a program cannot find its files.",
         "sections": [
             ("MOUNT: a folder becomes a drive", """<p><code>MOUNT</code> maps a host directory to a drive letter inside DOSBox. Files are read and written directly on the host, so changes are visible immediately on both sides.</p>
 <pre>MOUNT C C:\\DOSGAMES
 C:</pre>
-<p>The first path is the DOS drive letter, the second is the host folder. Once mounted, <code>C:</code> switches to it and normal DOS commands work. A folder mounted this way is not a disk image: there is no partition table, no boot sector and no FAT16 volume of a fixed size. It is a window onto your file system.</p>"""),
+<p>The first path is the DOS drive letter, the second is the host folder. Once mounted, <code>C:</code> switches to it and normal DOS commands work. A folder mounted this way is not a disk image: there is no partition table, no boot sector and no fixed-size volume.</p>"""),
             ("IMGMOUNT: an image becomes a drive", """<p><code>IMGMOUNT</code> attaches a disk image file. DOSBox reads the image as if it were physical media, which is what you need for bootable disks and for software that reads raw sectors.</p>
 <pre>IMGMOUNT A C:\\IMAGES\\BOOT.IMG -t floppy
 IMGMOUNT C C:\\IMAGES\\DOS622.IMG -t hdd
 IMGMOUNT D C:\\IMAGES\\CD.ISO -t iso</pre>
-<p>The <code>-t</code> parameter states the media type: <code>floppy</code>, <code>hdd</code> or <code>iso</code>. Getting it wrong produces a drive that mounts but cannot be read, because the geometry or sector size does not match. A floppy image is typically 1.44 MB, a hard disk image carries a partition table, and an ISO is a CD file system.</p>"""),
-            ("Why a mounted image is not a written USB stick", """<p>Mounting an image in DOSBox changes the image file on your host disk. It does not touch any USB stick. If you want the image on real media, it has to be written to the stick by a tool that writes raw sectors, and that is a separate step with its own risks: the target is erased, and the result depends on the BIOS being able to boot from it.</p>
+<p>The <code>-t</code> parameter states the media type: <code>floppy</code>, <code>hdd</code> or <code>iso</code>. Getting it wrong produces a drive that mounts but cannot be read, because the geometry or sector size does not match. A hard disk image carries a partition table, and an ISO is a CD file system.</p>"""),
+            ("Why a mounted image is not a written USB stick", """<p>Mounting an image in DOSBox changes the image file on your host disk. It does not touch any USB stick. To put the image on real media it has to be written by a tool that writes raw sectors, which is a separate step with its own risks: the target is erased, and the result depends on the BIOS booting from it.</p>
 <p>MBFUTool 2.0 performs that step on Windows x64: it writes an MS-DOS image to a USB stick, creates an .mbfu image from a disk, floppy or USB device, clones MS-DOS media to a stick, and edits an image with DOS commands. It requires administrator rights, blocks writes to the system disk, and uses FAT16 up to 4 GB with about 2 GB practical. Paths must be latin-only. No MS-DOS files are shipped; you supply a lawful image, as described at <a href="https://ms-dos.su/en/ms-dos-license.html">ms-dos.su/en/ms-dos-license.html</a>.</p>"""),
             ("The [autoexec] section", """<p>Commands typed at the DOSBox prompt disappear when you exit. Put them in the <code>[autoexec]</code> section of <code>dosbox.conf</code> and they run at every start.</p>
 <pre>[autoexec]
 MOUNT C C:\\DOSGAMES
 C:
 SET PATH=C:\\;C:\\DOS</pre>
-<p>Keep the section short and put the mount first, because later commands depend on the drive existing. A wrong path fails silently at startup, so test the same MOUNT line by hand once.</p>"""),
-            ("The 4 GB limit", """<p>DOSBox 0.72 cannot mount images larger than 4 GB. A larger image may be created and written to a stick by a Windows tool, but it cannot be attached inside DOSBox 0.72 for testing or editing. Keep images at or below 4 GB, and prefer FAT16 sizes that DOS handles comfortably, which in practice means staying near 2 GB. The trial of MBFUTool runs 30 days with all features, offline and without a key; the full version is a one-time purchase on Boosty, one computer per licence.</p>"""),
+<p>Keep the section short and put the mount first, because later commands depend on the drive existing. A wrong path fails silently at startup, so test the MOUNT line by hand once.</p>"""),
+            ("The 4 GB limit", """<p>DOSBox 0.72 cannot mount images larger than 4 GB. A larger image can be written to a stick by a Windows tool, but it cannot be attached in DOSBox 0.72 for testing or editing. Keep images at or below 4 GB, staying near 2 GB, which is a FAT16 size DOS handles comfortably. The MBFUTool trial runs 30 days with all features, offline and without a key; the full version is a one-time purchase on Boosty, one computer per licence.</p>"""),
         ],
         "faq": [
             ("Can I write to a mounted folder?", "Yes. MOUNT gives direct access to the host folder, so files created in DOSBox appear there immediately."),
