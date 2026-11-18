@@ -130,6 +130,14 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/trademarks.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/trademarks.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/trademarks.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/trademarks.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/trial-vs-full.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/trial-vs-full.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/trial-vs-full.html"/>
@@ -270,6 +278,14 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/terms.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/terms.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/terms.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/trademarks.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/trademarks.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/trademarks.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/trademarks.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>

@@ -96,6 +96,15 @@ PAGES = {
         "their source code, and the MS-DOS trademark.",
         "webpage",
     ),
+    "trademarks": (
+        "Товарные знаки и отсутствие связи с Microsoft — ms-dos.su",
+        "MS-DOS и Windows — товарные знаки Microsoft Corporation. Сайт и программа "
+        "не связаны с Microsoft, не спонсируются и не одобрены ею.",
+        "Trademarks and non-affiliation — ms-dos.su",
+        "MS-DOS and Windows are trademarks of Microsoft Corporation. This site and "
+        "the program are not affiliated with, sponsored or endorsed by Microsoft.",
+        "webpage",
+    ),
     "buy": (
         "Купить MBFUTool 2.0 и получить файлы — ms-dos.su",
         "Что входит в покупку, как проходит оплата через Boosty, что приходит после "

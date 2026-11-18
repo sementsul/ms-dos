@@ -19,7 +19,7 @@ PRIORITY = {
     "contacts": "0.5", "licenses": "0.3", "dmca": "0.3",
     "ms-dos-license": "0.5", "buy": "0.8", "trial-vs-full": "0.6",
     "verify": "0.5", "about": "0.5", "changelog": "0.4", "mbfu-format": "0.4",
-    "accessibility": "0.3",
+    "accessibility": "0.3", "trademarks": "0.4",
 }
 SKIP = {"404"}
 
@@ -72,7 +72,7 @@ def main():
     core = {"index", "stati", "dos-test", "privacy", "terms", "cookies",
             "refund", "contacts", "licenses", "ms-dos-license", "dmca",
             "accessibility", "buy", "trial-vs-full", "verify", "about",
-            "changelog", "mbfu-format"}
+            "changelog", "mbfu-format", "trademarks"}
 
     main_entries, article_entries = [], []
     for slug, loc in ru.items():

@@ -32,6 +32,7 @@ PROJ = {
 
 FOOT = {
     "ru": [("/terms.html", "Условия и лицензия"),
+           ("/trademarks.html", "Товарные знаки"),
            ("/privacy.html", "Конфиденциальность"),
            ("/cookies.html", "Файлы cookie"),
            ("/refund.html", "Оплата и возврат"),
@@ -41,6 +42,7 @@ FOOT = {
            ("/dmca.html", "Правообладателям"),
            ("/accessibility.html", "Доступность")],
     "en": [("/en/terms.html", "Terms and licence"),
+           ("/en/trademarks.html", "Trademarks"),
            ("/en/privacy.html", "Privacy"),
            ("/en/cookies.html", "Cookies"),
            ("/en/refund.html", "Payment and refunds"),
@@ -59,9 +61,10 @@ T = {
         "buy": "Полная версия на Boosty",
         "buy_note": "Trial — 30 дней бесплатно",
         "brand_tag": "Утилита для работы с образами MS-DOS",
-        "legal_note": ("MS-DOS — товарный знак Microsoft Corporation. "
-                       "DOSBox распространяется по GPLv2. "
-                       "MBFU не связана с Microsoft и не распространяет MS-DOS."),
+        "legal_note": ("MS-DOS и Windows — товарные знаки или зарегистрированные товарные "
+                       "знаки Microsoft Corporation. Сайт и программа не связаны "
+                       "с Microsoft, не спонсируются и не одобрены ею. "
+                       "DOSBox — независимый проект под GPLv2."),
         "cookie_settings": "Настройки cookie",
         "consent_text": ("Мы используем файлы cookie для аналитики, чтобы "
                          "понимать, чем полезна документация. Аналитические "
@@ -86,9 +89,10 @@ T = {
         "buy": "Full version on Boosty",
         "buy_note": "Trial — 30 days free",
         "brand_tag": "MS-DOS image toolkit",
-        "legal_note": ("MS-DOS is a trademark of Microsoft Corporation. "
-                       "DOSBox is distributed under GPLv2. MBFU is not affiliated "
-                       "with Microsoft and does not distribute MS-DOS."),
+        "legal_note": ("MS-DOS and Windows are trademarks or registered trademarks of "
+                       "Microsoft Corporation. This site and the program are not "
+                       "affiliated with, sponsored or endorsed by Microsoft. "
+                       "DOSBox is an independent project under GPLv2."),
         "cookie_settings": "Cookie settings",
         "consent_text": ("We use cookies for analytics to understand which docs "
                          "are useful. Analytics scripts run only with your "
