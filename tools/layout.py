@@ -43,8 +43,7 @@ T = {
         "buy_note": "Trial — 30 дней бесплатно",
         "brand_tag": "Утилита для работы с образами MS-DOS",
         "legal_note": ("MS-DOS — товарный знак Microsoft Corporation. "
-                       "Norton Commander — товарный знак соответствующего "
-                       "правообладателя. DOSBox распространяется по GPLv2. "
+                       "DOSBox распространяется по GPLv2. "
                        "MBFU не связана с Microsoft и не распространяет MS-DOS."),
         "cookie_settings": "Настройки cookie",
         "consent_text": ("Мы используем файлы cookie для аналитики, чтобы "
@@ -71,7 +70,6 @@ T = {
         "buy_note": "Trial — 30 days free",
         "brand_tag": "MS-DOS image toolkit",
         "legal_note": ("MS-DOS is a trademark of Microsoft Corporation. "
-                       "Norton Commander is a trademark of its respective owner. "
                        "DOSBox is distributed under GPLv2. MBFU is not affiliated "
                        "with Microsoft and does not distribute MS-DOS."),
         "cookie_settings": "Cookie settings",

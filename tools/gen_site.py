@@ -88,12 +88,12 @@ PAGES = {
         "webpage",
     ),
     "licenses": (
-        "Сторонние лицензии: DOSBox, SDL, MS-DOS, Norton Commander — ms-dos.su",
+        "Сторонние лицензии: DOSBox, SDL, MS-DOS — ms-dos.su",
         "Что входит в поставку MBFUTool, под какими лицензиями распространяются "
         "DOSBox и SDL, где взять их исходный код и права на MS-DOS.",
-        "Third-party licences: DOSBox, SDL, MS-DOS, Norton Commander — ms-dos.su",
+        "Third-party licences: DOSBox, SDL, MS-DOS — ms-dos.su",
         "What ships with MBFUTool, the licences of DOSBox and SDL, where to get "
-        "their source code, and the trademarks of MS-DOS and Norton Commander.",
+        "their source code, and the MS-DOS trademark.",
         "webpage",
     ),
     "dmca": (

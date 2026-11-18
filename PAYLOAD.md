@@ -12,7 +12,6 @@
 | `MBFU_clean/dosbox.exe`, `SDL.dll`, `SDL_net.dll` | Официальный DOSBox (dosbox.com), версии должны совпадать с `cfg.conf` |
 | `MBFU_clean/DOS/sourcr/MSDOS5/*` | Ваша лицензионная копия MS-DOS 5.00 |
 | `MBFU_clean/DOS/sourcr/MSDOS6/*` | Ваша лицензионная копия MS-DOS 6.22 |
-| `MBFU_clean/DOS/sourcr/NC/*` | Ваша лицензионная копия Norton Commander |
 | `MBFU_clean/DOS/BEN*.EXE`, `BEN*.HLP`, `MDESIGN.EXE`, `!BEN*.EXE` | BEN-утилиты из вашей сборки |
 | `MBFU_clean/DOS/VENDOR.TXT`, `WHATSNEW.TXT` | Документация BEN |
 
