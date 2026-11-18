@@ -11,7 +11,7 @@ BUY_URL = "https://boosty.to/mbfu"
 BUY_LABEL = "boosty.to/mbfu"
 GITHUB = "https://github.com/sementsul/ms-dos"
 RELEASES = GITHUB + "/releases"
-TRIAL_ZIP = "downloads/MBFUTool_2.0_Trial_Portable.zip"
+TRIAL_ZIP = "downloads/MBFUTool_2.0_Trial_Setup.exe"
 LATEST_VERSION = "2.0.0-trial"
 TRIAL_DAYS = 30
 

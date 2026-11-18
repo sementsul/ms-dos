@@ -11,20 +11,18 @@
 
     <h2 id="sha">1. Сверьте SHA-256</h2>
     <p>
-      Откройте PowerShell в папке с архивом и выполните:
+      Откройте PowerShell в папке с установщиком и выполните:
     </p>
-    <pre>Get-FileHash .\MBFUTool_2.0_Trial_Portable.zip -Algorithm SHA256</pre>
+    <pre>Get-FileHash .\MBFUTool_2.0_Trial_Setup.exe -Algorithm SHA256</pre>
     <p>
       Сравните полученное значение с опубликованным:
     </p>
     <table>
       <tr><th>Файл</th><th>Размер</th><th>SHA-256</th></tr>
-      <tr><td><code>MBFUTool_2.0_Trial_Portable.zip</code></td><td>{{TRIAL_SIZE}}</td><td><code>{{TRIAL_SHA}}</code></td></tr>
-      <tr><td><code>MBFUTool_2.0_Trial_Setup.exe</code></td><td>{{SETUP_SIZE}}</td><td><code>{{SETUP_SHA}}</code></td></tr>
+      <tr><td><code>MBFUTool_2.0_Trial_Setup.exe</code></td><td>{{TRIAL_SIZE}}</td><td><code>{{TRIAL_SHA}}</code></td></tr>
     </table>
     <p>
-      Для установщика команда такая же, только имя файла другое. Значения также
-      лежат рядом с файлами в архиве и в <code>SHA256SUMS.txt</code>.
+      Значение также публикуется в <code>SHA256SUMS.txt</code> рядом со сборкой.
     </p>
     <p>
       Хэши совпали — файл целый. Не совпали — скачайте заново: браузер мог прервать
@@ -33,8 +31,8 @@
 
     <h2 id="size">2. Сверьте размер</h2>
     <p>
-      Размер — грубая, но быстрая проверка. Архив Trial — {{TRIAL_SIZE}},
-      установщик — {{SETUP_SIZE}}. Заметно меньше — загрузка не завершилась.
+      Размер — грубая, но быстрая проверка. Установщик весит {{TRIAL_SIZE}}.
+      Заметно меньше — загрузка не завершилась.
     </p>
 
     <h2 id="av">3. Разберитесь с реакцией антивируса</h2>

@@ -14,7 +14,7 @@
         <li>Без установки Python</li>
       </ul>
       <p class="hero-cta">
-        <a class="btn" href="{{TRIAL_ZIP}}" download>Скачать Trial 2.0<span class="sub">Portable ZIP · {{TRIAL_SIZE}}</span></a>
+        <a class="btn" href="{{TRIAL_ZIP}}" download>Скачать Trial 2.0<span class="sub">Установщик · {{TRIAL_SIZE}}</span></a>
         <a class="btn ghost" href="{{BUY_URL}}" rel="noopener">Купить полную версию<span class="sub">Boosty · разовая покупка, не подписка</span></a>
       </p>
       <p class="note">
@@ -97,18 +97,13 @@
           <li>полный набор действий без функциональных ограничений;</li>
           <li>работа с дискетами и HDD-образами до 4 ГБ;</li>
           <li>редактирование образа в DOSBox;</li>
-          <li>portable-сборка: распаковал и запустил;</li>
+          <li>установщик: ярлык в «Пуск» и удаление из «Программ и компонентов»;</li>
           <li>счётчик оставшихся дней в окне и в меню.</li>
         </ul>
         <p><a class="btn" href="{{TRIAL_ZIP}}" download>Скачать Trial ({{TRIAL_SIZE}})</a></p>
-        <p class="fine">Архив: MBFUTool_2.0_Trial_Portable.zip. Хэш SHA-256 — ниже.</p>
-        <p class="fine">
-          Нужны ярлык в меню «Пуск» и удаление через «Программы и компоненты»?
-          Есть установщик:
-          <a href="/downloads/MBFUTool_2.0_Trial_Setup.exe" download>MBFUTool_2.0_Trial_Setup.exe</a>
-          · {{SETUP_SIZE}} · требует прав администратора.
-          SHA-256 установщика: <code style="word-break:break-all">{{SETUP_SHA}}</code>
-        </p>
+        <p class="fine">Файл: MBFUTool_2.0_Trial_Setup.exe · {{TRIAL_SIZE}} · требует прав
+        администратора. Как проверить хэш — на странице
+        <a href="/verify.html">«Как проверить сборку»</a>.</p>
       </div>
 
       <div class="panel accent">
@@ -132,16 +127,15 @@
 
     <h3 style="margin-top:28px">Как проверить загрузку</h3>
     <ol class="steps">
-      <li>Распакуйте архив в папку с латинскими буквами в пути — так надёжнее.</li>
+      <li>Установите программу в папку, в пути к которой только латинские буквы — так надёжнее.</li>
       <li>Запустите <b>MBFUTool_Trial.exe</b> от имени администратора: без этого запись на диск невозможна.</li>
       <li>Примите лицензионное соглашение, затем выберите действие в меню DOSBox.</li>
     </ol>
 
     <div class="callout">
-      <p><b>Проверка целостности.</b> SHA-256 архива:
-      <code style="word-break:break-all">{{TRIAL_SHA}}</code></p>
-      <pre>Get-FileHash .\MBFUTool_2.0_Trial_Portable.zip -Algorithm SHA256</pre>
-      <p>Если хэш не совпал — файл повреждён или подменён, запускать его не нужно.</p>
+      <p><b>Проверка целостности.</b> SHA-256 установщика:
+      <code style="word-break:break-all">{{TRIAL_SHA}}</code> ·
+      <a href="/verify.html">как проверить</a></p>
     </div>
 
     <div class="callout">

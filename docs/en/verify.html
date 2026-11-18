@@ -66,17 +66,15 @@
     </p>
 
     <h2 id="sha">1. Compare the SHA-256</h2>
-    <p>Open PowerShell in the folder with the archive and run:</p>
-    <pre>Get-FileHash .\MBFUTool_2.0_Trial_Portable.zip -Algorithm SHA256</pre>
+    <p>Open PowerShell in the folder with the installer and run:</p>
+    <pre>Get-FileHash .\MBFUTool_2.0_Trial_Setup.exe -Algorithm SHA256</pre>
     <p>Compare the result with the published value:</p>
     <table>
       <tr><th>File</th><th>Size</th><th>SHA-256</th></tr>
-      <tr><td><code>MBFUTool_2.0_Trial_Portable.zip</code></td><td>11.9 MB</td><td><code>e04c7578151942b61669fac747bd175d845b60bb4c50cf296596c98567273a8c</code></td></tr>
       <tr><td><code>MBFUTool_2.0_Trial_Setup.exe</code></td><td>10.4 MB</td><td><code>dd3453af73985876ec4fe4f77f7fa4082da9f73e0339f8468cefccf9a0306e81</code></td></tr>
     </table>
     <p>
-      The installer uses the same command with a different file name. The values also
-      ship next to the files in <code>SHA256SUMS.txt</code>.
+      The value is also published in <code>SHA256SUMS.txt</code> next to the build.
     </p>
     <p>
       Match — the file is intact. Mismatch — download again: the transfer may have been
@@ -85,8 +83,8 @@
 
     <h2 id="size">2. Compare the size</h2>
     <p>
-      Size is a rough but instant check. The Trial archive is 11.9 MB, the
-      installer is 10.4 MB. Noticeably smaller means the download did not finish.
+      Size is a rough but instant check. The installer is 10.4 MB.
+      Noticeably smaller means the download did not finish.
     </p>
 
     <h2 id="av">3. Understand the antivirus reaction</h2>

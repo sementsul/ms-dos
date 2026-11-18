@@ -203,16 +203,14 @@ def load_sums():
     with open(path, encoding="utf-8") as f:
         for line in f:
             parts = line.split()
-            if len(parts) == 2 and parts[1].endswith("_Portable.zip"):
+            if len(parts) == 2 and parts[1].endswith("_Trial_Setup.exe"):
                 data["sha"] = parts[0]
             if len(parts) == 2 and parts[1].endswith("_Trial_Setup.exe"):
                 data["setup_sha"] = parts[0]
-    zip_path = os.path.join(DOCS, "downloads", "MBFUTool_2.0_Trial_Portable.zip")
-    if os.path.isfile(zip_path):
-        data["mb"] = os.path.getsize(zip_path) / 1024 / 1024
     setup_path = os.path.join(DOCS, "downloads", "MBFUTool_2.0_Trial_Setup.exe")
     if os.path.isfile(setup_path):
         data["setup_mb"] = os.path.getsize(setup_path) / 1024 / 1024
+        data["mb"] = data["setup_mb"]
         if not data["setup_sha"]:
             h = hashlib.sha256()
             with open(setup_path, "rb") as f:
@@ -235,8 +233,8 @@ def tokens(lang, sums):
         "GITHUB": cfg.GITHUB,
         "RELEASES": cfg.RELEASES,
         "TRIAL_ZIP": "/" + cfg.TRIAL_ZIP,
-        "TRIAL_SHA": sums["sha"] or "—",
-        "TRIAL_SIZE": ("%.1f МБ" % sums["mb"]).replace(".", ",") if lang == "ru" else ("%.1f MB" % sums["mb"]),
+        "TRIAL_SHA": sums["setup_sha"] or sums["sha"] or "—",
+        "TRIAL_SIZE": ("%.1f МБ" % sums["setup_mb"]).replace(".", ",") if lang == "ru" else ("%.1f MB" % sums["setup_mb"]),
         "SETUP_SIZE": ("%.1f МБ" % sums["setup_mb"]).replace(".", ",") if lang == "ru" else ("%.1f MB" % sums["setup_mb"]),
         "SETUP_SHA": sums["setup_sha"] or "—",
         "TRIAL_DAYS": str(cfg.TRIAL_DAYS),
