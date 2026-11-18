@@ -48,6 +48,13 @@ python check_site.py    :: битые ссылки, JSON-LD, токены
 Подробности — в [DEPLOY.md](DEPLOY.md), правовые требования — в
 [COMPLIANCE.md](COMPLIANCE.md).
 
+## Формат образов
+
+Образы `.mbfu` — это контейнер с заголовком на 126 байт, сжатием zlib и
+контролем SHA-256. Спецификация открыта: [FORMAT.md](FORMAT.md), веб-версия —
+<https://ms-dos.su/mbfu-format.html>. Читать и проверять образы можно без
+программы.
+
 ## Важно про сторонние лицензии
 
 - **MS-DOS 5.00/6.22** — собственность Microsoft. **BEN-утилиты, DOSBox, SDL, RMPARTUSB** — их авторов.

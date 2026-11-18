@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Прервалась прошивка BIOS: восстановление и программатор | ms-dos.su</title>
+<meta name="description" content="Прошивка BIOS прервалась: чёрный экран или циклическая перезагрузка. Диагностика, BIOS Flashback, Dual BIOS, Q-Flash Plus и когда нужен CH341A.">
+<link rel="canonical" href="https://ms-dos.su/proshivka-bios-noutbuka-sboy.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="Прервалась прошивка BIOS: восстановление и программатор | ms-dos.su">
+<meta property="og:description" content="Прошивка BIOS прервалась: чёрный экран или циклическая перезагрузка. Диагностика, BIOS Flashback, Dual BIOS, Q-Flash Plus и когда нужен CH341A.">
+<meta property="og:url" content="https://ms-dos.su/proshivka-bios-noutbuka-sboy.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Что делать, если прошивка BIOS прервалась",
+   "description": "Прошивка BIOS прервалась: чёрный экран или циклическая перезагрузка. Диагностика, BIOS Flashback, Dual BIOS, Q-Flash Plus и когда нужен CH341A.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/proshivka-bios-noutbuka-sboy.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Можно ли восстановить BIOS, если прошивка прервалась?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Часто да, если цел загрузочный блок: помогают BIOS Flashback, Dual BIOS, Q-Flash Plus или аварийное восстановление с USB. Если стёрта вся микросхема, нужен программатор."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "BIOS Flashback работает без процессора?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Да, на платах ASUS с этой функцией запись идёт от встроенного контроллера, процессор и память не нужны. Файл должен быть переименован утилитой вендора и лежать в корне флешки с FAT32."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли прошить BIOS дампом с форума?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет. Дамп привязан к модели, ревизии и иногда к конкретному экземпляру платы: регионы ME и EC могут не совпасть. Такой эксперимент заканчивается повторной перепрошивкой программатором."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Что делать, если прошивка BIOS прервалась",
+     "item": "https://ms-dos.su/proshivka-bios-noutbuka-sboy.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "Что делать, если прошивка BIOS прервалась",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Запишите симптомы",
+     "text": "Отметьте, горит ли индикатор питания, крутятся ли вентиляторы, мигают ли Caps Lock или Num Lock, есть ли циклическая перезагрузка."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Сбросьте CMOS и проверьте минимум",
+     "text": "Снимите питание, сбросьте CMOS перемычкой или кнопкой, попробуйте запуск с одним модулем памяти и без периферии."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Проверьте штатное восстановление",
+     "text": "Найдите у платы кнопку Flashback / Flash BIOS / Q-Flash Plus или резервную микросхему Dual BIOS и действуйте по инструкции вендора."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Подготовьте флешку для восстановления",
+     "text": "Флешка с FAT32 и портом USB 2.0, файл переименован по правилам вендора и лежит в корне."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Обратитесь в сервис",
+     "text": "Если штатные способы не помогли, нужен программатор и полный дамп под точную модель и ревизию платы."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="topbar">
+  <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Основная навигация">
+      <a href="/#features">Возможности</a>
+      <a href="/#trial">Trial</a>
+      <a href="/buy.html">Купить</a>
+      <a href="/stati.html">Статьи</a>
+      <a href="/contacts.html">Контакты</a>
+  </nav>
+  <span class="lang"><a href="/en/" hreflang="en" lang="en" aria-label="EN">EN</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Хлебные крошки">
+<a href="/">MBFU</a> / <a href="/stati.html">Статьи</a> / Прошивка BIOS
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>Что делать, если прошивка BIOS прервалась</h1>
+      <p class="lead">Прерывание прошивки почти всегда означает повреждённый образ BIOS, но не всегда — мёртвую плату. Шансы на восстановление зависят от того, уцелел ли загрузочный блок и есть ли у платы резервная микросхема или кнопка восстановления.</p>
+<h2>Что ломается при прерывании</h2>
+<p>Прошивка стирает и записывает микросхему блоками. Если питание пропало в начале, мог остаться нетронутый загрузочный блок — тогда плата способна принять образ заново через штатное восстановление. Если стёрт и он, запускать код нечему, и помогает только внешний программатор.</p><p>Отдельная история — регионы Intel ME и EC. Даже при целой основной прошивке повреждённый регион ME даёт странные симптомы: плата стартует, но выключается через несколько секунд или не видит часть устройств. Такие случаи лечатся перепрошивкой полного дампа, а не обновлением файла с сайта.</p>
+<h2>Диагностика по симптомам</h2>
+<p>Первое, что нужно сделать, — перестать нажимать кнопку питания в цикле и записать наблюдаемое поведение. Симптомы говорят о разном:</p><ul><li><b>чёрный экран, вентиляторы крутятся, индикатор питания горит</b> — питание есть, код не доходит до инициализации видео; шанс на Flashback или восстановление с USB;</li><li><b>циклическая перезагрузка</b> — прошивка стартует, но падает на инициализации памяти или ME; иногда спасает сброс CMOS;</li><li><b>мигание Caps Lock или Num Lock сериями</b> — вендорская кодовая диагностика, расшифровка есть в руководстве к ноутбуку;</li><li><b>ни реакции на кнопку, индикатор не горит</b> — стоит проверить блок питания и цепь дежурного напряжения, а не только BIOS.</li></ul><p>Полезно проверить плату на минимальной конфигурации: один модуль памяти, без дисков и периферии. Иногда «смерть после прошивки» оказывается сбитыми настройками памяти, которые сбрасываются перемычкой CMOS.</p>
+<h2>Штатные средства восстановления</h2>
+<p>У современных плат есть несколько механизмов, не требующих выпаивания микросхемы:</p><ul><li><b>ASUS BIOS Flashback</b> — кнопка и выделенный порт USB. Флешка с FAT32, файл переименован утилитой ASUS, нажатие на несколько секунд; индикатор показывает ход записи. Процессор и память при этом не нужны;</li><li><b>Gigabyte Dual BIOS</b> — две микросхемы: при сбое основной плата грузится с резервной и восстанавливает основную;</li><li><b>Gigabyte Q-Flash Plus</b> — прошивка по кнопке с флешки, без процессора, памяти и видеокарты;</li><li><b>MSI Flash BIOS Button</b> — аналогичная кнопка на части плат, с файлом строго определённого имени.</li></ul><p>Условия у всех похожи: флешка небольшая, FAT32, порт USB 2.0 (не 3.0 и не хаб), файл в корне. Почему порт важен, разобрано в статье <a href="/usb2-usb3-dos.html">USB 2.0 и USB 3.0 в DOS</a>: контроллер USB 3.0 в режиме восстановления часто не инициализируется вовсе. Штатное обновление через встроенные флешеры — отдельная тема, о ней в статье <a href="/proshivka-bios-asus-msi-gigabyte.html">прошивка BIOS ASUS, MSI, Gigabyte, ASRock</a>.</p>
+<h2>Восстановление через USB без кнопки</h2>
+<p>У плат на AMI BIOS встречается аварийное восстановление: файл с определённым именем на флешке и зажатая комбинация клавиш при включении (часто Ctrl+Home). У Phoenix и части ноутбуков есть свой режим crisis recovery. Работает это только при живом загрузочном блоке.</p><p>Метод не универсален: имя файла, комбинация и даже необходимость специального образа зависят от платы и версии BIOS. Пробовать стоит, если других вариантов нет, но гарантий никто не даёт — при неверном шаге плата просто останется в том же состоянии.</p>
+<h2>Когда нужен программатор CH341A</h2>
+<p>Если загрузочный блок стёрт, остаётся прошить микросхему напрямую. CH341A — недорогой USB-программатор, который читает и пишет SPI-микросхемы; работают либо прищепкой SOIC-8 на плате, либо с выпаиванием. Для микросхем на 1.8 В нужен отдельный адаптер, иначе есть риск их повредить.</p><p>Это уже сервисный уровень: нужен донорский дамп под точную модель и ревизию, проверка целостности после записи и понимание того, что регионы ME и EC могут быть привязаны к конкретному экземпляру. Прошивка «похожим» дампом с форума — верный способ потерять остатки гарантии и время на повторный ремонт.</p>
+<h2>Чего не делать</h2>
+<p>Не разбирайте ноутбук без опыта и инструмента: сломанные защёлки и повреждённые шлейфы встречаются чаще, чем успешные ремонты. Не прошивайте наугад дампами от другой модели, ревизии или региона. Не прогревайте плату феном «для профилактики» и не дёргайте питание повторно, надеясь на чудо.</p><p>Если плата на гарантии — сначала сервисный центр. Самостоятельная перепрошивка программатором почти всегда лишает гарантии, а восстановление после неудачной попытки стоит дороже, чем исходная диагностика.</p>
+
+<h2>Порядок действий</h2>
+<ol class="steps">
+<li><b>Запишите симптомы.</b> Отметьте, горит ли индикатор питания, крутятся ли вентиляторы, мигают ли Caps Lock или Num Lock, есть ли циклическая перезагрузка.</li>
+<li><b>Сбросьте CMOS и проверьте минимум.</b> Снимите питание, сбросьте CMOS перемычкой или кнопкой, попробуйте запуск с одним модулем памяти и без периферии.</li>
+<li><b>Проверьте штатное восстановление.</b> Найдите у платы кнопку Flashback / Flash BIOS / Q-Flash Plus или резервную микросхему Dual BIOS и действуйте по инструкции вендора.</li>
+<li><b>Подготовьте флешку для восстановления.</b> Флешка с FAT32 и портом USB 2.0, файл переименован по правилам вендора и лежит в корне.</li>
+<li><b>Обратитесь в сервис.</b> Если штатные способы не помогли, нужен программатор и полный дамп под точную модель и ревизию платы.</li>
+</ol>
+
+<h2>Вопросы и ответы</h2>
+<p><b>Можно ли восстановить BIOS, если прошивка прервалась?</b><br>Часто да, если цел загрузочный блок: помогают BIOS Flashback, Dual BIOS, Q-Flash Plus или аварийное восстановление с USB. Если стёрта вся микросхема, нужен программатор.</p>
+<p><b>BIOS Flashback работает без процессора?</b><br>Да, на платах ASUS с этой функцией запись идёт от встроенного контроллера, процессор и память не нужны. Файл должен быть переименован утилитой вендора и лежать в корне флешки с FAT32.</p>
+<p><b>Можно ли прошить BIOS дампом с форума?</b><br>Нет. Дамп привязан к модели, ревизии и иногда к конкретному экземпляру платы: регионы ME и EC могут не совпасть. Такой эксперимент заканчивается повторной перепрошивкой программатором.</p>
+
+    </article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="proshivka-bios-s-dos-fleshki.html">Прошивка BIOS с DOS-флешки</a></li>
+<li><a href="proshivka-bios-asus-msi-gigabyte.html">Прошивка BIOS: ASUS, MSI, Gigabyte, ASRock</a></li>
+<li><a href="proshivka-bios-noutbuka-bez-windows.html">Обновление BIOS ноутбука без Windows</a></li>
+<li><a href="proshivka-bios-fajl-ne-podhodit.html">BIOS: файл прошивки не подходит</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>Trial MBFUTool 2.0 — все функции на 30 дней, без ключа активации.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Скачать Trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Полная версия</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — Утилита для работы с образами MS-DOS.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Самозанятый Семенцул Максим Геннадиевич, ИНН 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Документы</h2>
+        <nav aria-label="Документы">
+      <a href="/terms.html">Условия и лицензия</a>
+      <a href="/privacy.html">Конфиденциальность</a>
+      <a href="/cookies.html">Файлы cookie</a>
+      <a href="/refund.html">Оплата и возврат</a>
+      <a href="/contacts.html">Контакты и реквизиты</a>
+      <a href="/licenses.html">Сторонние лицензии</a>
+      <a href="/ms-dos-license.html">Где взять MS-DOS</a>
+      <a href="/dmca.html">Правообладателям</a>
+      <a href="/accessibility.html">Доступность</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Проект</h2>
+        <nav aria-label="Проект">
+          <a href="/stati.html">Статьи</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
+        </nav>
+        <p class="note">Trial — 30 дней бесплатно</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS — товарный знак Microsoft Corporation. DOSBox распространяется по GPLv2. MBFU не связана с Microsoft и не распространяет MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="ru">
+  <div class="consent-inner">
+    <p>Мы используем файлы cookie для аналитики, чтобы понимать, чем полезна документация. Аналитические скрипты включаются только с вашего согласия; без него сайт работает без cookie. <a href="/cookies.html">Подробнее</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Принять аналитику</button>
+      <button type="button" id="consent-reject">Только необходимые</button>
+      <button type="button" data-consent-settings>Настройки cookie</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="ru" aria-labelledby="consent-title">
+  <h2 id="consent-title">Настройки cookie</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Аналитика</b><span>Яндекс.Метрика и Google Analytics: обезличенная статистика посещений. Устанавливают cookie _ym_* и _ga*.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Сохранить</button>
+      <button type="submit" value="close" formnovalidate>Закрыть</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

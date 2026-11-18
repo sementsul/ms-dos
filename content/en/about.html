@@ -1,0 +1,76 @@
+<section class="block">
+  <div class="wrap legal">
+    <h1>About the author and the project</h1>
+    <p class="updated">Version dated 18 November 2026.</p>
+
+    <p class="lead">
+      MBFUTool is built and sold by one person — {{SELLER_NAME}},
+      {{SELLER_STATUS}}. This page explains who is behind the program, why 2.0 is
+      closed source and how support works.
+    </p>
+
+    <h2 id="who">Who sells it</h2>
+    <ul>
+      <li><b>Licensor:</b> {{SELLER_NAME}}</li>
+      <li><b>Status:</b> {{SELLER_STATUS}}</li>
+      <li><b>Tax ID (INN):</b> {{SELLER_INN}}</li>
+      <li><b>E-mail:</b> <a href="mailto:{{EMAIL}}">{{EMAIL}}</a></li>
+      <li><b>Postal address:</b> {{SELLER_ADDRESS}}</li>
+    </ul>
+    <p>
+      Full details and the document exchange procedure are on the
+      <a href="/en/contacts.html">Contacts and seller details</a> page.
+    </p>
+
+    <h2 id="story">How the program came about</h2>
+    <p>
+      The project grew from a practical task: making a bootable USB stick with real
+      MS-DOS 5.00 or 6.22 on a modern computer. Existing tools either work with FreeDOS
+      or require manual fiddling with partitioning, the boot sector and system files.
+      The first version of MBFU was a graphical utility with open source code — it is
+      still in the <a href="{{GITHUB}}" rel="noopener">repository</a> under the MIT
+      licence.
+    </p>
+    <p>
+      Version 2.0 was rewritten from scratch: DOSBox 0.72 with a custom menu runs inside,
+      so the program can not only write an image but also clone media, capture an image
+      from a disk or floppy and edit the contents of an image with ordinary DOS commands.
+    </p>
+
+    <h2 id="closed">Why 2.0 is closed source</h2>
+    <p>
+      Version 1.x was open and stays open: its MIT licence cannot be revoked. With 2.0
+      the situation differs — it is work that is sold, and open code would mean anyone
+      could publish a build under their own name. So 2.0 ships without source and is
+      distributed under the <a href="/en/terms.html">licence agreement</a>.
+    </p>
+    <p>
+      What stays open and verifiable: the <a href="/en/mbfu-format.html">.mbfu</a> image
+      format is publicly documented, third-party components (DOSBox, SDL) ship under
+      their own licences, and every build can be checked against a published SHA-256.
+    </p>
+
+    <h2 id="support">Support</h2>
+    <ul>
+      <li>A reply within two business days.</li>
+      <li>Installation support for 30 days after purchase, for full-version buyers.</li>
+      <li>Trial problems are handled too: describe what failed, with the USB stick and motherboard model.</li>
+      <li>2.x updates are published in the same private Boosty post as the build.</li>
+    </ul>
+
+    <h2 id="rules">Principles</h2>
+    <ul>
+      <li>No MS-DOS or other third-party files in the package — only own code and openly licensed components.</li>
+      <li>No telemetry and no network calls: the program runs offline.</li>
+      <li>No subscription: one purchase, one licence for one computer.</li>
+      <li>Mistakes are admitted plainly: if something does not work on your hardware, the answer says so.</li>
+    </ul>
+
+    <h2 id="contact">Get in touch</h2>
+    <p>
+      Purchase, licence and support questions: <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>.
+      Copyright matters: the procedure on the <a href="/en/dmca.html">Rights holders</a>
+      page.
+    </p>
+  </div>
+</section>

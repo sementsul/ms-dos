@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "Secure Boot на Dell",
- "description": "Как отключить Secure Boot на Dell и загрузиться с DOS-флешки: пошаговая инструкция.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/secure-boot-dell.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "Где переключатель Legacy?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "General — Boot Sequence: выберите Legacy вместо UEFI. Пункт появляется после отключения Secure Boot."
-   }
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Secure Boot на Dell",
+   "description": "Как отключить Secure Boot на Dell и загрузиться с DOS-флешки: пошаговая инструкция.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/secure-boot-dell.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Где переключатель Legacy?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "General — Boot Sequence: выберите Legacy вместо UEFI. Пункт появляется после отключения Secure Boot."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Dell ругается при сохранении — что нажать?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Apply, затем Exit. Предупреждение об изменении конфигурации — штатное, подтверждайте."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "Dell ругается при сохранении — что нажать?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Apply, затем Exit. Предупреждение об изменении конфигурации — штатное, подтверждайте."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Secure Boot на Dell",
+     "item": "https://ms-dos.su/secure-boot-dell.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -92,6 +120,7 @@
 <ol><li>F2 при старте — раздел Secure Boot.</li><li>Secure Boot Enable — Disabled.</li><li>General — Boot Sequence: Legacy, добавьте USB.</li><li>Apply — Exit.</li></ol>
 <h2>Нюанс</h2>
 <p>Dell показывает предупреждение об изменении — подтверждайте, это штатно.</p>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>Где переключатель Legacy?</b><br>General — Boot Sequence: выберите Legacy вместо UEFI. Пункт появляется после отключения Secure Boot.</p>
@@ -147,6 +176,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

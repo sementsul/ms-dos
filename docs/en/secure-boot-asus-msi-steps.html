@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Secure Boot and CSM on ASUS and MSI Boards | ms-dos.su</title>
+<meta name="description" content="Where Secure Boot and CSM sit on ASUS and MSI boards, what each switch does, why CSM can vanish in UEFI-only mode, and how to find a missing DOS USB stick.">
+<link rel="canonical" href="https://ms-dos.su/en/secure-boot-asus-msi-steps.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="Secure Boot and CSM on ASUS and MSI Boards | ms-dos.su">
+<meta property="og:description" content="Where Secure Boot and CSM sit on ASUS and MSI boards, what each switch does, why CSM can vanish in UEFI-only mode, and how to find a missing DOS USB stick.">
+<meta property="og:url" content="https://ms-dos.su/en/secure-boot-asus-msi-steps.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Secure Boot and CSM on ASUS and MSI boards",
+   "description": "Where Secure Boot and CSM sit on ASUS and MSI boards, what each switch does, why CSM can vanish in UEFI-only mode, and how to find a missing DOS USB stick.",
+   "inLanguage": "en",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/en/secure-boot-asus-msi-steps.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Do I need to disable Secure Boot to boot DOS?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. A DOS boot sector is unsigned, so the firmware will not start it while Secure Boot is on. Disabling Secure Boot and enabling CSM together is the usual combination."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why is there no CSM option on my board?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The board is in UEFI-only boot mode. Switch the boot mode to CSM or legacy first, disable Fast Boot if the option stays hidden, then reopen setup."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does the DOS stick show up as UEFI or legacy?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A correctly written DOS image is a legacy MBR device. It should appear in the legacy or CSM list, not under UEFI. If it appears only as UEFI, rewrite the image."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://ms-dos.su/en/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Secure Boot and CSM on ASUS and MSI boards",
+     "item": "https://ms-dos.su/en/secure-boot-asus-msi-steps.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "Secure Boot and CSM on ASUS and MSI boards",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Enter firmware setup",
+     "text": "Restart and press the setup key at power-on (Del or F2 on most boards), then switch to Advanced Mode with F7 on ASUS."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Enable CSM",
+     "text": "On ASUS open Boot > CSM and enable it. On MSI open Advanced > Windows OS Configuration and enable CSM."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Relax or disable Secure Boot",
+     "text": "On ASUS set Secure Boot > OS Type to Other OS. On MSI set Secure Boot to disabled."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Select the stick",
+     "text": "Save and exit, re-plug the USB stick, open the one-time boot menu and choose the legacy entry for the stick."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="/en/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Main navigation">
+      <a href="/en/#features">Features</a>
+      <a href="/en/#trial">Trial</a>
+      <a href="/en/buy.html">Buy</a>
+      <a href="/en/stati.html">Guides</a>
+      <a href="/en/contacts.html">Contact</a>
+  </nav>
+  <span class="lang"><a href="/" hreflang="ru" lang="ru" aria-label="RU">RU</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb">
+<a href="/en/">MBFU</a> / <a href="/en/stati.html">Guides</a> / BIOS
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>Secure Boot and CSM on ASUS and MSI boards</h1>
+      <p class="lead">Two firmware switches decide whether a modern board will boot a DOS USB stick: Secure Boot and CSM. Their names and locations differ between ASUS and MSI, and on both brands the CSM entry can disappear once the board is set to a pure UEFI boot mode.</p>
+<h2>ASUS: Advanced Mode and the Boot menu</h2>
+<p>On ASUS boards the relevant settings sit in Advanced Mode, which you reach by pressing <b>F7</b> in the initial setup screen. Open the <b>Boot</b> tab and look for <b>CSM</b>; in the same area, <b>Secure Boot</b> holds an <b>OS Type</b> option. Setting OS Type to <b>Other OS</b> relaxes the signature requirement, which is what a DOS-era loader needs. CSM must be enabled for a legacy boot sector to run at all. If the CSM item is missing, the board is in a UEFI-only state.</p>
+<h2>MSI: Windows OS Configuration</h2>
+<p>On MSI boards the same pair lives under <b>Advanced</b> in the <b>Windows OS Configuration</b> submenu. Secure Boot is switched off there, and CSM is enabled in the same screen or in the boot-related submenu next to it. Some layouts place CSM on a separate <b>Boot</b> page. After changing either option, save and exit; the board re-enumerates boot devices on the next power-on.</p>
+<h2>What each switch does</h2>
+<p><b>Secure Boot</b> is a firmware policy: the bootloader must carry a signature that the firmware trusts. A DOS boot sector has no such signature, so with Secure Boot on, the firmware refuses to hand control to it. <b>CSM</b> (Compatibility Support Module) is the opposite kind of switch: it keeps legacy interrupt and device services alive and lets the firmware read an MBR partition table and jump into a 512-byte boot sector. Enabling CSM does not disable Secure Boot, and disabling Secure Boot does not enable CSM. Treat them as two independent conditions that both have to be right.</p>
+<h2>Why CSM can be hidden</h2>
+<p>Firmware hides the CSM entry when the boot mode is set to pure UEFI. On many boards this happens automatically once the boot list contains only UEFI entries, or after <b>Boot Mode</b> is changed to UEFI only. The way back is to switch the boot mode to CSM or legacy support first, then reopen setup: the CSM and legacy USB options reappear. On some models the CSM line only shows up after <b>Fast Boot</b> is disabled. Menu names vary by model and firmware build, so follow the tab names rather than an exact sequence.</p>
+<h2>When the DOS stick is not in the boot menu</h2>
+<p>Check the stick before blaming the board. The image must have been written to the device, not copied as a file; the stick needs an MBR partition table with one active partition holding the DOS boot sector; FAT16 is the safe filesystem for DOS. Try a rear USB 2.0 port rather than a front-panel connector or a hub, enable <b>USB Legacy Support</b>, and re-plug the stick after enabling CSM. Use the one-time boot menu key at power-on to see whether the stick appears as a legacy device. If it appears only as a UEFI entry, the image is not a legacy one.</p>
+<h2>A note on names</h2>
+<p>ASUS and MSI rename pages between generations, and the same option can move between Boot and Advanced. The descriptions above use the tab names that have stayed stable: Boot, CSM, Secure Boot, OS Type, Windows OS Configuration. Exact wording is not guaranteed, and no version number is implied.</p>
+
+<h2>Step by step</h2>
+<ol class="steps">
+<li><b>Enter firmware setup.</b> Restart and press the setup key at power-on (Del or F2 on most boards), then switch to Advanced Mode with F7 on ASUS.</li>
+<li><b>Enable CSM.</b> On ASUS open Boot > CSM and enable it. On MSI open Advanced > Windows OS Configuration and enable CSM.</li>
+<li><b>Relax or disable Secure Boot.</b> On ASUS set Secure Boot > OS Type to Other OS. On MSI set Secure Boot to disabled.</li>
+<li><b>Select the stick.</b> Save and exit, re-plug the USB stick, open the one-time boot menu and choose the legacy entry for the stick.</li>
+</ol>
+
+<h2>Questions</h2>
+<p><b>Do I need to disable Secure Boot to boot DOS?</b><br>Yes. A DOS boot sector is unsigned, so the firmware will not start it while Secure Boot is on. Disabling Secure Boot and enabling CSM together is the usual combination.</p>
+<p><b>Why is there no CSM option on my board?</b><br>The board is in UEFI-only boot mode. Switch the boot mode to CSM or legacy first, disable Fast Boot if the option stays hidden, then reopen setup.</p>
+<p><b>Does the DOS stick show up as UEFI or legacy?</b><br>A correctly written DOS image is a legacy MBR device. It should appear in the legacy or CSM list, not under UEFI. If it appears only as UEFI, rewrite the image.</p>
+
+    </article>
+<aside>
+<h2>Read next</h2>
+<ul>
+<li><a href="how-to-create-bootable-ms-dos-usb.html">How to create a bootable MS-DOS USB drive</a></li>
+<li><a href="ms-dos-in-virtualbox-or-dosbox.html">Running MS-DOS in DOSBox or a virtual machine</a></li>
+<li><a href="bios-update-from-dos-usb.html">Updating the BIOS from a DOS USB drive</a></li>
+<li><a href="secure-boot-and-csm-for-dos.html">Secure Boot, UEFI and CSM: booting DOS on modern hardware</a></li>
+<li><a href="fat16-limits-and-4gb-usb-drives.html">FAT16 limits: why a DOS USB drive stops at 2-4 GB</a></li>
+<li><a href="ms-dos-boot-errors-explained.html">MS-DOS boot errors explained</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Need a bootable MS-DOS USB drive?</b></p>
+<p>The MBFUTool 2.0 trial gives you every feature for 30 days, no key required.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Download the trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Full version</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — MS-DOS image toolkit.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Self-employed Sementsul Maxim Gennadievich, INN 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Documents</h2>
+        <nav aria-label="Documents">
+      <a href="/en/terms.html">Terms and licence</a>
+      <a href="/en/privacy.html">Privacy</a>
+      <a href="/en/cookies.html">Cookies</a>
+      <a href="/en/refund.html">Payment and refunds</a>
+      <a href="/en/contacts.html">Contacts and seller details</a>
+      <a href="/en/licenses.html">Third-party licences</a>
+      <a href="/en/ms-dos-license.html">Where to get MS-DOS</a>
+      <a href="/en/dmca.html">Rights holders</a>
+      <a href="/en/accessibility.html">Accessibility</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Project</h2>
+        <nav aria-label="Project">
+          <a href="/en/stati.html">Guides</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/" hreflang="ru" lang="ru">Русская версия</a>
+        </nav>
+        <nav aria-label="Project">
+          <a href="/en/buy.html">Buy and get the files</a>
+          <a href="/en/trial-vs-full.html">Trial vs full version</a>
+          <a href="/en/verify.html">Verify the build</a>
+          <a href="/en/mbfu-format.html">.mbfu format</a>
+          <a href="/en/changelog.html">Version history</a>
+          <a href="/en/about.html">About the author</a>
+        </nav>
+        <p class="note">Trial — 30 days free</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Cookie settings</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS is a trademark of Microsoft Corporation. DOSBox is distributed under GPLv2. MBFU is not affiliated with Microsoft and does not distribute MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="en">
+  <div class="consent-inner">
+    <p>We use cookies for analytics to understand which docs are useful. Analytics scripts run only with your consent; without it the site works without cookies. <a href="/en/cookies.html">Details</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Accept analytics</button>
+      <button type="button" id="consent-reject">Essential only</button>
+      <button type="button" data-consent-settings>Cookie settings</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="en" aria-labelledby="consent-title">
+  <h2 id="consent-title">Cookie settings</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Analytics</b><span>Yandex Metrica and Google Analytics: aggregate visit statistics. They set _ym_* and _ga* cookies.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Save</button>
+      <button type="submit" value="close" formnovalidate>Close</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

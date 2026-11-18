@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to verify the MBFUTool build — ms-dos.su</title>
+<meta name="description" content="How to compare the SHA-256 of the archive and installer, what to do with an antivirus warning, and what the program writes to disk.">
+<link rel="canonical" href="https://ms-dos.su/en/verify.html">
+<link rel="alternate" hreflang="ru" href="https://ms-dos.su/verify.html">
+<link rel="alternate" hreflang="en" href="https://ms-dos.su/en/verify.html">
+<link rel="alternate" hreflang="x-default" href="https://ms-dos.su/verify.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="How to verify the MBFUTool build — ms-dos.su">
+<meta property="og:description" content="How to compare the SHA-256 of the archive and installer, what to do with an antivirus warning, and what the program writes to disk.">
+<meta property="og:url" content="https://ms-dos.su/en/verify.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "name": "How to verify the MBFUTool build — ms-dos.su",
+ "description": "How to compare the SHA-256 of the archive and installer, what to do with an antivirus warning, and what the program writes to disk.",
+ "inLanguage": "en",
+ "url": "https://ms-dos.su/en/verify.html",
+ "isPartOf": {
+  "@type": "WebSite",
+  "name": "MBFU",
+  "url": "https://ms-dos.su"
+ }
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="/en/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Main navigation">
+      <a href="/en/#features">Features</a>
+      <a href="/en/#trial">Trial</a>
+      <a href="/en/buy.html">Buy</a>
+      <a href="/en/stati.html">Guides</a>
+      <a href="/en/contacts.html">Contact</a>
+  </nav>
+  <span class="lang"><a href="/verify.html" hreflang="ru" lang="ru" aria-label="RU">RU</a></span>
+</header>
+<main id="main">
+<section class="block">
+  <div class="wrap legal">
+    <h1>How to verify the MBFUTool build</h1>
+    <p class="updated">Version dated 18 November 2026.</p>
+
+    <p class="lead">
+      The build is not code-signed, so antivirus products sometimes warn. You can
+      confirm in a minute that the file was not altered on the way: compare its
+      SHA-256 with the value published here.
+    </p>
+
+    <h2 id="sha">1. Compare the SHA-256</h2>
+    <p>Open PowerShell in the folder with the archive and run:</p>
+    <pre>Get-FileHash .\MBFUTool_2.0_Trial_Portable.zip -Algorithm SHA256</pre>
+    <p>Compare the result with the published value:</p>
+    <table>
+      <tr><th>File</th><th>Size</th><th>SHA-256</th></tr>
+      <tr><td><code>MBFUTool_2.0_Trial_Portable.zip</code></td><td>11.9 MB</td><td><code>e04c7578151942b61669fac747bd175d845b60bb4c50cf296596c98567273a8c</code></td></tr>
+      <tr><td><code>MBFUTool_2.0_Trial_Setup.exe</code></td><td>10.4 MB</td><td><code>dd3453af73985876ec4fe4f77f7fa4082da9f73e0339f8468cefccf9a0306e81</code></td></tr>
+    </table>
+    <p>
+      The installer uses the same command with a different file name. The values also
+      ship next to the files in <code>SHA256SUMS.txt</code>.
+    </p>
+    <p>
+      Match — the file is intact. Mismatch — download again: the transfer may have been
+      interrupted, or the file did not come from ms-dos.su.
+    </p>
+
+    <h2 id="size">2. Compare the size</h2>
+    <p>
+      Size is a rough but instant check. The Trial archive is 11.9 MB, the
+      installer is 10.4 MB. Noticeably smaller means the download did not finish.
+    </p>
+
+    <h2 id="av">3. Understand the antivirus reaction</h2>
+    <p>
+      The program is packaged with PyInstaller in <code>onedir</code> mode: an
+      <code>_internal</code> folder with the executable beside it. The <code>onefile</code>
+      mode — everything in one exe that unpacks itself into a temporary folder — is what
+      heuristic engines most often flag as suspicious behaviour, which is why it was
+      dropped.
+    </p>
+    <p>If an antivirus still complains:</p>
+    <ul>
+      <li>check the file on <a href="https://www.virustotal.com/gui/home/upload" rel="noopener">VirusTotal</a> — a few engines out of seventy is a typical packer false positive;</li>
+      <li>exclude the program <b>folder</b>, not the whole drive;</li>
+      <li>do not disable protection entirely, and never run unknown files as
+          administrator.</li>
+    </ul>
+    <p>
+      Code signing certificates cost money; until there is one, the hash on this site is
+      the only way to prove authenticity.
+    </p>
+
+    <h2 id="network">4. Make sure the program does not use the network</h2>
+    <p>
+      MBFUTool works offline: it does not check for updates, send statistics or require
+      an account. Any network monitor shows no connections opened on start. The only
+      write outside your own files is the trial mark.
+    </p>
+
+    <h2 id="trialdata">5. What the program writes to disk</h2>
+    <ul>
+      <li><code>%APPDATA%\MBFU\trial.json</code> — first-start date and a signed day counter;</li>
+      <li><code>%PROGRAMDATA%\MBFU\trial.json</code> — the same mark, so deleting the profile does not reset it;</li>
+      <li><code>HKCU\Software\MBFU\Trial</code> — a backup copy of the mark;</li>
+      <li>a working folder next to the image — temporary files while creating or editing an image.</li>
+    </ul>
+    <p>None of this contains personal data: only dates and a signature.</p>
+
+    <h2 id="more">If something does not add up</h2>
+    <p>
+      Write to <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a> with the
+      <code>Get-FileHash</code> value, the file size and where you downloaded it. We reply
+      within two business days.
+    </p>
+    <p class="fine">
+      Download only from ms-dos.su or from the private Boosty post after purchase. Files
+      hosted elsewhere may have been modified.
+    </p>
+  </div>
+</section></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — MS-DOS image toolkit.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Self-employed Sementsul Maxim Gennadievich, INN 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Documents</h2>
+        <nav aria-label="Documents">
+      <a href="/en/terms.html">Terms and licence</a>
+      <a href="/en/privacy.html">Privacy</a>
+      <a href="/en/cookies.html">Cookies</a>
+      <a href="/en/refund.html">Payment and refunds</a>
+      <a href="/en/contacts.html">Contacts and seller details</a>
+      <a href="/en/licenses.html">Third-party licences</a>
+      <a href="/en/ms-dos-license.html">Where to get MS-DOS</a>
+      <a href="/en/dmca.html">Rights holders</a>
+      <a href="/en/accessibility.html">Accessibility</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Project</h2>
+        <nav aria-label="Project">
+          <a href="/en/stati.html">Guides</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/verify.html" hreflang="ru" lang="ru">Русская версия</a>
+        </nav>
+        <nav aria-label="Project">
+          <a href="/en/buy.html">Buy and get the files</a>
+          <a href="/en/trial-vs-full.html">Trial vs full version</a>
+          <a href="/en/verify.html">Verify the build</a>
+          <a href="/en/mbfu-format.html">.mbfu format</a>
+          <a href="/en/changelog.html">Version history</a>
+          <a href="/en/about.html">About the author</a>
+        </nav>
+        <p class="note">Trial — 30 days free</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Cookie settings</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS is a trademark of Microsoft Corporation. DOSBox is distributed under GPLv2. MBFU is not affiliated with Microsoft and does not distribute MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="en">
+  <div class="consent-inner">
+    <p>We use cookies for analytics to understand which docs are useful. Analytics scripts run only with your consent; without it the site works without cookies. <a href="/en/cookies.html">Details</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Accept analytics</button>
+      <button type="button" id="consent-reject">Essential only</button>
+      <button type="button" data-consent-settings>Cookie settings</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="en" aria-labelledby="consent-title">
+  <h2 id="consent-title">Cookie settings</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Analytics</b><span>Yandex Metrica and Google Analytics: aggregate visit statistics. They set _ym_* and _ga* cookies.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Save</button>
+      <button type="submit" value="close" formnovalidate>Close</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

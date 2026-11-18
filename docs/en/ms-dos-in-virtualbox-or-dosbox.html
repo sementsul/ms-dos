@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Running MS-DOS in DOSBox or a virtual machine | ms-dos.su</title>
+<meta name="description" content="When DOSBox or a virtual machine is enough for MS-DOS work, when only real hardware will do, and how to edit images without a physical PC.">
+<link rel="canonical" href="https://ms-dos.su/en/ms-dos-in-virtualbox-or-dosbox.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="Running MS-DOS in DOSBox or a virtual machine | ms-dos.su">
+<meta property="og:description" content="When DOSBox or a virtual machine is enough for MS-DOS work, when only real hardware will do, and how to edit images without a physical PC.">
+<meta property="og:url" content="https://ms-dos.su/en/ms-dos-in-virtualbox-or-dosbox.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Running MS-DOS in DOSBox or a virtual machine",
+   "description": "When DOSBox or a virtual machine is enough for MS-DOS work, when only real hardware will do, and how to edit images without a physical PC.",
+   "inLanguage": "en",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/en/ms-dos-in-virtualbox-or-dosbox.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Can DOSBox replace a real PC for a BIOS update?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. The flasher needs the actual chipset and flash chip; under DOSBox nothing reaches hardware."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why does DOSBox refuse a 6 GB image?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "DOSBox 0.72 cannot mount images larger than 4 GB. A bigger file is almost always FAT32 or exFAT, which MS-DOS cannot read."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is a virtual machine enough to test a bootable stick?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It can boot the image file, which proves the image is bootable. It cannot tell you whether your firmware will accept that stick."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does DOSBox run on Windows only?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "DOSBox runs on Windows, Linux and macOS. MBFUTool itself is a Windows x64 program."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://ms-dos.su/en/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Running MS-DOS in DOSBox or a virtual machine",
+     "item": "https://ms-dos.su/en/ms-dos-in-virtualbox-or-dosbox.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "Running MS-DOS in DOSBox or a virtual machine",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Install DOSBox or create a VM",
+     "text": "DOSBox needs no installation: unpack and run it. For a VM, create a machine and attach the image."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Mount the media",
+     "text": "Use mount for a folder and imgmount for a floppy image; in a VM convert the raw image first."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Work on the image",
+     "text": "Edit config.sys and autoexec.bat, copy files in, run the programs you need."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Test the boot in a VM",
+     "text": "Attach the image to a virtual machine and check that it reaches a DOS prompt."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Write to physical media",
+     "text": "Once the image is correct, write it to USB and test on the real hardware."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="/en/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Main navigation">
+      <a href="/en/#features">Features</a>
+      <a href="/en/#trial">Trial</a>
+      <a href="/en/buy.html">Buy</a>
+      <a href="/en/stati.html">Guides</a>
+      <a href="/en/contacts.html">Contact</a>
+  </nav>
+  <span class="lang"><a href="/" hreflang="ru" lang="ru" aria-label="RU">RU</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb">
+<a href="/en/">MBFU</a> / <a href="/en/stati.html">Guides</a> / Guides
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>Running MS-DOS in DOSBox or a virtual machine</h1>
+      <p class="lead">Emulation covers most day-to-day DOS work and costs nothing to set up. It stops being enough the moment the task depends on firmware, a real bus or a port.</p>
+<h2>What emulation is good for</h2>
+<p>A DOS emulator executes the same interrupts and file-system code as the real thing, so anything that touches only DOS and its own files behaves the same:</p>
+<ul>
+<li>editing <code>config.sys</code> and <code>autoexec.bat</code> and seeing the effect at once;</li>
+<li>learning <code>dir</code>, <code>copy</code>, <code>fdisk</code> and <code>format</code> without risking a real disk;</li>
+<li>running old business software, games and QBASIC programs;</li>
+<li>checking an image before it goes onto a stick, and copying files into or out of it.</li>
+</ul>
+<h2>DOSBox: the fastest route</h2>
+<p>DOSBox installs nothing, needs no driver and starts in a second: mount a folder as <code>C:</code>, mount a floppy image as <code>A:</code>, run the program. A bad setting costs a restart rather than a reinstall.</p>
+<p>MBFUTool ships DOSBox 0.72 with a BEN menu and uses it for <b>Edit MS-DOS image with DOS commands</b>: the image is mounted as <code>A:</code> or <code>C:</code>, and <code>copy</code>, <code>del</code>, <code>md</code>, <code>rd</code> and <code>edit</code> work as usual. That build cannot mount an image larger than 4 GB, and paths must be Latin-only.</p>
+<p>The emulation is not cycle-accurate: demos that count cycles and software that programs a sound card directly may behave differently. Adjust <code>cycles</code> to change the speed.</p>
+<h2>When a virtual machine is better</h2>
+<p>VirtualBox, VMware, QEMU and the period emulators 86Box and PCem boot a disk image for real: partition table, boot sector, everything. That makes them the place to test whether an image is bootable and to experiment with <code>fdisk</code> before touching hardware. Snapshots undo a mistake in one click.</p>
+<ul>
+<li>VirtualBox and VMware need their own disk format; convert a raw image with <code>VBoxManage convertfromraw</code> or <code>qemu-img convert</code>.</li>
+<li>Floppy images usually attach as they are.</li>
+<li>86Box and PCem emulate period chipsets and ISA cards, which matters for software that programs hardware directly.</li>
+</ul>
+<h2>When only real hardware will do</h2>
+<p>Some jobs never leave the physical machine:</p>
+<ul>
+<li><b>Firmware updates.</b> A flasher writes to the SPI flash chip through the chipset; an emulator has no chipset to write to.</li>
+<li><b>Industrial machines.</b> ISA cards, serial dongles and software that polls custom I/O ports have no trustworthy emulation.</li>
+<li><b>The boot path.</b> Secure Boot, CSM, USB enumeration and the stick's controller are invisible to DOSBox.</li>
+<li><b>Drive diagnostics.</b> MHDD talks to the storage controller directly; a virtual machine sees a virtual disk.</li>
+</ul>
+<h2>What emulation hides</h2>
+<p>A test that passes in DOSBox proves the files are right; it says nothing about whether your PC will start from the stick. Treat emulation as a check of the image and the real machine as the check of the boot.</p>
+<h2>A practical order of work</h2>
+<ol>
+<li>Build or edit the image in DOSBox.</li>
+<li>Check the boot in a virtual machine.</li>
+<li>Write it to the stick with <a href="/en/how-to-create-bootable-ms-dos-usb.html">the USB guide</a>.</li>
+<li>Test on the real machine, keeping the emulator open for quick fixes.</li>
+</ol>
+<h2>Where MBFUTool fits</h2>
+<p>MBFUTool 2.0 is a Windows x64 utility with four operations: write an image to USB, create a .mbfu image from a disk, floppy or USB stick, clone MS-DOS media to a USB stick, and edit an image with DOS commands. Editing is where the bundled DOSBox 0.72 earns its place; the .mbfu container stores a header, a zlib-compressed payload and a SHA-256 digest of the raw image.</p>
+<p>The program ships no MS-DOS files - the image is yours, as the <a href="/en/ms-dos-license.html">licensing page</a> explains. For a first look at the command line there is <a href="/en/dos-test.html">MS-DOS in the browser</a>.</p>
+
+<h2>Step by step</h2>
+<ol class="steps">
+<li><b>Install DOSBox or create a VM.</b> DOSBox needs no installation: unpack and run it. For a VM, create a machine and attach the image.</li>
+<li><b>Mount the media.</b> Use mount for a folder and imgmount for a floppy image; in a VM convert the raw image first.</li>
+<li><b>Work on the image.</b> Edit config.sys and autoexec.bat, copy files in, run the programs you need.</li>
+<li><b>Test the boot in a VM.</b> Attach the image to a virtual machine and check that it reaches a DOS prompt.</li>
+<li><b>Write to physical media.</b> Once the image is correct, write it to USB and test on the real hardware.</li>
+</ol>
+
+<h2>Questions</h2>
+<p><b>Can DOSBox replace a real PC for a BIOS update?</b><br>No. The flasher needs the actual chipset and flash chip; under DOSBox nothing reaches hardware.</p>
+<p><b>Why does DOSBox refuse a 6 GB image?</b><br>DOSBox 0.72 cannot mount images larger than 4 GB. A bigger file is almost always FAT32 or exFAT, which MS-DOS cannot read.</p>
+<p><b>Is a virtual machine enough to test a bootable stick?</b><br>It can boot the image file, which proves the image is bootable. It cannot tell you whether your firmware will accept that stick.</p>
+<p><b>Does DOSBox run on Windows only?</b><br>DOSBox runs on Windows, Linux and macOS. MBFUTool itself is a Windows x64 program.</p>
+
+    </article>
+<aside>
+<h2>Read next</h2>
+<ul>
+<li><a href="how-to-create-bootable-ms-dos-usb.html">How to create a bootable MS-DOS USB drive</a></li>
+<li><a href="bios-update-from-dos-usb.html">Updating the BIOS from a DOS USB drive</a></li>
+<li><a href="secure-boot-and-csm-for-dos.html">Secure Boot, UEFI and CSM: booting DOS on modern hardware</a></li>
+<li><a href="fat16-limits-and-4gb-usb-drives.html">FAT16 limits: why a DOS USB drive stops at 2-4 GB</a></li>
+<li><a href="ms-dos-boot-errors-explained.html">MS-DOS boot errors explained</a></li>
+<li><a href="hard-disk-diagnostics-from-dos.html">Testing hard drives and memory from DOS</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Need a bootable MS-DOS USB drive?</b></p>
+<p>The MBFUTool 2.0 trial gives you every feature for 30 days, no key required.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Download the trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Full version</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — MS-DOS image toolkit.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Self-employed Sementsul Maxim Gennadievich, INN 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Documents</h2>
+        <nav aria-label="Documents">
+      <a href="/en/terms.html">Terms and licence</a>
+      <a href="/en/privacy.html">Privacy</a>
+      <a href="/en/cookies.html">Cookies</a>
+      <a href="/en/refund.html">Payment and refunds</a>
+      <a href="/en/contacts.html">Contacts and seller details</a>
+      <a href="/en/licenses.html">Third-party licences</a>
+      <a href="/en/ms-dos-license.html">Where to get MS-DOS</a>
+      <a href="/en/dmca.html">Rights holders</a>
+      <a href="/en/accessibility.html">Accessibility</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Project</h2>
+        <nav aria-label="Project">
+          <a href="/en/stati.html">Guides</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/" hreflang="ru" lang="ru">Русская версия</a>
+        </nav>
+        <nav aria-label="Project">
+          <a href="/en/buy.html">Buy and get the files</a>
+          <a href="/en/trial-vs-full.html">Trial vs full version</a>
+          <a href="/en/verify.html">Verify the build</a>
+          <a href="/en/mbfu-format.html">.mbfu format</a>
+          <a href="/en/changelog.html">Version history</a>
+          <a href="/en/about.html">About the author</a>
+        </nav>
+        <p class="note">Trial — 30 days free</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Cookie settings</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS is a trademark of Microsoft Corporation. DOSBox is distributed under GPLv2. MBFU is not affiliated with Microsoft and does not distribute MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="en">
+  <div class="consent-inner">
+    <p>We use cookies for analytics to understand which docs are useful. Analytics scripts run only with your consent; without it the site works without cookies. <a href="/en/cookies.html">Details</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Accept analytics</button>
+      <button type="button" id="consent-reject">Essential only</button>
+      <button type="button" data-consent-settings>Cookie settings</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="en" aria-labelledby="consent-title">
+  <h2 id="consent-title">Cookie settings</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Analytics</b><span>Yandex Metrica and Google Analytics: aggregate visit statistics. They set _ym_* and _ga* cookies.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Save</button>
+      <button type="submit" value="close" formnovalidate>Close</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

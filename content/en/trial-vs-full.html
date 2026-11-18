@@ -1,0 +1,88 @@
+<section class="block">
+  <div class="wrap legal">
+    <h1>Trial and the full version: the difference</h1>
+    <p class="updated">Version dated 18 November 2026.</p>
+
+    <p class="lead">
+      The only difference is time. The Trial and the full version share the same
+      functionality: the same four operations, the same interface, the same image
+      handling.
+    </p>
+
+    <h2 id="table">Comparison</h2>
+    <table>
+      <tr><th>Parameter</th><th>Trial</th><th>Full version</th></tr>
+      <tr><td>Working period</td><td>{{TRIAL_DAYS}} days from first start</td><td>unlimited</td></tr>
+      <tr><td>Writing an MS-DOS image to USB</td><td>yes</td><td>yes</td></tr>
+      <tr><td>Creating a .mbfu image</td><td>yes</td><td>yes</td></tr>
+      <tr><td>Cloning media to USB</td><td>yes</td><td>yes</td></tr>
+      <tr><td>Editing an image in DOSBox</td><td>yes</td><td>yes</td></tr>
+      <tr><td>Activation key</td><td>not needed</td><td>not needed</td></tr>
+      <tr><td>Internet connection</td><td>not required</td><td>not required</td></tr>
+      <tr><td>Critical 2.x updates</td><td>not applicable</td><td>free</td></tr>
+      <tr><td>Installation support</td><td>—</td><td>30 days after purchase</td></tr>
+      <tr><td>Cost</td><td>free</td><td>one-time purchase on Boosty</td></tr>
+    </table>
+
+    <h2 id="why">Why the Trial is limited by time, not by features</h2>
+    <p>
+      A cut-down demo cannot answer the important question: will the image write to
+      your particular USB stick and will your machine boot from it. So the trial build
+      has every operation, and the only limit is {{TRIAL_DAYS}} days from first start.
+      That is normally enough to check everything that matters.
+    </p>
+
+    <h2 id="count">How the period is counted</h2>
+    <p>
+      The first start writes a local mark into the user profile
+      (<code>%APPDATA%\MBFU\trial.json</code>) and into shared program data
+      (<code>%PROGRAMDATA%\MBFU\trial.json</code>). From then on the program counts the
+      remaining days using the system clock. If the clock is moved back by more than two
+      days, the record is treated as tampered with and the trial mode stops.
+    </p>
+    <p>
+      The counter sends nothing over the network: no telemetry, no identifiers. What is
+      stored on disk is listed on the <a href="/en/privacy.html">Privacy</a> page.
+    </p>
+
+    <h2 id="after">What happens after {{TRIAL_DAYS}} days</h2>
+    <p>
+      The program stops running operations and shows a link to Boosty. Your images, USB
+      sticks and files are untouched — the limit concerns the utility itself.
+    </p>
+
+    <h2 id="switch">Moving to the full version</h2>
+    <p>
+      There is no in-place upgrade: the Trial and the full version are separate builds.
+      After paying on <a href="{{BUY_URL}}" rel="noopener">Boosty</a> you download a build
+      without the counter, unpack it into a separate folder and work. No key to enter;
+      the old Trial folder can be deleted.
+    </p>
+    <p>
+      Purchase details: <a href="/en/buy.html">“Buy and get the files”</a>.
+    </p>
+
+    <h2 id="faq">Questions</h2>
+    <details class="faq">
+      <summary>Is the Trial a cut-down program?</summary>
+      <p>
+        No. All four operations are available from day one, including image creation and
+        editing in DOSBox.
+      </p>
+    </details>
+    <details class="faq">
+      <summary>Can the Trial be extended?</summary>
+      <p>
+        No, the period is fixed. If {{TRIAL_DAYS}} days were not enough to test on your
+        hardware, write to <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>.
+      </p>
+    </details>
+    <details class="faq">
+      <summary>Are my images preserved when I switch?</summary>
+      <p>
+        Yes. .mbfu and .img files are ordinary files in the folder you chose; they do not
+        depend on the program version.
+      </p>
+    </details>
+  </div>
+</section>

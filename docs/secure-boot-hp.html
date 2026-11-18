@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "Secure Boot на HP",
- "description": "Как отключить Secure Boot на HP и загрузиться с DOS-флешки: пошаговая инструкция.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/secure-boot-hp.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "Какой код вводить при отключении?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "HP показывает 4 цифры прямо на экране подтверждения — введите их и Enter. Это защита от случайных изменений."
-   }
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Secure Boot на HP",
+   "description": "Как отключить Secure Boot на HP и загрузиться с DOS-флешки: пошаговая инструкция.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/secure-boot-hp.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Какой код вводить при отключении?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "HP показывает 4 цифры прямо на экране подтверждения — введите их и Enter. Это защита от случайных изменений."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Чем Legacy Support отличается от Secure Boot?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Legacy Support разрешает загрузку не-UEFI систем (наш случай), Secure Boot проверяет подписи. Для DOS нужно: Legacy Enable + Secure Boot Disable."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "Чем Legacy Support отличается от Secure Boot?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Legacy Support разрешает загрузку не-UEFI систем (наш случай), Secure Boot проверяет подписи. Для DOS нужно: Legacy Enable + Secure Boot Disable."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Secure Boot на HP",
+     "item": "https://ms-dos.su/secure-boot-hp.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -92,6 +120,7 @@
 <ol><li>При включении жмите Esc, затем F10.</li><li>Security — Secure Boot Configuration.</li><li>Снимите Secure Boot, введите цифры подтверждения с экрана.</li><li>Advanced — Boot Options: Legacy Support Enable для DOS.</li><li>F10 — сохранить.</li></ol>
 <h2>Нюанс</h2>
 <p>HP требует ввод кода из 4 цифр — защита от случайного отключения.</p>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>Какой код вводить при отключении?</b><br>HP показывает 4 цифры прямо на экране подтверждения — введите их и Enter. Это защита от случайных изменений.</p>
@@ -147,6 +176,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

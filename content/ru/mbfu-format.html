@@ -1,0 +1,126 @@
+<section class="block">
+  <div class="wrap legal">
+    <h1>Формат образа .mbfu</h1>
+    <p class="updated">Редакция от 18 ноября 2026 года.</p>
+
+    <p class="lead">
+      .mbfu — контейнер для образа диска: фиксированный заголовок на 126 байт,
+      сжатие zlib и контроль целостности SHA-256. Формат описан публично, чтобы
+      образы можно было читать и проверять без запуска программы.
+    </p>
+
+    <h2 id="why">Зачем свой контейнер</h2>
+    <ul>
+      <li><b>Потоковая запись.</b> Образ можно распаковывать сразу на устройство,
+          не занимая места на диске: заголовок фиксированного размера, дальше —
+          один поток deflate.</li>
+      <li><b>Проверка целостности.</b> SHA-256 считается по несжатым данным и
+          проверяется как при распаковке, так и после записи на флешку.</li>
+      <li><b>Метаданные.</b> В заголовке лежит исходное имя файла и тип носителя,
+          поэтому по образу видно, откуда он снят.</li>
+      <li><b>Экономия.</b> Образы MS-DOS сжимаются в разы: мегабайты пустого
+          пространства и повторяющихся секторов убирает deflate.</li>
+    </ul>
+
+    <h2 id="layout">Структура файла</h2>
+    <p>
+      Заголовок — 126 байт, все многобайтные числа little-endian, выравнивания нет.
+      Формат в терминах <code>struct</code>: <code>&lt;8sHBBHQQ32s64s</code>.
+    </p>
+    <table>
+      <tr><th>Смещение</th><th>Размер</th><th>Поле</th><th>Значение</th></tr>
+      <tr><td>0</td><td>8</td><td><code>magic</code></td><td><code>MBFUIMG\x01</code></td></tr>
+      <tr><td>8</td><td>2</td><td><code>version</code></td><td>uint16, сейчас <code>1</code></td></tr>
+      <tr><td>10</td><td>1</td><td><code>image_type</code></td><td>uint8: <code>0</code> — сырой образ, <code>1</code> — дискета, <code>2</code> — жёсткий диск</td></tr>
+      <tr><td>11</td><td>1</td><td><code>compression</code></td><td>uint8: <code>1</code> — zlib (deflate)</td></tr>
+      <tr><td>12</td><td>2</td><td><code>reserved</code></td><td>uint16, всегда <code>0</code></td></tr>
+      <tr><td>14</td><td>8</td><td><code>raw_size</code></td><td>uint64, размер несжатого образа в байтах</td></tr>
+      <tr><td>22</td><td>8</td><td><code>data_size</code></td><td>uint64, размер сжатого потока в байтах</td></tr>
+      <tr><td>30</td><td>32</td><td><code>sha256</code></td><td>SHA-256 несжатого образа</td></tr>
+      <tr><td>62</td><td>64</td><td><code>name</code></td><td>имя исходного файла, ASCII, дополнено нулями</td></tr>
+    </table>
+    <p>
+      Сразу за заголовком идёт один поток zlib, длина которого равна
+      <code>data_size</code>. Других полей, оглавлений и выравниваний нет —
+      поэтому файл можно читать последовательно, не зная его размера заранее.
+    </p>
+
+    <h2 id="read">Как прочитать образ</h2>
+    <p>
+      Минимальный пример на Python — только стандартная библиотека:
+    </p>
+    <pre>import hashlib, struct, zlib
+
+HDR = "&lt;8sHBBHQQ32s64s"
+SIZE = struct.calcsize(HDR)          # 126
+
+def read_header(path):
+    with open(path, "rb") as f:
+        buf = f.read(SIZE)
+    magic, ver, itype, comp, res, raw, dsize, digest, name = struct.unpack(HDR, buf)
+    if magic != b"MBFUIMG\x01":
+        raise ValueError("not an .mbfu image")
+    return {"version": ver, "image_type": itype, "compression": comp,
+            "raw_size": raw, "data_size": dsize,
+            "sha256": digest.hex(),
+            "name": name.rstrip(b"\0").decode("ascii", "replace")}
+
+def extract(src, dst):
+    info = read_header(src)
+    h = hashlib.sha256()
+    with open(src, "rb") as f, open(dst, "wb") as out:
+        f.seek(SIZE)
+        dec = zlib.decompressobj()
+        while True:
+            chunk = f.read(1 &lt;&lt; 20)
+            if not chunk:
+                break
+            data = dec.decompress(chunk)
+            if data:
+                h.update(data)
+                out.write(data)
+        tail = dec.flush()
+        if tail:
+            h.update(tail)
+            out.write(tail)
+    if h.hexdigest() != info["sha256"]:
+        raise ValueError("checksum mismatch")
+    return info</pre>
+    <p>
+      Проверка хэша обязательна: повреждённый или обрезанный файл распакуется
+      без ошибки zlib, если обрезан по границе блока, и только SHA-256 это поймает.
+    </p>
+
+    <h2 id="input">Что программа принимает на вход</h2>
+    <ul>
+      <li><code>.mbfu</code> — собственный контейнер;</li>
+      <li><code>.img</code>, <code>.ima</code> — сырые образы дискет и дисков;</li>
+      <li><code>.vhd</code>, <code>.vfd</code> — образы виртуальных машин и дискет.</li>
+    </ul>
+    <p>
+      Сырые образы пишутся на носитель как есть; .mbfu распаковывается по ходу
+      записи, а после завершения хэш сверяется с заголовком.
+    </p>
+
+    <h2 id="limits">Ограничения</h2>
+    <ul>
+      <li>образ больше 4 ГБ не откроется в DOSBox 0.72 — он молча показывает
+          пустой диск, поэтому редактор образов ограничен этим размером;</li>
+      <li>запись на флешку возможна и для образов больше 4 ГБ, но DOS-раздел
+          всё равно ограничен FAT16;</li>
+      <li>имя файла в заголовке — ASCII; кириллица в имени заменяется безопасными
+          символами, сам образ от этого не страдает.</li>
+    </ul>
+
+    <h2 id="license">Правовой статус</h2>
+    <p>
+      Описание формата открыто: вы можете реализовать чтение .mbfu в своём
+      инструменте. Сама программа MBFUTool 2.x — проприетарная, её исходный код
+      не публикуется; условия — в <a href="/terms.html">лицензионном соглашении</a>.
+    </p>
+    <p class="fine">
+      Версия формата 1. При изменении структуры заголовка поле <code>version</code>
+      будет увеличено, а старые файлы продолжат читаться.
+    </p>
+  </div>
+</section>

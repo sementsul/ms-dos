@@ -26,26 +26,54 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "База знаний MS-DOS",
- "description": "Каталог из 100 статей про MS-DOS.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/stati.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- }
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "База знаний MS-DOS",
+   "description": "Каталог из 100 статей про MS-DOS.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/stati.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "База знаний MS-DOS",
+     "item": "https://ms-dos.su/stati.html"
+    }
+   ]
+  }
+ ]
 }
 </script>
 <script src="/assets/consent.js" defer></script>
@@ -57,7 +85,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -195,6 +223,9 @@
 <li><a href="mbfu-protiv-unetbootin.html">MBFU против UNetbootin</a><br><small>UNetbootin ставит Linux-дистрибутивы, DOS там гость сбоку. Для MS-DOS он не предназначен.</small></li>
 <li><a href="rufus-freedos-instrukciya.html">Загрузочная флешка FreeDOS через Rufus</a><br><small>Если MS-DOS-лицензии нет, а DOS нужен: Rufus + FreeDOS — легально и бесплатно.</small></li>
 <li><a href="dd-obraz-dos.html">Запись DOS-образа через dd и Win32DiskImager</a><br><small>Готовый IMG-образ льют побайтово: Linux — dd, Windows — Win32DiskImager или Rufus в режиме DD.</small></li>
+<li><a href="mbfu-protiv-winsetupfromusb.html">MBFUTool против WinSetupFromUSB для DOS</a><br><small>Сравнение MBFUTool и WinSetupFromUSB: что каждый умеет с DOS и Windows, где заканчиваются возможности и как закрыть обе задачи.</small></li>
+<li><a href="mbfu-protiv-hp-usb-disk-storage-format-tool.html">MBFUTool против HP USB Disk Storage Format Tool</a><br><small>MBFUTool против HP USB Disk Storage Format Tool: форматирование и DOS-загрузка из файлов против работы с готовыми образами и проверки целостности.</small></li>
+<li><a href="mbfu-protiv-tolko-dosbox.html">MBFUTool или только DOSBox: что выбрать</a><br><small>MBFUTool или только DOSBox: когда хватает эмулятора, когда нужна реальная загрузка с флешки и как MBFUTool использует DOSBox для правки образов.</small></li>
 </ul>
 <h2>Гайды</h2>
 <ul class="mega">
@@ -205,6 +236,45 @@
 <li><a href="multiboot-dos-windows.html">DOS и Windows на одной флешке</a><br><small>Схема: первый раздел FAT16 активный с DOS (до 4 ГБ), второй — NTFS/exFAT с Windows-образами и драйверами. Грузитесь с первого.</small></li>
 <li><a href="usb2-usb3-dos.html">USB 2.0 против 3.0 для DOS-флешки</a><br><small>DOS и BIOS лучше дружат с USB 2.0: старые BIOS могут не увидеть флешку в синем порту 3.x. Втыкайте в черный порт 2.0.</small></li>
 <li><a href="razmer-fleshki-dos.html">Какую флешку взять под MS-DOS</a><br><small>Идеал: 1–4 ГБ, USB 2.0, без шифрования и U3-софта. MS-DOS 6.22 + NC занимают ~15 МБ — остальное под игры и файлы.</small></li>
+</ul>
+<h2>Прошивка BIOS</h2>
+<ul class="mega">
+<li><a href="proshivka-bios-s-dos-fleshki.html">Прошивка BIOS с DOS-флешки</a><br><small>Как прошить BIOS с загрузочной DOS-флешки: определить плату, скачать файл и прошивальщик, проверить хэш, запустить запись и не прервать питание.</small></li>
+<li><a href="proshivka-bios-asus-msi-gigabyte.html">Прошивка BIOS: ASUS, MSI, Gigabyte, ASRock</a><br><small>Где брать прошивки ASUS, MSI, Gigabyte и ASRock, чем отличаются EZ Flash, M-FLASH, Q-Flash и Instant Flash и когда нужна DOS-утилита.</small></li>
+<li><a href="proshivka-bios-noutbuka-bez-windows.html">Обновление BIOS ноутбука без Windows</a><br><small>Как обновить BIOS ноутбука без Windows: встроенный флешер, DOS-утилита вендора, загрузочная флешка, риски батареи и откат версии.</small></li>
+<li><a href="proshivka-bios-noutbuka-sboy.html">Что делать, если прошивка BIOS прервалась</a><br><small>Прошивка BIOS прервалась: чёрный экран или циклическая перезагрузка. Диагностика, BIOS Flashback, Dual BIOS, Q-Flash Plus и когда нужен CH341A.</small></li>
+<li><a href="proshivka-bios-fajl-ne-podhodit.html">BIOS: файл прошивки не подходит</a><br><small>«BIOS file is not correct» и «ROM ID mismatch»: почему файл прошивки не подходит, как проверить ревизию платы, размер и хэш файла.</small></li>
+</ul>
+<h2>Диагностика</h2>
+<ul class="mega">
+<li><a href="mhdd-diagnostika-hdd.html">MHDD: диагностика жёсткого диска</a><br><small>MHDD проверяет HDD на уровне портов: SMART, карта поверхности, сектора с задержкой. Как запустить с DOS-флешки и что опасно делать.</small></li>
+<li><a href="victoria-diagnostika-diskov.html">Victoria: проверка HDD и SSD из DOS</a><br><small>Victoria для DOS и Windows: SMART, график сканирования, критичные атрибуты 05, C5 и C7. Почему DOS-версия точнее на старых дисках и чего не делать.</small></li>
+<li><a href="memtest86-plus.html">Memtest86+: проверка памяти</a><br><small>Memtest86+: как записать на флешку, сколько прогонов достаточно, как читать ошибки и почему тест не ловит редкие сбои при плохом блоке питания.</small></li>
+<li><a href="usbaspi-i-usb-v-dos.html">USB в DOS: USBASPI, DUSE и почему флешка не видна</a><br><small>Почему DOS не видит USB-флешку, как работают USBASPI.SYS и DUSE.EXE, при чём тут UHCI, OHCI, EHCI и когда проще загрузиться с CD или DOSBox.</small></li>
+</ul>
+<h2>Промышленность</h2>
+<ul class="mega">
+<li><a href="dos-dlya-stanka-i-chpu.html">MS-DOS для станка и ЧПУ</a><br><small>Почему промышленные станки и ЧПУ до сих пор работают на MS-DOS: детерминированное время реакции, прямой доступ к портам, старые лицензии.</small></li>
+<li><a href="cf-karta-ili-ide-dom-vmesto-hdd.html">CF-карта или IDE DOM вместо винчестера</a><br><small>Замена винчестера на CF-карту или IDE DOM в промышленном ПК: режим Fixed Disk, износ, температурный диапазон и перенос системы.</small></li>
+<li><a href="rezervnaya-kopiya-promyshlennogo-pk.html">Резервная копия промышленного ПК со DOS</a><br><small>Почему обычный бэкап файлов не спасает промышленный ПК со DOS и как снять, проверить и хранить посекторный образ носителя.</small></li>
+</ul>
+<h2>Восстановление данных</h2>
+<ul class="mega">
+<li><a href="vosstanovlenie-dannyh-iz-dos.html">Восстановление данных утилитами DOS</a><br><small>Когда DOS-утилиты уместны при восстановлении данных, зачем сначала снимать образ и какие инструменты применяют: Norton Utilities, MHDD, dd.</small></li>
+<li><a href="obraz-umirayushchego-diska.html">Снять образ с умирающего диска</a><br><small>Последовательное чтение, пропуск ошибок и образ .mbfu с проверкой SHA-256: как снять данные с умирающего диска и что делать после.</small></li>
+<li><a href="undelete-na-praktike.html">UNDELETE на практике</a><br><small>Как работает UNDELETE в FAT, почему новые файлы убивают шансы на восстановление и в каком порядке действовать после удаления.</small></li>
+</ul>
+<h2>Инструкции</h2>
+<ul class="mega">
+<li><a href="kak-sozdat-zagruzochnuyu-fleshku-ms-dos-hub.html">Загрузочная флешка MS-DOS: полный порядок действий</a><br><small>Полный порядок создания загрузочной флешки MS-DOS: требования, запись образа в MBFUTool 2.0, проверка загрузки, таблица ошибок и ссылки на разборы.</small></li>
+<li><a href="oshibki-zagruzki-dos-hub.html">Ошибки загрузки DOS: разбор всех сообщений</a><br><small>Разбор сообщений, с которыми не грузится DOS: Non-System disk, Invalid media type, Missing operating system, лимит FAT16, Write protect, HIMEM.SYS.</small></li>
+<li><a href="glossarij-dos-terminov.html">Глоссарий DOS-терминов</a><br><small>Глоссарий DOS-терминов: MBR, VBR, FAT12/16/32, CHS и LBA, IO.SYS, HIMEM, XMS/EMS/UMB, образы .img и .vhd, CSM, Secure Boot — коротко и по делу.</small></li>
+</ul>
+<h2>Версии на флешку</h2>
+<ul class="mega">
+<li><a href="ms-dos-33-na-fleshku.html">MS-DOS 3.3 на флешку</a><br><small>MS-DOS 3.3 на флешку: что умеет версия 1987 года, какие диски и разделы поддерживает, как записать образ и почему современное железо её не видит.</small></li>
+<li><a href="ms-dos-500-na-fleshku.html">MS-DOS 5.00 на флешку</a><br><small>MS-DOS 5.00 на флешку: EDIT и QBASIC, HIMEM.SYS и загрузка выше 640 КБ, порядок записи, совместимость с USB и настройка CONFIG.SYS.</small></li>
+<li><a href="ms-dos-622-na-fleshku.html">MS-DOS 6.22 на флешку</a><br><small>MS-DOS 6.22 на флешку: почему эта версия основная, что нужно для записи, лимит FAT16 в 4 ГБ, состав файлов и проверка загрузки.</small></li>
 </ul>
 
     <div class="cta-box">
@@ -244,7 +314,15 @@
         <nav aria-label="Проект">
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
-          <a href="/en/" hreflang="en" lang="en">English version</a>
+          <a href="/en/stati.html" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

@@ -16,6 +16,13 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/cf-karta-ili-ide-dom-vmesto-hdd.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/cf-karta-ili-ide-dom-vmesto-hdd.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/cf-karta-ili-ide-dom-vmesto-hdd.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/chto-takoe-ms-dos.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/chto-takoe-ms-dos.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/chto-takoe-ms-dos.html"/>
@@ -33,6 +40,13 @@
     <loc>https://ms-dos.su/dd-obraz-dos.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/dd-obraz-dos.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/dd-obraz-dos.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/dos-dlya-stanka-i-chpu.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/dos-dlya-stanka-i-chpu.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/dos-dlya-stanka-i-chpu.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -107,6 +121,13 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/glossarij-dos-terminov.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/glossarij-dos-terminov.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/glossarij-dos-terminov.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/himem-sys.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/himem-sys.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/himem-sys.html"/>
@@ -117,6 +138,13 @@
     <loc>https://ms-dos.su/istoriya-ms-dos.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/istoriya-ms-dos.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/istoriya-ms-dos.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/kak-sozdat-zagruzochnuyu-fleshku-ms-dos-hub.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/kak-sozdat-zagruzochnuyu-fleshku-ms-dos-hub.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/kak-sozdat-zagruzochnuyu-fleshku-ms-dos-hub.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -338,9 +366,23 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/mbfu-protiv-hp-usb-disk-storage-format-tool.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/mbfu-protiv-hp-usb-disk-storage-format-tool.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/mbfu-protiv-hp-usb-disk-storage-format-tool.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/mbfu-protiv-rufus.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/mbfu-protiv-rufus.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/mbfu-protiv-rufus.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/mbfu-protiv-tolko-dosbox.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/mbfu-protiv-tolko-dosbox.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/mbfu-protiv-tolko-dosbox.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -359,6 +401,27 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/mbfu-protiv-winsetupfromusb.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/mbfu-protiv-winsetupfromusb.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/mbfu-protiv-winsetupfromusb.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/memtest86-plus.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/memtest86-plus.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/memtest86-plus.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/mhdd-diagnostika-hdd.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/mhdd-diagnostika-hdd.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/mhdd-diagnostika-hdd.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/ms-dos-1x.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-1x.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-1x.html"/>
@@ -369,6 +432,13 @@
     <loc>https://ms-dos.su/ms-dos-2x.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-2x.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-2x.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/ms-dos-33-na-fleshku.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-33-na-fleshku.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-33-na-fleshku.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -394,6 +464,13 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/ms-dos-500-na-fleshku.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-500-na-fleshku.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-500-na-fleshku.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/ms-dos-6-0.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-6-0.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-6-0.html"/>
@@ -411,6 +488,13 @@
     <loc>https://ms-dos.su/ms-dos-6-22.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-6-22.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-6-22.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/ms-dos-622-na-fleshku.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-622-na-fleshku.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-622-na-fleshku.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -492,6 +576,13 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/obraz-umirayushchego-diska.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/obraz-umirayushchego-diska.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/obraz-umirayushchego-diska.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/oshibka-bad-command.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/oshibka-bad-command.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/oshibka-bad-command.html"/>
@@ -562,9 +653,51 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/oshibki-zagruzki-dos-hub.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/oshibki-zagruzki-dos-hub.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/oshibki-zagruzki-dos-hub.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/pamyat-640k.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/pamyat-640k.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/pamyat-640k.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/proshivka-bios-asus-msi-gigabyte.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/proshivka-bios-asus-msi-gigabyte.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/proshivka-bios-asus-msi-gigabyte.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/proshivka-bios-fajl-ne-podhodit.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/proshivka-bios-fajl-ne-podhodit.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/proshivka-bios-fajl-ne-podhodit.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/proshivka-bios-noutbuka-bez-windows.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/proshivka-bios-noutbuka-bez-windows.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/proshivka-bios-noutbuka-bez-windows.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/proshivka-bios-noutbuka-sboy.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/proshivka-bios-noutbuka-sboy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/proshivka-bios-noutbuka-sboy.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/proshivka-bios-s-dos-fleshki.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/proshivka-bios-s-dos-fleshki.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/proshivka-bios-s-dos-fleshki.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -621,6 +754,13 @@
     <loc>https://ms-dos.su/razmer-klastera.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/razmer-klastera.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/razmer-klastera.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/rezervnaya-kopiya-promyshlennogo-pk.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/rezervnaya-kopiya-promyshlennogo-pk.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/rezervnaya-kopiya-promyshlennogo-pk.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -695,9 +835,127 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/undelete-na-praktike.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/undelete-na-praktike.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/undelete-na-praktike.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/usb2-usb3-dos.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/usb2-usb3-dos.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/usb2-usb3-dos.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/usbaspi-i-usb-v-dos.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/usbaspi-i-usb-v-dos.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/usbaspi-i-usb-v-dos.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/victoria-diagnostika-diskov.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/victoria-diagnostika-diskov.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/victoria-diagnostika-diskov.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/vosstanovlenie-dannyh-iz-dos.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/vosstanovlenie-dannyh-iz-dos.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/vosstanovlenie-dannyh-iz-dos.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/best-ms-dos-usb-tools.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/best-ms-dos-usb-tools.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/bios-update-from-dos-usb.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/bios-update-from-dos-usb.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/dosbox-mount-and-imgmount.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/dosbox-mount-and-imgmount.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/fat16-limits-and-4gb-usb-drives.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/fat16-limits-and-4gb-usb-drives.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/floppy-images-ima-vfd.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/floppy-images-ima-vfd.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/hard-disk-diagnostics-from-dos.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/hard-disk-diagnostics-from-dos.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/himem-emm386-memory-management.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/himem-emm386-memory-management.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/how-to-create-bootable-ms-dos-usb.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/how-to-create-bootable-ms-dos-usb.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/ms-dos-500-vs-622.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/ms-dos-500-vs-622.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/ms-dos-boot-errors-explained.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/ms-dos-boot-errors-explained.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/ms-dos-command-reference.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/ms-dos-command-reference.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/ms-dos-in-virtualbox-or-dosbox.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/ms-dos-in-virtualbox-or-dosbox.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/no-bootable-device-and-other-errors.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/no-bootable-device-and-other-errors.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/secure-boot-and-csm-for-dos.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/secure-boot-and-csm-for-dos.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/secure-boot-asus-msi-steps.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/secure-boot-asus-msi-steps.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

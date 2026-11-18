@@ -23,26 +23,54 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "История MS-DOS: от QDOS до 6.22",
- "description": "1980: Тим Патерсон пишет QDOS за 6 недель. 1981: Microsoft покупает ее за $50–75 тыс. и продает IBM как PC DOS 1.0. Дальше — версии 2.x–6.22, война с ",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/istoriya-ms-dos.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- }
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "История MS-DOS: от QDOS до 6.22",
+   "description": "1980: Тим Патерсон пишет QDOS за 6 недель. 1981: Microsoft покупает ее за $50–75 тыс. и продает IBM как PC DOS 1.0. Дальше — версии 2.x–6.22, война с ",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/istoriya-ms-dos.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "История MS-DOS: от QDOS до 6.22",
+     "item": "https://ms-dos.su/istoriya-ms-dos.html"
+    }
+   ]
+  }
+ ]
 }
 </script>
 <script src="/assets/consent.js" defer></script>
@@ -54,7 +82,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -74,6 +102,7 @@
 <ul><li>1981 — PC DOS 1.0 с первым IBM PC.</li><li>1991 — MS-DOS 5.0: редактор EDIT, HIMEM.</li><li>1994 — MS-DOS 6.22: последняя отдельная версия.</li></ul>
 <h2>Итог</h2>
 <p>Исходники MS-DOS 1.25/2.0/4.0 Microsoft открыл под MIT на GitHub — для изучения.</p>
+
 
 
     </article>
@@ -126,6 +155,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

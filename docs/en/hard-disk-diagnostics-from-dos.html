@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hard drive and memory diagnostics from DOS | ms-dos.su</title>
+<meta name="description" content="Testing hard drives and memory from DOS with MHDD, Victoria, Memtest86+ and SeaTools: SMART, surface scans, legacy IDE mode, and imaging before repair.">
+<link rel="canonical" href="https://ms-dos.su/en/hard-disk-diagnostics-from-dos.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="Hard drive and memory diagnostics from DOS | ms-dos.su">
+<meta property="og:description" content="Testing hard drives and memory from DOS with MHDD, Victoria, Memtest86+ and SeaTools: SMART, surface scans, legacy IDE mode, and imaging before repair.">
+<meta property="og:url" content="https://ms-dos.su/en/hard-disk-diagnostics-from-dos.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Testing hard drives and memory from DOS",
+   "description": "Testing hard drives and memory from DOS with MHDD, Victoria, Memtest86+ and SeaTools: SMART, surface scans, legacy IDE mode, and imaging before repair.",
+   "inLanguage": "en",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/en/hard-disk-diagnostics-from-dos.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Does MHDD work with NVMe drives?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. MHDD addresses ATA and SATA drives through legacy controller interfaces; NVMe needs a different tool."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How many Memtest86+ passes are enough?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "At least two full passes. One can miss errors that appear only when the modules warm up or when a pattern repeats."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is a surface scan safe for the data?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A read-only scan is. Erase, write and remap operations overwrite sectors, so copy the data first."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Will SeaTools work on another brand of drive?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It may detect it, but the tests are written for Seagate drives. Use the drive maker's own tool elsewhere."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://ms-dos.su/en/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Testing hard drives and memory from DOS",
+     "item": "https://ms-dos.su/en/hard-disk-diagnostics-from-dos.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "Testing hard drives and memory from DOS",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Read the SMART data",
+     "text": "Note the reallocated, pending and CRC counters before running anything that writes to the drive."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Copy the data off",
+     "text": "If the drive still reads, copy the important files to another disk before any repair."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Scan the surface",
+     "text": "Boot MHDD or Victoria, run a read-only scan, look for slow blocks and errors."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Test the memory",
+     "text": "Run Memtest86+ for at least two full passes to rule out RAM."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Capture an image",
+     "text": "For DOS media, create a .mbfu image first so you can work from a verified copy."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="/en/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Main navigation">
+      <a href="/en/#features">Features</a>
+      <a href="/en/#trial">Trial</a>
+      <a href="/en/buy.html">Buy</a>
+      <a href="/en/stati.html">Guides</a>
+      <a href="/en/contacts.html">Contact</a>
+  </nav>
+  <span class="lang"><a href="/" hreflang="ru" lang="ru" aria-label="RU">RU</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb">
+<a href="/en/">MBFU</a> / <a href="/en/stati.html">Guides</a> / Diagnostics
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>Testing hard drives and memory from DOS</h1>
+      <p class="lead">DOS diagnostics talk to the hardware with no operating system in the way, which is exactly why they still find faults that Windows hides.</p>
+<h2>Why boot from DOS at all</h2>
+<p>DOS diagnostic tools reach the drive's SMART registers and issue raw read commands without a driver, a cache or a background service in between. That is why a drive that looks healthy in Windows can still fail an MHDD scan.</p>
+<h2>Start with SMART</h2>
+<p>Before any surface scan, read the drive's own counters. The attributes worth watching:</p>
+<ul>
+<li><b>05 Reallocated sectors</b> - sectors the drive has retired. A growing count means the surface is going.</li>
+<li><b>C5 Pending sectors</b> - sectors that could not be read and await a decision.</li>
+<li><b>C6 Uncorrectable sectors</b> - reads that failed even after error correction.</li>
+<li><b>C7 Interface CRC errors</b> - usually a cable or port problem, not the platters.</li>
+</ul>
+<p>A drive with reallocated sectors is not repaired by a scan. Copy the data first.</p>
+<h2>Surface scans: MHDD and Victoria</h2>
+<p>MHDD boots from its own media and works with ATA and SATA drives when the controller is in legacy or IDE mode. It scans block by block and shows response times, so slow areas appear before they become errors. Its <b>ERASE</b> command overwrites sectors and destroys data; the same is true of write and remap in Victoria.</p>
+<p>Victoria exists in DOS and Windows versions and combines SMART reading, a surface scan and simple repair actions. Treat every repair action as destructive: a remap writes to the drive, and a failing drive may not survive it.</p>
+<h2>Memory: Memtest86+</h2>
+<p>Memory faults look like disk faults: corrupt files, random crashes, a DOS that will not load. Memtest86+ boots from USB or CD, writes patterns across RAM and compares what comes back. Run at least two full passes - one pass misses intermittent errors - and note the failing addresses.</p>
+<ul>
+<li>Test with XMP or EXPO disabled first; an unstable memory profile is a common cause.</li>
+<li>If errors appear, test one module at a time to find the faulty stick.</li>
+</ul>
+<h2>SeaTools for Seagate drives</h2>
+<p>Seagate's SeaTools has a DOS version that runs the vendor's short and long tests. The long generic test reads the whole surface and is the one that matters for a warranty claim, so keep the result. For other brands use that vendor's own tool.</p>
+<h2>When the tool cannot see the drive</h2>
+<p>Most DOS diagnostics expect the controller in IDE or legacy mode. With AHCI enabled the drive may be invisible to a tool that addresses legacy registers directly. The fix is in the firmware: set the SATA mode to IDE or Legacy, run the diagnostic, then put the setting back.</p>
+<ul>
+<li>Check the cable and try another port before blaming the tool.</li>
+<li>NVMe drives are not supported by these utilities; they need a different toolset.</li>
+<li>A drive the firmware does not detect will not be detected by DOS either; see <a href="/en/ms-dos-boot-errors-explained.html">boot errors</a>.</li>
+</ul>
+<h2>Image before you repair</h2>
+<p>Every repair action on a failing drive - remap, erase, low-level format - writes to the media. If the data matters, copy it to a different disk first and verify the copy; a dying drive may not survive a second attempt.</p>
+<p>For MS-DOS media, <b>Create MBFU image from disk/floppy/USB</b> in MBFUTool captures the contents into a .mbfu container: a header, a zlib-compressed payload and a SHA-256 digest of the raw image. That gives you a verified copy to work from. It is not a forensic imager, and it is meant for DOS file systems.</p>
+<h2>Order of work</h2>
+<ol>
+<li>Read SMART and write the numbers down with the date.</li>
+<li>Copy the data off, if the drive still reads.</li>
+<li>Run a read-only surface scan and note the slow blocks and errors.</li>
+<li>Decide: replace the drive, or repair it with the vendor's tool.</li>
+<li>Test the memory separately before blaming the disk for corruption.</li>
+</ol>
+
+<h2>Step by step</h2>
+<ol class="steps">
+<li><b>Read the SMART data.</b> Note the reallocated, pending and CRC counters before running anything that writes to the drive.</li>
+<li><b>Copy the data off.</b> If the drive still reads, copy the important files to another disk before any repair.</li>
+<li><b>Scan the surface.</b> Boot MHDD or Victoria, run a read-only scan, look for slow blocks and errors.</li>
+<li><b>Test the memory.</b> Run Memtest86+ for at least two full passes to rule out RAM.</li>
+<li><b>Capture an image.</b> For DOS media, create a .mbfu image first so you can work from a verified copy.</li>
+</ol>
+
+<h2>Questions</h2>
+<p><b>Does MHDD work with NVMe drives?</b><br>No. MHDD addresses ATA and SATA drives through legacy controller interfaces; NVMe needs a different tool.</p>
+<p><b>How many Memtest86+ passes are enough?</b><br>At least two full passes. One can miss errors that appear only when the modules warm up or when a pattern repeats.</p>
+<p><b>Is a surface scan safe for the data?</b><br>A read-only scan is. Erase, write and remap operations overwrite sectors, so copy the data first.</p>
+<p><b>Will SeaTools work on another brand of drive?</b><br>It may detect it, but the tests are written for Seagate drives. Use the drive maker's own tool elsewhere.</p>
+
+    </article>
+<aside>
+<h2>Read next</h2>
+<ul>
+<li><a href="how-to-create-bootable-ms-dos-usb.html">How to create a bootable MS-DOS USB drive</a></li>
+<li><a href="ms-dos-in-virtualbox-or-dosbox.html">Running MS-DOS in DOSBox or a virtual machine</a></li>
+<li><a href="bios-update-from-dos-usb.html">Updating the BIOS from a DOS USB drive</a></li>
+<li><a href="secure-boot-and-csm-for-dos.html">Secure Boot, UEFI and CSM: booting DOS on modern hardware</a></li>
+<li><a href="fat16-limits-and-4gb-usb-drives.html">FAT16 limits: why a DOS USB drive stops at 2-4 GB</a></li>
+<li><a href="ms-dos-boot-errors-explained.html">MS-DOS boot errors explained</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Need a bootable MS-DOS USB drive?</b></p>
+<p>The MBFUTool 2.0 trial gives you every feature for 30 days, no key required.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Download the trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Full version</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — MS-DOS image toolkit.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Self-employed Sementsul Maxim Gennadievich, INN 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Documents</h2>
+        <nav aria-label="Documents">
+      <a href="/en/terms.html">Terms and licence</a>
+      <a href="/en/privacy.html">Privacy</a>
+      <a href="/en/cookies.html">Cookies</a>
+      <a href="/en/refund.html">Payment and refunds</a>
+      <a href="/en/contacts.html">Contacts and seller details</a>
+      <a href="/en/licenses.html">Third-party licences</a>
+      <a href="/en/ms-dos-license.html">Where to get MS-DOS</a>
+      <a href="/en/dmca.html">Rights holders</a>
+      <a href="/en/accessibility.html">Accessibility</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Project</h2>
+        <nav aria-label="Project">
+          <a href="/en/stati.html">Guides</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/" hreflang="ru" lang="ru">Русская версия</a>
+        </nav>
+        <nav aria-label="Project">
+          <a href="/en/buy.html">Buy and get the files</a>
+          <a href="/en/trial-vs-full.html">Trial vs full version</a>
+          <a href="/en/verify.html">Verify the build</a>
+          <a href="/en/mbfu-format.html">.mbfu format</a>
+          <a href="/en/changelog.html">Version history</a>
+          <a href="/en/about.html">About the author</a>
+        </nav>
+        <p class="note">Trial — 30 days free</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Cookie settings</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS is a trademark of Microsoft Corporation. DOSBox is distributed under GPLv2. MBFU is not affiliated with Microsoft and does not distribute MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="en">
+  <div class="consent-inner">
+    <p>We use cookies for analytics to understand which docs are useful. Analytics scripts run only with your consent; without it the site works without cookies. <a href="/en/cookies.html">Details</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Accept analytics</button>
+      <button type="button" id="consent-reject">Essential only</button>
+      <button type="button" data-consent-settings>Cookie settings</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="en" aria-labelledby="consent-title">
+  <h2 id="consent-title">Cookie settings</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Analytics</b><span>Yandex Metrica and Google Analytics: aggregate visit statistics. They set _ym_* and _ga* cookies.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Save</button>
+      <button type="submit" value="close" formnovalidate>Close</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

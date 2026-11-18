@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNDELETE на практике: что восстанавливается в FAT | ms-dos.su</title>
+<meta name="description" content="Как работает UNDELETE в FAT, почему новые файлы убивают шансы на восстановление и в каком порядке действовать после удаления.">
+<link rel="canonical" href="https://ms-dos.su/undelete-na-praktike.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="UNDELETE на практике: что восстанавливается в FAT | ms-dos.su">
+<meta property="og:description" content="Как работает UNDELETE в FAT, почему новые файлы убивают шансы на восстановление и в каком порядке действовать после удаления.">
+<meta property="og:url" content="https://ms-dos.su/undelete-na-praktike.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "UNDELETE на практике",
+   "description": "Как работает UNDELETE в FAT, почему новые файлы убивают шансы на восстановление и в каком порядке действовать после удаления.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/undelete-na-praktike.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Можно ли восстановить файл, удалённый неделю назад?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Шанс невелик, если диск активно использовался: освобождённые кластеры почти наверняка заняты другими данными. Чем меньше записей было после удаления, тем выше вероятность."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Поможет ли UNDELETE на диске с NTFS?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет. Команда рассчитана на FAT и не понимает NTFS. Для современных томов применяют другие средства и работают по копии."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Зачем нужен ключ /LIST?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Он показывает, что вообще можно восстановить, и ничего не меняет на диске. Это безопасный первый шаг перед любой операцией записи."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "UNDELETE на практике",
+     "item": "https://ms-dos.su/undelete-na-praktike.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "UNDELETE на практике",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Выключите питание",
+     "text": "Сразу после неудачного удаления остановите ПК, чтобы система не записала новые данные."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Загрузитесь с внешнего носителя",
+     "text": "Используйте DOS-флешку и не монтируйте внутренний диск на запись."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Снимите образ диска",
+     "text": "Создайте .mbfu с помощью MBFUTool и сохраните файл на исправный носитель."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Посмотрите список ключом /LIST",
+     "text": "Запустите UNDELETE /LIST по образу и оцените, какие файлы вообще подлежат восстановлению."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Восстановите на другой носитель",
+     "text": "Пишите восстановленные файлы на отдельный диск, а не на тот, откуда читаете."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="topbar">
+  <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Основная навигация">
+      <a href="/#features">Возможности</a>
+      <a href="/#trial">Trial</a>
+      <a href="/buy.html">Купить</a>
+      <a href="/stati.html">Статьи</a>
+      <a href="/contacts.html">Контакты</a>
+  </nav>
+  <span class="lang"><a href="/en/" hreflang="en" lang="en" aria-label="EN">EN</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Хлебные крошки">
+<a href="/">MBFU</a> / <a href="/stati.html">Статьи</a> / Восстановление данных
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>UNDELETE на практике</h1>
+      <p class="lead">UNDELETE возвращает файлы, удалённые в FAT, но только при одном условии: на диск после удаления ничего не записали. Разбираем, что реально восстанавливается и в каком порядке действовать.</p>
+<h2>Что реально восстанавливается в FAT</h2>
+<p>В FAT удаление файла — это правка двух структур: в каталоге первый символ имени заменяется специальным кодом, а цепочка кластеров в таблице размещения помечается свободной. Сами данные остаются на месте, пока их не перезапишут.</p><p>Отсюда границы метода: восстановить можно только то, что не перезаписано. Файл, удалённый месяц назад на активно работающем диске, почти наверняка потерян. Файл, удалённый минуту назад и не тронутый записью, восстанавливается с высокой вероятностью.</p><p>Лучше всего восстанавливаются небольшие файлы, записанные подряд и не успевшие фрагментироваться: их кластеры идут цепочкой, и достаточно вернуть первый. Хуже — большие документы, которые писались в несколько приёмов и разбросаны по диску: часть цепочки к этому моменту уже занята другими данными.</p>
+<h2>Почему новые файлы убивают шансы</h2>
+<p>Файловая система считает освобождённые кластеры доступными и отдаёт их первому же запросу на запись. Загрузка системы, создание временного файла, открытие документа в редакторе — всё это пишет на диск и затирает данные удалённых файлов.</p><p>Поэтому главное действие после случайного удаления — прекратить работу. Не проверять, точно ли удалилось, не сохранять что-нибудь на всякий случай, а выключить питание.</p><p>Отдельная ловушка — корзина в оболочках и программах-файловых менеджерах. Она создаёт иллюзию защиты, но при очистке выполняется обычное удаление, и дальше всё зависит от того, сколько записей прошло после него.</p>
+<h2>Порядок действий</h2>
+<p>Выключите ПК и не загружайтесь с его диска. Загрузите DOS с внешнего носителя — например, с флешки, созданной по инструкции <a href="/kak-sozdat-zagruzochnuyu-fleshku.html">как создать загрузочную флешку MS-DOS</a>. Снимите образ диска целиком и работайте с образом, а не с оригиналом.</p><p>Для снятия образа подойдёт MBFUTool 2.0: «Create MBFU image from disk/floppy/USB» создаёт .mbfu с проверкой SHA-256, а «Write MS-DOS image to USB flash» готовит загрузочный носитель. Права администратора нужны, данные на целевом носителе уничтожаются, запись на системный диск заблокирована.</p>
+<h2>UNDELETE и её ключи</h2>
+<p>Команда <code>UNDELETE</code> входит в MS-DOS 5.0 и 6.22 и работает в нескольких режимах. Без ключей она восстанавливает файлы по каталогу. Ключ <code>/LIST</code> только показывает список восстановимых файлов, ничего не меняя, — с него и стоит начинать. <code>/ALL</code> восстанавливает всё без вопросов.</p><p>Режимы <code>/DOS</code>, <code>/DT</code> и <code>/DS</code> задают источник сведений: каталог, файл отслеживания удалений или страж удалений. Два последних требуют, чтобы соответствующая служба была загружена заранее, до удаления. Если её не было, остаётся <code>/DOS</code> — и первый символ имени придётся вводить вручную.</p>
+<h2>Ограничения метода</h2>
+<p>Восстановление не работает для длинных имён в том виде, в каком их создавала Windows: DOS видит только короткие имена. Каталоги, удалённые целиком, восстанавливаются хуже отдельных файлов. Фрагментированный файл после перезаписи части кластеров соберётся битым.</p><p>Кроме того, UNDELETE — команда DOS, а не средство для современных томов: NTFS она не понимает, и запускать её на рабочей машине с Windows бессмысленно и опасно.</p><p>И последнее: восстанавливать файлы нужно на другой носитель. Запись результата на тот же диск затрёт соседние кластеры и уничтожит то, что ещё можно было спасти.</p>
+<h2>Когда нужна лаборатория</h2>
+<p>Если диск не определяется, издаёт щелчки, имеет повреждённую механику или данные были перезаписаны частично, программное восстановление даёт мало. В лаборатории вскрывают гермоблок и снимают образ с исправленных головок — это дорого, но иногда единственный путь.</p><p>Лаборатория также нужна, когда речь о массивах, шифрованных томах или о деле, где важна юридическая чистота: цепочка сохранности доказательств требует документированных процедур.</p>
+
+<h2>Порядок действий</h2>
+<ol class="steps">
+<li><b>Выключите питание.</b> Сразу после неудачного удаления остановите ПК, чтобы система не записала новые данные.</li>
+<li><b>Загрузитесь с внешнего носителя.</b> Используйте DOS-флешку и не монтируйте внутренний диск на запись.</li>
+<li><b>Снимите образ диска.</b> Создайте .mbfu с помощью MBFUTool и сохраните файл на исправный носитель.</li>
+<li><b>Посмотрите список ключом /LIST.</b> Запустите UNDELETE /LIST по образу и оцените, какие файлы вообще подлежат восстановлению.</li>
+<li><b>Восстановите на другой носитель.</b> Пишите восстановленные файлы на отдельный диск, а не на тот, откуда читаете.</li>
+</ol>
+
+<h2>Вопросы и ответы</h2>
+<p><b>Можно ли восстановить файл, удалённый неделю назад?</b><br>Шанс невелик, если диск активно использовался: освобождённые кластеры почти наверняка заняты другими данными. Чем меньше записей было после удаления, тем выше вероятность.</p>
+<p><b>Поможет ли UNDELETE на диске с NTFS?</b><br>Нет. Команда рассчитана на FAT и не понимает NTFS. Для современных томов применяют другие средства и работают по копии.</p>
+<p><b>Зачем нужен ключ /LIST?</b><br>Он показывает, что вообще можно восстановить, и ничего не меняет на диске. Это безопасный первый шаг перед любой операцией записи.</p>
+
+    </article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="vosstanovlenie-dannyh-iz-dos.html">Восстановление данных утилитами DOS</a></li>
+<li><a href="obraz-umirayushchego-diska.html">Снять образ с умирающего диска</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>Trial MBFUTool 2.0 — все функции на 30 дней, без ключа активации.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Скачать Trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Полная версия</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — Утилита для работы с образами MS-DOS.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Самозанятый Семенцул Максим Геннадиевич, ИНН 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Документы</h2>
+        <nav aria-label="Документы">
+      <a href="/terms.html">Условия и лицензия</a>
+      <a href="/privacy.html">Конфиденциальность</a>
+      <a href="/cookies.html">Файлы cookie</a>
+      <a href="/refund.html">Оплата и возврат</a>
+      <a href="/contacts.html">Контакты и реквизиты</a>
+      <a href="/licenses.html">Сторонние лицензии</a>
+      <a href="/ms-dos-license.html">Где взять MS-DOS</a>
+      <a href="/dmca.html">Правообладателям</a>
+      <a href="/accessibility.html">Доступность</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Проект</h2>
+        <nav aria-label="Проект">
+          <a href="/stati.html">Статьи</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
+        </nav>
+        <p class="note">Trial — 30 дней бесплатно</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS — товарный знак Microsoft Corporation. DOSBox распространяется по GPLv2. MBFU не связана с Microsoft и не распространяет MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="ru">
+  <div class="consent-inner">
+    <p>Мы используем файлы cookie для аналитики, чтобы понимать, чем полезна документация. Аналитические скрипты включаются только с вашего согласия; без него сайт работает без cookie. <a href="/cookies.html">Подробнее</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Принять аналитику</button>
+      <button type="button" id="consent-reject">Только необходимые</button>
+      <button type="button" data-consent-settings>Настройки cookie</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="ru" aria-labelledby="consent-title">
+  <h2 id="consent-title">Настройки cookie</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Аналитика</b><span>Яндекс.Метрика и Google Analytics: обезличенная статистика посещений. Устанавливают cookie _ym_* и _ga*.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Сохранить</button>
+      <button type="submit" value="close" formnovalidate>Закрыть</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

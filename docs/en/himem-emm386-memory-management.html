@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HIMEM.SYS, EMM386 and the 640 KB problem | ms-dos.su</title>
+<meta name="description" content="How conventional memory, UMB, XMS and EMS fit together in MS-DOS, with a sample CONFIG.SYS using HIMEM.SYS and EMM386, and when to leave EMM386 out.">
+<link rel="canonical" href="https://ms-dos.su/en/himem-emm386-memory-management.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="HIMEM.SYS, EMM386 and the 640 KB problem | ms-dos.su">
+<meta property="og:description" content="How conventional memory, UMB, XMS and EMS fit together in MS-DOS, with a sample CONFIG.SYS using HIMEM.SYS and EMM386, and when to leave EMM386 out.">
+<meta property="og:url" content="https://ms-dos.su/en/himem-emm386-memory-management.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "HIMEM.SYS, EMM386 and the 640 KB problem",
+   "description": "How conventional memory, UMB, XMS and EMS fit together in MS-DOS, with a sample CONFIG.SYS using HIMEM.SYS and EMM386, and when to leave EMM386 out.",
+   "inLanguage": "en",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/en/himem-emm386-memory-management.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Do I need EMM386 if I have plenty of RAM?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Without EMS-hungry software, NOEMS or no EMM386 at all gives you more upper memory for drivers."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why does my program still say out of memory?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It needs a large contiguous block in conventional memory. Check MEM /C and move residents high or remove them."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can HIMEM.SYS run on a 286?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, and it is how DOS gets loaded above 640 KB there. EMM386 requires a 386 or later."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://ms-dos.su/en/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "HIMEM.SYS, EMM386 and the 640 KB problem",
+     "item": "https://ms-dos.su/en/himem-emm386-memory-management.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "HIMEM.SYS, EMM386 and the 640 KB problem",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Back up CONFIG.SYS",
+     "text": "Copy CONFIG.SYS and AUTOEXEC.BAT somewhere safe before you change the memory configuration."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Load HIMEM.SYS first",
+     "text": "Add DEVICE=C:\\DOS\\HIMEM.SYS as the first device line, then add DOS=HIGH,UMB."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Decide on EMS",
+     "text": "Use NOEMS unless a specific program needs expanded memory, in which case use RAM."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Move drivers high",
+     "text": "Change DEVICE= to DEVICEHIGH= and add LH in AUTOEXEC.BAT, then reboot and check MEM /C."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="/en/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Main navigation">
+      <a href="/en/#features">Features</a>
+      <a href="/en/#trial">Trial</a>
+      <a href="/en/buy.html">Buy</a>
+      <a href="/en/stati.html">Guides</a>
+      <a href="/en/contacts.html">Contact</a>
+  </nav>
+  <span class="lang"><a href="/" hreflang="ru" lang="ru" aria-label="RU">RU</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb">
+<a href="/en/">MBFU</a> / <a href="/en/stati.html">Guides</a> / Guides
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>HIMEM.SYS, EMM386 and the 640 KB problem</h1>
+      <p class="lead">MS-DOS programs expect to run in the first 640 KB of memory. Every driver and resident program takes a slice of that space. HIMEM.SYS and EMM386 exist to move as much as possible out of it, and the four memory types are enough to fix most "out of memory" errors.</p>
+<h2>The four memory areas</h2>
+<p><b>Conventional memory</b> is the first 640 KB. DOS itself, drivers and programs all compete for it. A program that refuses to start usually needs a larger free block there, not more total memory.</p>
+<p><b>Upper memory</b> is the region between 640 KB and 1 MB. It is reserved for hardware, but unused parts can be remapped as UMBs, upper memory blocks, where drivers and resident programs can live.</p>
+<p><b>Extended memory (XMS)</b> is everything above 1 MB. HIMEM.SYS manages it and provides the high memory area, the first 64 KB above 1 MB, where DOS can place part of itself.</p>
+<p><b>Expanded memory (EMS)</b> is a bank-switched window, traditionally in upper memory, that lets programs address more than 640 KB in 16 KB pages. EMM386.EXE emulates EMS using extended memory.</p>
+<h2>A sample CONFIG.SYS</h2>
+<p>The usual order matters: HIMEM.SYS first, then EMM386, then the devices you want to load high.</p>
+<pre>DEVICE=C:\DOS\HIMEM.SYS
+DEVICE=C:\DOS\EMM386.EXE NOEMS
+DOS=HIGH,UMB
+FILES=30
+BUFFERS=20
+DEVICEHIGH=C:\DOS\MOUSE.SYS</pre>
+<p><code>DOS=HIGH,UMB</code> puts part of DOS above 1 MB and makes upper memory available. Replacing <code>NOEMS</code> with <code>RAM</code> enables both UMBs and an EMS page frame; use <code>NOEMS</code> when no program needs EMS, because the page frame costs 64 KB of upper memory.</p>
+<h2>DEVICEHIGH and LH</h2>
+<p><code>DEVICEHIGH</code> in CONFIG.SYS and <code>LH</code> in AUTOEXEC.BAT both try to load a driver or program into a UMB instead of conventional memory. They only work if EMM386 is loaded and UMBs are enabled with <code>DOS=UMB</code>. If a driver fails to load high, DOS falls back to conventional memory, so the machine still boots.</p>
+<p>MEMMAKER, available from MS-DOS 6.x, automates this tuning by trying combinations and rewriting the two files. On 5.00 the work is manual.</p>
+<h2>Checking the result</h2>
+<p><code>MEM</code> prints a summary of conventional, upper, extended and expanded memory. <code>MEM /C</code> adds a list of loaded programs and drivers grouped by the region they occupy, which is the fastest way to see what is still in conventional memory. <code>MEM /F</code> shows free regions instead.</p>
+<p>Read the largest free block, not the total. A program that needs 580 KB will not start if the total is 600 KB but fragmented into 400 KB and 200 KB pieces. Removing one resident program or moving it high often solves it.</p>
+<h2>Memory and a bootable USB stick</h2>
+<p>A stick prepared with MBFUTool 2.0 boots into a BEN menu, and the DOS tools it launches run inside the same 640 KB. If a tool reports insufficient memory, the fix is in CONFIG.SYS on the image: move drivers high, drop anything unnecessary, and keep the image lean.</p>
+
+<h2>Step by step</h2>
+<ol class="steps">
+<li><b>Back up CONFIG.SYS.</b> Copy CONFIG.SYS and AUTOEXEC.BAT somewhere safe before you change the memory configuration.</li>
+<li><b>Load HIMEM.SYS first.</b> Add DEVICE=C:\DOS\HIMEM.SYS as the first device line, then add DOS=HIGH,UMB.</li>
+<li><b>Decide on EMS.</b> Use NOEMS unless a specific program needs expanded memory, in which case use RAM.</li>
+<li><b>Move drivers high.</b> Change DEVICE= to DEVICEHIGH= and add LH in AUTOEXEC.BAT, then reboot and check MEM /C.</li>
+</ol>
+
+<h2>Questions</h2>
+<p><b>Do I need EMM386 if I have plenty of RAM?</b><br>No. Without EMS-hungry software, NOEMS or no EMM386 at all gives you more upper memory for drivers.</p>
+<p><b>Why does my program still say out of memory?</b><br>It needs a large contiguous block in conventional memory. Check MEM /C and move residents high or remove them.</p>
+<p><b>Can HIMEM.SYS run on a 286?</b><br>Yes, and it is how DOS gets loaded above 640 KB there. EMM386 requires a 386 or later.</p>
+
+    </article>
+<aside>
+<h2>Read next</h2>
+<ul>
+<li><a href="how-to-create-bootable-ms-dos-usb.html">How to create a bootable MS-DOS USB drive</a></li>
+<li><a href="ms-dos-in-virtualbox-or-dosbox.html">Running MS-DOS in DOSBox or a virtual machine</a></li>
+<li><a href="bios-update-from-dos-usb.html">Updating the BIOS from a DOS USB drive</a></li>
+<li><a href="secure-boot-and-csm-for-dos.html">Secure Boot, UEFI and CSM: booting DOS on modern hardware</a></li>
+<li><a href="fat16-limits-and-4gb-usb-drives.html">FAT16 limits: why a DOS USB drive stops at 2-4 GB</a></li>
+<li><a href="ms-dos-boot-errors-explained.html">MS-DOS boot errors explained</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Need a bootable MS-DOS USB drive?</b></p>
+<p>The MBFUTool 2.0 trial gives you every feature for 30 days, no key required.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Download the trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Full version</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — MS-DOS image toolkit.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Self-employed Sementsul Maxim Gennadievich, INN 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Documents</h2>
+        <nav aria-label="Documents">
+      <a href="/en/terms.html">Terms and licence</a>
+      <a href="/en/privacy.html">Privacy</a>
+      <a href="/en/cookies.html">Cookies</a>
+      <a href="/en/refund.html">Payment and refunds</a>
+      <a href="/en/contacts.html">Contacts and seller details</a>
+      <a href="/en/licenses.html">Third-party licences</a>
+      <a href="/en/ms-dos-license.html">Where to get MS-DOS</a>
+      <a href="/en/dmca.html">Rights holders</a>
+      <a href="/en/accessibility.html">Accessibility</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Project</h2>
+        <nav aria-label="Project">
+          <a href="/en/stati.html">Guides</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/" hreflang="ru" lang="ru">Русская версия</a>
+        </nav>
+        <nav aria-label="Project">
+          <a href="/en/buy.html">Buy and get the files</a>
+          <a href="/en/trial-vs-full.html">Trial vs full version</a>
+          <a href="/en/verify.html">Verify the build</a>
+          <a href="/en/mbfu-format.html">.mbfu format</a>
+          <a href="/en/changelog.html">Version history</a>
+          <a href="/en/about.html">About the author</a>
+        </nav>
+        <p class="note">Trial — 30 days free</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Cookie settings</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS is a trademark of Microsoft Corporation. DOSBox is distributed under GPLv2. MBFU is not affiliated with Microsoft and does not distribute MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="en">
+  <div class="consent-inner">
+    <p>We use cookies for analytics to understand which docs are useful. Analytics scripts run only with your consent; without it the site works without cookies. <a href="/en/cookies.html">Details</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Accept analytics</button>
+      <button type="button" id="consent-reject">Essential only</button>
+      <button type="button" data-consent-settings>Cookie settings</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="en" aria-labelledby="consent-title">
+  <h2 id="consent-title">Cookie settings</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Analytics</b><span>Yandex Metrica and Google Analytics: aggregate visit statistics. They set _ym_* and _ga* cookies.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Save</button>
+      <button type="submit" value="close" formnovalidate>Close</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

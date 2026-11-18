@@ -1,0 +1,72 @@
+<section class="block">
+  <div class="wrap legal">
+    <h1>Version history and updates</h1>
+    <p class="updated">Version dated 18 November 2026.</p>
+
+    <p class="lead">
+      What changes in 2.x, how updates ship and what to do if a new build does not suit
+      you. Version 2.x is the current branch; the 1.x line stays open and is kept as an
+      archive only.
+    </p>
+
+    <h2 id="policy">Update policy</h2>
+    <ul>
+      <li><b>Critical 2.x fixes</b> are free for every buyer and appear in the same
+          private Boosty post as the build.</li>
+      <li><b>New numbering</b> (2.1, 2.2) costs nothing within 2.x.</li>
+      <li><b>A move to 3.x</b>, if it ever happens, would be a separate product — the
+          2.x licence you bought stays valid.</li>
+      <li>Builds are not code-signed, so every release comes with a fresh SHA-256 on the
+          <a href="/en/verify.html">“How to verify the build”</a> page.</li>
+    </ul>
+
+    <h2 id="v200">2.0.0 — November 2026</h2>
+    <p>The first public release of the new line.</p>
+    <ul>
+      <li>Four operations: write an MS-DOS image to USB, create a .mbfu image, clone media to USB, edit an image with DOS commands.</li>
+      <li>DOSBox 0.72 inside, with a custom menu and Russian/English interface.</li>
+      <li>Own image format <a href="/en/mbfu-format.html">.mbfu</a>: zlib compression, SHA-256 integrity check.</li>
+      <li>Streaming write to the device with hash verification afterwards.</li>
+      <li>Writing to the system disk is blocked; three confirmations before data is destroyed.</li>
+      <li>Trial mode: {{TRIAL_DAYS}} days, every feature, no key and no network.</li>
+      <li>PyInstaller onedir build, so antivirus products complain less often.</li>
+    </ul>
+
+    <h2 id="v1x">1.x — archive</h2>
+    <p>
+      The first line was an open-source utility: pick a drive, write a bootable MS-DOS
+      5.00/6.22 USB stick, with safety checks before formatting. The sources remain in the
+      <a href="{{GITHUB}}" rel="noopener">repository</a> under the MIT licence, which
+      cannot be revoked for versions already published. Ready-made 1.x builds are in
+      <a href="{{RELEASES}}" rel="noopener">Releases</a>.
+    </p>
+    <p>1.x is no longer developed: fixes and new features land in 2.x only.</p>
+
+    <h2 id="install">How to update</h2>
+    <ol>
+      <li>Download the new build from the private Boosty post.</li>
+      <li>Verify the SHA-256 against the page <a href="/en/verify.html">“How to verify the build”</a>.</li>
+      <li>Unpack the archive into a new folder — not over the old one.</li>
+      <li>Start the new version and check that your images open.</li>
+      <li>Delete the old folder once you are satisfied.</li>
+    </ol>
+    <p>
+      Settings do not carry over: the program keeps no profile except the trial mark.
+      .mbfu and .img files stay where you saved them.
+    </p>
+
+    <h2 id="report">Reporting a bug</h2>
+    <p>
+      Write to <a href="mailto:{{EMAIL}}">{{EMAIL}}</a> with the program version, Windows
+      version, the USB stick and motherboard model, what you did and what happened. If it
+      reproduces, list the steps; attach a screenshot if you have one.
+    </p>
+
+    <h2 id="roadmap">Under consideration</h2>
+    <p>
+      Plans change, so this lists directions rather than promised dates: support for
+      additional image formats, better diagnostics during writing, and more documentation
+      on working with images on old hardware.
+    </p>
+  </div>
+</section>

@@ -23,26 +23,54 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "Барьер 640 КБ: почему памяти вечно не хватало",
- "description": "Первые 640 КБ — conventional memory для DOS и программ. Все, что выше, — верхняя, расширенная (XMS) и EMS. Ошибка «Insufficient memory» — про эти 640 ",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/pamyat-640k.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- }
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Барьер 640 КБ: почему памяти вечно не хватало",
+   "description": "Первые 640 КБ — conventional memory для DOS и программ. Все, что выше, — верхняя, расширенная (XMS) и EMS. Ошибка «Insufficient memory» — про эти 640 ",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/pamyat-640k.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Барьер 640 КБ: почему памяти вечно не хватало",
+     "item": "https://ms-dos.su/pamyat-640k.html"
+    }
+   ]
+  }
+ ]
 }
 </script>
 <script src="/assets/consent.js" defer></script>
@@ -54,7 +82,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -74,6 +102,7 @@
 <ul><li>Смотреть: MEM /C /P.</li><li>Лечить: грузить драйверы высоко (DEVICEHIGH, LOADHIGH).</li><li>Игры хотели 550+ КБ свободными — целая наука.</li></ul>
 <h2>Итог</h2>
 <p>Фраза Гейтса про 640 КБ — легенда, но проблема была настоящей.</p>
+
 
 
     </article>
@@ -125,6 +154,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

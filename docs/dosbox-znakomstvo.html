@@ -23,26 +23,54 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "TechArticle",
- "headline": "DOSBox: эмулятор DOS на современном ПК",
- "description": "DOSBox 0.72+ эмулирует PC с DOS: запускает игры и программы 90-х на Windows 10/11, где настоящий DOS невозможен.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/dosbox-znakomstvo.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- }
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "TechArticle",
+   "headline": "DOSBox: эмулятор DOS на современном ПК",
+   "description": "DOSBox 0.72+ эмулирует PC с DOS: запускает игры и программы 90-х на Windows 10/11, где настоящий DOS невозможен.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/dosbox-znakomstvo.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "DOSBox: эмулятор DOS на современном ПК",
+     "item": "https://ms-dos.su/dosbox-znakomstvo.html"
+    }
+   ]
+  }
+ ]
 }
 </script>
 <script src="/assets/consent.js" defer></script>
@@ -54,7 +82,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -74,6 +102,7 @@
 <ul><li>Ставится за минуту, настроек по умолчанию хватает для игр.</li><li>Окно 320x200 масштабируется, звук Sound Blaster эмулируется.</li><li>MBFU использует DOSBox для копирования файлов на флешку.</li></ul>
 <h2>Итог</h2>
 <p>Для игр качайте свежий DOSBox-X или DOSBox Staging — там точнее эмуляция.</p>
+
 
 
     </article>
@@ -124,6 +153,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

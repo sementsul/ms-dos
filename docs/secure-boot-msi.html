@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "Secure Boot на MSI",
- "description": "Как отключить Secure Boot на MSI и загрузиться с DOS-флешки: пошаговая инструкция.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/secure-boot-msi.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "Где искать Secure Boot в Click BIOS?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Settings — Security. На старых версиях путь бывает Boot — Secure Boot. Ориентир: иконка с замком."
-   }
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Secure Boot на MSI",
+   "description": "Как отключить Secure Boot на MSI и загрузиться с DOS-флешки: пошаговая инструкция.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/secure-boot-msi.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Где искать Secure Boot в Click BIOS?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Settings — Security. На старых версиях путь бывает Boot — Secure Boot. Ориентир: иконка с замком."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "После отключения не грузится Windows — почему?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Windows 11 требует Secure Boot. Верните Enabled после работы с DOS-флешкой — настройки меняются за минуту."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "После отключения не грузится Windows — почему?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Windows 11 требует Secure Boot. Верните Enabled после работы с DOS-флешкой — настройки меняются за минуту."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Secure Boot на MSI",
+     "item": "https://ms-dos.su/secure-boot-msi.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -92,6 +120,7 @@
 <ol><li>Войдите в BIOS клавишей Del.</li><li>Откройте Settings — Security.</li><li>Secure Boot — переключите в Disabled.</li><li>Для MS-DOS включите Boot Mode: Legacy+UEFI и USB Boot.</li><li>F10 — сохранить.</li></ol>
 <h2>Нюанс</h2>
 <p>На платах MSI с Click BIOS интерфейс графический — ищите иконку Security слева.</p>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>Где искать Secure Boot в Click BIOS?</b><br>Settings — Security. На старых версиях путь бывает Boot — Secure Boot. Ориентир: иконка с замком.</p>
@@ -147,6 +176,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

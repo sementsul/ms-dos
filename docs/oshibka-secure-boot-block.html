@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "Блокировка Secure Boot",
- "description": "Блокировка Secure Boot: почему возникает и как исправить.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/oshibka-secure-boot-block.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "Как понять, что виноват именно Secure Boot?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Симптомы: флешка видна в Boot Menu, но загрузка мгновенно возвращается в BIOS или пишет про security violation."
-   }
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Блокировка Secure Boot",
+   "description": "Блокировка Secure Boot: почему возникает и как исправить.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/oshibka-secure-boot-block.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Как понять, что виноват именно Secure Boot?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Симптомы: флешка видна в Boot Menu, но загрузка мгновенно возвращается в BIOS или пишет про security violation."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "А без отключения никак?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Никак: загрузчик DOS неподписанный. Отключите на время работы, потом включите обратно."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "А без отключения никак?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Никак: загрузчик DOS неподписанный. Отключите на время работы, потом включите обратно."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Блокировка Secure Boot",
+     "item": "https://ms-dos.su/oshibka-secure-boot-block.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -92,6 +120,7 @@
 <ul><li>Secure Boot включен (так по умолчанию на всех ПК с Windows 8+).</li></ul>
 <h2>Решение</h2>
 <ol><li>Отключите Secure Boot в UEFI (инструкции по вендорам — в соседних статьях).</li><li>Для MS-DOS также включите Legacy/CSM-режим.</li></ol>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>Как понять, что виноват именно Secure Boot?</b><br>Симптомы: флешка видна в Boot Menu, но загрузка мгновенно возвращается в BIOS или пишет про security violation.</p>
@@ -147,6 +176,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

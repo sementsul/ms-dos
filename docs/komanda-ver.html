@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "TechArticle",
- "headline": "Команда VER",
- "description": "Команда VER: полный синтаксис, все ключи (0), примеры и типичные ошибки.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/komanda-ver.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "VER врет на Windows 9x?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "VER покажет версию Windows (4.x), а API отдаст 7.x — особенность гибрида."
-   }
+   "@context": "https://schema.org",
+   "@type": "TechArticle",
+   "headline": "Команда VER",
+   "description": "Команда VER: полный синтаксис, все ключи (0), примеры и типичные ошибки.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/komanda-ver.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "VER врет на Windows 9x?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "VER покажет версию Windows (4.x), а API отдаст 7.x — особенность гибрида."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Зачем знать версию?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Драйверы и игры эпохи привязаны к версиям: 6.22 ест почти все, 5.0 — легче."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "Зачем знать версию?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Драйверы и игры эпохи привязаны к версиям: 6.22 ест почти все, 5.0 — легче."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Команда VER",
+     "item": "https://ms-dos.su/komanda-ver.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -96,6 +124,7 @@
 
 <h2>Типичные ошибки</h2>
 <ul><li>Программы смотрят версию через API, а не через VER — но цифры те же.</li><li>SETVER умеет подменять версию для капризных программ.</li></ul>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>VER врет на Windows 9x?</b><br>VER покажет версию Windows (4.x), а API отдаст 7.x — особенность гибрида.</p>
@@ -151,6 +180,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

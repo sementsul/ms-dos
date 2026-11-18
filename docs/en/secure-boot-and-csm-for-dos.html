@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Secure Boot, UEFI and CSM for booting DOS | ms-dos.su</title>
+<meta name="description" content="Why a modern PC refuses to boot MS-DOS from USB: Secure Boot, UEFI, CSM and Legacy mode, vendor differences, and what to change in the firmware setup.">
+<link rel="canonical" href="https://ms-dos.su/en/secure-boot-and-csm-for-dos.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="Secure Boot, UEFI and CSM for booting DOS | ms-dos.su">
+<meta property="og:description" content="Why a modern PC refuses to boot MS-DOS from USB: Secure Boot, UEFI, CSM and Legacy mode, vendor differences, and what to change in the firmware setup.">
+<meta property="og:url" content="https://ms-dos.su/en/secure-boot-and-csm-for-dos.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Secure Boot, UEFI and CSM: booting DOS on modern hardware",
+   "description": "Why a modern PC refuses to boot MS-DOS from USB: Secure Boot, UEFI, CSM and Legacy mode, vendor differences, and what to change in the firmware setup.",
+   "inLanguage": "en",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/en/secure-boot-and-csm-for-dos.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Can Windows 11 still boot with Secure Boot disabled?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "An installed system usually starts, although Windows 11 requires Secure Boot as an installation requirement. Re-enable it afterwards."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "My laptop has no CSM option. Is there a workaround?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not for DOS. Without CSM the firmware only runs EFI programs, and MS-DOS has no EFI version."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does a UEFI shell let me run DOS programs?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. It runs EFI applications; it cannot execute real-mode DOS code or load IO.SYS."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why does the same stick boot on an old PC but not a new one?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The old PC has a BIOS with CSM; the new one is UEFI-only or has Secure Boot on. The stick is fine."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://ms-dos.su/en/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Secure Boot, UEFI and CSM: booting DOS on modern hardware",
+     "item": "https://ms-dos.su/en/secure-boot-and-csm-for-dos.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "Secure Boot, UEFI and CSM: booting DOS on modern hardware",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Open the firmware setup",
+     "text": "Press the vendor key: Del or F2 on most desktops, F2 on Dell, F1 or F2 on Lenovo, Esc then F10 on HP."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Disable Secure Boot",
+     "text": "Find Secure Boot under Security or Boot and set it to Disabled; on ASUS, OS Type: Other OS does the same."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Enable CSM or Legacy boot",
+     "text": "Turn on CSM Support, Launch CSM or Boot Mode: Legacy, depending on the label."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Select the stick",
+     "text": "Open the one-time boot menu and choose the USB entry without the UEFI prefix."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Restore the settings",
+     "text": "Re-enable Secure Boot and the TPM for Windows 11 once the DOS work is finished."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="/en/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Main navigation">
+      <a href="/en/#features">Features</a>
+      <a href="/en/#trial">Trial</a>
+      <a href="/en/buy.html">Buy</a>
+      <a href="/en/stati.html">Guides</a>
+      <a href="/en/contacts.html">Contact</a>
+  </nav>
+  <span class="lang"><a href="/" hreflang="ru" lang="ru" aria-label="RU">RU</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb">
+<a href="/en/">MBFU</a> / <a href="/en/stati.html">Guides</a> / BIOS
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>Secure Boot, UEFI and CSM: booting DOS on modern hardware</h1>
+      <p class="lead">A modern PC boots DOS only when three independent conditions are met. Fixing one and expecting the other two to follow is why this takes an evening.</p>
+<h2>Three requirements, not one</h2>
+<p>A machine boots MS-DOS when the firmware can run legacy boot code, Secure Boot is not blocking it, and the stick carries a BIOS boot sector with an active FAT16 partition. These are separate switches in separate menus, and each failure looks different.</p>
+<h2>What UEFI expects</h2>
+<p>UEFI firmware looks for an EFI System Partition - a FAT32 partition with a bootloader in <code>EFI/BOOT/BOOTX64.EFI</code> - and runs that program. An MS-DOS stick has none of this: it starts with a 512-byte master boot record, which the firmware executes in 16-bit mode and which chains to the partition boot sector and then to <code>IO.SYS</code>.</p>
+<p>A UEFI-only machine has nothing to run, so it skips the stick or lists it without a bootable image. The old BIOS path survives on most desktops as CSM, the Compatibility Support Module, which provides the interrupt services DOS expects.</p>
+<h2>What Secure Boot checks</h2>
+<p>Secure Boot verifies the signature of the next program in the boot chain against the keys stored in the firmware. DOS boot code is unsigned, so with Secure Boot on the firmware refuses it. Disabling the check does not enable legacy boot by itself.</p>
+<p>Two notes. Some boards require Secure Boot off before CSM appears, so change them in that order. And Windows 11 requires Secure Boot, so put it back afterwards.</p>
+<h2>CSM, Legacy, or Boot Mode</h2>
+<p>Vendors name the same switch differently: <b>CSM Support</b>, <b>Launch CSM</b>, <b>Legacy Boot</b>, <b>Boot Mode: Legacy</b>, <b>UEFI/Legacy Boot: Both</b>. All of them mean "let the firmware run BIOS boot code". Some boards offer <b>Other OS</b> instead of a Secure Boot toggle, which switches off the signature check.</p>
+<p>Not every machine has the option: most laptops sold after roughly 2020, and several desktop chipsets, ship without CSM. Without it DOS cannot boot; the alternatives are another PC or a virtual machine.</p>
+<h2>Vendors differ</h2>
+<p>Entry keys are consistent enough: Del or F2 on ASUS and MSI, Del on Gigabyte, F1 or F2 on Lenovo, F2 on Dell, Esc then F10 on HP. The rest is vendor-specific:</p>
+<ul>
+<li><b>ASUS</b> keeps it under Security or Boot as OS Type, where Other OS means unsigned; some boards hide it until an administrator password is set.</li>
+<li><b>MSI</b> puts it under Settings - Security, next to a Boot Mode selector.</li>
+<li><b>Gigabyte</b> often needs CSM Support enabled before Secure Boot can be changed.</li>
+<li><b>Lenovo</b> uses Secure Boot plus a separate UEFI/Legacy Boot setting; BitLocker may ask for its recovery key afterwards.</li>
+<li><b>Dell</b> has Secure Boot Enable and a Legacy boot option list, with a confirmation on exit.</li>
+<li><b>HP</b> asks for a four-digit code when you disable Secure Boot.</li>
+</ul>
+<p>Wording changes between versions, so follow the labels, not a memorised path.</p>
+<h2>The stick must be written for MBR/BIOS boot</h2>
+<p>A stick prepared for UEFI - GPT partition table, FAT32, an EFI bootloader - is invisible to CSM. MS-DOS needs the opposite: an MBR partition table, one active FAT16 partition and a DOS boot sector. That is what MBFUTool writes, and what <a href="/en/how-to-create-bootable-ms-dos-usb.html">the USB guide</a> describes. If a tool offers the choice, pick MBR/BIOS rather than GPT/UEFI.</p>
+<h2>What to check in the boot menu</h2>
+<ul>
+<li>Open the one-time boot menu (F12, F11, F8 or Esc) rather than changing the permanent order.</li>
+<li>If the stick is listed twice, choose the entry without a <b>UEFI:</b> prefix.</li>
+<li>No entry at all: enable USB boot, disable Fast Boot, and try a rear USB 2.0 port.</li>
+<li>Still nothing: recheck CSM and Secure Boot, then try the stick on another machine.</li>
+</ul>
+
+<h2>Step by step</h2>
+<ol class="steps">
+<li><b>Open the firmware setup.</b> Press the vendor key: Del or F2 on most desktops, F2 on Dell, F1 or F2 on Lenovo, Esc then F10 on HP.</li>
+<li><b>Disable Secure Boot.</b> Find Secure Boot under Security or Boot and set it to Disabled; on ASUS, OS Type: Other OS does the same.</li>
+<li><b>Enable CSM or Legacy boot.</b> Turn on CSM Support, Launch CSM or Boot Mode: Legacy, depending on the label.</li>
+<li><b>Select the stick.</b> Open the one-time boot menu and choose the USB entry without the UEFI prefix.</li>
+<li><b>Restore the settings.</b> Re-enable Secure Boot and the TPM for Windows 11 once the DOS work is finished.</li>
+</ol>
+
+<h2>Questions</h2>
+<p><b>Can Windows 11 still boot with Secure Boot disabled?</b><br>An installed system usually starts, although Windows 11 requires Secure Boot as an installation requirement. Re-enable it afterwards.</p>
+<p><b>My laptop has no CSM option. Is there a workaround?</b><br>Not for DOS. Without CSM the firmware only runs EFI programs, and MS-DOS has no EFI version.</p>
+<p><b>Does a UEFI shell let me run DOS programs?</b><br>No. It runs EFI applications; it cannot execute real-mode DOS code or load IO.SYS.</p>
+<p><b>Why does the same stick boot on an old PC but not a new one?</b><br>The old PC has a BIOS with CSM; the new one is UEFI-only or has Secure Boot on. The stick is fine.</p>
+
+    </article>
+<aside>
+<h2>Read next</h2>
+<ul>
+<li><a href="how-to-create-bootable-ms-dos-usb.html">How to create a bootable MS-DOS USB drive</a></li>
+<li><a href="ms-dos-in-virtualbox-or-dosbox.html">Running MS-DOS in DOSBox or a virtual machine</a></li>
+<li><a href="bios-update-from-dos-usb.html">Updating the BIOS from a DOS USB drive</a></li>
+<li><a href="fat16-limits-and-4gb-usb-drives.html">FAT16 limits: why a DOS USB drive stops at 2-4 GB</a></li>
+<li><a href="ms-dos-boot-errors-explained.html">MS-DOS boot errors explained</a></li>
+<li><a href="hard-disk-diagnostics-from-dos.html">Testing hard drives and memory from DOS</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Need a bootable MS-DOS USB drive?</b></p>
+<p>The MBFUTool 2.0 trial gives you every feature for 30 days, no key required.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Download the trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Full version</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — MS-DOS image toolkit.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Self-employed Sementsul Maxim Gennadievich, INN 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Documents</h2>
+        <nav aria-label="Documents">
+      <a href="/en/terms.html">Terms and licence</a>
+      <a href="/en/privacy.html">Privacy</a>
+      <a href="/en/cookies.html">Cookies</a>
+      <a href="/en/refund.html">Payment and refunds</a>
+      <a href="/en/contacts.html">Contacts and seller details</a>
+      <a href="/en/licenses.html">Third-party licences</a>
+      <a href="/en/ms-dos-license.html">Where to get MS-DOS</a>
+      <a href="/en/dmca.html">Rights holders</a>
+      <a href="/en/accessibility.html">Accessibility</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Project</h2>
+        <nav aria-label="Project">
+          <a href="/en/stati.html">Guides</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/" hreflang="ru" lang="ru">Русская версия</a>
+        </nav>
+        <nav aria-label="Project">
+          <a href="/en/buy.html">Buy and get the files</a>
+          <a href="/en/trial-vs-full.html">Trial vs full version</a>
+          <a href="/en/verify.html">Verify the build</a>
+          <a href="/en/mbfu-format.html">.mbfu format</a>
+          <a href="/en/changelog.html">Version history</a>
+          <a href="/en/about.html">About the author</a>
+        </nav>
+        <p class="note">Trial — 30 days free</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Cookie settings</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS is a trademark of Microsoft Corporation. DOSBox is distributed under GPLv2. MBFU is not affiliated with Microsoft and does not distribute MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="en">
+  <div class="consent-inner">
+    <p>We use cookies for analytics to understand which docs are useful. Analytics scripts run only with your consent; without it the site works without cookies. <a href="/en/cookies.html">Details</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Accept analytics</button>
+      <button type="button" id="consent-reject">Essential only</button>
+      <button type="button" data-consent-settings>Cookie settings</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="en" aria-labelledby="consent-title">
+  <h2 id="consent-title">Cookie settings</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Analytics</b><span>Yandex Metrica and Google Analytics: aggregate visit statistics. They set _ym_* and _ga* cookies.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Save</button>
+      <button type="submit" value="close" formnovalidate>Close</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

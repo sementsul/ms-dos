@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MBFUTool против WinSetupFromUSB для DOS | ms-dos.su</title>
+<meta name="description" content="Сравнение MBFUTool и WinSetupFromUSB: что каждый умеет с DOS и Windows, где заканчиваются возможности и как закрыть обе задачи.">
+<link rel="canonical" href="https://ms-dos.su/mbfu-protiv-winsetupfromusb.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="MBFUTool против WinSetupFromUSB для DOS | ms-dos.su">
+<meta property="og:description" content="Сравнение MBFUTool и WinSetupFromUSB: что каждый умеет с DOS и Windows, где заканчиваются возможности и как закрыть обе задачи.">
+<meta property="og:url" content="https://ms-dos.su/mbfu-protiv-winsetupfromusb.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "MBFUTool против WinSetupFromUSB для DOS",
+   "description": "Сравнение MBFUTool и WinSetupFromUSB: что каждый умеет с DOS и Windows, где заканчиваются возможности и как закрыть обе задачи.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/mbfu-protiv-winsetupfromusb.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "WinSetupFromUSB умеет MS-DOS?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет, он умеет FreeDOS и установку Windows. Образы MS-DOS 5.00 и 6.22 как образы он не записывает."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли записать DOS-образ через WinSetupFromUSB?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Как образ — нет. Можно попробовать собрать файлы вручную, но загрузочный сектор и MBR при этом не переносятся."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Что лучше для клонирования флешки?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "MBFUTool: операция Clone MS-DOS disk/floppy/USB to USB создана именно для этого."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Нужны ли обе программы?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Если вы ставите Windows и работаете с DOS — да, удобнее держать обе. Если только DOS — достаточно MBFUTool."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "MBFUTool против WinSetupFromUSB для DOS",
+     "item": "https://ms-dos.su/mbfu-protiv-winsetupfromusb.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "MBFUTool против WinSetupFromUSB для DOS",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Определите задачу",
+     "text": "Установка Windows — WinSetupFromUSB; запись, создание, клонирование или правка DOS-образа — MBFUTool."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Подготовьте носители",
+     "text": "Возьмите отдельные флешки под каждую задачу, чтобы не перезаписывать одну и ту же."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Запишите DOS-образ",
+     "text": "В MBFUTool выберите Write MS-DOS image to USB flash и укажите образ."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Проверьте результат",
+     "text": "Загрузитесь с флешки в режиме Legacy/CSM и выполните VER."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="topbar">
+  <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Основная навигация">
+      <a href="/#features">Возможности</a>
+      <a href="/#trial">Trial</a>
+      <a href="/buy.html">Купить</a>
+      <a href="/stati.html">Статьи</a>
+      <a href="/contacts.html">Контакты</a>
+  </nav>
+  <span class="lang"><a href="/en/" hreflang="en" lang="en" aria-label="EN">EN</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Хлебные крошки">
+<a href="/">MBFU</a> / <a href="/stati.html">Статьи</a> / Сравнение
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>MBFUTool против WinSetupFromUSB для DOS</h1>
+      <p class="lead">Обе программы делают загрузочные флешки, но решают разные задачи: WinSetupFromUSB ставит Windows, MBFUTool пишет и правит образы MS-DOS. Сравнение по делу, без «наш инструмент лучше во всём».</p>
+<h2>Коротко о каждой</h2>
+<ul><li><b>WinSetupFromUSB</b> — инструмент для установки Windows с флешки: несколько версий в одном меню, поддержка ISO, Linux и FreeDOS, форматирование носителя.</li><li><b>MBFUTool 2.0</b> — утилита для Windows x64, внутри DOSBox 0.72 с меню BEN. Ровно четыре операции: запись образа MS-DOS на флешку, создание образа с диска, дискеты или флешки, клонирование и правка образа командами DOS.</li></ul>
+<h2>Что умеет WinSetupFromUSB</h2>
+<p>Программа рассчитана на установку Windows: XP, 2003, 7, 8, 10, 11 — по одной или несколькими версиями в меню. Она умеет подготовить флешку, записать ISO, добавить Linux и FreeDOS, собрать меню загрузки. Для своей задачи это удобный и зрелый инструмент.</p><p>FreeDOS в её составе — отдельная система, а не MS-DOS. Это важно: наличие FreeDOS не означает поддержку образов MS-DOS 5.00 или 6.22.</p>
+<h2>Чего WinSetupFromUSB не делает с MS-DOS</h2>
+<ul><li>Не записывает готовые образы MS-DOS как образы: работа идёт с файлами и ISO, а не с побайтовой копией носителя.</li><li>Не создаёт образ с дискеты или диска.</li><li>Не клонирует один DOS-носитель на другой.</li><li>Не даёт править содержимое образа командами DOS.</li><li>Не рассчитан на проверку целостности образа по SHA-256.</li></ul><p>Это не недостаток программы, а её назначение: она готовит установку Windows, а не обслуживает DOS-носители.</p>
+<h2>Что делает MBFUTool</h2>
+<p>Четыре операции покрывают полный цикл работы с DOS-носителем: <b>Write MS-DOS image to USB flash</b>, <b>Create MBFU image from disk/floppy/USB</b>, <b>Clone MS-DOS disk/floppy/USB to USB</b> и <b>Edit MS-DOS image with DOS commands</b>. Образ пишется как есть, вместе с MBR и загрузочным сектором, поэтому флешка получается именно такой, какой была исходная.</p><p>Ограничения честные: FAT16 до 4 ГБ (на практике 2 ГБ), DOSBox 0.72 не монтирует образы больше 4 ГБ, пути только латиницей. Файлов MS-DOS в поставке нет — нужен свой законный образ.</p>
+<h2>Кому что подходит</h2>
+<ul><li><b>Нужна установка Windows</b> — WinSetupFromUSB.</li><li><b>Нужна загрузочная флешка MS-DOS</b> — MBFUTool.</li><li><b>Нужен образ с дискеты или диска</b> — MBFUTool, операция создания образа.</li><li><b>Нужен точный клон DOS-носителя</b> — MBFUTool, клонирование.</li><li><b>Нужно поправить CONFIG.SYS в образе</b> — MBFUTool, правка через DOSBox.</li></ul>
+<h2>Если нужны обе задачи</h2>
+<p>Держите два инструмента и две флешки. Порядок любой, но не смешивайте задачи на одном носителе: MBFUTool перезаписывает таблицу разделов, а WinSetupFromUSB переформатирует флешку под свою структуру. После каждой операции проверяйте, что носитель грузится, — так вы не останетесь с двумя неработающими флешками.</p><p>Для проверки хватит пробной версии MBFUTool: 30 дней, все функции, без ключа — <a href="https://ms-dos.su/#trial">https://ms-dos.su/#trial</a>. Полная версия — разовая покупка на Boosty, личная лицензия на один компьютер.</p>
+
+<h2>Порядок действий</h2>
+<ol class="steps">
+<li><b>Определите задачу.</b> Установка Windows — WinSetupFromUSB; запись, создание, клонирование или правка DOS-образа — MBFUTool.</li>
+<li><b>Подготовьте носители.</b> Возьмите отдельные флешки под каждую задачу, чтобы не перезаписывать одну и ту же.</li>
+<li><b>Запишите DOS-образ.</b> В MBFUTool выберите Write MS-DOS image to USB flash и укажите образ.</li>
+<li><b>Проверьте результат.</b> Загрузитесь с флешки в режиме Legacy/CSM и выполните VER.</li>
+</ol>
+
+<h2>Вопросы и ответы</h2>
+<p><b>WinSetupFromUSB умеет MS-DOS?</b><br>Нет, он умеет FreeDOS и установку Windows. Образы MS-DOS 5.00 и 6.22 как образы он не записывает.</p>
+<p><b>Можно ли записать DOS-образ через WinSetupFromUSB?</b><br>Как образ — нет. Можно попробовать собрать файлы вручную, но загрузочный сектор и MBR при этом не переносятся.</p>
+<p><b>Что лучше для клонирования флешки?</b><br>MBFUTool: операция Clone MS-DOS disk/floppy/USB to USB создана именно для этого.</p>
+<p><b>Нужны ли обе программы?</b><br>Если вы ставите Windows и работаете с DOS — да, удобнее держать обе. Если только DOS — достаточно MBFUTool.</p>
+
+    </article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="mbfu-protiv-rufus.html">MBFU против Rufus для MS-DOS</a></li>
+<li><a href="mbfu-protiv-ventoy.html">MBFU против Ventoy для DOS</a></li>
+<li><a href="mbfu-protiv-unetbootin.html">MBFU против UNetbootin</a></li>
+<li><a href="rufus-freedos-instrukciya.html">Загрузочная флешка FreeDOS через Rufus</a></li>
+<li><a href="dd-obraz-dos.html">Запись DOS-образа через dd и Win32DiskImager</a></li>
+<li><a href="mbfu-protiv-hp-usb-disk-storage-format-tool.html">MBFUTool против HP USB Disk Storage Format Tool</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>Trial MBFUTool 2.0 — все функции на 30 дней, без ключа активации.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Скачать Trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Полная версия</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — Утилита для работы с образами MS-DOS.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Самозанятый Семенцул Максим Геннадиевич, ИНН 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Документы</h2>
+        <nav aria-label="Документы">
+      <a href="/terms.html">Условия и лицензия</a>
+      <a href="/privacy.html">Конфиденциальность</a>
+      <a href="/cookies.html">Файлы cookie</a>
+      <a href="/refund.html">Оплата и возврат</a>
+      <a href="/contacts.html">Контакты и реквизиты</a>
+      <a href="/licenses.html">Сторонние лицензии</a>
+      <a href="/ms-dos-license.html">Где взять MS-DOS</a>
+      <a href="/dmca.html">Правообладателям</a>
+      <a href="/accessibility.html">Доступность</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Проект</h2>
+        <nav aria-label="Проект">
+          <a href="/stati.html">Статьи</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
+        </nav>
+        <p class="note">Trial — 30 дней бесплатно</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS — товарный знак Microsoft Corporation. DOSBox распространяется по GPLv2. MBFU не связана с Microsoft и не распространяет MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="ru">
+  <div class="consent-inner">
+    <p>Мы используем файлы cookie для аналитики, чтобы понимать, чем полезна документация. Аналитические скрипты включаются только с вашего согласия; без него сайт работает без cookie. <a href="/cookies.html">Подробнее</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Принять аналитику</button>
+      <button type="button" id="consent-reject">Только необходимые</button>
+      <button type="button" data-consent-settings>Настройки cookie</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="ru" aria-labelledby="consent-title">
+  <h2 id="consent-title">Настройки cookie</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Аналитика</b><span>Яндекс.Метрика и Google Analytics: обезличенная статистика посещений. Устанавливают cookie _ym_* и _ga*.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Сохранить</button>
+      <button type="submit" value="close" formnovalidate>Закрыть</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

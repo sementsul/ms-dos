@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "HIMEM.SYS error / Missing HIMEM",
- "description": "HIMEM.SYS error / Missing HIMEM: почему возникает и как исправить.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/oshibka-himem.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "HIMEM нужен обязательно?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Для DOS 5.0/6.22 с DOS=HIGH — да. Без него ядро не загрузится выше 640 КБ и посыпятся ошибки."
-   }
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "HIMEM.SYS error / Missing HIMEM",
+   "description": "HIMEM.SYS error / Missing HIMEM: почему возникает и как исправить.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/oshibka-himem.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "HIMEM нужен обязательно?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Для DOS 5.0/6.22 с DOS=HIGH — да. Без него ядро не загрузится выше 640 КБ и посыпятся ошибки."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Ошибка на 286 — это нормально?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "HIMEM требует 286+, EMM386 — 386+. На 8088/8086 используйте голый DOS без этих драйверов."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "Ошибка на 286 — это нормально?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "HIMEM требует 286+, EMM386 — 386+. На 8088/8086 используйте голый DOS без этих драйверов."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "HIMEM.SYS error / Missing HIMEM",
+     "item": "https://ms-dos.su/oshibka-himem.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -92,6 +120,7 @@
 <ul><li>Нет строки DEVICE=HIMEM.SYS в CONFIG.SYS.</li><li>Конфликт менеджеров памяти.</li></ul>
 <h2>Решение</h2>
 <ol><li>Проверьте CONFIG.SYS: DEVICE=C:\DOS\HIMEM.SYS должен быть первым.</li><li>На эмуляторах (DOSBox) XMS включается в конфиге: xms=true.</li></ol>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>HIMEM нужен обязательно?</b><br>Для DOS 5.0/6.22 с DOS=HIGH — да. Без него ядро не загрузится выше 640 КБ и посыпятся ошибки.</p>
@@ -147,6 +176,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

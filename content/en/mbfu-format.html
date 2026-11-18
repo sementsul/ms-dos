@@ -1,0 +1,123 @@
+<section class="block">
+  <div class="wrap legal">
+    <h1>The .mbfu image format</h1>
+    <p class="updated">Version dated 18 November 2026.</p>
+
+    <p class="lead">
+      .mbfu is an image container: a fixed 126-byte header, zlib compression and a
+      SHA-256 integrity check. The format is publicly documented so images can be read
+      and verified without running the program.
+    </p>
+
+    <h2 id="why">Why a custom container</h2>
+    <ul>
+      <li><b>Streaming writes.</b> The image can be unpacked straight onto a device
+          without using disk space: a fixed-size header followed by one deflate stream.</li>
+      <li><b>Integrity.</b> SHA-256 is computed over the uncompressed data and verified
+          both on extraction and after writing to a USB drive.</li>
+      <li><b>Metadata.</b> The header carries the original file name and the media type,
+          so an image shows where it came from.</li>
+      <li><b>Size.</b> MS-DOS images compress well: deflate removes megabytes of empty
+          space and repeated sectors.</li>
+    </ul>
+
+    <h2 id="layout">File structure</h2>
+    <p>
+      The header is 126 bytes, all multi-byte integers are little-endian, no padding. In
+      <code>struct</code> terms: <code>&lt;8sHBBHQQ32s64s</code>.
+    </p>
+    <table>
+      <tr><th>Offset</th><th>Size</th><th>Field</th><th>Value</th></tr>
+      <tr><td>0</td><td>8</td><td><code>magic</code></td><td><code>MBFUIMG\x01</code></td></tr>
+      <tr><td>8</td><td>2</td><td><code>version</code></td><td>uint16, currently <code>1</code></td></tr>
+      <tr><td>10</td><td>1</td><td><code>image_type</code></td><td>uint8: <code>0</code> raw image, <code>1</code> floppy, <code>2</code> hard disk</td></tr>
+      <tr><td>11</td><td>1</td><td><code>compression</code></td><td>uint8: <code>1</code> — zlib (deflate)</td></tr>
+      <tr><td>12</td><td>2</td><td><code>reserved</code></td><td>uint16, always <code>0</code></td></tr>
+      <tr><td>14</td><td>8</td><td><code>raw_size</code></td><td>uint64, uncompressed image size in bytes</td></tr>
+      <tr><td>22</td><td>8</td><td><code>data_size</code></td><td>uint64, compressed stream size in bytes</td></tr>
+      <tr><td>30</td><td>32</td><td><code>sha256</code></td><td>SHA-256 of the uncompressed image</td></tr>
+      <tr><td>62</td><td>64</td><td><code>name</code></td><td>original file name, ASCII, zero-padded</td></tr>
+    </table>
+    <p>
+      The header is followed by a single zlib stream whose length equals
+      <code>data_size</code>. There are no extra fields, directories or alignment — so
+      the file can be read sequentially without knowing its size in advance.
+    </p>
+
+    <h2 id="read">Reading an image</h2>
+    <p>A minimal Python example using only the standard library:</p>
+    <pre>import hashlib, struct, zlib
+
+HDR = "&lt;8sHBBHQQ32s64s"
+SIZE = struct.calcsize(HDR)          # 126
+
+def read_header(path):
+    with open(path, "rb") as f:
+        buf = f.read(SIZE)
+    magic, ver, itype, comp, res, raw, dsize, digest, name = struct.unpack(HDR, buf)
+    if magic != b"MBFUIMG\x01":
+        raise ValueError("not an .mbfu image")
+    return {"version": ver, "image_type": itype, "compression": comp,
+            "raw_size": raw, "data_size": dsize,
+            "sha256": digest.hex(),
+            "name": name.rstrip(b"\0").decode("ascii", "replace")}
+
+def extract(src, dst):
+    info = read_header(src)
+    h = hashlib.sha256()
+    with open(src, "rb") as f, open(dst, "wb") as out:
+        f.seek(SIZE)
+        dec = zlib.decompressobj()
+        while True:
+            chunk = f.read(1 &lt;&lt; 20)
+            if not chunk:
+                break
+            data = dec.decompress(chunk)
+            if data:
+                h.update(data)
+                out.write(data)
+        tail = dec.flush()
+        if tail:
+            h.update(tail)
+            out.write(tail)
+    if h.hexdigest() != info["sha256"]:
+        raise ValueError("checksum mismatch")
+    return info</pre>
+    <p>
+      The hash check is mandatory: a truncated or corrupted file may still decompress
+      without a zlib error if it was cut on a block boundary, and only SHA-256 catches it.
+    </p>
+
+    <h2 id="input">What the program accepts</h2>
+    <ul>
+      <li><code>.mbfu</code> — the custom container;</li>
+      <li><code>.img</code>, <code>.ima</code> — raw floppy and disk images;</li>
+      <li><code>.vhd</code>, <code>.vfd</code> — virtual machine and floppy images.</li>
+    </ul>
+    <p>
+      Raw images are written to the device as they are; .mbfu is unpacked while writing,
+      and the hash is compared with the header afterwards.
+    </p>
+
+    <h2 id="limits">Limits</h2>
+    <ul>
+      <li>an image larger than 4 GB will not open in DOSBox 0.72 — it silently exposes an
+          empty disk, so the image editor is limited to that size;</li>
+      <li>writing to a USB drive works for larger images too, but the DOS partition is
+          still bound by FAT16;</li>
+      <li>the file name in the header is ASCII; Cyrillic characters are replaced with safe
+          ones, which does not affect the image itself.</li>
+    </ul>
+
+    <h2 id="license">Legal status</h2>
+    <p>
+      The format description is open: you may implement .mbfu reading in your own tool.
+      MBFUTool 2.x itself is proprietary and its source code is not published; the terms
+      are in the <a href="/en/terms.html">licence agreement</a>.
+    </p>
+    <p class="fine">
+      Format version 1. If the header changes, the <code>version</code> field will be
+      bumped and older files will keep working.
+    </p>
+  </div>
+</section>

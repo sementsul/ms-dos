@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Резервная копия промышленного ПК со DOS: порядок действий | ms-dos.su</title>
+<meta name="description" content="Почему обычный бэкап файлов не спасает промышленный ПК со DOS и как снять, проверить и хранить посекторный образ носителя.">
+<link rel="canonical" href="https://ms-dos.su/rezervnaya-kopiya-promyshlennogo-pk.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="Резервная копия промышленного ПК со DOS: порядок действий | ms-dos.su">
+<meta property="og:description" content="Почему обычный бэкап файлов не спасает промышленный ПК со DOS и как снять, проверить и хранить посекторный образ носителя.">
+<meta property="og:url" content="https://ms-dos.su/rezervnaya-kopiya-promyshlennogo-pk.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Резервная копия промышленного ПК со DOS",
+   "description": "Почему обычный бэкап файлов не спасает промышленный ПК со DOS и как снять, проверить и хранить посекторный образ носителя.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/rezervnaya-kopiya-promyshlennogo-pk.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Хватит ли копии на сетевом диске?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Как второй экземпляр — да, если файл проверен по контрольной сумме. Как единственная копия — нет: сетевой ресурс зависит от работающего сервера и прав доступа."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Сколько времени занимает снятие образа?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Зависит от объёма носителя и скорости чтения; точных цифр давать нельзя, не зная оборудования. Для дискеты это минуты, для старого винчестера — заметно дольше."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Нужен ли оригинальный образ MS-DOS?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Для загрузочного носителя нужен свой законный образ MS-DOS. Ядро системы не входит в MBFUTool, потому что распространяется по лицензии Microsoft."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Резервная копия промышленного ПК со DOS",
+     "item": "https://ms-dos.su/rezervnaya-kopiya-promyshlennogo-pk.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "Резервная копия промышленного ПК со DOS",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Снимите посекторный образ",
+     "text": "Запустите MBFUTool от администратора и выберите «Create MBFU image from disk/floppy/USB»."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Сохраните файл вне изменяемых папок",
+     "text": "Положите .mbfu на отдельный физический диск, а не на раздел, который может быть очищен."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Проверьте SHA-256",
+     "text": "Пересчитайте контрольную сумму при переносе и сравните значения — так выявляется повреждение файла."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Сделайте второй экземпляр",
+     "text": "Скопируйте образ на другой носитель и храните его в другом помещении."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Проверьте восстановление",
+     "text": "Запишите образ на носитель и загрузите тестовый ПК, чтобы убедиться в работоспособности копии."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Обновляйте после изменений",
+     "text": "После правки конфигурации или замены платы снимайте новый образ и обновляйте журнал."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="topbar">
+  <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Основная навигация">
+      <a href="/#features">Возможности</a>
+      <a href="/#trial">Trial</a>
+      <a href="/buy.html">Купить</a>
+      <a href="/stati.html">Статьи</a>
+      <a href="/contacts.html">Контакты</a>
+  </nav>
+  <span class="lang"><a href="/en/" hreflang="en" lang="en" aria-label="EN">EN</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Хлебные крошки">
+<a href="/">MBFU</a> / <a href="/stati.html">Статьи</a> / Промышленность
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>Резервная копия промышленного ПК со DOS</h1>
+      <p class="lead">Для промышленного ПК с DOS обычный бэкап папок бесполезен: он не сохраняет загрузочный сектор, геометрию и загрузчик. Нужен посекторный образ, проверенный и продублированный на двух носителях.</p>
+<h2>Почему копирование файлов не спасает</h2>
+<p>Копирование каталогов сохраняет содержимое, но не структуру. Загрузочный сектор с кодом загрузчика, таблица разделов, параметры геометрии, скрытые области и служебные записи файловой системы остаются за пределами такой копии.</p><p>Станок, у которого восстановили все файлы, но не восстановили загрузочную запись, не загрузится. Придётся вручную размечать диск, ставить <code>SYS</code>, восстанавливать <code>CONFIG.SYS</code> и <code>AUTOEXEC.BAT</code> — и надеяться, что версия DOS и драйверы совпали. На практике это часы простоя, которых можно было избежать.</p>
+<h2>Шаг первый: снять образ целиком</h2>
+<p>Образ снимают с рабочего носителя, пока он читается, и на исправный приёмник. В MBFUTool 2.0 это операция «Create MBFU image from disk/floppy/USB»: программа читает носитель посекторно и упаковывает результат в контейнер .mbfu с заголовком, сжатием zlib и контрольной суммой SHA-256.</p><p>Запись на системный диск заблокирована, права администратора обязательны, а свободного места нужно больше, чем объём исходного носителя. Если носитель уже сбоит, порядок чтения и обработка ошибок описаны в статье <a href="/obraz-umirayushchego-diska.html">снять образ с умирающего диска</a>.</p>
+<h2>Шаг второй: проверить образ</h2>
+<p>Образ, который ни разу не проверяли, — это не резервная копия, а надежда. Внутри .mbfu есть SHA-256, и его совпадение подтверждает, что файл не повреждён при копировании по сети или на внешний диск. Дополнительно образ распаковывают обратно в сырой посекторный образ и монтируют в DOSBox 0.72, чтобы увидеть каталог и запустить программу.</p><p>Проверка на монтировании заодно показывает, что размер укладывается в лимиты: FAT16 до 4 ГБ, образы больше 4 ГБ DOSBox 0.72 не монтирует.</p>
+<h2>Шаг третий: хранить две копии</h2>
+<p>Одна копия — это один отказ. Две копии на разных физических носителях переживают выход из строя одной флешки, попадание влаги, потерю, случайное форматирование. Хранить их стоит в разных местах: одна у главного механика или в шкафу у стойки, вторая — в офисе или сейфе.</p><p>Носитель для хранения выбирайте с запасом: флешка в ящике стола деградирует годами, поэтому копию периодически перечитывают и переносят на новый носитель. Оптический диск тоже не вечен, а дискета — тем более.</p>
+<h2>Шаг четвёртый: проверить восстановление</h2>
+<p>Резервная копия проверяется только восстановлением. Возьмите тестовый ПК с тем же типом контроллера, запишите образ на носитель, загрузитесь и убедитесь, что программа видит оборудование, а параметры станка на месте.</p><p>Проверку проводят до аварии, а не во время. Если тестового железа нет, хотя бы смонтируйте образ в DOSBox и просмотрите дерево каталогов — это дешевле, чем выяснять проблему в ночную смену.</p>
+<h2>Типичные ошибки</h2>
+<p>Копию портит не техника, а спешка. Образ пишут на тот же диск, который резервируют, и при сбое теряют оба экземпляра. Единственную копию держат на рабочей флешке, с которой ежедневно обмениваются файлами. Носители не подписывают, и через полгода невозможно понять, какая версия актуальна.</p><p>Ещё одна ошибка — хранить образ в папке, которую синхронизирует облачный клиент: при конфликте версий файл может замениться неполной копией. Для эталона лучше обычный локальный диск и отдельный носитель.</p>
+<h2>Как часто обновлять копию</h2>
+<p>Копию обновляют после каждого изменения параметров: замена платы, правка <code>CONFIG.SYS</code>, установка новой версии управляющей программы, изменение уставок. Старую копию при этом не выбрасывают сразу — она пригодится, если нововведение окажется неудачным.</p><p>Практическое правило: одна копия «как было при приёмке», одна — актуальная. Подписывайте носители и ведите журнал: дата, версия DOS, версия программы станка, контрольная сумма образа. Такой журнал экономит часы диагностики.</p>
+
+<h2>Порядок действий</h2>
+<ol class="steps">
+<li><b>Снимите посекторный образ.</b> Запустите MBFUTool от администратора и выберите «Create MBFU image from disk/floppy/USB».</li>
+<li><b>Сохраните файл вне изменяемых папок.</b> Положите .mbfu на отдельный физический диск, а не на раздел, который может быть очищен.</li>
+<li><b>Проверьте SHA-256.</b> Пересчитайте контрольную сумму при переносе и сравните значения — так выявляется повреждение файла.</li>
+<li><b>Сделайте второй экземпляр.</b> Скопируйте образ на другой носитель и храните его в другом помещении.</li>
+<li><b>Проверьте восстановление.</b> Запишите образ на носитель и загрузите тестовый ПК, чтобы убедиться в работоспособности копии.</li>
+<li><b>Обновляйте после изменений.</b> После правки конфигурации или замены платы снимайте новый образ и обновляйте журнал.</li>
+</ol>
+
+<h2>Вопросы и ответы</h2>
+<p><b>Хватит ли копии на сетевом диске?</b><br>Как второй экземпляр — да, если файл проверен по контрольной сумме. Как единственная копия — нет: сетевой ресурс зависит от работающего сервера и прав доступа.</p>
+<p><b>Сколько времени занимает снятие образа?</b><br>Зависит от объёма носителя и скорости чтения; точных цифр давать нельзя, не зная оборудования. Для дискеты это минуты, для старого винчестера — заметно дольше.</p>
+<p><b>Нужен ли оригинальный образ MS-DOS?</b><br>Для загрузочного носителя нужен свой законный образ MS-DOS. Ядро системы не входит в MBFUTool, потому что распространяется по лицензии Microsoft.</p>
+
+    </article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="dos-dlya-stanka-i-chpu.html">MS-DOS для станка и ЧПУ</a></li>
+<li><a href="cf-karta-ili-ide-dom-vmesto-hdd.html">CF-карта или IDE DOM вместо винчестера</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>Trial MBFUTool 2.0 — все функции на 30 дней, без ключа активации.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Скачать Trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Полная версия</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — Утилита для работы с образами MS-DOS.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Самозанятый Семенцул Максим Геннадиевич, ИНН 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Документы</h2>
+        <nav aria-label="Документы">
+      <a href="/terms.html">Условия и лицензия</a>
+      <a href="/privacy.html">Конфиденциальность</a>
+      <a href="/cookies.html">Файлы cookie</a>
+      <a href="/refund.html">Оплата и возврат</a>
+      <a href="/contacts.html">Контакты и реквизиты</a>
+      <a href="/licenses.html">Сторонние лицензии</a>
+      <a href="/ms-dos-license.html">Где взять MS-DOS</a>
+      <a href="/dmca.html">Правообладателям</a>
+      <a href="/accessibility.html">Доступность</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Проект</h2>
+        <nav aria-label="Проект">
+          <a href="/stati.html">Статьи</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
+        </nav>
+        <p class="note">Trial — 30 дней бесплатно</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS — товарный знак Microsoft Corporation. DOSBox распространяется по GPLv2. MBFU не связана с Microsoft и не распространяет MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="ru">
+  <div class="consent-inner">
+    <p>Мы используем файлы cookie для аналитики, чтобы понимать, чем полезна документация. Аналитические скрипты включаются только с вашего согласия; без него сайт работает без cookie. <a href="/cookies.html">Подробнее</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Принять аналитику</button>
+      <button type="button" id="consent-reject">Только необходимые</button>
+      <button type="button" data-consent-settings>Настройки cookie</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="ru" aria-labelledby="consent-title">
+  <h2 id="consent-title">Настройки cookie</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Аналитика</b><span>Яндекс.Метрика и Google Analytics: обезличенная статистика посещений. Устанавливают cookie _ym_* и _ga*.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Сохранить</button>
+      <button type="submit" value="close" formnovalidate>Закрыть</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

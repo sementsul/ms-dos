@@ -11,10 +11,14 @@
 
 ```powershell
 cd tools
-python gen_site.py      # 10 страниц × 2 языка: главная, правовые, тест DOS
-python gen_seo.py       # 100 статей + каталог /stati.html + /en/stati.html
+python gen_site.py      # 17 страниц × 2 языка: главная, правовые, покупка, тест DOS
+python gen_seo.py       # 124 статьи, 8 EN-гайдов, каталоги /stati.html и /en/stati.html
 python gen_sitemap.py   # sitemap-main.xml, sitemap-articles.xml, robots.txt
 python check_site.py    # битые ссылки, JSON-LD, alt, незаменённые токены
+
+# после публикации — сообщить поисковикам об изменениях
+python tools/indexnow.py --dry    # что будет отправлено
+python tools/indexnow.py          # отправка в IndexNow (Bing, Yandex, Seznam)
 ```
 
 Перед сборкой положите свежий архив Trial в `docs/downloads/`:
@@ -99,8 +103,21 @@ git -c http.sslBackend=openssl push origin main
 - [ ] `/404.html` отдаётся для несуществующих адресов.
 - [ ] В Яндекс.Вебмастере и Google Search Console добавлены `sitemap.xml`.
 - [ ] Реквизиты продавца видны на `/contacts.html` и в футере.
+- [ ] Открываются новые страницы: `/buy.html`, `/trial-vs-full.html`, `/verify.html`,
+      `/about.html`, `/changelog.html`, `/mbfu-format.html` и их `/en/`-версии.
+- [ ] `https://ms-dos.su/<ключ>.txt` отдаёт ключ IndexNow из `tools/indexnow_key.txt`.
+- [ ] `https://ms-dos.su/FORMAT.md` и `sitemap-articles.xml` содержат все новые URL
+      (`grep -c "<loc>" sitemap-articles.xml` = числу статей плюс EN-гайды).
 
-## 6. Обновление Trial
+## 6. Внешние материалы
+
+Черновики публикаций (Habr, VOGONS, DOSBox forum, Reddit, zx-pk.ru,
+phantom.sannata.org, AlternativeTo, Softportal, Telegram, YouTube) лежат в
+`../mbfu-work/marketing/`. Ничего из этого не публикуется автоматически: нужны
+аккаунты и соблюдение правил каждой площадки. Там же `README.md` со списком
+ручных действий.
+
+## 7. Обновление Trial
 
 1. `tools/build_trial.py` — собирает onedir и ZIP, пишет `SHA256SUMS.txt`.
 2. Скопируйте ZIP в `docs/downloads/`.

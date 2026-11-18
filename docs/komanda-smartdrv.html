@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "TechArticle",
- "headline": "Команда SMARTDRV",
- "description": "Команда SMARTDRV: полный синтаксис, все ключи (9), примеры и типичные ошибки.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/komanda-smartdrv.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "SMARTDRV нужен на флешке MBFU?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Для установки — нет, копирование и так быстрое. Для ежедневной DOS-машины — да."
-   }
+   "@context": "https://schema.org",
+   "@type": "TechArticle",
+   "headline": "Команда SMARTDRV",
+   "description": "Команда SMARTDRV: полный синтаксис, все ключи (9), примеры и типичные ошибки.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/komanda-smartdrv.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "SMARTDRV нужен на флешке MBFU?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Для установки — нет, копирование и так быстрое. Для ежедневной DOS-машины — да."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Чем заменить на современных системах?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ничем: кэш эпохи. В DOSBox скорость и так избыточна."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "Чем заменить на современных системах?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Ничем: кэш эпохи. В DOSBox скорость и так избыточна."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Команда SMARTDRV",
+     "item": "https://ms-dos.su/komanda-smartdrv.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -102,6 +130,7 @@
 
 <h2>Типичные ошибки</h2>
 <ul><li>При зависании с включенной отложенной записью данные теряются — на важных машинах /X.</li><li>SMARTDRV жрет XMS: на 4 МБ больше 1 МБ кэша не ставьте.</li></ul>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>SMARTDRV нужен на флешке MBFU?</b><br>Для установки — нет, копирование и так быстрое. Для ежедневной DOS-машины — да.</p>
@@ -157,6 +186,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

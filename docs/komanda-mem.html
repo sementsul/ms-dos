@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "TechArticle",
- "headline": "Команда MEM",
- "description": "Команда MEM: полный синтаксис, все ключи (5), примеры и типичные ошибки.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/komanda-mem.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "Что такое largest executable program size?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Самый большой свободный кусок conventional-памяти — в него должна влезть программа."
-   }
+   "@context": "https://schema.org",
+   "@type": "TechArticle",
+   "headline": "Команда MEM",
+   "description": "Команда MEM: полный синтаксис, все ключи (5), примеры и типичные ошибки.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/komanda-mem.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Что такое largest executable program size?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Самый большой свободный кусок conventional-памяти — в него должна влезть программа."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Почему MEM показывает мало свободной?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Драйверы и TSR сидят внизу. Выносите их в UMB через DEVICEHIGH/LOADHIGH."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "Почему MEM показывает мало свободной?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Драйверы и TSR сидят внизу. Выносите их в UMB через DEVICEHIGH/LOADHIGH."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Команда MEM",
+     "item": "https://ms-dos.su/komanda-mem.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -100,6 +128,7 @@
 
 <h2>Типичные ошибки</h2>
 <ul><li>Игре нужно 550+ КБ conventional — смотрите строку largest executable program size.</li><li>Пустая верхняя память при загруженном EMM386 — проверьте DEVICEHIGH.</li></ul>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>Что такое largest executable program size?</b><br>Самый большой свободный кусок conventional-памяти — в него должна влезть программа.</p>
@@ -155,6 +184,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

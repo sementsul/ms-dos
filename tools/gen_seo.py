@@ -21,6 +21,33 @@ from seo_data_3 import NC, QBASIC, DOSBOX, MEMORY
 from seo_data_4 import VERSIONS, COMPARE, GUIDES
 from seo_data_faq import VENDOR_FAQ, ERROR_FAQ
 
+try:
+    from seo_data_5 import ARTICLES as RICH_5
+except ImportError:
+    RICH_5 = []
+try:
+    from seo_data_6 import ARTICLES as RICH_6
+except ImportError:
+    RICH_6 = []
+try:
+    from seo_data_7 import ARTICLES as RICH_7
+except ImportError:
+    RICH_7 = []
+try:
+    from seo_data_en import ARTICLES as RICH_EN
+except ImportError:
+    RICH_EN = []
+try:
+    from seo_data_en2 import ARTICLES as RICH_EN2
+except ImportError:
+    RICH_EN2 = []
+try:
+    from seo_data_en3 import ARTICLES as RICH_EN3
+except ImportError:
+    RICH_EN3 = []
+RICH_EN = list(RICH_EN) + list(RICH_EN2) + list(RICH_EN3)
+
+
 
 def esc(s):
     return html.escape(str(s), quote=True)
@@ -96,7 +123,31 @@ def build_pages():
                 title='%s | ms-dos.su' % h1,
                 desc=lead[:150],
                 h1=h1, lead=lead, sections=sections, faq=[]))
+    for row in RICH_5 + RICH_6 + RICH_7:
+        pages.append(dict(
+            slug=row['slug'], cat=row['cat'], title=row['title'], desc=row['desc'],
+            h1=row['h1'], lead=row['lead'],
+            sections=[(h, html) for h, html in row['sections']],
+            faq=[(q, a) for q, a in row['faq']],
+            howto=[(n, s) for n, s in row.get('howto', [])]))
     return pages
+
+
+def breadcrumb(p, lang="ru"):
+    url = SITE + ("/" + p['slug'] + ".html" if lang == "ru"
+                  else "/en/" + p['slug'] + ".html")
+    if lang == "en":
+        home, hub, hub_name = SITE + "/en/", SITE + "/en/stati.html", "Guides"
+    else:
+        home, hub, hub_name = SITE + "/", SITE + "/stati.html", "Статьи"
+    return {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "MBFU", "item": home},
+            {"@type": "ListItem", "position": 2, "name": hub_name, "item": hub},
+            {"@type": "ListItem", "position": 3, "name": p['h1'], "item": url},
+        ],
+    }
 
 
 def jsonld(p, lang="ru"):
@@ -121,7 +172,15 @@ def jsonld(p, lang="ru"):
             "name": q,
             "acceptedAnswer": {"@type": "Answer", "text": a},
         } for q, a in p['faq']]
-    return data
+    graph = [data, breadcrumb(p, lang)]
+    if p.get('howto'):
+        graph.append({
+            "@type": "HowTo",
+            "name": p['h1'],
+            "step": [{"@type": "HowToStep", "name": n, "text": s}
+                     for n, s in p['howto']],
+        })
+    return {"@context": "https://schema.org", "@graph": graph}
 
 
 def related_block(items):
@@ -145,6 +204,12 @@ def related_block(items):
 
 def render(p, related):
     secs = ''.join('<h2>%s</h2>\n%s\n' % (h, b) for h, b in p['sections'])
+    howto = ''
+    if p.get('howto'):
+        howto = ('<h2>Порядок действий</h2>\n<ol class="steps">\n'
+                 + ''.join('<li><b>%s.</b> %s</li>\n' % (esc(n), s)
+                           for n, s in p['howto'])
+                 + '</ol>\n')
     faq = ''
     if p['faq']:
         faq = ('<h2>Вопросы и ответы</h2>\n'
@@ -161,11 +226,12 @@ def render(p, related):
       <p class="lead">%s</p>
 %s
 %s
+%s
     </article>
 %s
   </div>
 </section>
-""" % (esc(p['cat']), esc(p['h1']), p['lead'], secs, faq, related_block(related))
+""" % (esc(p['cat']), esc(p['h1']), p['lead'], secs, howto, faq, related_block(related))
 
     head = layout.head("ru", p['slug'], esc(p['title']), esc(p['desc']),
                        jsonld=jsonld(p), has_en=False)
@@ -174,8 +240,8 @@ def render(p, related):
 
 def main():
     pages = build_pages()
-    assert len(pages) == 100, 'страниц: %d, надо 100' % len(pages)
-    assert len({p['slug'] for p in pages}) == 100, 'дубли слагов!'
+    assert len(pages) >= 100, 'страниц: %d, надо не меньше 100' % len(pages)
+    assert len({p['slug'] for p in pages}) == len(pages), 'дубли слагов!'
     os.makedirs(DOCS, exist_ok=True)
     bycat = {}
     for p in pages:
@@ -220,7 +286,8 @@ def main():
         f.write(catalog_head + catalog + layout.footer("ru", "stati"))
 
     write_en_catalog(pages, bycat)
-    print('OK: %d статей + каталог' % len(pages))
+    write_en_pages()
+    print('OK: %d статей + каталог + %d EN-гайдов' % (len(pages), len(RICH_EN)))
 
 
 def write_en_catalog(pages, bycat):
@@ -232,6 +299,10 @@ def write_en_catalog(pages, bycat):
     rows = ''.join(
         '<tr><td>%s</td><td>%d</td></tr>' % (esc(cat), len(items))
         for cat, items in bycat.items())
+    en_links = '\n'.join(
+        '<li><a href="/en/%s.html">%s</a><br><small>%s</small></li>'
+        % (p['slug'], esc(p['h1']), esc(p['desc'])) for p in RICH_EN) or \
+        '<li>No English guides yet.</li>'
     body = """<nav class="crumbs" aria-label="Breadcrumb">
 <a href="/en/">MBFU</a> / Guides
 </nav>
@@ -239,10 +310,10 @@ def write_en_catalog(pages, bycat):
 <section class="block">
   <div class="wrap">
     <h1>MS-DOS guides and reference</h1>
-    <p class="lead">The knowledge base has 100 articles: DOS commands, MS-DOS 5.00 and
+    <p class="lead">The knowledge base has %d articles: DOS commands, MS-DOS 5.00 and
     6.22 internals, DOSBox, Secure Boot and typical errors. They are written in
     Russian — the language of the DOS documentation this project grew from — and are
-    listed below by topic.</p>
+    listed below by topic. The guides below the table are written in English.</p>
 
     <table>
       <tr><th>Topic</th><th>Articles</th></tr>
@@ -252,6 +323,11 @@ def write_en_catalog(pages, bycat):
 
     <p><a class="btn" href="/stati.html" hreflang="ru" lang="ru">Open the catalogue (RU)</a>
        <a class="btn ghost" href="/en/dos-test.html">Try MS-DOS in the browser</a></p>
+
+    <h2>Guides in English</h2>
+    <ul class="mega">
+    %s
+    </ul>
 
     <h2>What is covered</h2>
     <ul>
@@ -273,7 +349,7 @@ def write_en_catalog(pages, bycat):
     </div>
   </div>
 </section>
-""" % (rows, len(pages))
+""" % (len(pages), rows, len(pages), en_links)
 
     body = render_body(body)
     head = layout.head(
@@ -287,6 +363,71 @@ def write_en_catalog(pages, bycat):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(head + body + layout.footer("en", "stati"))
+
+
+def render_en(p, related):
+    """English long-form guide: same shell, English crumbs and CTA."""
+    secs = ''.join('<h2>%s</h2>\n%s\n' % (h, b) for h, b in p['sections'])
+    howto = ''
+    if p.get('howto'):
+        howto = ('<h2>Step by step</h2>\n<ol class="steps">\n'
+                 + ''.join('<li><b>%s.</b> %s</li>\n' % (esc(n), s)
+                           for n, s in p['howto'])
+                 + '</ol>\n')
+    faq = ''
+    if p['faq']:
+        faq = ('<h2>Questions</h2>\n'
+               + ''.join('<p><b>%s</b><br>%s</p>\n' % (q, a) for q, a in p['faq']))
+    rel = '\n'.join('<li><a href="%s.html">%s</a></li>' % (r['slug'], esc(r['h1']))
+                    for r in related)
+    cta = """<aside>
+<h2>Read next</h2>
+<ul>
+%s
+</ul>
+<div class="cta-box">
+<p><b>Need a bootable MS-DOS USB drive?</b></p>
+<p>The MBFUTool 2.0 trial gives you every feature for %d days, no key required.</p>
+<p><a class="btn" href="/%s" download>Download the trial</a>
+   <a class="btn ghost" href="%s" rel="noopener">Full version</a></p>
+</div>
+</aside>""" % (rel, cfg.TRIAL_DAYS, cfg.TRIAL_ZIP, cfg.BUY_URL)
+
+    body = """<nav class="crumbs" aria-label="Breadcrumb">
+<a href="/en/">MBFU</a> / <a href="/en/stati.html">Guides</a> / %s
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>%s</h1>
+      <p class="lead">%s</p>
+%s
+%s
+%s
+    </article>
+%s
+  </div>
+</section>
+""" % (esc(p['cat']), esc(p['h1']), p['lead'], secs, howto, faq, cta)
+    head = layout.head("en", p['slug'], esc(p['title']), esc(p['desc']),
+                       jsonld=jsonld(p, lang="en"), has_en=False)
+    return head + body + layout.footer("en", p['slug'], has_en=False)
+
+
+def write_en_pages():
+    """Render the English guides into docs/en/."""
+    if not RICH_EN:
+        return
+    en_dir = os.path.join(DOCS, "en")
+    os.makedirs(en_dir, exist_ok=True)
+    for p in RICH_EN:
+        p = dict(p)
+        p.setdefault('faq', [])
+        p.setdefault('howto', [])
+        rel = [r for r in RICH_EN if r['slug'] != p['slug']][:6]
+        with open(os.path.join(en_dir, p['slug'] + '.html'), 'w', encoding='utf-8') as f:
+            f.write(render_en(p, rel))
 
 
 def render_body(text):

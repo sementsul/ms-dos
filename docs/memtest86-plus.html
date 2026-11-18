@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memtest86+: как проверить оперативную память | ms-dos.su</title>
+<meta name="description" content="Memtest86+: как записать на флешку, сколько прогонов достаточно, как читать ошибки и почему тест не ловит редкие сбои при плохом блоке питания.">
+<link rel="canonical" href="https://ms-dos.su/memtest86-plus.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="Memtest86+: как проверить оперативную память | ms-dos.su">
+<meta property="og:description" content="Memtest86+: как записать на флешку, сколько прогонов достаточно, как читать ошибки и почему тест не ловит редкие сбои при плохом блоке питания.">
+<meta property="og:url" content="https://ms-dos.su/memtest86-plus.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Memtest86+: проверка памяти",
+   "description": "Memtest86+: как записать на флешку, сколько прогонов достаточно, как читать ошибки и почему тест не ловит редкие сбои при плохом блоке питания.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/memtest86-plus.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Сколько прогонов Memtest86+ считается нормой?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Минимум два полных прогона без ошибок. Для новой сборки или после разгона лучше оставить тест на несколько часов или на ночь."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Memtest86+ видит все ошибки памяти?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет. Он не нагружает блок питания и видеокарту, поэтому редкие сбои под нагрузкой могут не проявиться. Чистый тест — сильный аргумент, но не абсолютная гарантия."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли запустить Memtest86+ с UEFI?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Да, современные версии работают и в UEFI, и в BIOS-режиме. На платах с Secure Boot может потребоваться отключить защиту или выбрать совместимый режим загрузки."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Memtest86+: проверка памяти",
+     "item": "https://ms-dos.su/memtest86-plus.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "Memtest86+: проверка памяти",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Запишите образ на флешку",
+     "text": "Запишите загрузочный образ Memtest86+ побайтово; данные на флешке при этом уничтожаются."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Загрузитесь с флешки",
+     "text": "Вызовите загрузочное меню платы, выберите флешку; при необходимости включите Legacy/CSM или отключите Secure Boot."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Запустите тест",
+     "text": "Оставьте утилиту работать: она сама проходит тесты по кругу и показывает число прогонов."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Выдержите два полных прогона",
+     "text": "Минимум два прохода без ошибок; для уверенности — несколько часов или ночь."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Разберитесь с ошибками",
+     "text": "Проверьте каждую планку отдельно, отключите XMP, протрите контакты и проверьте слоты."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Повторите тест",
+     "text": "После замены планки или сброса настроек прогоните Memtest86+ заново."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="topbar">
+  <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Основная навигация">
+      <a href="/#features">Возможности</a>
+      <a href="/#trial">Trial</a>
+      <a href="/buy.html">Купить</a>
+      <a href="/stati.html">Статьи</a>
+      <a href="/contacts.html">Контакты</a>
+  </nav>
+  <span class="lang"><a href="/en/" hreflang="en" lang="en" aria-label="EN">EN</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Хлебные крошки">
+<a href="/">MBFU</a> / <a href="/stati.html">Статьи</a> / Диагностика
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>Memtest86+: проверка памяти</h1>
+      <p class="lead">Memtest86+ загружается вместо операционной системы и проверяет оперативную память собственными тестами, не доверяя ни Windows, ни драйверам. Это самый надёжный способ отличить сбойную планку от ошибки системы, если запускать тест достаточно долго.</p>
+<h2>Что проверяет Memtest86+</h2>
+<p>Утилита пишет в память шаблоны и читает их обратно, сравнивая результат. Разные тесты ищут разные дефекты: залипающие биты, ошибки адресации, взаимное влияние соседних ячеек. Проход по всей памяти называется прогоном, и одного прогона для вывода мало.</p><p>Memtest86+ бесплатен, распространяется как загрузочный образ и работает и в режиме BIOS, и в UEFI. Это важно для современных плат: старые версии утилиты грузились только через Legacy, и на машинах без CSM их просто не запустить.</p>
+<h2>Запись и загрузка</h2>
+<p>Образ записывается на флешку целиком, как есть: внутри уже есть загрузчик, поэтому файлы никуда копировать не нужно. В Windows для этого подойдёт любая программа побайтовой записи образа, в Linux — <code>dd</code>. Флешка при записи уничтожается.</p><p>Дальше — загрузка. Включите Legacy/CSM для старой версии образа или оставьте UEFI для новой (разница режимов разобрана в статье <a href="/uefi-legacy-csm.html">UEFI, Legacy и CSM</a>), вызовите загрузочное меню платы и выберите флешку. Если плата не показывает носитель, проверьте Secure Boot и порт: часть прошивок не грузит неподписанные образы, пока защита включена. Общие вопросы загрузки разобраны в статье <a href="/oshibki-zagruzki-dos-hub.html">ошибки загрузки DOS</a>.</p>
+<h2>Сколько прогонов достаточно</h2>
+<p>Минимум — два полных прогона без ошибок. Один прогон проверяет память один раз и может пропустить дефект, который проявляется при определённом порядке обращений. Для новой сборки или после замены планок разумно оставить тест на ночь: несколько часов прогонов дают гораздо больше уверенности.</p><p>Если ошибка есть, она обычно появляется в первые минуты — на плохой планке ждать всю ночь не нужно. Если ошибок нет за два прогона, но система падает под нагрузкой, проблема скорее в питании, температуре или настройках памяти, а не в самих модулях.</p>
+<h2>Как читать ошибки</h2>
+<p>При сбое утилита показывает адрес, ожидаемое и полученное значения и номер теста. Адрес полезен, чтобы понять, какая планка и какой канал замешаны, но по одному адресу виновника не вычислить: адресное пространство распределяется контроллером памяти.</p><p>Практический смысл имеет сам факт ошибки: любая ошибка означает, что память работает нестабильно. Запишите или сфотографируйте экран — по номеру теста и характеру расхождения иногда видно, что дело в таймингах, а не в модуле.</p>
+<h2>Ограничение: тест не нагружает блок питания</h2>
+<p>Memtest86+ проверяет память, но почти не нагружает процессор, видеокарту и цепи питания. Блок питания, который «проседает» под нагрузкой, в этом тесте может вести себя нормально, а в игре или при рендеринге — давать ошибки, которые спишут на память.</p><p>Отсюда практическое правило: если Memtest чист, а сбои есть, проверяйте питание, охлаждение и настройки. Температура тоже влияет: планка, которая греется, может ошибаться только в закрытом корпусе. И ещё один фактор — профиль XMP: разгонная частота и повышенное напряжение не гарантируют стабильность, даже если производитель заявляет их как штатные.</p>
+<h2>Порядок действий при ошибках</h2>
+<p>Сначала протестируйте каждую планку отдельно, в одном и том же слоте. Это отсекает две причины сразу: неисправный модуль и неисправный слот. Затем проверьте оставшиеся слоты по одному — так находится дефект разъёма.</p><ol><li>выключите XMP и верните память на штатную частоту;</li><li>протрите контакты планок и продуйте слоты от пыли;</li><li>проверьте каждую планку отдельно, затем в паре;</li><li>если ошибки остаются на одной планке во всех слотах — меняйте планку;</li><li>если ошибки на всех планках в одном слоте — проблема в плате или контроллере.</li></ol><p>После замены памяти обязательно прогоните тест снова и сбросьте CMOS, чтобы плата заново обучила тайминги.</p>
+
+<h2>Порядок действий</h2>
+<ol class="steps">
+<li><b>Запишите образ на флешку.</b> Запишите загрузочный образ Memtest86+ побайтово; данные на флешке при этом уничтожаются.</li>
+<li><b>Загрузитесь с флешки.</b> Вызовите загрузочное меню платы, выберите флешку; при необходимости включите Legacy/CSM или отключите Secure Boot.</li>
+<li><b>Запустите тест.</b> Оставьте утилиту работать: она сама проходит тесты по кругу и показывает число прогонов.</li>
+<li><b>Выдержите два полных прогона.</b> Минимум два прохода без ошибок; для уверенности — несколько часов или ночь.</li>
+<li><b>Разберитесь с ошибками.</b> Проверьте каждую планку отдельно, отключите XMP, протрите контакты и проверьте слоты.</li>
+<li><b>Повторите тест.</b> После замены планки или сброса настроек прогоните Memtest86+ заново.</li>
+</ol>
+
+<h2>Вопросы и ответы</h2>
+<p><b>Сколько прогонов Memtest86+ считается нормой?</b><br>Минимум два полных прогона без ошибок. Для новой сборки или после разгона лучше оставить тест на несколько часов или на ночь.</p>
+<p><b>Memtest86+ видит все ошибки памяти?</b><br>Нет. Он не нагружает блок питания и видеокарту, поэтому редкие сбои под нагрузкой могут не проявиться. Чистый тест — сильный аргумент, но не абсолютная гарантия.</p>
+<p><b>Можно ли запустить Memtest86+ с UEFI?</b><br>Да, современные версии работают и в UEFI, и в BIOS-режиме. На платах с Secure Boot может потребоваться отключить защиту или выбрать совместимый режим загрузки.</p>
+
+    </article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="mhdd-diagnostika-hdd.html">MHDD: диагностика жёсткого диска</a></li>
+<li><a href="victoria-diagnostika-diskov.html">Victoria: проверка HDD и SSD из DOS</a></li>
+<li><a href="usbaspi-i-usb-v-dos.html">USB в DOS: USBASPI, DUSE и почему флешка не видна</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>Trial MBFUTool 2.0 — все функции на 30 дней, без ключа активации.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Скачать Trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Полная версия</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — Утилита для работы с образами MS-DOS.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Самозанятый Семенцул Максим Геннадиевич, ИНН 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Документы</h2>
+        <nav aria-label="Документы">
+      <a href="/terms.html">Условия и лицензия</a>
+      <a href="/privacy.html">Конфиденциальность</a>
+      <a href="/cookies.html">Файлы cookie</a>
+      <a href="/refund.html">Оплата и возврат</a>
+      <a href="/contacts.html">Контакты и реквизиты</a>
+      <a href="/licenses.html">Сторонние лицензии</a>
+      <a href="/ms-dos-license.html">Где взять MS-DOS</a>
+      <a href="/dmca.html">Правообладателям</a>
+      <a href="/accessibility.html">Доступность</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Проект</h2>
+        <nav aria-label="Проект">
+          <a href="/stati.html">Статьи</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
+        </nav>
+        <p class="note">Trial — 30 дней бесплатно</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS — товарный знак Microsoft Corporation. DOSBox распространяется по GPLv2. MBFU не связана с Microsoft и не распространяет MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="ru">
+  <div class="consent-inner">
+    <p>Мы используем файлы cookie для аналитики, чтобы понимать, чем полезна документация. Аналитические скрипты включаются только с вашего согласия; без него сайт работает без cookie. <a href="/cookies.html">Подробнее</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Принять аналитику</button>
+      <button type="button" id="consent-reject">Только необходимые</button>
+      <button type="button" data-consent-settings>Настройки cookie</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="ru" aria-labelledby="consent-title">
+  <h2 id="consent-title">Настройки cookie</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Аналитика</b><span>Яндекс.Метрика и Google Analytics: обезличенная статистика посещений. Устанавливают cookie _ym_* и _ga*.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Сохранить</button>
+      <button type="submit" value="close" formnovalidate>Закрыть</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

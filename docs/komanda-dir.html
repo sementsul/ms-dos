@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "TechArticle",
- "headline": "Команда DIR",
- "description": "Команда DIR: полный синтаксис, все ключи (7), примеры и типичные ошибки.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/komanda-dir.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "Как посмотреть скрытые и системные файлы?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "DIR /A — покажет все, включая скрытые (H) и системные (S). По умолчанию DIR их прячет."
-   }
+   "@context": "https://schema.org",
+   "@type": "TechArticle",
+   "headline": "Команда DIR",
+   "description": "Команда DIR: полный синтаксис, все ключи (7), примеры и типичные ошибки.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/komanda-dir.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Как посмотреть скрытые и системные файлы?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "DIR /A — покажет все, включая скрытые (H) и системные (S). По умолчанию DIR их прячет."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Как сохранить список файлов в файл?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "DIR /S /B &gt; LIST.TXT — перенаправление работает со всеми командами."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "Как сохранить список файлов в файл?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "DIR /S /B &gt; LIST.TXT — перенаправление работает со всеми командами."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Команда DIR",
+     "item": "https://ms-dos.su/komanda-dir.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -106,6 +134,7 @@
 
 <h2>Типичные ошибки</h2>
 <ul><li>Маска *. * — это все файлы, а *.* без точки в DOS не работает как в Windows.</li><li>«File not found» при маске — норма: совпадений просто нет.</li><li>Русские имена в кодировке 866: набирайте их так же, иначе не найдет.</li></ul>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>Как посмотреть скрытые и системные файлы?</b><br>DIR /A — покажет все, включая скрытые (H) и системные (S). По умолчанию DIR их прячет.</p>
@@ -161,6 +190,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

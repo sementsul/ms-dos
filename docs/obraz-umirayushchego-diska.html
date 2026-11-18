@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как снять образ с умирающего диска и не потерять данные | ms-dos.su</title>
+<meta name="description" content="Последовательное чтение, пропуск ошибок и образ .mbfu с проверкой SHA-256: как снять данные с умирающего диска и что делать после.">
+<link rel="canonical" href="https://ms-dos.su/obraz-umirayushchego-diska.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="Как снять образ с умирающего диска и не потерять данные | ms-dos.su">
+<meta property="og:description" content="Последовательное чтение, пропуск ошибок и образ .mbfu с проверкой SHA-256: как снять данные с умирающего диска и что делать после.">
+<meta property="og:url" content="https://ms-dos.su/obraz-umirayushchego-diska.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Снять образ с умирающего диска",
+   "description": "Последовательное чтение, пропуск ошибок и образ .mbfu с проверкой SHA-256: как снять данные с умирающего диска и что делать после.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/obraz-umirayushchego-diska.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Сколько попыток чтения делать на один сектор?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Единого числа нет: оно зависит от состояния диска. Практика — несколько попыток и переход дальше, а не десятки повторов на одном блоке."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли снять образ с диска больше 4 ГБ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Файловая система FAT16 ограничена 4 ГБ, а DOSBox 0.72 не монтирует образы больше 4 ГБ. Для таких носителей нужен другой подход, и об этом стоит помнить заранее."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Что делать, если образ снялся с ошибками?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Сохранить его как есть, зафиксировать дефектные участки и работать с копией. Часть файлов обычно читается, а полный образ с неисправного диска не получить."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Снять образ с умирающего диска",
+     "item": "https://ms-dos.su/obraz-umirayushchego-diska.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "Снять образ с умирающего диска",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Подготовьте исправный приёмник",
+     "text": "Освободите место больше объёма диска на новом или проверенном носителе."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Запустите снятие образа",
+     "text": "Откройте MBFUTool от администратора и выберите «Create MBFU image from disk/floppy/USB»."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Не прерывайте чтение",
+     "text": "Дайте программе пройти носитель последовательно; повторные запуски увеличивают нагрузку на механику."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Зафиксируйте SHA-256",
+     "text": "Сохраните контрольную сумму образа в журнале вместе с датой и состоянием диска."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Сделайте вторую копию",
+     "text": "Перенесите .mbfu на другой носитель и храните его отдельно от первой копии."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="topbar">
+  <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Основная навигация">
+      <a href="/#features">Возможности</a>
+      <a href="/#trial">Trial</a>
+      <a href="/buy.html">Купить</a>
+      <a href="/stati.html">Статьи</a>
+      <a href="/contacts.html">Контакты</a>
+  </nav>
+  <span class="lang"><a href="/en/" hreflang="en" lang="en" aria-label="EN">EN</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Хлебные крошки">
+<a href="/">MBFU</a> / <a href="/stati.html">Статьи</a> / Восстановление данных
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>Снять образ с умирающего диска</h1>
+      <p class="lead">Умирающий диск нельзя прочитать получше: каждая попытка перечитывания сокращает остаток ресурса. Задача — снять максимум данных за минимум проходов и сохранить результат так, чтобы он пережил оригинал.</p>
+<h2>Почему диск нельзя мучить</h2>
+<p>У сбойного винчестера часто повреждена поверхность или механика. При повторном чтении блока головка снова и снова возвращается на дефект, контроллер уходит в перечитывание, двигатель работает на износ. Чем дольше длится процедура, тем выше шанс, что диск перестанет определяться вовсе.</p><p>Прежде чем начинать, проверьте простое: питание и шлейф. Ослабший разъём и просаженное напряжение дают картину, неотличимую от умирающего диска, а лечится это заменой кабеля. Если носитель определяется нестабильно, имеет смысл один раз попробовать другой контроллер или другой порт — но не десяток раз подряд.</p><p>Практический вывод: одно последовательное чтение всего носителя, без случайных переходов и без бесконечных повторов. Если сектор не читается с нескольких попыток, его пропускают и идут дальше.</p>
+<h2>Почему чтение должно быть последовательным</h2>
+<p>Чтение от начала до конца даёт минимум перемещений головки и предсказуемую нагрузку. Случайный доступ, наоборот, заставляет механику работать интенсивнее, а на слабом диске именно механика и отказывает первой.</p><p>Последовательность важна и для образа: блоки ложатся в файл по порядку, и потом понятно, какие участки читались, а какие пропущены.</p>
+<h2>Чтение с пропуском ошибок</h2>
+<p>Режим чтения с пропуском ошибок означает: при сбое блок не перечитывается многократно, а заменяется заполнителем, и чтение продолжается. Такой образ получается неполным по определению — в нём есть дыры на месте сбойных секторов.</p><p>Это осознанный компромисс. Полный образ с мёртвого диска не получить, а неполный образ, снятый за один проход, часто содержит почти всё содержимое. Главное — честно знать, где дыры, и не считать такой образ эталоном.</p><p>Для файловой системы дыра выглядит как испорченный кластер: часть файлов прочитается, часть — нет. Поэтому после снятия образа полезно сразу составить список того, что читается, и не тратить попытки на заведомо мёртвые участки.</p>
+<h2>Образ .mbfu и проверка SHA-256</h2>
+<p>MBFUTool 2.0 создаёт образ операцией «Create MBFU image from disk/floppy/USB». Внутри — контейнер с заголовком и сжатием zlib, целостность подтверждается SHA-256, а сам образ можно распаковать обратно в сырой посекторный образ. Для повреждённого диска это удобно: файл компактнее, а контрольная сумма сразу показывает, что копия не побилась при переносе.</p><p>Права администратора обязательны, запись на системный диск заблокирована, а целевой носитель должен быть заведомо исправен. Ограничения тоже стоит держать в голове: FAT16 до 4 ГБ, DOSBox 0.72 не монтирует образы больше 4 ГБ, пути — латиницей.</p>
+<h2>Почему образ пишут на исправный носитель</h2>
+<p>Запись образа на тот же сбойный диск или на флешку сомнительного происхождения сводит работу на нет: ошибка при проверке будет неотличима от ошибки исходника. Приёмник должен быть новым или проверенным, с известной историей.</p><p>Свободного места нужно больше, чем объём диска: сжатие помогает, но гарантий не даёт. Снимать образ по частям программа не умеет, поэтому место освобождают заранее, а не в процессе.</p>
+<h2>Что делать после снятия</h2>
+<p>Первым делом зафиксируйте контрольную сумму и сделайте вторую копию: источник теперь файл, а не диск. Дальше образ монтируют в DOSBox и смотрят, что уцелело, либо разбирают его сторонними средствами на другой машине.</p><p>Сам диск после успешного снятия не выбрасывают сразу: пока он определяется, с него можно добрать отдельные файлы. Но все дальнейшие операции — только с копией.</p><p>Полезно сразу оценить, что именно потеряно. Смонтируйте образ, выпишите отсутствующие каталоги и только потом решайте, нужна ли лаборатория. Иногда достаточно восстановить несколько документов, а не весь том.</p>
+
+<h2>Порядок действий</h2>
+<ol class="steps">
+<li><b>Подготовьте исправный приёмник.</b> Освободите место больше объёма диска на новом или проверенном носителе.</li>
+<li><b>Запустите снятие образа.</b> Откройте MBFUTool от администратора и выберите «Create MBFU image from disk/floppy/USB».</li>
+<li><b>Не прерывайте чтение.</b> Дайте программе пройти носитель последовательно; повторные запуски увеличивают нагрузку на механику.</li>
+<li><b>Зафиксируйте SHA-256.</b> Сохраните контрольную сумму образа в журнале вместе с датой и состоянием диска.</li>
+<li><b>Сделайте вторую копию.</b> Перенесите .mbfu на другой носитель и храните его отдельно от первой копии.</li>
+</ol>
+
+<h2>Вопросы и ответы</h2>
+<p><b>Сколько попыток чтения делать на один сектор?</b><br>Единого числа нет: оно зависит от состояния диска. Практика — несколько попыток и переход дальше, а не десятки повторов на одном блоке.</p>
+<p><b>Можно ли снять образ с диска больше 4 ГБ?</b><br>Файловая система FAT16 ограничена 4 ГБ, а DOSBox 0.72 не монтирует образы больше 4 ГБ. Для таких носителей нужен другой подход, и об этом стоит помнить заранее.</p>
+<p><b>Что делать, если образ снялся с ошибками?</b><br>Сохранить его как есть, зафиксировать дефектные участки и работать с копией. Часть файлов обычно читается, а полный образ с неисправного диска не получить.</p>
+
+    </article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="vosstanovlenie-dannyh-iz-dos.html">Восстановление данных утилитами DOS</a></li>
+<li><a href="undelete-na-praktike.html">UNDELETE на практике</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>Trial MBFUTool 2.0 — все функции на 30 дней, без ключа активации.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Скачать Trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Полная версия</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — Утилита для работы с образами MS-DOS.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Самозанятый Семенцул Максим Геннадиевич, ИНН 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Документы</h2>
+        <nav aria-label="Документы">
+      <a href="/terms.html">Условия и лицензия</a>
+      <a href="/privacy.html">Конфиденциальность</a>
+      <a href="/cookies.html">Файлы cookie</a>
+      <a href="/refund.html">Оплата и возврат</a>
+      <a href="/contacts.html">Контакты и реквизиты</a>
+      <a href="/licenses.html">Сторонние лицензии</a>
+      <a href="/ms-dos-license.html">Где взять MS-DOS</a>
+      <a href="/dmca.html">Правообладателям</a>
+      <a href="/accessibility.html">Доступность</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Проект</h2>
+        <nav aria-label="Проект">
+          <a href="/stati.html">Статьи</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
+        </nav>
+        <p class="note">Trial — 30 дней бесплатно</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS — товарный знак Microsoft Corporation. DOSBox распространяется по GPLv2. MBFU не связана с Microsoft и не распространяет MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="ru">
+  <div class="consent-inner">
+    <p>Мы используем файлы cookie для аналитики, чтобы понимать, чем полезна документация. Аналитические скрипты включаются только с вашего согласия; без него сайт работает без cookie. <a href="/cookies.html">Подробнее</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Принять аналитику</button>
+      <button type="button" id="consent-reject">Только необходимые</button>
+      <button type="button" data-consent-settings>Настройки cookie</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="ru" aria-labelledby="consent-title">
+  <h2 id="consent-title">Настройки cookie</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Аналитика</b><span>Яндекс.Метрика и Google Analytics: обезличенная статистика посещений. Устанавливают cookie _ym_* и _ga*.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Сохранить</button>
+      <button type="submit" value="close" formnovalidate>Закрыть</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

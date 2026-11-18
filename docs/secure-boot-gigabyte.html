@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "Secure Boot на Gigabyte",
- "description": "Как отключить Secure Boot на Gigabyte и загрузиться с DOS-флешки: пошаговая инструкция.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/secure-boot-gigabyte.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "Зачем включать CSM?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "CSM (Compatibility Support Module) включает Legacy-загрузку: без него BIOS не умеет грузить DOS-загрузчик вообще."
-   }
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Secure Boot на Gigabyte",
+   "description": "Как отключить Secure Boot на Gigabyte и загрузиться с DOS-флешки: пошаговая инструкция.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/secure-boot-gigabyte.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Зачем включать CSM?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "CSM (Compatibility Support Module) включает Legacy-загрузку: без него BIOS не умеет грузить DOS-загрузчик вообще."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Флешки нет в Boot Option — что проверить?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "CSM Support Enabled, USB Boot Enabled, флешка в порту USB 2.0. Затем F10 и повторный вход в Boot Menu."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "Флешки нет в Boot Option — что проверить?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "CSM Support Enabled, USB Boot Enabled, флешка в порту USB 2.0. Затем F10 и повторный вход в Boot Menu."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Secure Boot на Gigabyte",
+     "item": "https://ms-dos.su/secure-boot-gigabyte.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -92,6 +120,7 @@
 <ol><li>Del при включении, вкладка BIOS.</li><li>CSM Support — Enabled (иначе Legacy-загрузка невозможна).</li><li>Secure Boot — Disabled.</li><li>В Boot Option выберите вашу флешку.</li><li>F10 — сохранить и выйти.</li></ol>
 <h2>Нюанс</h2>
 <p>Gigabyte часто прячет Secure Boot, пока не выставлен CSM Enabled — делайте по порядку.</p>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>Зачем включать CSM?</b><br>CSM (Compatibility Support Module) включает Legacy-загрузку: без него BIOS не умеет грузить DOS-загрузчик вообще.</p>
@@ -147,6 +176,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

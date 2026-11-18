@@ -8,11 +8,26 @@ from site_config import (SITE, BRAND, PRODUCT, AUTHOR, COPYRIGHT, BUY_URL,
 
 NAV = {
     "ru": [("Возможности", "/#features"), ("Trial", "/#trial"),
-           ("Купить", "/#buy"), ("Статьи", "/stati.html"),
+           ("Купить", "/buy.html"), ("Статьи", "/stati.html"),
            ("Контакты", "/contacts.html")],
     "en": [("Features", "/en/#features"), ("Trial", "/en/#trial"),
-           ("Buy", "/en/#buy"), ("Guides", "/en/stati.html"),
+           ("Buy", "/en/buy.html"), ("Guides", "/en/stati.html"),
            ("Contact", "/en/contacts.html")],
+}
+
+PROJ = {
+    "ru": [("/buy.html", "Купить и получить"),
+           ("/trial-vs-full.html", "Trial и полная версия"),
+           ("/verify.html", "Проверка сборки"),
+           ("/mbfu-format.html", "Формат .mbfu"),
+           ("/changelog.html", "История версий"),
+           ("/about.html", "Об авторе")],
+    "en": [("/en/buy.html", "Buy and get the files"),
+           ("/en/trial-vs-full.html", "Trial vs full version"),
+           ("/en/verify.html", "Verify the build"),
+           ("/en/mbfu-format.html", ".mbfu format"),
+           ("/en/changelog.html", "Version history"),
+           ("/en/about.html", "About the author")],
 }
 
 FOOT = {
@@ -194,10 +209,15 @@ def footer(lang, slug, has_en=True):
     t = T[lang]
     links = "\n".join('      <a href="%s">%s</a>' % (href, label)
                       for href, label in FOOT[lang])
+    proj_links = "\n".join('          <a href="%s">%s</a>' % (href, label)
+                           for href, label in PROJ[lang])
     articles = "/en/stati.html" if lang == "en" else "/stati.html"
-    lang_href = "/" if lang == "en" else "/en/"
     if not has_en:
         lang_href = "/en/" if lang == "ru" else "/"
+    elif slug in ("index", "404"):
+        lang_href = "/en/" if lang == "ru" else "/"
+    else:
+        lang_href = ("/%s.html" % slug) if lang == "en" else ("/en/%s.html" % slug)
     if lang == "ru":
         seller_line = ('Самозанятый %s, ИНН %s · '
                        '<a href="mailto:%s">%s</a>' % (
@@ -231,6 +251,9 @@ def footer(lang, slug, has_en=True):
           <a href="{buy}" rel="noopener">{buy}</a>
           <a href="{lang_href}" hreflang="{lang_other}" lang="{lang_other}">{lang_label}</a>
         </nav>
+        <nav aria-label="{project}">
+{proj_links}
+        </nav>
         <p class="note">{buy_note}</p>
         <button type="button" class="cookie-settings" data-consent-settings>{cookie_settings}</button>
       </div>
@@ -251,7 +274,7 @@ def footer(lang, slug, has_en=True):
            lang_href=lang_href,
            lang_other="ru" if lang == "en" else "en",
            lang_label=("Русская версия" if lang == "en" else "English version"),
-           consent=consent_markup(lang))
+           consent=consent_markup(lang), proj_links=proj_links)
 
 
 def consent_markup(lang):

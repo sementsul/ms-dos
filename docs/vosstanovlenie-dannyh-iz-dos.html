@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Восстановление данных утилитами DOS: порядок и ограничения | ms-dos.su</title>
+<meta name="description" content="Когда DOS-утилиты уместны при восстановлении данных, зачем сначала снимать образ и какие инструменты применяют: Norton Utilities, MHDD, dd.">
+<link rel="canonical" href="https://ms-dos.su/vosstanovlenie-dannyh-iz-dos.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="Восстановление данных утилитами DOS: порядок и ограничения | ms-dos.su">
+<meta property="og:description" content="Когда DOS-утилиты уместны при восстановлении данных, зачем сначала снимать образ и какие инструменты применяют: Norton Utilities, MHDD, dd.">
+<meta property="og:url" content="https://ms-dos.su/vosstanovlenie-dannyh-iz-dos.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Восстановление данных утилитами DOS",
+   "description": "Когда DOS-утилиты уместны при восстановлении данных, зачем сначала снимать образ и какие инструменты применяют: Norton Utilities, MHDD, dd.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/vosstanovlenie-dannyh-iz-dos.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Можно ли восстанавливать данные прямо в Windows?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Можно, если система не пишет на диск и есть режим только для чтения. Но Windows при подключении тома может изменить служебные записи, поэтому для повреждённого носителя безопаснее DOS и образ."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Зачем нужен образ, если утилита работает с диском напрямую?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Образ фиксирует состояние и защищает от необратимых действий. Любую операцию можно повторить на копии, а оригинал остаётся нетронутым."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Поможет ли DOS при повреждённой файловой системе NTFS?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет, DOS не понимает NTFS. Её роль сводится к посекторному копированию, а разбор тома выполняют на другой платформе."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Восстановление данных утилитами DOS",
+     "item": "https://ms-dos.su/vosstanovlenie-dannyh-iz-dos.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "Восстановление данных утилитами DOS",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Обесточьте и не загружайтесь с диска",
+     "text": "Выключите ПК, чтобы система не записала ничего поверх удалённых или повреждённых данных."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Загрузитесь с внешнего носителя",
+     "text": "Используйте DOS-флешку, созданную заранее, и не монтируйте внутренний диск на запись."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Снимите посекторный образ",
+     "text": "Создайте .mbfu с помощью MBFUTool и сохраните файл на исправный внешний диск."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Проверьте контрольную сумму",
+     "text": "Сравните SHA-256 после переноса файла, чтобы исключить повреждение копии."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Работайте только с образом",
+     "text": "Запускайте утилиты по копии, а оригинал держите в стороне до конца работ."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="topbar">
+  <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Основная навигация">
+      <a href="/#features">Возможности</a>
+      <a href="/#trial">Trial</a>
+      <a href="/buy.html">Купить</a>
+      <a href="/stati.html">Статьи</a>
+      <a href="/contacts.html">Контакты</a>
+  </nav>
+  <span class="lang"><a href="/en/" hreflang="en" lang="en" aria-label="EN">EN</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Хлебные крошки">
+<a href="/">MBFU</a> / <a href="/stati.html">Статьи</a> / Восстановление данных
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>Восстановление данных утилитами DOS</h1>
+      <p class="lead">DOS-утилиты остаются рабочим инструментом восстановления данных, когда Windows отказывается видеть диск. Но работать ими нужно по строгой схеме, иначе единственная копия данных погибнет.</p>
+<h2>Когда DOS-инструменты уместны</h2>
+<p>Типичные ситуации. Диск не читается в Windows: система предлагает форматирование, зависает на определении тома или показывает нулевой размер. Нужен посекторный доступ: таблица разделов повреждена, и файловая система не монтируется. Нежелательно писать на диск: любая запись уменьшает шансы на восстановление.</p><p>DOS хороша тем, что грузится с внешнего носителя и не трогает внутренний диск, пока вы сами к нему не обратитесь. Нет фоновых служб, нет автоматического монтирования, нет индексатора, который начнёт что-то писать.</p><p>Есть и ещё один сценарий: нужно вытащить данные со старого носителя, который современная система отказывается обслуживать. Дискета, винчестер с интерфейсом, которого нет на материнской плате, или карта памяти в переходнике — всё это читается в DOS и затем переносится файлами.</p>
+<h2>Что сделать до запуска утилит</h2>
+<p>До запуска любой утилиты снимите образ. Посекторный слепок фиксирует состояние диска на момент чтения и позволяет экспериментировать сколько угодно: испортить копию не страшно, оригинал остаётся в стороне.</p><p>Для этого подходит MBFUTool 2.0: операция «Create MBFU image from disk/floppy/USB» создаёт .mbfu с заголовком, сжатием zlib и контролем SHA-256, а образ можно распаковать обратно в сырой посекторный образ. Дальше все утилиты запускаются по образу, а не по живому диску. Порядок снятия — в материале <a href="/obraz-umirayushchego-diska.html">снять образ с умирающего диска</a>.</p>
+<h2>Посекторный доступ вместо файлового</h2>
+<p>DOS-утилиты обращаются к диску через прерывание <code>INT 13h</code> и к портам контроллера напрямую, обходя кэш и драйверы операционной системы. Это способ прочитать сектор, который Windows считает нечитаемым, и увидеть содержимое служебных областей.</p><p>Обратная сторона — отсутствие защиты от ошибки. В DOS нет проверки прав, нет корзины и нет отмены: команда выполняется сразу. Поэтому работают только с копией и только с понятной целью.</p>
+<h2>Какие утилиты применяют</h2>
+<p>Набор невелик и проверен временем.</p><ul><li>Norton Utilities — Disk Editor для просмотра и правки секторов, NDD для проверки структур.</li><li>MHDD — работа с диском на низком уровне и оценка состояния поверхности.</li><li><code>dd</code> — посекторное копирование с указанием режима пропуска ошибок.</li></ul><p>Каждая утилита решает свою задачу: просмотр, диагностика поверхности, копирование. Универсальной кнопки «восстановить» не существует, и обещания такой кнопки — повод не доверять инструменту.</p><p>Порядок применения тоже важен: сначала копирование, потом диагностика, и только затем правка структур. Если начать с правки таблицы разделов, можно потерять доступ к тому, что ещё читалось.</p>
+<h2>Чего делать нельзя</h2>
+<p>Не записывать на повреждённый диск: ни результаты восстановления, ни исправленную таблицу разделов, ни обновления. Каждая запись может лечь поверх уцелевших данных. Не запускать <code>CHKDSK</code> и <code>SCANDISK</code> на всякий случай: они переписывают служебные структуры и могут закрыть путь к файлам.</p><p>Не лечить единственную копию: если образ один и на нём экспериментируют, второго шанса не будет. И не грейте диск феном, не стучите по нему и не меняйте электронику, пока не снят образ — механика после таких опытов обычно уже не читается.</p>
+<h2>Когда DOS не поможет</h2>
+<p>Если диск не определяется по интерфейсу, щёлкает, не раскручивается или имеет разрушенную механику, программные методы бессильны. Здесь нужна лаборатория с чистым боксом и заменой головок, а не набор утилит.</p><p>То же относится к шифрованным томам и современным файловым системам без поддержки в DOS. В таких случаях DOS-этап ограничивается снятием образа, а разбором занимаются на другой платформе.</p><p>Планируя работу, исходите из того, что времени мало: сбойный диск может отказать в любой момент, поэтому образ снимают первым действием, а не после долгих размышлений.</p>
+
+<h2>Порядок действий</h2>
+<ol class="steps">
+<li><b>Обесточьте и не загружайтесь с диска.</b> Выключите ПК, чтобы система не записала ничего поверх удалённых или повреждённых данных.</li>
+<li><b>Загрузитесь с внешнего носителя.</b> Используйте DOS-флешку, созданную заранее, и не монтируйте внутренний диск на запись.</li>
+<li><b>Снимите посекторный образ.</b> Создайте .mbfu с помощью MBFUTool и сохраните файл на исправный внешний диск.</li>
+<li><b>Проверьте контрольную сумму.</b> Сравните SHA-256 после переноса файла, чтобы исключить повреждение копии.</li>
+<li><b>Работайте только с образом.</b> Запускайте утилиты по копии, а оригинал держите в стороне до конца работ.</li>
+</ol>
+
+<h2>Вопросы и ответы</h2>
+<p><b>Можно ли восстанавливать данные прямо в Windows?</b><br>Можно, если система не пишет на диск и есть режим только для чтения. Но Windows при подключении тома может изменить служебные записи, поэтому для повреждённого носителя безопаснее DOS и образ.</p>
+<p><b>Зачем нужен образ, если утилита работает с диском напрямую?</b><br>Образ фиксирует состояние и защищает от необратимых действий. Любую операцию можно повторить на копии, а оригинал остаётся нетронутым.</p>
+<p><b>Поможет ли DOS при повреждённой файловой системе NTFS?</b><br>Нет, DOS не понимает NTFS. Её роль сводится к посекторному копированию, а разбор тома выполняют на другой платформе.</p>
+
+    </article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="obraz-umirayushchego-diska.html">Снять образ с умирающего диска</a></li>
+<li><a href="undelete-na-praktike.html">UNDELETE на практике</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>Trial MBFUTool 2.0 — все функции на 30 дней, без ключа активации.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Скачать Trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Полная версия</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — Утилита для работы с образами MS-DOS.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Самозанятый Семенцул Максим Геннадиевич, ИНН 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Документы</h2>
+        <nav aria-label="Документы">
+      <a href="/terms.html">Условия и лицензия</a>
+      <a href="/privacy.html">Конфиденциальность</a>
+      <a href="/cookies.html">Файлы cookie</a>
+      <a href="/refund.html">Оплата и возврат</a>
+      <a href="/contacts.html">Контакты и реквизиты</a>
+      <a href="/licenses.html">Сторонние лицензии</a>
+      <a href="/ms-dos-license.html">Где взять MS-DOS</a>
+      <a href="/dmca.html">Правообладателям</a>
+      <a href="/accessibility.html">Доступность</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Проект</h2>
+        <nav aria-label="Проект">
+          <a href="/stati.html">Статьи</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
+        </nav>
+        <p class="note">Trial — 30 дней бесплатно</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS — товарный знак Microsoft Corporation. DOSBox распространяется по GPLv2. MBFU не связана с Microsoft и не распространяет MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="ru">
+  <div class="consent-inner">
+    <p>Мы используем файлы cookie для аналитики, чтобы понимать, чем полезна документация. Аналитические скрипты включаются только с вашего согласия; без него сайт работает без cookie. <a href="/cookies.html">Подробнее</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Принять аналитику</button>
+      <button type="button" id="consent-reject">Только необходимые</button>
+      <button type="button" data-consent-settings>Настройки cookie</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="ru" aria-labelledby="consent-title">
+  <h2 id="consent-title">Настройки cookie</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Аналитика</b><span>Яндекс.Метрика и Google Analytics: обезличенная статистика посещений. Устанавливают cookie _ym_* и _ga*.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Сохранить</button>
+      <button type="submit" value="close" formnovalidate>Закрыть</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

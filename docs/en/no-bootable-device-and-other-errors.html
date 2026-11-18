@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>“No Bootable Device”: Fixing Boot Errors on Modern PCs | ms-dos.su</title>
+<meta name="description" content="What “No bootable device”, “Non-System disk”, “Missing operating system” and “Invalid media type” mean, with a table for boot mode, CSM, active partition and USB.">
+<link rel="canonical" href="https://ms-dos.su/en/no-bootable-device-and-other-errors.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="“No Bootable Device”: Fixing Boot Errors on Modern PCs | ms-dos.su">
+<meta property="og:description" content="What “No bootable device”, “Non-System disk”, “Missing operating system” and “Invalid media type” mean, with a table for boot mode, CSM, active partition and USB.">
+<meta property="og:url" content="https://ms-dos.su/en/no-bootable-device-and-other-errors.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "“No bootable device”: fixing boot errors on modern PCs",
+   "description": "What “No bootable device”, “Non-System disk”, “Missing operating system” and “Invalid media type” mean, with a table for boot mode, CSM, active partition and USB.",
+   "inLanguage": "en",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/en/no-bootable-device-and-other-errors.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Why does the stick boot on one PC and not another?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Boot mode and CSM differ between machines. A legacy image needs CSM on and Secure Boot off; a UEFI-only machine will not list it."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "I wrote the image but get Non-System disk. Is the image bad?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not necessarily. The boot sector was read, so the device is bootable; the system files or the active flag are the usual cause. Rewrite the whole device and check the partition."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do the Russian pages cover the same errors?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, in more detail and in Russian. The messages and the checks are the same."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://ms-dos.su/en/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "“No bootable device”: fixing boot errors on modern PCs",
+     "item": "https://ms-dos.su/en/no-bootable-device-and-other-errors.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "“No bootable device”: fixing boot errors on modern PCs",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Read the message",
+     "text": "Note whether it comes from the firmware (no device found) or from a loader (device found, files missing)."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Match the boot mode",
+     "text": "Set the firmware to CSM or legacy for an MBR DOS image, and disable Secure Boot."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Check the device",
+     "text": "Confirm the image was written to the whole device, has an active partition and a 55 AA boot signature."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Try another port",
+     "text": "Move the stick to a rear USB 2.0 port, re-plug it, and use the one-time boot menu to pick the legacy entry."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="/en/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Main navigation">
+      <a href="/en/#features">Features</a>
+      <a href="/en/#trial">Trial</a>
+      <a href="/en/buy.html">Buy</a>
+      <a href="/en/stati.html">Guides</a>
+      <a href="/en/contacts.html">Contact</a>
+  </nav>
+  <span class="lang"><a href="/" hreflang="ru" lang="ru" aria-label="RU">RU</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb">
+<a href="/en/">MBFU</a> / <a href="/en/stati.html">Guides</a> / Guides
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>“No bootable device”: fixing boot errors on modern PCs</h1>
+      <p class="lead">The five messages below all mean the same thing at heart: the firmware looked for something bootable and did not find it, or found it and rejected it. The wording tells you which stage failed.</p>
+<h2>The messages, one by one</h2>
+<ul><li><b>No bootable device</b> — the firmware found no device with a valid boot record in the current boot mode.</li><li><b>Reboot and select proper boot device</b> — the same failure with a prompt; often boot order or the stick's mode.</li><li><b>Non-System disk or disk error</b> — a boot sector was found, but it is not a DOS system disk (no IO.SYS/MSDOS.SYS chain).</li><li><b>Missing operating system</b> — the boot sector ran but the partition it points to has no system files or the active flag is wrong.</li><li><b>Invalid media type</b> — the BPB or FAT type does not match what the loader expects; typical of a wrongly formatted or truncated image.</li></ul>
+<h2>No bootable device, reboot and select proper boot device</h2>
+<p>These come from the firmware, before any DOS code runs. Either the boot mode does not match the image (UEFI firmware, legacy MBR image), or CSM is off, or the stick was not written as a bootable device. Check the one-time boot menu: a legacy image should appear as a legacy entry, not under UEFI. Try another port, preferably rear USB 2.0, and confirm the stick is not formatted as a UEFI-only device.</p>
+<h2>Non-System disk and Missing operating system</h2>
+<p>These come from a loader that did run. The boot sector is present and the signature is valid, but the system files are missing, the partition is not marked active, or the BPB describes a different geometry than the image actually has. Rewrite the image with a tool that writes the whole device, not a file copy, and check that the partition carries the active flag.</p>
+<h2>Invalid media type</h2>
+<p>The loader read the BPB and found a combination it cannot use: a FAT type that does not match the cluster count, a sector size other than 512, or a geometry field that contradicts the image size. This is common when a 1.44 MB image is written to a 2.88 MB geometry, or when an image was truncated during download. Compare the file size with the expected geometry first.</p>
+<h2>Decision table</h2>
+<table><tr><td>Symptom</td><td>Likely cause</td><td>What to check</td></tr><tr><td>Firmware message, stick absent from the boot menu</td><td>Image not written as bootable, or wrong mode</td><td>Boot mode and CSM; one-time boot menu</td></tr><tr><td>Legacy image on a UEFI-only machine</td><td>CSM off or hidden</td><td>Enable CSM, disable Fast Boot</td></tr><tr><td>“Non-System disk”</td><td>Boot sector present, system files missing</td><td>Rewrite the image; check the active partition</td></tr><tr><td>“Missing operating system”</td><td>Active flag wrong or partition mismatch</td><td>Partition table and active flag</td></tr><tr><td>Works on one port, not another</td><td>USB controller or front-panel hub</td><td>Rear USB 2.0 port; USB legacy support</td></tr><tr><td>Secure Boot enabled</td><td>Unsigned loader refused</td><td>Disable Secure Boot or set OS Type to Other OS</td></tr></table>
+<h2>Russian detail pages</h2>
+<p>Longer write-ups of individual messages are on the Russian pages: <a href='https://ms-dos.su/oshibka-non-system-disk.html'>Non-System disk</a>, <a href='https://ms-dos.su/oshibka-invalid-media.html'>Invalid media type</a>, <a href='https://ms-dos.su/oshibka-no-os.html'>No OS</a> and <a href='https://ms-dos.su/oshibka-prevyshenie-4gb.html'>the 4 GB limit</a>. They are in Russian; the table above covers the same checks in English.</p>
+
+<h2>Step by step</h2>
+<ol class="steps">
+<li><b>Read the message.</b> Note whether it comes from the firmware (no device found) or from a loader (device found, files missing).</li>
+<li><b>Match the boot mode.</b> Set the firmware to CSM or legacy for an MBR DOS image, and disable Secure Boot.</li>
+<li><b>Check the device.</b> Confirm the image was written to the whole device, has an active partition and a 55 AA boot signature.</li>
+<li><b>Try another port.</b> Move the stick to a rear USB 2.0 port, re-plug it, and use the one-time boot menu to pick the legacy entry.</li>
+</ol>
+
+<h2>Questions</h2>
+<p><b>Why does the stick boot on one PC and not another?</b><br>Boot mode and CSM differ between machines. A legacy image needs CSM on and Secure Boot off; a UEFI-only machine will not list it.</p>
+<p><b>I wrote the image but get Non-System disk. Is the image bad?</b><br>Not necessarily. The boot sector was read, so the device is bootable; the system files or the active flag are the usual cause. Rewrite the whole device and check the partition.</p>
+<p><b>Do the Russian pages cover the same errors?</b><br>Yes, in more detail and in Russian. The messages and the checks are the same.</p>
+
+    </article>
+<aside>
+<h2>Read next</h2>
+<ul>
+<li><a href="how-to-create-bootable-ms-dos-usb.html">How to create a bootable MS-DOS USB drive</a></li>
+<li><a href="ms-dos-in-virtualbox-or-dosbox.html">Running MS-DOS in DOSBox or a virtual machine</a></li>
+<li><a href="bios-update-from-dos-usb.html">Updating the BIOS from a DOS USB drive</a></li>
+<li><a href="secure-boot-and-csm-for-dos.html">Secure Boot, UEFI and CSM: booting DOS on modern hardware</a></li>
+<li><a href="fat16-limits-and-4gb-usb-drives.html">FAT16 limits: why a DOS USB drive stops at 2-4 GB</a></li>
+<li><a href="ms-dos-boot-errors-explained.html">MS-DOS boot errors explained</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Need a bootable MS-DOS USB drive?</b></p>
+<p>The MBFUTool 2.0 trial gives you every feature for 30 days, no key required.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Download the trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Full version</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — MS-DOS image toolkit.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Self-employed Sementsul Maxim Gennadievich, INN 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Documents</h2>
+        <nav aria-label="Documents">
+      <a href="/en/terms.html">Terms and licence</a>
+      <a href="/en/privacy.html">Privacy</a>
+      <a href="/en/cookies.html">Cookies</a>
+      <a href="/en/refund.html">Payment and refunds</a>
+      <a href="/en/contacts.html">Contacts and seller details</a>
+      <a href="/en/licenses.html">Third-party licences</a>
+      <a href="/en/ms-dos-license.html">Where to get MS-DOS</a>
+      <a href="/en/dmca.html">Rights holders</a>
+      <a href="/en/accessibility.html">Accessibility</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Project</h2>
+        <nav aria-label="Project">
+          <a href="/en/stati.html">Guides</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/" hreflang="ru" lang="ru">Русская версия</a>
+        </nav>
+        <nav aria-label="Project">
+          <a href="/en/buy.html">Buy and get the files</a>
+          <a href="/en/trial-vs-full.html">Trial vs full version</a>
+          <a href="/en/verify.html">Verify the build</a>
+          <a href="/en/mbfu-format.html">.mbfu format</a>
+          <a href="/en/changelog.html">Version history</a>
+          <a href="/en/about.html">About the author</a>
+        </nav>
+        <p class="note">Trial — 30 days free</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Cookie settings</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS is a trademark of Microsoft Corporation. DOSBox is distributed under GPLv2. MBFU is not affiliated with Microsoft and does not distribute MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="en">
+  <div class="consent-inner">
+    <p>We use cookies for analytics to understand which docs are useful. Analytics scripts run only with your consent; without it the site works without cookies. <a href="/en/cookies.html">Details</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Accept analytics</button>
+      <button type="button" id="consent-reject">Essential only</button>
+      <button type="button" data-consent-settings>Cookie settings</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="en" aria-labelledby="consent-title">
+  <h2 id="consent-title">Cookie settings</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Analytics</b><span>Yandex Metrica and Google Analytics: aggregate visit statistics. They set _ym_* and _ga* cookies.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Save</button>
+      <button type="submit" value="close" formnovalidate>Close</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

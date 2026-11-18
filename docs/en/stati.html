@@ -26,26 +26,54 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "MS-DOS guides",
- "description": "Knowledge base index",
- "inLanguage": "en",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/en/stati.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- }
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "MS-DOS guides",
+   "description": "Knowledge base index",
+   "inLanguage": "en",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/en/stati.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://ms-dos.su/en/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "MS-DOS guides",
+     "item": "https://ms-dos.su/en/stati.html"
+    }
+   ]
+  }
+ ]
 }
 </script>
 <script src="/assets/consent.js" defer></script>
@@ -57,7 +85,7 @@
   <nav aria-label="Main navigation">
       <a href="/en/#features">Features</a>
       <a href="/en/#trial">Trial</a>
-      <a href="/en/#buy">Buy</a>
+      <a href="/en/buy.html">Buy</a>
       <a href="/en/stati.html">Guides</a>
       <a href="/en/contacts.html">Contact</a>
   </nav>
@@ -71,19 +99,38 @@
 <section class="block">
   <div class="wrap">
     <h1>MS-DOS guides and reference</h1>
-    <p class="lead">The knowledge base has 100 articles: DOS commands, MS-DOS 5.00 and
+    <p class="lead">The knowledge base has 124 articles: DOS commands, MS-DOS 5.00 and
     6.22 internals, DOSBox, Secure Boot and typical errors. They are written in
     Russian — the language of the DOS documentation this project grew from — and are
-    listed below by topic.</p>
+    listed below by topic. The guides below the table are written in English.</p>
 
     <table>
       <tr><th>Topic</th><th>Articles</th></tr>
-      <tr><td>Команды MS-DOS</td><td>30</td></tr><tr><td>Secure Boot</td><td>7</td></tr><tr><td>Ошибки</td><td>10</td></tr><tr><td>Файловые системы</td><td>5</td></tr><tr><td>Norton Commander</td><td>8</td></tr><tr><td>QBASIC</td><td>5</td></tr><tr><td>DOSBox</td><td>5</td></tr><tr><td>Память и железо</td><td>6</td></tr><tr><td>Версии MS-DOS</td><td>12</td></tr><tr><td>Сравнение</td><td>5</td></tr><tr><td>Гайды</td><td>7</td></tr>
-      <tr><td><b>Total</b></td><td><b>100</b></td></tr>
+      <tr><td>Команды MS-DOS</td><td>30</td></tr><tr><td>Secure Boot</td><td>7</td></tr><tr><td>Ошибки</td><td>10</td></tr><tr><td>Файловые системы</td><td>5</td></tr><tr><td>Norton Commander</td><td>8</td></tr><tr><td>QBASIC</td><td>5</td></tr><tr><td>DOSBox</td><td>5</td></tr><tr><td>Память и железо</td><td>6</td></tr><tr><td>Версии MS-DOS</td><td>12</td></tr><tr><td>Сравнение</td><td>8</td></tr><tr><td>Гайды</td><td>7</td></tr><tr><td>Прошивка BIOS</td><td>5</td></tr><tr><td>Диагностика</td><td>4</td></tr><tr><td>Промышленность</td><td>3</td></tr><tr><td>Восстановление данных</td><td>3</td></tr><tr><td>Инструкции</td><td>3</td></tr><tr><td>Версии на флешку</td><td>3</td></tr>
+      <tr><td><b>Total</b></td><td><b>124</b></td></tr>
     </table>
 
     <p><a class="btn" href="/stati.html" hreflang="ru" lang="ru">Open the catalogue (RU)</a>
        <a class="btn ghost" href="/en/dos-test.html">Try MS-DOS in the browser</a></p>
+
+    <h2>Guides in English</h2>
+    <ul class="mega">
+    <li><a href="/en/how-to-create-bootable-ms-dos-usb.html">How to create a bootable MS-DOS USB drive</a><br><small>How to write your own lawful MS-DOS image to a USB stick on Windows: what you need, how to write it, and how to prove that it boots.</small></li>
+<li><a href="/en/ms-dos-in-virtualbox-or-dosbox.html">Running MS-DOS in DOSBox or a virtual machine</a><br><small>When DOSBox or a virtual machine is enough for MS-DOS work, when only real hardware will do, and how to edit images without a physical PC.</small></li>
+<li><a href="/en/bios-update-from-dos-usb.html">Updating the BIOS from a DOS USB drive</a><br><small>How to update a motherboard BIOS from a DOS USB drive: identify the board, get the vendor flasher, boot in Legacy mode, run it, verify the version.</small></li>
+<li><a href="/en/secure-boot-and-csm-for-dos.html">Secure Boot, UEFI and CSM: booting DOS on modern hardware</a><br><small>Why a modern PC refuses to boot MS-DOS from USB: Secure Boot, UEFI, CSM and Legacy mode, vendor differences, and what to change in the firmware setup.</small></li>
+<li><a href="/en/fat16-limits-and-4gb-usb-drives.html">FAT16 limits: why a DOS USB drive stops at 2-4 GB</a><br><small>FAT16 limits explained: the 4 GB ceiling, the practical 2 GB figure for MS-DOS, cluster sizes, and how to use a larger USB stick anyway.</small></li>
+<li><a href="/en/ms-dos-boot-errors-explained.html">MS-DOS boot errors explained</a><br><small>Six classic MS-DOS boot and disk errors with the cause of each and what to do: Non-System disk, Invalid media type, Missing operating system and more.</small></li>
+<li><a href="/en/hard-disk-diagnostics-from-dos.html">Testing hard drives and memory from DOS</a><br><small>Testing hard drives and memory from DOS with MHDD, Victoria, Memtest86+ and SeaTools: SMART, surface scans, legacy IDE mode, and imaging before repair.</small></li>
+<li><a href="/en/best-ms-dos-usb-tools.html">Tools for writing MS-DOS images to USB: an honest comparison</a><br><small>Rufus, WinSetupFromUSB, the HP format tool, Win32DiskImager and MBFUTool 2.0 compared by what they do with an MS-DOS image, and which to pick for which task.</small></li>
+<li><a href="/en/ms-dos-command-reference.html">MS-DOS command reference: the commands you actually use</a><br><small>A practical one-line reference for the MS-DOS commands people really use: DIR, COPY, XCOPY, FORMAT, FDISK, SYS, MEM and more, with the switches that matter.</small></li>
+<li><a href="/en/ms-dos-500-vs-622.html">MS-DOS 5.00 vs 6.22: which one to put on a USB drive</a><br><small>MS-DOS 5.00 brought EDIT, QBASIC and HIMEM.SYS. MS-DOS 6.22 added SCANDISK, DEFRAG, MSAV and DriveSpace. Here is how to choose for real hardware.</small></li>
+<li><a href="/en/himem-emm386-memory-management.html">HIMEM.SYS, EMM386 and the 640 KB problem</a><br><small>How conventional memory, UMB, XMS and EMS fit together in MS-DOS, with a sample CONFIG.SYS using HIMEM.SYS and EMM386, and when to leave EMM386 out.</small></li>
+<li><a href="/en/dosbox-mount-and-imgmount.html">DOSBox mount and imgmount: folders, images and drives</a><br><small>How MOUNT exposes a folder as a DOS drive and IMGMOUNT attaches a floppy, hard disk or ISO image in DOSBox, with examples and the 4 GB image limit.</small></li>
+<li><a href="/en/secure-boot-asus-msi-steps.html">Secure Boot and CSM on ASUS and MSI boards</a><br><small>Where Secure Boot and CSM sit on ASUS and MSI boards, what each switch does, why CSM can vanish in UEFI-only mode, and how to find a missing DOS USB stick.</small></li>
+<li><a href="/en/floppy-images-ima-vfd.html">Floppy images: .img, .ima and .vfd explained</a><br><small>Raw floppy images explained: .img, .ima and .vfd, the standard geometries, why 1.44 MB is exactly 1,474,560 bytes, the 55 AA signature, and testing without a drive.</small></li>
+<li><a href="/en/no-bootable-device-and-other-errors.html">“No bootable device”: fixing boot errors on modern PCs</a><br><small>What “No bootable device”, “Non-System disk”, “Missing operating system” and “Invalid media type” mean, with a table for boot mode, CSM, active partition and USB.</small></li>
+    </ul>
 
     <h2>What is covered</h2>
     <ul>
@@ -134,7 +181,15 @@
         <nav aria-label="Project">
           <a href="/en/stati.html">Guides</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
-          <a href="/" hreflang="ru" lang="ru">Русская версия</a>
+          <a href="/stati.html" hreflang="ru" lang="ru">Русская версия</a>
+        </nav>
+        <nav aria-label="Project">
+          <a href="/en/buy.html">Buy and get the files</a>
+          <a href="/en/trial-vs-full.html">Trial vs full version</a>
+          <a href="/en/verify.html">Verify the build</a>
+          <a href="/en/mbfu-format.html">.mbfu format</a>
+          <a href="/en/changelog.html">Version history</a>
+          <a href="/en/about.html">About the author</a>
         </nav>
         <p class="note">Trial — 30 days free</p>
         <button type="button" class="cookie-settings" data-consent-settings>Cookie settings</button>

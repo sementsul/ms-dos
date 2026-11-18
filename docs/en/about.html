@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About the author and the MBFUTool project — ms-dos.su</title>
+<meta name="description" content="Who builds and sells MBFUTool, why 2.0 is closed source, what stays open and how support works.">
+<link rel="canonical" href="https://ms-dos.su/en/about.html">
+<link rel="alternate" hreflang="ru" href="https://ms-dos.su/about.html">
+<link rel="alternate" hreflang="en" href="https://ms-dos.su/en/about.html">
+<link rel="alternate" hreflang="x-default" href="https://ms-dos.su/about.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="About the author and the MBFUTool project — ms-dos.su">
+<meta property="og:description" content="Who builds and sells MBFUTool, why 2.0 is closed source, what stays open and how support works.">
+<meta property="og:url" content="https://ms-dos.su/en/about.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "name": "About the author and the MBFUTool project — ms-dos.su",
+ "description": "Who builds and sells MBFUTool, why 2.0 is closed source, what stays open and how support works.",
+ "inLanguage": "en",
+ "url": "https://ms-dos.su/en/about.html",
+ "isPartOf": {
+  "@type": "WebSite",
+  "name": "MBFU",
+  "url": "https://ms-dos.su"
+ }
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="/en/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Main navigation">
+      <a href="/en/#features">Features</a>
+      <a href="/en/#trial">Trial</a>
+      <a href="/en/buy.html">Buy</a>
+      <a href="/en/stati.html">Guides</a>
+      <a href="/en/contacts.html">Contact</a>
+  </nav>
+  <span class="lang"><a href="/about.html" hreflang="ru" lang="ru" aria-label="RU">RU</a></span>
+</header>
+<main id="main">
+<section class="block">
+  <div class="wrap legal">
+    <h1>About the author and the project</h1>
+    <p class="updated">Version dated 18 November 2026.</p>
+
+    <p class="lead">
+      MBFUTool is built and sold by one person — Семенцул Максим Геннадиевич,
+      self-employed individual under the Russian professional income tax regime (NPD). This page explains who is behind the program, why 2.0 is
+      closed source and how support works.
+    </p>
+
+    <h2 id="who">Who sells it</h2>
+    <ul>
+      <li><b>Licensor:</b> Семенцул Максим Геннадиевич</li>
+      <li><b>Status:</b> self-employed individual under the Russian professional income tax regime (NPD)</li>
+      <li><b>Tax ID (INN):</b> 381616884622</li>
+      <li><b>E-mail:</b> <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></li>
+      <li><b>Postal address:</b> available on request at sementsul.maksim@yandex.ru</li>
+    </ul>
+    <p>
+      Full details and the document exchange procedure are on the
+      <a href="/en/contacts.html">Contacts and seller details</a> page.
+    </p>
+
+    <h2 id="story">How the program came about</h2>
+    <p>
+      The project grew from a practical task: making a bootable USB stick with real
+      MS-DOS 5.00 or 6.22 on a modern computer. Existing tools either work with FreeDOS
+      or require manual fiddling with partitioning, the boot sector and system files.
+      The first version of MBFU was a graphical utility with open source code — it is
+      still in the <a href="https://github.com/sementsul/ms-dos" rel="noopener">repository</a> under the MIT
+      licence.
+    </p>
+    <p>
+      Version 2.0 was rewritten from scratch: DOSBox 0.72 with a custom menu runs inside,
+      so the program can not only write an image but also clone media, capture an image
+      from a disk or floppy and edit the contents of an image with ordinary DOS commands.
+    </p>
+
+    <h2 id="closed">Why 2.0 is closed source</h2>
+    <p>
+      Version 1.x was open and stays open: its MIT licence cannot be revoked. With 2.0
+      the situation differs — it is work that is sold, and open code would mean anyone
+      could publish a build under their own name. So 2.0 ships without source and is
+      distributed under the <a href="/en/terms.html">licence agreement</a>.
+    </p>
+    <p>
+      What stays open and verifiable: the <a href="/en/mbfu-format.html">.mbfu</a> image
+      format is publicly documented, third-party components (DOSBox, SDL) ship under
+      their own licences, and every build can be checked against a published SHA-256.
+    </p>
+
+    <h2 id="support">Support</h2>
+    <ul>
+      <li>A reply within two business days.</li>
+      <li>Installation support for 30 days after purchase, for full-version buyers.</li>
+      <li>Trial problems are handled too: describe what failed, with the USB stick and motherboard model.</li>
+      <li>2.x updates are published in the same private Boosty post as the build.</li>
+    </ul>
+
+    <h2 id="rules">Principles</h2>
+    <ul>
+      <li>No MS-DOS or other third-party files in the package — only own code and openly licensed components.</li>
+      <li>No telemetry and no network calls: the program runs offline.</li>
+      <li>No subscription: one purchase, one licence for one computer.</li>
+      <li>Mistakes are admitted plainly: if something does not work on your hardware, the answer says so.</li>
+    </ul>
+
+    <h2 id="contact">Get in touch</h2>
+    <p>
+      Purchase, licence and support questions: <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a>.
+      Copyright matters: the procedure on the <a href="/en/dmca.html">Rights holders</a>
+      page.
+    </p>
+  </div>
+</section></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — MS-DOS image toolkit.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Self-employed Sementsul Maxim Gennadievich, INN 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Documents</h2>
+        <nav aria-label="Documents">
+      <a href="/en/terms.html">Terms and licence</a>
+      <a href="/en/privacy.html">Privacy</a>
+      <a href="/en/cookies.html">Cookies</a>
+      <a href="/en/refund.html">Payment and refunds</a>
+      <a href="/en/contacts.html">Contacts and seller details</a>
+      <a href="/en/licenses.html">Third-party licences</a>
+      <a href="/en/ms-dos-license.html">Where to get MS-DOS</a>
+      <a href="/en/dmca.html">Rights holders</a>
+      <a href="/en/accessibility.html">Accessibility</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Project</h2>
+        <nav aria-label="Project">
+          <a href="/en/stati.html">Guides</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/about.html" hreflang="ru" lang="ru">Русская версия</a>
+        </nav>
+        <nav aria-label="Project">
+          <a href="/en/buy.html">Buy and get the files</a>
+          <a href="/en/trial-vs-full.html">Trial vs full version</a>
+          <a href="/en/verify.html">Verify the build</a>
+          <a href="/en/mbfu-format.html">.mbfu format</a>
+          <a href="/en/changelog.html">Version history</a>
+          <a href="/en/about.html">About the author</a>
+        </nav>
+        <p class="note">Trial — 30 days free</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Cookie settings</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS is a trademark of Microsoft Corporation. DOSBox is distributed under GPLv2. MBFU is not affiliated with Microsoft and does not distribute MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="en">
+  <div class="consent-inner">
+    <p>We use cookies for analytics to understand which docs are useful. Analytics scripts run only with your consent; without it the site works without cookies. <a href="/en/cookies.html">Details</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Accept analytics</button>
+      <button type="button" id="consent-reject">Essential only</button>
+      <button type="button" data-consent-settings>Cookie settings</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="en" aria-labelledby="consent-title">
+  <h2 id="consent-title">Cookie settings</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Analytics</b><span>Yandex Metrica and Google Analytics: aggregate visit statistics. They set _ym_* and _ga* cookies.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Save</button>
+      <button type="submit" value="close" formnovalidate>Close</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

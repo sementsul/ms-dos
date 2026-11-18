@@ -2,12 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ms-dos.su/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/about.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/accessibility.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/accessibility.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/accessibility.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/accessibility.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/buy.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/buy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/buy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/buy.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/changelog.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/changelog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/changelog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/changelog.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://ms-dos.su/contacts.html</loc>
@@ -58,6 +82,14 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/mbfu-format.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/mbfu-format.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/mbfu-format.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/mbfu-format.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/ms-dos-license.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-license.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/ms-dos-license.html"/>
@@ -98,12 +130,52 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/trial-vs-full.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/trial-vs-full.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/trial-vs-full.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/trial-vs-full.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/verify.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/verify.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/verify.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/verify.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/about.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/en/accessibility.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/accessibility.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/accessibility.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/accessibility.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/buy.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/buy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/buy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/buy.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/changelog.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/changelog.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/changelog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/changelog.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://ms-dos.su/en/contacts.html</loc>
@@ -154,6 +226,14 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/en/mbfu-format.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/mbfu-format.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/mbfu-format.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/mbfu-format.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/en/ms-dos-license.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-license.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/ms-dos-license.html"/>
@@ -192,5 +272,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/terms.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/trial-vs-full.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/trial-vs-full.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/trial-vs-full.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/trial-vs-full.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/en/verify.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/verify.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ms-dos.su/en/verify.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/verify.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

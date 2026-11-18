@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>История версий MBFUTool и политика обновлений — ms-dos.su</title>
+<meta name="description" content="Что вошло в 2.0.0, как выходят обновления 2.x, что стало с линией 1.x и как сообщить об ошибке.">
+<link rel="canonical" href="https://ms-dos.su/changelog.html">
+<link rel="alternate" hreflang="ru" href="https://ms-dos.su/changelog.html">
+<link rel="alternate" hreflang="en" href="https://ms-dos.su/en/changelog.html">
+<link rel="alternate" hreflang="x-default" href="https://ms-dos.su/changelog.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="История версий MBFUTool и политика обновлений — ms-dos.su">
+<meta property="og:description" content="Что вошло в 2.0.0, как выходят обновления 2.x, что стало с линией 1.x и как сообщить об ошибке.">
+<meta property="og:url" content="https://ms-dos.su/changelog.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "name": "История версий MBFUTool и политика обновлений — ms-dos.su",
+ "description": "Что вошло в 2.0.0, как выходят обновления 2.x, что стало с линией 1.x и как сообщить об ошибке.",
+ "inLanguage": "ru",
+ "url": "https://ms-dos.su/changelog.html",
+ "isPartOf": {
+  "@type": "WebSite",
+  "name": "MBFU",
+  "url": "https://ms-dos.su"
+ }
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="topbar">
+  <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Основная навигация">
+      <a href="/#features">Возможности</a>
+      <a href="/#trial">Trial</a>
+      <a href="/buy.html">Купить</a>
+      <a href="/stati.html">Статьи</a>
+      <a href="/contacts.html">Контакты</a>
+  </nav>
+  <span class="lang"><a href="/en/changelog.html" hreflang="en" lang="en" aria-label="EN">EN</a></span>
+</header>
+<main id="main">
+<section class="block">
+  <div class="wrap legal">
+    <h1>История версий и обновления</h1>
+    <p class="updated">Редакция от 18 ноября 2026 года.</p>
+
+    <p class="lead">
+      Что меняется в 2.x, как выходят обновления и что делать, если новая версия
+      не подошла. Версия 2.x — текущая ветка; линия 1.x осталась открытой и
+      поддерживается только как архив.
+    </p>
+
+    <h2 id="policy">Политика обновлений</h2>
+    <ul>
+      <li><b>Критические исправления 2.x</b> — бесплатны для всех покупателей
+          и публикуются в том же закрытом посте Boosty, где лежит сборка.</li>
+      <li><b>Новая нумерация</b> (2.1, 2.2) не требует доплаты в пределах 2.x.</li>
+      <li><b>Переход на 3.x</b>, если он когда-нибудь случится, будет отдельным
+          продуктом — но купленная 2.x останется рабочей.</li>
+      <li>Сборки не подписаны сертификатом, поэтому каждая публикация сопровождается
+          новым SHA-256 на странице <a href="/verify.html">«Как проверить сборку»</a>.</li>
+    </ul>
+
+    <h2 id="v200">2.0.0 — ноябрь 2026</h2>
+    <p>Первая публичная версия новой линии.</p>
+    <ul>
+      <li>Четыре операции: записать образ MS-DOS на флешку, создать образ .mbfu,
+          клонировать носитель на флешку, править образ командами DOS.</li>
+      <li>DOSBox 0.72 внутри с собственным меню и русским/английским интерфейсом.</li>
+      <li>Свой формат образов <a href="/mbfu-format.html">.mbfu</a>: сжатие zlib,
+          контроль целостности SHA-256.</li>
+      <li>Потоковая запись образа на устройство с проверкой хэша после записи.</li>
+      <li>Блокировка записи на системный диск и тройное подтверждение перед
+          уничтожением данных.</li>
+      <li>Пробный режим: 30 дней, все функции, без ключа и без сети.</li>
+      <li>Сборка PyInstaller в режиме onedir — чтобы антивирусы реже ругались.</li>
+    </ul>
+
+    <h2 id="v1x">1.x — архив</h2>
+    <p>
+      Первая линия была утилитой с открытым кодом: выбор диска, запись загрузочной
+      флешки MS-DOS 5.00/6.22, проверки перед форматированием. Исходники остаются
+      в <a href="https://github.com/sementsul/ms-dos" rel="noopener">репозитории</a> под лицензией MIT —
+      её нельзя отозвать для уже опубликованных версий. Готовые сборки 1.x лежат
+      в разделе <a href="https://github.com/sementsul/ms-dos/releases" rel="noopener">Releases</a>.
+    </p>
+    <p>
+      Ветка 1.x не развивается: исправления и новые возможности выходят только в 2.x.
+    </p>
+
+    <h2 id="install">Как обновиться</h2>
+    <ol>
+      <li>Скачайте новую сборку из закрытого поста Boosty.</li>
+      <li>Проверьте SHA-256 по значению на странице <a href="/verify.html">«Как проверить сборку»</a>.</li>
+      <li>Распакуйте архив в новую папку — не поверх старой.</li>
+      <li>Запустите новую версию и проверьте, что образы открываются.</li>
+      <li>Старую папку удалите после проверки.</li>
+    </ol>
+    <p>
+      Настройки не переносятся: программа не хранит профиль, кроме отметки
+      о пробном периоде. Образы .mbfu и .img остаются там, куда вы их сохранили.
+    </p>
+
+    <h2 id="report">Сообщить об ошибке</h2>
+    <p>
+      Напишите на <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a> и приложите: версию
+      программы, версию Windows, модель флешки и материнской платы, что делали
+      и что получили. Если ошибка воспроизводится — опишите шаги; если есть
+      скриншот, приложите его.
+    </p>
+
+    <h2 id="roadmap">Что рассматривается</h2>
+    <p>
+      Планы меняются, поэтому здесь только направления, а не обещания сроков:
+      поддержка дополнительных форматов образов, улучшение диагностики при записи
+      и расширение документации по работе с образами на старом железе.
+    </p>
+  </div>
+</section></main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — Утилита для работы с образами MS-DOS.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Самозанятый Семенцул Максим Геннадиевич, ИНН 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Документы</h2>
+        <nav aria-label="Документы">
+      <a href="/terms.html">Условия и лицензия</a>
+      <a href="/privacy.html">Конфиденциальность</a>
+      <a href="/cookies.html">Файлы cookie</a>
+      <a href="/refund.html">Оплата и возврат</a>
+      <a href="/contacts.html">Контакты и реквизиты</a>
+      <a href="/licenses.html">Сторонние лицензии</a>
+      <a href="/ms-dos-license.html">Где взять MS-DOS</a>
+      <a href="/dmca.html">Правообладателям</a>
+      <a href="/accessibility.html">Доступность</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Проект</h2>
+        <nav aria-label="Проект">
+          <a href="/stati.html">Статьи</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/en/changelog.html" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
+        </nav>
+        <p class="note">Trial — 30 дней бесплатно</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS — товарный знак Microsoft Corporation. DOSBox распространяется по GPLv2. MBFU не связана с Microsoft и не распространяет MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="ru">
+  <div class="consent-inner">
+    <p>Мы используем файлы cookie для аналитики, чтобы понимать, чем полезна документация. Аналитические скрипты включаются только с вашего согласия; без него сайт работает без cookie. <a href="/cookies.html">Подробнее</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Принять аналитику</button>
+      <button type="button" id="consent-reject">Только необходимые</button>
+      <button type="button" data-consent-settings>Настройки cookie</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="ru" aria-labelledby="consent-title">
+  <h2 id="consent-title">Настройки cookie</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Аналитика</b><span>Яндекс.Метрика и Google Analytics: обезличенная статистика посещений. Устанавливают cookie _ym_* и _ga*.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Сохранить</button>
+      <button type="submit" value="close" formnovalidate>Закрыть</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

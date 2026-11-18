@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "Cannot exceed 4GB for FAT16",
- "description": "Cannot exceed 4GB for FAT16: почему возникает и как исправить.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/oshibka-prevyshenie-4gb.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "А MS-DOS 6.22 на FAT32 никак?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Никак: 6.22 не понимает FAT32. Варианты: флешка до 4 ГБ под 6.22, FreeDOS под FAT32 либо DOS 7.1 из Windows 98."
-   }
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Cannot exceed 4GB for FAT16",
+   "description": "Cannot exceed 4GB for FAT16: почему возникает и как исправить.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/oshibka-prevyshenie-4gb.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "А MS-DOS 6.22 на FAT32 никак?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Никак: 6.22 не понимает FAT32. Варианты: флешка до 4 ГБ под 6.22, FreeDOS под FAT32 либо DOS 7.1 из Windows 98."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Флешка 16 ГБ: сделать первый раздел 4 ГБ — сработает?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Да, если первый раздел FAT16, активный и в начале диска. Остальное место DOS не увидит."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "Флешка 16 ГБ: сделать первый раздел 4 ГБ — сработает?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Да, если первый раздел FAT16, активный и в начале диска. Остальное место DOS не увидит."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Cannot exceed 4GB for FAT16",
+     "item": "https://ms-dos.su/oshibka-prevyshenie-4gb.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -92,6 +120,7 @@
 <ul><li>Флешка объемом больше 4 ГБ (например, 8/16/32 ГБ).</li><li>MS-DOS загружается только с FAT16, а у FAT16 лимит раздела — 4 ГБ.</li></ul>
 <h2>Решение</h2>
 <ol><li>Возьмите флешку до 4 ГБ — это штатное требование, а не поломка.</li><li>Либо разбейте большую флешку: первый раздел FAT16 до 4 ГБ сделать активным (инструкция — в статье про разделы).</li></ol>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>А MS-DOS 6.22 на FAT32 никак?</b><br>Никак: 6.22 не понимает FAT32. Варианты: флешка до 4 ГБ под 6.22, FreeDOS под FAT32 либо DOS 7.1 из Windows 98.</p>
@@ -147,6 +176,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "Non-System disk or disk error",
- "description": "Non-System disk or disk error: почему возникает и как исправить.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/oshibka-non-system-disk.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "Диск helped? Нет. Как отличить от сбойной флешки?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Non-System disk при рабочей флешке — нет загрузчика. Если сыплются ошибки чтения на любом ПК — умирает сама флешка."
-   }
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Non-System disk or disk error",
+   "description": "Non-System disk or disk error: почему возникает и как исправить.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/oshibka-non-system-disk.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Диск helped? Нет. Как отличить от сбойной флешки?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Non-System disk при рабочей флешке — нет загрузчика. Если сыплются ошибки чтения на любом ПК — умирает сама флешка."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Поможет ли просто скопировать COMMAND.COM?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет: нужны IO.SYS + MSDOS.SYS в начале диска через SYS или FORMAT /S. MBFU делает это автоматически."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "Поможет ли просто скопировать COMMAND.COM?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Нет: нужны IO.SYS + MSDOS.SYS в начале диска через SYS или FORMAT /S. MBFU делает это автоматически."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Non-System disk or disk error",
+     "item": "https://ms-dos.su/oshibka-non-system-disk.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -92,6 +120,7 @@
 <ul><li>Флешка отформатирована без системных файлов (пропущен SYS).</li><li>BIOS грузится не с той флешки.</li></ul>
 <h2>Решение</h2>
 <ol><li>Пересоздайте флешку через MBFU (SYS выполняется автоматически).</li><li>Проверьте Boot Menu: выбирайте именно вашу флешку, а не HDD.</li></ol>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>Диск helped? Нет. Как отличить от сбойной флешки?</b><br>Non-System disk при рабочей флешке — нет загрузчика. Если сыплются ошибки чтения на любом ПК — умирает сама флешка.</p>
@@ -147,6 +176,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

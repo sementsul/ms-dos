@@ -23,42 +23,70 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "TechArticle",
- "headline": "Команда FDISK",
- "description": "Команда FDISK: полный синтаксис, все ключи (2), примеры и типичные ошибки.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/komanda-fdisk.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- },
- "mainEntity": [
+ "@graph": [
   {
-   "@type": "Question",
-   "name": "Зачем FDISK, если есть FORMAT?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "FORMAT работает с готовым разделом, а создает разделы именно FDISK. Новому диску нужны оба шага."
-   }
+   "@context": "https://schema.org",
+   "@type": "TechArticle",
+   "headline": "Команда FDISK",
+   "description": "Команда FDISK: полный синтаксис, все ключи (2), примеры и типичные ошибки.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/komanda-fdisk.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Зачем FDISK, если есть FORMAT?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "FORMAT работает с готовым разделом, а создает разделы именно FDISK. Новому диску нужны оба шага."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Что делает FDISK /MBR?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Перезаписывает загрузочный код MBR, не трогая таблицу разделов. Классика лечения boot-вирусов."
+     }
+    }
+   ]
   },
   {
-   "@type": "Question",
-   "name": "Что делает FDISK /MBR?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Перезаписывает загрузочный код MBR, не трогая таблицу разделов. Классика лечения boot-вирусов."
-   }
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Команда FDISK",
+     "item": "https://ms-dos.su/komanda-fdisk.html"
+    }
+   ]
   }
  ]
 }
@@ -72,7 +100,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -100,6 +128,7 @@
 
 <h2>Типичные ошибки</h2>
 <ul><li>После FDISK нужна перезагрузка, затем FORMAT каждого раздела.</li><li>Активным может быть только один primary-раздел — с него грузится DOS.</li><li>Удаление раздела = потеря всех его данных.</li></ul>
+
 
 <h2>Вопросы и ответы</h2>
 <p><b>Зачем FDISK, если есть FORMAT?</b><br>FORMAT работает с готовым разделом, а создает разделы именно FDISK. Новому диску нужны оба шага.</p>
@@ -155,6 +184,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MS-DOS command reference: the commands you actually use | ms-dos.su</title>
+<meta name="description" content="A practical one-line reference for the MS-DOS commands people really use: DIR, COPY, XCOPY, FORMAT, FDISK, SYS, MEM and more, with the switches that matter.">
+<link rel="canonical" href="https://ms-dos.su/en/ms-dos-command-reference.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="MS-DOS command reference: the commands you actually use | ms-dos.su">
+<meta property="og:description" content="A practical one-line reference for the MS-DOS commands people really use: DIR, COPY, XCOPY, FORMAT, FDISK, SYS, MEM and more, with the switches that matter.">
+<meta property="og:url" content="https://ms-dos.su/en/ms-dos-command-reference.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "MS-DOS command reference: the commands you actually use",
+   "description": "A practical one-line reference for the MS-DOS commands people really use: DIR, COPY, XCOPY, FORMAT, FDISK, SYS, MEM and more, with the switches that matter.",
+   "inLanguage": "en",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/en/ms-dos-command-reference.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Do I need to memorise all of these?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. DIR, CD, COPY, DEL, MD and RD cover most work. The rest are needed when something breaks or when you prepare a disk."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is DELTREE recoverable?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Only with UNDELETE, and only if nothing has been written to the disk since."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why does RD refuse to delete my directory?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "RD only removes empty directories. Delete the files inside first, or use DELTREE if you want the whole tree gone."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://ms-dos.su/en/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "MS-DOS command reference: the commands you actually use",
+     "item": "https://ms-dos.su/en/ms-dos-command-reference.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "MS-DOS command reference: the commands you actually use",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Open a command prompt",
+     "text": "Boot MS-DOS, or start the DOS prompt from the BEN menu on an MBFUTool stick."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Identify the drive",
+     "text": "Run DIR on the letter you intend to use and confirm the volume label and files match the disk you mean."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Run the command",
+     "text": "Type the command with its switch, for example DIR /P or COPY *.TXT A:."
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Verify the result",
+     "text": "List the directory again, or run CHKDSK on the disk, before you unplug anything."
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="/en/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Main navigation">
+      <a href="/en/#features">Features</a>
+      <a href="/en/#trial">Trial</a>
+      <a href="/en/buy.html">Buy</a>
+      <a href="/en/stati.html">Guides</a>
+      <a href="/en/contacts.html">Contact</a>
+  </nav>
+  <span class="lang"><a href="/" hreflang="ru" lang="ru" aria-label="RU">RU</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb">
+<a href="/en/">MBFU</a> / <a href="/en/stati.html">Guides</a> / Reference
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>MS-DOS command reference: the commands you actually use</h1>
+      <p class="lead">Most MS-DOS work is done with a dozen commands. This reference lists them one line at a time, with the switch that usually matters, plus warnings for the commands that destroy data.</p>
+<h2>Files and directories</h2>
+<p>These commands cover listing, moving around and managing directories. They are safe to try on any disk.</p>
+<ul>
+<li><b>DIR</b> — list a directory. <code>/P</code> pauses after each screen, <code>/W</code> gives the wide format, <code>/A</code> shows hidden and system files.</li>
+<li><b>CD</b> — change directory. <code>CD \</code> goes to the root, <code>CD ..</code> goes up one level.</li>
+<li><b>MD</b> — make a directory. <b>RD</b> removes an empty one only.</li>
+<li><b>PATH</b> — set the directories searched for programs, for example <code>PATH C:\;C:\DOS</code>.</li>
+<li><b>SET</b> — show or set environment variables such as <code>COMSPEC</code> or <code>TEMP</code>.</li>
+</ul>
+<p>See the full <a href="https://ms-dos.su/komanda-dir.html">DIR command page</a>.</p>
+<h2>Copying and renaming</h2>
+<p>COPY handles single files and simple concatenation. XCOPY handles directory trees and is the right tool when you need to move a whole folder structure between disks.</p>
+<ul>
+<li><b>COPY</b> — copy one file or several. Wildcards work: <code>COPY *.TXT A:</code>.</li>
+<li><b>XCOPY</b> — copy directories. <code>/S</code> includes subdirectories, <code>/E</code> also copies empty ones.</li>
+<li><b>REN</b> — rename a file in place. It cannot move a file to another directory.</li>
+<li><b>ATTRIB</b> — show or change attributes. <code>+R</code> sets read-only, <code>-H</code> clears hidden.</li>
+<li><b>TYPE</b> — print a text file to the screen, or <code>TYPE FILE.TXT | MORE</code> for long files.</li>
+<li><b>EDIT</b> — the full-screen text editor that arrived with MS-DOS 5.00.</li>
+</ul>
+<p>More examples are on the <a href="https://ms-dos.su/komanda-copy.html">COPY command page</a>.</p>
+<h2>Deleting and recovering</h2>
+<p>Deletion in DOS is immediate. There is no recycle bin, so the only recovery route is UNDELETE, and even that depends on the file not being overwritten.</p>
+<ul>
+<li><b>DEL</b> — delete files. <code>/P</code> asks for confirmation before each file.</li>
+<li><b>DELTREE</b> — delete a directory and everything inside it, without prompting.</li>
+<li><b>UNDELETE</b> — try to restore deleted files. Stop writing to the disk first.</li>
+</ul>
+<h2>Disks, system files and diagnostics</h2>
+<p>The commands in this group change the disk itself. Read the warning below first.</p>
+<p><b>Warning:</b> FORMAT, FDISK and DEL destroy data permanently. FORMAT erases the file system on the selected partition, FDISK can delete partitions and rewrite the partition table, and DEL removes files with no undo. Check the drive letter twice before you press Enter.</p>
+<ul>
+<li><b>FORMAT</b> — prepare a partition. <code>/S</code> also copies the system files, <code>/Q</code> does a quick format, <code>/U</code> forces an unconditional format.</li>
+<li><b>FDISK</b> — create and delete partitions and set the active one.</li>
+<li><b>SYS</b> — transfer the DOS system files to a disk so it becomes bootable.</li>
+<li><b>CHKDSK</b> — check the disk and report lost clusters. <code>/F</code> fixes errors.</li>
+<li><b>SCANDISK</b> — the later, more thorough checker introduced with MS-DOS 6.x.</li>
+<li><b>MEM</b> — show conventional, upper and extended memory. <code>MEM /C</code> lists what is loaded where.</li>
+<li><b>LABEL</b> — show or change the volume label.</li>
+<li><b>SMARTDRV</b> — install a disk cache to speed up repeated reads.</li>
+</ul>
+<p>Command pages for the destructive tools: <a href="https://ms-dos.su/komanda-format.html">FORMAT</a>, <a href="https://ms-dos.su/komanda-fdisk.html">FDISK</a>, <a href="https://ms-dos.su/komanda-sys.html">SYS</a>.</p>
+<h2>Switches worth remembering</h2>
+<p>Five switches cover most daily work. <code>/S</code> means include subdirectories for XCOPY and copy system files for FORMAT. <code>/P</code> means pause or prompt. <code>/W</code> means wide listing for DIR. <code>/A</code> means attributes for DIR and ATTRIB. <code>/Y</code> means answer yes to overwrite prompts.</p>
+<p>Two more appear on old disks: <code>/Q</code> for a quick format, which skips the surface scan, and <code>/U</code> for an unconditional one.</p>
+<h2>Working safely from a USB stick</h2>
+<p>When you boot from a USB stick and work on an internal disk, drive letters can shift depending on what the BIOS exposes. Run <code>DIR</code> on each letter before you touch anything. A stick made with MBFUTool 2.0 carries a BEN menu for the DOS tools, and writes to the system disk are blocked.</p>
+
+<h2>Step by step</h2>
+<ol class="steps">
+<li><b>Open a command prompt.</b> Boot MS-DOS, or start the DOS prompt from the BEN menu on an MBFUTool stick.</li>
+<li><b>Identify the drive.</b> Run DIR on the letter you intend to use and confirm the volume label and files match the disk you mean.</li>
+<li><b>Run the command.</b> Type the command with its switch, for example DIR /P or COPY *.TXT A:.</li>
+<li><b>Verify the result.</b> List the directory again, or run CHKDSK on the disk, before you unplug anything.</li>
+</ol>
+
+<h2>Questions</h2>
+<p><b>Do I need to memorise all of these?</b><br>No. DIR, CD, COPY, DEL, MD and RD cover most work. The rest are needed when something breaks or when you prepare a disk.</p>
+<p><b>Is DELTREE recoverable?</b><br>Only with UNDELETE, and only if nothing has been written to the disk since.</p>
+<p><b>Why does RD refuse to delete my directory?</b><br>RD only removes empty directories. Delete the files inside first, or use DELTREE if you want the whole tree gone.</p>
+
+    </article>
+<aside>
+<h2>Read next</h2>
+<ul>
+<li><a href="how-to-create-bootable-ms-dos-usb.html">How to create a bootable MS-DOS USB drive</a></li>
+<li><a href="ms-dos-in-virtualbox-or-dosbox.html">Running MS-DOS in DOSBox or a virtual machine</a></li>
+<li><a href="bios-update-from-dos-usb.html">Updating the BIOS from a DOS USB drive</a></li>
+<li><a href="secure-boot-and-csm-for-dos.html">Secure Boot, UEFI and CSM: booting DOS on modern hardware</a></li>
+<li><a href="fat16-limits-and-4gb-usb-drives.html">FAT16 limits: why a DOS USB drive stops at 2-4 GB</a></li>
+<li><a href="ms-dos-boot-errors-explained.html">MS-DOS boot errors explained</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Need a bootable MS-DOS USB drive?</b></p>
+<p>The MBFUTool 2.0 trial gives you every feature for 30 days, no key required.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Portable.zip" download>Download the trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Full version</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — MS-DOS image toolkit.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Self-employed Sementsul Maxim Gennadievich, INN 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Documents</h2>
+        <nav aria-label="Documents">
+      <a href="/en/terms.html">Terms and licence</a>
+      <a href="/en/privacy.html">Privacy</a>
+      <a href="/en/cookies.html">Cookies</a>
+      <a href="/en/refund.html">Payment and refunds</a>
+      <a href="/en/contacts.html">Contacts and seller details</a>
+      <a href="/en/licenses.html">Third-party licences</a>
+      <a href="/en/ms-dos-license.html">Where to get MS-DOS</a>
+      <a href="/en/dmca.html">Rights holders</a>
+      <a href="/en/accessibility.html">Accessibility</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Project</h2>
+        <nav aria-label="Project">
+          <a href="/en/stati.html">Guides</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/" hreflang="ru" lang="ru">Русская версия</a>
+        </nav>
+        <nav aria-label="Project">
+          <a href="/en/buy.html">Buy and get the files</a>
+          <a href="/en/trial-vs-full.html">Trial vs full version</a>
+          <a href="/en/verify.html">Verify the build</a>
+          <a href="/en/mbfu-format.html">.mbfu format</a>
+          <a href="/en/changelog.html">Version history</a>
+          <a href="/en/about.html">About the author</a>
+        </nav>
+        <p class="note">Trial — 30 days free</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Cookie settings</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS is a trademark of Microsoft Corporation. DOSBox is distributed under GPLv2. MBFU is not affiliated with Microsoft and does not distribute MS-DOS.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="en">
+  <div class="consent-inner">
+    <p>We use cookies for analytics to understand which docs are useful. Analytics scripts run only with your consent; without it the site works without cookies. <a href="/en/cookies.html">Details</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Accept analytics</button>
+      <button type="button" id="consent-reject">Essential only</button>
+      <button type="button" data-consent-settings>Cookie settings</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="en" aria-labelledby="consent-title">
+  <h2 id="consent-title">Cookie settings</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Analytics</b><span>Yandex Metrica and Google Analytics: aggregate visit statistics. They set _ym_* and _ga* cookies.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Save</button>
+      <button type="submit" value="close" formnovalidate>Close</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

@@ -96,6 +96,60 @@ PAGES = {
         "their source code, and the MS-DOS trademark.",
         "webpage",
     ),
+    "buy": (
+        "Купить MBFUTool 2.0 и получить файлы — ms-dos.su",
+        "Что входит в покупку, как проходит оплата через Boosty, что приходит после "
+        "неё, как получить чек по НПД и что делать, если доступ не открылся.",
+        "Buy MBFUTool 2.0 and get the files — ms-dos.su",
+        "What the purchase includes, how payment through Boosty works, what arrives "
+        "afterwards, the tax receipt and what to do if access did not unlock.",
+        "webpage",
+    ),
+    "trial-vs-full": (
+        "Trial и полная версия: в чём разница — ms-dos.su",
+        "Сравнение пробной и полной версии MBFUTool 2.0: срок, функции, ключ, "
+        "обновления, поддержка и порядок перехода.",
+        "Trial vs the full version — ms-dos.su",
+        "Trial and full MBFUTool 2.0 compared: time limit, features, key, updates, "
+        "support and how to switch.",
+        "webpage",
+    ),
+    "verify": (
+        "Как проверить сборку MBFUTool по SHA-256 — ms-dos.su",
+        "Как сверить SHA-256 архива и установщика, что делать с предупреждением "
+        "антивируса и какие файлы программа пишет на диск.",
+        "How to verify the MBFUTool build — ms-dos.su",
+        "How to compare the SHA-256 of the archive and installer, what to do with an "
+        "antivirus warning, and what the program writes to disk.",
+        "webpage",
+    ),
+    "about": (
+        "Об авторе и проекте MBFUTool — ms-dos.su",
+        "Кто делает и продаёт MBFUTool, почему версия 2.0 закрытая, что осталось "
+        "открытым и как работает поддержка.",
+        "About the author and the MBFUTool project — ms-dos.su",
+        "Who builds and sells MBFUTool, why 2.0 is closed source, what stays open and "
+        "how support works.",
+        "webpage",
+    ),
+    "changelog": (
+        "История версий MBFUTool и политика обновлений — ms-dos.su",
+        "Что вошло в 2.0.0, как выходят обновления 2.x, что стало с линией 1.x "
+        "и как сообщить об ошибке.",
+        "MBFUTool version history and update policy — ms-dos.su",
+        "What 2.0.0 includes, how 2.x updates ship, what happened to the 1.x line and "
+        "how to report a bug.",
+        "webpage",
+    ),
+    "mbfu-format": (
+        "Формат образа .mbfu: спецификация — ms-dos.su",
+        "Структура контейнера .mbfu: заголовок, сжатие zlib, SHA-256, пример "
+        "чтения образа на Python и ограничения формата.",
+        "The .mbfu image format: specification — ms-dos.su",
+        "The .mbfu container: header layout, zlib compression, SHA-256, a Python "
+        "reading example and format limits.",
+        "webpage",
+    ),
     "ms-dos-license": (
         "Где взять лицензионную копию MS-DOS — ms-dos.su",
         "Законные способы получить MS-DOS 5.00/6.22: каталог подписки Visual Studio "

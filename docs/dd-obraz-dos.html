@@ -23,26 +23,54 @@
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "Article",
- "headline": "Запись DOS-образа через dd и Win32DiskImager",
- "description": "Готовый IMG-образ льют побайтово: Linux — dd, Windows — Win32DiskImager или Rufus в режиме DD.",
- "inLanguage": "ru",
- "author": {
-  "@type": "Person",
-  "name": "Sementsul Maxim"
- },
- "publisher": {
-  "@type": "Organization",
-  "name": "MBFU"
- },
- "mainEntityOfPage": "https://ms-dos.su/dd-obraz-dos.html",
- "datePublished": "2026-09-22",
- "dateModified": "2026-11-17",
- "isPartOf": {
-  "@type": "WebSite",
-  "name": "MBFU",
-  "url": "https://ms-dos.su"
- }
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Запись DOS-образа через dd и Win32DiskImager",
+   "description": "Готовый IMG-образ льют побайтово: Linux — dd, Windows — Win32DiskImager или Rufus в режиме DD.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/dd-obraz-dos.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Запись DOS-образа через dd и Win32DiskImager",
+     "item": "https://ms-dos.su/dd-obraz-dos.html"
+    }
+   ]
+  }
+ ]
 }
 </script>
 <script src="/assets/consent.js" defer></script>
@@ -54,7 +82,7 @@
   <nav aria-label="Основная навигация">
       <a href="/#features">Возможности</a>
       <a href="/#trial">Trial</a>
-      <a href="/#buy">Купить</a>
+      <a href="/buy.html">Купить</a>
       <a href="/stati.html">Статьи</a>
       <a href="/contacts.html">Контакты</a>
   </nav>
@@ -76,6 +104,7 @@
 <p>Метод для готовых образов; для установки с нуля удобнее MBFU.</p>
 
 
+
     </article>
 <aside>
 <h2>Читайте также</h2>
@@ -84,6 +113,8 @@
 <li><a href="mbfu-protiv-ventoy.html">MBFU против Ventoy для DOS</a></li>
 <li><a href="mbfu-protiv-unetbootin.html">MBFU против UNetbootin</a></li>
 <li><a href="rufus-freedos-instrukciya.html">Загрузочная флешка FreeDOS через Rufus</a></li>
+<li><a href="mbfu-protiv-winsetupfromusb.html">MBFUTool против WinSetupFromUSB для DOS</a></li>
+<li><a href="mbfu-protiv-hp-usb-disk-storage-format-tool.html">MBFUTool против HP USB Disk Storage Format Tool</a></li>
 </ul>
 <div class="cta-box">
 <p><b>Нужна загрузочная флешка MS-DOS?</b></p>
@@ -124,6 +155,14 @@
           <a href="/stati.html">Статьи</a>
           <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
           <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
         </nav>
         <p class="note">Trial — 30 дней бесплатно</p>
         <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>

@@ -1,0 +1,83 @@
+<section class="block">
+  <div class="wrap legal">
+    <h1>How to verify the MBFUTool build</h1>
+    <p class="updated">Version dated 18 November 2026.</p>
+
+    <p class="lead">
+      The build is not code-signed, so antivirus products sometimes warn. You can
+      confirm in a minute that the file was not altered on the way: compare its
+      SHA-256 with the value published here.
+    </p>
+
+    <h2 id="sha">1. Compare the SHA-256</h2>
+    <p>Open PowerShell in the folder with the archive and run:</p>
+    <pre>Get-FileHash .\MBFUTool_2.0_Trial_Portable.zip -Algorithm SHA256</pre>
+    <p>Compare the result with the published value:</p>
+    <table>
+      <tr><th>File</th><th>Size</th><th>SHA-256</th></tr>
+      <tr><td><code>MBFUTool_2.0_Trial_Portable.zip</code></td><td>{{TRIAL_SIZE}}</td><td><code>{{TRIAL_SHA}}</code></td></tr>
+      <tr><td><code>MBFUTool_2.0_Trial_Setup.exe</code></td><td>{{SETUP_SIZE}}</td><td><code>{{SETUP_SHA}}</code></td></tr>
+    </table>
+    <p>
+      The installer uses the same command with a different file name. The values also
+      ship next to the files in <code>SHA256SUMS.txt</code>.
+    </p>
+    <p>
+      Match — the file is intact. Mismatch — download again: the transfer may have been
+      interrupted, or the file did not come from ms-dos.su.
+    </p>
+
+    <h2 id="size">2. Compare the size</h2>
+    <p>
+      Size is a rough but instant check. The Trial archive is {{TRIAL_SIZE}}, the
+      installer is {{SETUP_SIZE}}. Noticeably smaller means the download did not finish.
+    </p>
+
+    <h2 id="av">3. Understand the antivirus reaction</h2>
+    <p>
+      The program is packaged with PyInstaller in <code>onedir</code> mode: an
+      <code>_internal</code> folder with the executable beside it. The <code>onefile</code>
+      mode — everything in one exe that unpacks itself into a temporary folder — is what
+      heuristic engines most often flag as suspicious behaviour, which is why it was
+      dropped.
+    </p>
+    <p>If an antivirus still complains:</p>
+    <ul>
+      <li>check the file on <a href="https://www.virustotal.com/gui/home/upload" rel="noopener">VirusTotal</a> — a few engines out of seventy is a typical packer false positive;</li>
+      <li>exclude the program <b>folder</b>, not the whole drive;</li>
+      <li>do not disable protection entirely, and never run unknown files as
+          administrator.</li>
+    </ul>
+    <p>
+      Code signing certificates cost money; until there is one, the hash on this site is
+      the only way to prove authenticity.
+    </p>
+
+    <h2 id="network">4. Make sure the program does not use the network</h2>
+    <p>
+      MBFUTool works offline: it does not check for updates, send statistics or require
+      an account. Any network monitor shows no connections opened on start. The only
+      write outside your own files is the trial mark.
+    </p>
+
+    <h2 id="trialdata">5. What the program writes to disk</h2>
+    <ul>
+      <li><code>%APPDATA%\MBFU\trial.json</code> — first-start date and a signed day counter;</li>
+      <li><code>%PROGRAMDATA%\MBFU\trial.json</code> — the same mark, so deleting the profile does not reset it;</li>
+      <li><code>HKCU\Software\MBFU\Trial</code> — a backup copy of the mark;</li>
+      <li>a working folder next to the image — temporary files while creating or editing an image.</li>
+    </ul>
+    <p>None of this contains personal data: only dates and a signature.</p>
+
+    <h2 id="more">If something does not add up</h2>
+    <p>
+      Write to <a href="mailto:{{EMAIL}}">{{EMAIL}}</a> with the
+      <code>Get-FileHash</code> value, the file size and where you downloaded it. We reply
+      within two business days.
+    </p>
+    <p class="fine">
+      Download only from ms-dos.su or from the private Boosty post after purchase. Files
+      hosted elsewhere may have been modified.
+    </p>
+  </div>
+</section>
