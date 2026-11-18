@@ -190,7 +190,7 @@
 <li><a href="himem-sys.html">HIMEM.SYS: доступ к расширенной памяти</a><br><small>Драйвер XMS из MS-DOS 5.0+: открывает память выше 1 МБ и верхние блоки. Без него Windows 3.x и половина игр не стартуют.</small></li>
 <li><a href="emm386.html">EMM386: верхняя память и EMS</a><br><small>Драйвер для 386+: раздает UMB (куда грузят драйверы командой DEVICEHIGH) и эмулирует EMS из XMS.</small></li>
 <li><a href="config-sys.html">CONFIG.SYS: настройка загрузки DOS</a><br><small>Текстовый файл в корне: драйверы (DEVICE), FILES/BUFFERS, DOS=HIGH, меню загрузки. Читается при старте до AUTOEXEC.</small></li>
-<li><a href="autoexec-bat.html">AUTOEXEC.BAT: автозапуск DOS</a><br><small>Пакетный файл в корне: выполняется после CONFIG.SYS — PATH, PROMPT, SMARTDRV, KEYRUS, запуск NC.</small></li>
+<li><a href="autoexec-bat.html">AUTOEXEC.BAT: автозапуск DOS</a><br><small>Пакетный файл в корне: выполняется после CONFIG.SYS — PATH, PROMPT, SMARTDRV, KEYRUS, запуск программы.</small></li>
 <li><a href="sound-blaster-dos.html">Звук в DOS: Sound Blaster</a><br><small>Стандарт де-факто: SET BLASTER=A220 I7 D1 (+ адрес, IRQ, DMA). Без этой строки игры молчат или виснут на тесте звука.</small></li>
 </ul>
 <h2>Версии MS-DOS</h2>
@@ -224,10 +224,10 @@
 <li><a href="kak-sozdat-zagruzochnuyu-fleshku.html">Как создать загрузочную флешку MS-DOS</a><br><small>Пошагово через MBFU: скачать, запустить от администратора, принять лицензии, выбрать флешку до 4 ГБ, ввести букву, подтвердить, дождаться Done.</small></li>
 <li><a href="uefi-legacy-csm.html">UEFI, Legacy и CSM для загрузки DOS</a><br><small>MS-DOS не знает UEFI: грузиться надо в Legacy/CSM-режиме. Ищите в BIOS: Boot Mode → Legacy, CSM → Enabled, Secure Boot → Disabled.</small></li>
 <li><a href="bios-boot-menu-klavishi.html">Клавиши Boot Menu и BIOS у производителей</a><br><small>Быстрый выбор загрузки, не меняя настроек: ASUS/MSI — F8/F11, Gigabyte — F12, Lenovo — F12/Fn+F12, HP — Esc→F9, Dell — F12, Acer — F12.</small></li>
-<li><a href="proverka-fleshki.html">Проверка загрузочной флешки без перезагрузки</a><br><small>Быстрые проверки: файлы на месте (COMMAND.COM, NC), буква доступна на запись, MBR валиден. Полная — загрузка на тестовом ПК.</small></li>
+<li><a href="proverka-fleshki.html">Проверка загрузочной флешки без перезагрузки</a><br><small>Быстрые проверки: файлы на месте (COMMAND.COM, IO.SYS, MSDOS.SYS), буква доступна на запись, MBR валиден. Полная — загрузка на тестовом ПК.</small></li>
 <li><a href="multiboot-dos-windows.html">DOS и Windows на одной флешке</a><br><small>Схема: первый раздел FAT16 активный с DOS (до 4 ГБ), второй — NTFS/exFAT с Windows-образами и драйверами. Грузитесь с первого.</small></li>
 <li><a href="usb2-usb3-dos.html">USB 2.0 против 3.0 для DOS-флешки</a><br><small>DOS и BIOS лучше дружат с USB 2.0: старые BIOS могут не увидеть флешку в синем порту 3.x. Втыкайте в черный порт 2.0.</small></li>
-<li><a href="razmer-fleshki-dos.html">Какую флешку взять под MS-DOS</a><br><small>Идеал: 1–4 ГБ, USB 2.0, без шифрования и U3-софта. MS-DOS 6.22 + NC занимают ~15 МБ — остальное под игры и файлы.</small></li>
+<li><a href="razmer-fleshki-dos.html">Какую флешку взять под MS-DOS</a><br><small>Идеал: 1–4 ГБ, USB 2.0, без шифрования и U3-софта. Сама MS-DOS 6.22 занимает несколько мегабайт — остальное под игры и файлы.</small></li>
 </ul>
 <h2>Прошивка BIOS</h2>
 <ul class="mega">
@@ -249,6 +249,7 @@
 <li><a href="dos-dlya-stanka-i-chpu.html">MS-DOS для станка и ЧПУ</a><br><small>Почему промышленные станки и ЧПУ до сих пор работают на MS-DOS: детерминированное время реакции, прямой доступ к портам, старые лицензии.</small></li>
 <li><a href="cf-karta-ili-ide-dom-vmesto-hdd.html">CF-карта или IDE DOM вместо винчестера</a><br><small>Замена винчестера на CF-карту или IDE DOM в промышленном ПК: режим Fixed Disk, износ, температурный диапазон и перенос системы.</small></li>
 <li><a href="rezervnaya-kopiya-promyshlennogo-pk.html">Резервная копия промышленного ПК со DOS</a><br><small>Почему обычный бэкап файлов не спасает промышленный ПК со DOS и как снять, проверить и хранить посекторный образ носителя.</small></li>
+<li><a href="ms-dos-na-predpriyatii.html">MS-DOS на предприятии: где она ещё работает и как её обслуживать</a><br><small>Почему на предприятиях до сих пор работает MS-DOS, какие узлы от неё зависят, чем опасен отказ старого диска и как выстроить обслуживание без остановки производства.</small></li>
 </ul>
 <h2>Восстановление данных</h2>
 <ul class="mega">

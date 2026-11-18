@@ -534,6 +534,13 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/ms-dos-na-predpriyatii.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-na-predpriyatii.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-na-predpriyatii.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/ms-dos-v-virtualbox.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-v-virtualbox.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-v-virtualbox.html"/>
