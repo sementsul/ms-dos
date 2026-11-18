@@ -104,7 +104,7 @@ def build_pages():
             sections=[('Факты', '<ul>%s</ul>' % ''.join('<li>%s</li>' % f for f in facts)),
                       ('Вывод', '<p>%s</p>' % note)],
             faq=[]))
-    for data, cat in [(NC, 'Norton Commander'), (QBASIC, 'QBASIC'),
+    for data, cat in [(QBASIC, 'QBASIC'),
                       (DOSBOX, 'DOSBox'), (MEMORY, 'Память и железо'),
                       (VERSIONS, 'Версии MS-DOS'), (COMPARE, 'Сравнение'),
                       (GUIDES, 'Гайды')]:
@@ -264,7 +264,7 @@ def main():
   <div class="wrap">
     <h2>Статьи</h2>
     <p class="intro">Вся база знаний: от первой команды DIR до мультизагрузки.
-    Сто статей про MS-DOS 5.00/6.22, DOSBox, Secure Boot и типичные ошибки.</p>
+    MS-DOS 5.00/6.22, DOSBox, Secure Boot, прошивка BIOS и типичные ошибки.</p>
 %s
     <div class="cta-box">
       <p><b>Нужна загрузочная флешка MS-DOS?</b></p>
@@ -278,9 +278,9 @@ def main():
 
     catalog_head = layout.head(
         "ru", "stati", "Статьи про MS-DOS, DOS и загрузочные флешки | ms-dos.su",
-        "100 статей: команды DOS, версии MS-DOS, Secure Boot, Norton Commander, "
-        "ошибки и гайды.", jsonld=jsonld({'slug': 'stati', 'cat': '', 'h1': 'База знаний MS-DOS',
-                                          'desc': 'Каталог из 100 статей про MS-DOS.',
+        "Статьи: команды DOS, версии MS-DOS, Secure Boot, DOSBox, "
+        "ошибки, гайды и диагностика.", jsonld=jsonld({'slug': 'stati', 'cat': '', 'h1': 'База знаний MS-DOS',
+                                          'desc': 'Каталог статей про MS-DOS.',
                                           'faq': []}), has_en=True)
     with open(os.path.join(DOCS, 'stati.html'), 'w', encoding='utf-8') as f:
         f.write(catalog_head + catalog + layout.footer("ru", "stati"))
