@@ -814,6 +814,13 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/skachat-ms-dos.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/skachat-ms-dos.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/skachat-ms-dos.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/sound-blaster-dos.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/sound-blaster-dos.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/sound-blaster-dos.html"/>
