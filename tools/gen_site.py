@@ -99,12 +99,11 @@ PAGES = {
     "ms-dos-license": (
         "Где взять лицензионную копию MS-DOS — ms-dos.su",
         "Законные способы получить MS-DOS 5.00/6.22: каталог подписки Visual Studio "
-        "my.visualstudio.com, ранее купленный экземпляр, образ со своих носителей "
-        "и свободная альтернатива FreeDOS.",
+        "my.visualstudio.com, ранее купленный экземпляр и образ со своих носителей.",
         "Where to get a licensed MS-DOS copy — ms-dos.su",
         "Lawful ways to obtain MS-DOS 5.00/6.22: the Visual Studio subscription "
-        "catalogue at my.visualstudio.com, a copy you already own, imaging your own "
-        "media, and the free FreeDOS alternative.",
+        "catalogue at my.visualstudio.com, a copy you already own, and imaging your "
+        "own media.",
         "webpage",
     ),
     "dmca": (
