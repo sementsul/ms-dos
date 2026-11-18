@@ -34,6 +34,14 @@ try:
 except ImportError:
     RICH_7 = []
 try:
+    from seo_data_8a import ARTICLES as RICH_8A
+except ImportError:
+    RICH_8A = []
+try:
+    from seo_data_8b import ARTICLES as RICH_8B
+except ImportError:
+    RICH_8B = []
+try:
     from seo_data_en import ARTICLES as RICH_EN
 except ImportError:
     RICH_EN = []
@@ -123,7 +131,7 @@ def build_pages():
                 title='%s | ms-dos.su' % h1,
                 desc=lead[:150],
                 h1=h1, lead=lead, sections=sections, faq=[]))
-    for row in RICH_5 + RICH_6 + RICH_7:
+    for row in RICH_5 + RICH_6 + RICH_7 + RICH_8A + RICH_8B:
         pages.append(dict(
             slug=row['slug'], cat=row['cat'], title=row['title'], desc=row['desc'],
             h1=row['h1'], lead=row['lead'],

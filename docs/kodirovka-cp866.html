@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кодировка CP866: таблица, переключение и типичные проблемы | ms-dos.su</title>
+<meta name="description" content="Кодировка CP866: таблица байтов, отличие от CP1251 и KOI8-R, переключение через CHCP, MODE и KEYB, причины кракозябр и перекодировка в Python.">
+<link rel="canonical" href="https://ms-dos.su/kodirovka-cp866.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MBFU — ms-dos.su">
+<meta property="og:title" content="Кодировка CP866: таблица, переключение и типичные проблемы | ms-dos.su">
+<meta property="og:description" content="Кодировка CP866: таблица байтов, отличие от CP1251 и KOI8-R, переключение через CHCP, MODE и KEYB, причины кракозябр и перекодировка в Python.">
+<meta property="og:url" content="https://ms-dos.su/kodirovka-cp866.html">
+<meta property="og:image" content="https://ms-dos.su/assets/og.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0e1a">
+<meta name="yandex-verification" content="bb775f01a3383d99">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/assets/icon-64.png">
+<link rel="apple-touch-icon" href="https://ms-dos.su/assets/icon-64.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@context": "https://schema.org",
+   "@type": "Article",
+   "headline": "Кодировка CP866: таблица, переключение и типичные проблемы",
+   "description": "Кодировка CP866: таблица байтов, отличие от CP1251 и KOI8-R, переключение через CHCP, MODE и KEYB, причины кракозябр и перекодировка в Python.",
+   "inLanguage": "ru",
+   "author": {
+    "@type": "Person",
+    "name": "Sementsul Maxim"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MBFU"
+   },
+   "mainEntityOfPage": "https://ms-dos.su/kodirovka-cp866.html",
+   "datePublished": "2026-09-22",
+   "dateModified": "2026-11-17",
+   "isPartOf": {
+    "@type": "WebSite",
+    "name": "MBFU",
+    "url": "https://ms-dos.su"
+   },
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Чем CP866 отличается от CP1251?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Позициями букв. В CP866 кириллица занимает вторую половину таблицы и соседствует с псевдографикой, в CP1251 она начинается с 0xC0 и включает типографские знаки. Байт один и тот же, а буквы разные."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Почему после CHCP 866 текст остался кракозябрами?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "CHCP меняет вывод для новых сообщений, а уже нарисованный текст не перерисовывается. Кроме того, файл может быть записан в другой кодировке, и тогда поможет только перекодировка."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Обязателен ли DISPLAY.SYS?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Для MODE CON CODEPAGE SELECT — да: без драйвера дисплея и файла EGA.CPI команда не найдёт таблицу. CHCP в некоторых средах работает и без него, но полагаться на это не стоит."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли перекодировать файл командой TYPE?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет, TYPE только выводит содержимое на экран. Перекодировка — это decode и encode в Python, iconv или смена кодировки в редакторе."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Почему имена файлов на образе выглядят мусором?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Короткие имена в FAT хранятся байтами в OEM-кодировке, а программа читает их по Windows-таблице. Содержимое файлов при этом цело."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Входит ли MS-DOS в MBFUTool?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет. Программа работает с вашим образом и не включает и не распространяет MS-DOS; с Microsoft она не связана."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "MBFU",
+     "item": "https://ms-dos.su/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Статьи",
+     "item": "https://ms-dos.su/stati.html"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Кодировка CP866: таблица, переключение и типичные проблемы",
+     "item": "https://ms-dos.su/kodirovka-cp866.html"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<script src="/assets/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+<header class="topbar">
+  <a class="brand" href="/"><img src="/assets/icon-64.png" alt="" width="28" height="28"> MBFU</a>
+  <nav aria-label="Основная навигация">
+      <a href="/#features">Возможности</a>
+      <a href="/#trial">Trial</a>
+      <a href="/buy.html">Купить</a>
+      <a href="/stati.html">Статьи</a>
+      <a href="/contacts.html">Контакты</a>
+  </nav>
+  <span class="lang"><a href="/en/" hreflang="en" lang="en" aria-label="EN">EN</a></span>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Хлебные крошки">
+<a href="/">MBFU</a> / <a href="/stati.html">Статьи</a> / Инструкции
+</nav>
+
+<section class="block">
+  <div class="wrap">
+    <article>
+      <h1>Кодировка CP866: таблица, переключение и типичные проблемы</h1>
+      <p class="lead">Кодовая страница — это таблица, которая превращает байты в буквы: один и тот же файл в CP866, CP1251 и KOI8-R читается по-разному. Разбираем, как устроена CP866, зачем нужны CHCP, DISPLAY.SYS и KEYB, почему в DOS появляются «кракозябры» и как перекодировать текст в Python, iconv или редакторе, не испортив данные.</p>
+<h2>Что такое кодовая страница</h2>
+<p>Байт сам по себе — только число от 0 до 255. Чтобы число стало буквой, нужна таблица: она ставит в соответствие каждому значению от 0x00 до 0xFF один символ. Такая таблица и называется кодовой страницей. В однобайтовых кодировках на символ отводится ровно один байт, поэтому мест всего 256 — на латиницу, кириллицу, псевдографику и служебные знаки одновременно их не хватает, и каждому алфавиту приходится потесниться.</p><p>Отсюда четыре разные таблицы, которые встречаются рядом с DOS: CP437 — родная страница IBM PC с американской раскладкой, CP866 — «альтернативная» DOS-кириллица, CP1251 — кириллица Windows, KOI8-R — кириллица Unix и сетевой почты. Байты в файле одни и те же, различается только их толкование. Байт 0xC0 в CP866 — уголок псевдографики, в CP1251 — заглавная «А», в KOI8-R — строчная «ю».</p><p>Поэтому вопрос «какая кодировка у файла» не имеет ответа внутри самого файла: текст — это последовательность байтов, а таблица подразумевается. <a href="https://ms-dos.su/chto-takoe-ms-dos.html">MS-DOS</a> и её программы хранят эту договорённость в настройках, а не в данных, и потому один и тот же текст на разных машинах выглядит по-разному.</p>
+<h2>Как устроена CP866</h2>
+<p>CP866, она же IBM866 и «альтернативная кодовая страница», сделана так, чтобы старые программы продолжали работать: первая половина совпадает с ASCII, вторая отдана кириллице и псевдографике. Раскладка по диапазонам выглядит компактно:</p><table><tr><th>Байты</th><th>Что находится</th></tr><tr><td>0x00–0x7F</td><td>ASCII: латиница, цифры, знаки препинания, управляющие коды</td></tr><tr><td>0x80–0xAF</td><td>Кириллица: прописные А–Я (0x80–0x9F), затем строчные а–п (0xA0–0xAF)</td></tr><tr><td>0xB0–0xDF</td><td>Псевдографика: рамки, углы, заливка, штриховка</td></tr><tr><td>0xE0–0xFF</td><td>Строчные р–я (0xE0–0xEF), затем Ё, ё, Є, є, Ї, ї, Ў, ў, №, √ и неразрывный пробел</td></tr></table><p>Из этой раскладки следуют две практические мелочи. Буква «ё» стоит не рядом с «е», а в самом конце таблицы, поэтому сортировка по байтам не совпадает с алфавитом, и программы, которые сравнивают строки побайтово, ставят «ёжу» после «яблока». Второе: последний байт 0xFF — неразрывный пробел, а не буква, и в тексте он выглядит как обычный пробел, хотя ведёт себя иначе.</p><p>Псевдографический блок — не украшение, а рабочий инструмент: им рисовали рамки меню, таблицы и окна, когда графики в программе не было. Именно поэтому в CP866 кириллица разрезана на две части: место для рамок зарезервировано там же, где оно было в CP437.</p>
+<h2>Кракозябры: как проявляется ошибка</h2>
+<p>Самая частая жалоба звучит одинаково: «текст в DOS открывается кракозябрами». Причина всегда одна — байты прочитаны по чужой таблице. Файл, сохранённый в Windows-1251, в CP866 показывает вместо слов набор углов, диакритики и редких букв; обратный случай — DOS-текст, открытый в Windows, — даёт такую же мешанину, только из других символов.</p><p>Иногда результат выглядит почти читаемым: часть позиций совпадает в обеих таблицах, и глаз цепляется за знакомые фрагменты. Это не «почти правильная кодировка», а случайное совпадение — перекодировать всё равно придётся целиком.</p><p>Отдельный сюжет — имена файлов. Короткое имя в FAT хранится байтами в OEM-кодировке, а программа, которая читает их по Windows-таблице, показывает мусор. Так же ведёт себя архив, собранный в одной системе и распакованный в другой: содержимое цело, а имена разъехались. Лечится это сменой кодировки в просмотрщике или переименованием уже после монтирования образа.</p>
+<h2>Переключение внутри DOS</h2>
+<p>Активную страницу в работающей системе меняет команда <code>CHCP 866</code>. Она действует на всю систему и на программы, которые стартуют после неё; уже выведенный на экран текст не перерисовывается, поэтому старые сообщения могут остаться в прежней кодировке.</p><p>Более старый путь идёт через драйвер дисплея. В <code>CONFIG.SYS</code> должен загружаться <code>DISPLAY.SYS</code>, а на диске — лежать файл кодовых страниц, обычно <code>EGA.CPI</code>. Тогда работают <code>MODE CON CODEPAGE SELECT=866</code> и подготовка таблицы: <code>MODE CON CP PREP=((866) C:\DOS\EGA.CPI)</code>. Порядок важен: сначала <code>PREP</code> загружает таблицу в память, потом <code>SELECT</code> делает её активной. Без подготовленной таблицы <code>SELECT</code> ответит ошибкой, даже если файл <code>EGA.CPI</code> лежит рядом.</p><pre>; CONFIG.SYS
+DEVICE=C:\DOS\DISPLAY.SYS CON=(EGA,,1)
+; AUTOEXEC.BAT
+MODE CON CP PREP=((866) C:\DOS\EGA.CPI)
+MODE CON CP SELECT=866
+KEYB RU,,C:\DOS\KEYBRD2.SYS
+</pre><p>Раскладку клавиатуры включает <code>KEYB</code> с файлом описания: <code>KEYBRD2.SYS</code>, реже <code>KEYBRD3.SYS</code> или <code>KEYBRD4.SYS</code> — конкретный файл зависит от типа клавиатуры и версии DOS. Сам по себе <code>CHCP</code> раскладку не меняет: он отвечает за вывод, а не за ввод. Подробнее о загрузке драйверов — в статье про <a href="https://ms-dos.su/config-sys.html">CONFIG.SYS</a>.</p><p>И главное: многие программы игнорируют системную страницу. У просмотрщиков и редакторов есть собственные переключатели кодировки, у консольных утилит — ключ <code>/866</code>. Это нормально: программа сама рисует символы своим шрифтом и не обязана спрашивать DOS. Если системная команда не помогла, ищите переключатель внутри программы — например, в <a href="https://ms-dos.su/komanda-edit.html">редакторе EDIT</a>.</p>
+<h2>Конвертация вне DOS</h2>
+<p>Перекодировка — это всегда два шага: прочитать байты по исходной таблице и записать их по целевой. Гадать не нужно: файл из DOS-каталога почти наверняка в CP866, файл из Windows — в CP1251.</p><pre>raw = open(r"C:\DOS\README.TXT", "rb").read()
+print(raw.decode("cp866"))
+</pre><p>Обратное направление — <code>data = "Привет".encode("cp866")</code>: строка превращается в байты, которые DOS прочитает правильно. Оговорка: символов вне таблицы в CP866 нет, и попытка закодировать, например, длинное тире или «ёлочки» вызовет <code>UnicodeEncodeError</code>. Если потеря отдельных знаков допустима, укажите <code>errors="replace"</code>.</p><p>В командной строке Unix-подобных систем ту же работу делает <code>iconv -f cp866 -t utf-8 README.TXT &gt; README-utf8.txt</code>. В Windows удобнее редактор: в Notepad++ кодировку меняют через меню «Кодировки» → «Кириллица» → OEM 866, в VS Code — командами «Reopen with Encoding» для чтения и «Save with Encoding» для записи. Обе программы показывают результат сразу, и ошибку видно до сохранения.</p><p>Не путайте конвертацию с переключением консоли. Команда <code>chcp 866</code> в Windows меняет только то, как текущее окно показывает текст; содержимое файлов она не трогает. Вывод <code>TYPE README.TXT</code> после неё станет читаемым, но сам файл останется в прежней кодировке. О том, чем ещё полезна команда просмотра, — в статье про <a href="https://ms-dos.su/komanda-type.html">команду TYPE</a>.</p>
+<h2>MBFUTool и образы</h2>
+<p>MBFUTool 2.0 работает с образом как с набором байтов и ничего внутри не перекодирует: текст, имена файлов и таблицы остаются точно такими, какими были на исходном носителе. Программа для Windows 10/11 x64 выполняет четыре операции: пишет образ MS-DOS на USB-флешку, снимает образ .mbfu с диска, дискеты или флешки, клонирует носитель и правит образ DOS-командами.</p><p>Поэтому если после записи на флешку русский текст в DOS выглядит неправильно, причина не в записи, а в кодовой странице и шрифте целевой системы. Проверьте <code>CHCP</code> и <code>DISPLAY.SYS</code>, убедитесь, что в образе есть файлы кодовых страниц, и только потом ищите ошибку в носителе. Устройство контейнера разобрано в статье про <a href="https://ms-dos.su/mbfu-format.html">формат .mbfu</a>, а порядок записи — в материале <a href="https://ms-dos.su/ms-dos-622-na-fleshku.html">MS-DOS 6.22 на флешку</a>.</p><p>Пробная версия работает 30 дней, одна лицензия — один ПК, покупка через Boosty. MS-DOS в состав не входит и не распространяется: для записи нужен собственный законный образ. С Microsoft программа не связана.</p>
+
+
+<h2>Вопросы и ответы</h2>
+<p><b>Чем CP866 отличается от CP1251?</b><br>Позициями букв. В CP866 кириллица занимает вторую половину таблицы и соседствует с псевдографикой, в CP1251 она начинается с 0xC0 и включает типографские знаки. Байт один и тот же, а буквы разные.</p>
+<p><b>Почему после CHCP 866 текст остался кракозябрами?</b><br>CHCP меняет вывод для новых сообщений, а уже нарисованный текст не перерисовывается. Кроме того, файл может быть записан в другой кодировке, и тогда поможет только перекодировка.</p>
+<p><b>Обязателен ли DISPLAY.SYS?</b><br>Для MODE CON CODEPAGE SELECT — да: без драйвера дисплея и файла EGA.CPI команда не найдёт таблицу. CHCP в некоторых средах работает и без него, но полагаться на это не стоит.</p>
+<p><b>Можно ли перекодировать файл командой TYPE?</b><br>Нет, TYPE только выводит содержимое на экран. Перекодировка — это decode и encode в Python, iconv или смена кодировки в редакторе.</p>
+<p><b>Почему имена файлов на образе выглядят мусором?</b><br>Короткие имена в FAT хранятся байтами в OEM-кодировке, а программа читает их по Windows-таблице. Содержимое файлов при этом цело.</p>
+<p><b>Входит ли MS-DOS в MBFUTool?</b><br>Нет. Программа работает с вашим образом и не включает и не распространяет MS-DOS; с Microsoft она не связана.</p>
+
+    </article>
+<aside>
+<h2>Читайте также</h2>
+<ul>
+<li><a href="kak-sozdat-zagruzochnuyu-fleshku-ms-dos-hub.html">Загрузочная флешка MS-DOS: полный порядок действий</a></li>
+<li><a href="oshibki-zagruzki-dos-hub.html">Ошибки загрузки DOS: разбор всех сообщений</a></li>
+<li><a href="glossarij-dos-terminov.html">Глоссарий DOS-терминов</a></li>
+<li><a href="ms-dos-v-virtualbox.html">MS-DOS в VirtualBox: установка по шагам</a></li>
+<li><a href="interfejs-ms-dos.html">Интерфейс MS-DOS: командная строка, DOSSHELL и оболочки</a></li>
+</ul>
+<div class="cta-box">
+<p><b>Нужна загрузочная флешка MS-DOS?</b></p>
+<p>Trial MBFUTool 2.0 — все функции на 30 дней, без ключа активации.</p>
+<p><a class="btn" href="/downloads/MBFUTool_2.0_Trial_Setup.exe" download>Скачать Trial</a>
+   <a class="btn ghost" href="https://boosty.to/mbfu" rel="noopener">Полная версия</a></p>
+</div>
+</aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p><b>MBFU</b> — Утилита для работы с образами MS-DOS.</p>
+        <p>© 2025–2026 Sementsul Maxim</p>
+        <p class="seller">Самозанятый Семенцул Максим Геннадиевич, ИНН 381616884622 · <a href="mailto:sementsul.maksim@yandex.ru">sementsul.maksim@yandex.ru</a></p>
+        <p><a href="https://github.com/sementsul/ms-dos" rel="noopener">github.com/sementsul/ms-dos</a></p>
+      </div>
+      <div>
+        <h2>Документы</h2>
+        <nav aria-label="Документы">
+      <a href="/terms.html">Условия и лицензия</a>
+      <a href="/trademarks.html">Товарные знаки</a>
+      <a href="/privacy.html">Конфиденциальность</a>
+      <a href="/cookies.html">Файлы cookie</a>
+      <a href="/refund.html">Оплата и возврат</a>
+      <a href="/contacts.html">Контакты и реквизиты</a>
+      <a href="/licenses.html">Сторонние лицензии</a>
+      <a href="/ms-dos-license.html">Где взять MS-DOS</a>
+      <a href="/dmca.html">Правообладателям</a>
+      <a href="/accessibility.html">Доступность</a>
+        </nav>
+      </div>
+      <div>
+        <h2>Проект</h2>
+        <nav aria-label="Проект">
+          <a href="/stati.html">Статьи</a>
+          <a href="https://boosty.to/mbfu" rel="noopener">https://boosty.to/mbfu</a>
+          <a href="/en/" hreflang="en" lang="en">English version</a>
+        </nav>
+        <nav aria-label="Проект">
+          <a href="/buy.html">Купить и получить</a>
+          <a href="/trial-vs-full.html">Trial и полная версия</a>
+          <a href="/verify.html">Проверка сборки</a>
+          <a href="/mbfu-format.html">Формат .mbfu</a>
+          <a href="/changelog.html">История версий</a>
+          <a href="/about.html">Об авторе</a>
+        </nav>
+        <p class="note">Trial — 30 дней бесплатно</p>
+        <button type="button" class="cookie-settings" data-consent-settings>Настройки cookie</button>
+      </div>
+    </div>
+    <p class="legal-note">MS-DOS и Windows — товарные знаки или зарегистрированные товарные знаки Microsoft Corporation. Сайт и программа не связаны с Microsoft, не спонсируются и не одобрены ею. DOSBox — независимый проект под GPLv2.</p>
+  </div>
+</footer>
+<div class="consent" id="consent" hidden lang="ru">
+  <div class="consent-inner">
+    <p>Мы используем файлы cookie для аналитики, чтобы понимать, чем полезна документация. Аналитические скрипты включаются только с вашего согласия; без него сайт работает без cookie. <a href="/cookies.html">Подробнее</a>.</p>
+    <div class="consent-actions">
+      <button type="button" id="consent-accept" class="primary">Принять аналитику</button>
+      <button type="button" id="consent-reject">Только необходимые</button>
+      <button type="button" data-consent-settings>Настройки cookie</button>
+    </div>
+  </div>
+</div>
+<dialog class="consent-dialog" id="consent-dialog" lang="ru" aria-labelledby="consent-title">
+  <h2 id="consent-title">Настройки cookie</h2>
+  <form method="dialog">
+    <div class="row">
+      <input type="checkbox" id="consent-essential" checked disabled>
+      <label for="consent-essential"><b>Необходимые</b><span>Нужны для работы сайта. Всегда включены.</span></label>
+    </div>
+    <div class="row">
+      <input type="checkbox" id="consent-analytics">
+      <label for="consent-analytics"><b>Аналитика</b><span>Яндекс.Метрика и Google Analytics: обезличенная статистика посещений. Устанавливают cookie _ym_* и _ga*.</span></label>
+    </div>
+    <div class="consent-actions">
+      <button type="submit" id="consent-save" class="primary" value="save">Сохранить</button>
+      <button type="submit" value="close" formnovalidate>Закрыть</button>
+    </div>
+  </form>
+</dialog>
+
+</body>
+</html>

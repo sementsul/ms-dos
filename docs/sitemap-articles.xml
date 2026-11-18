@@ -100,6 +100,13 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/emulyator-ms-dos.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/emulyator-ms-dos.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/emulyator-ms-dos.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/exfat-dos.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/exfat-dos.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/exfat-dos.html"/>
@@ -135,6 +142,20 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/igry-ms-dos-v-dosbox.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/igry-ms-dos-v-dosbox.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/igry-ms-dos-v-dosbox.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/interfejs-ms-dos.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/interfejs-ms-dos.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/interfejs-ms-dos.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/istoriya-ms-dos.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/istoriya-ms-dos.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/istoriya-ms-dos.html"/>
@@ -152,6 +173,13 @@
     <loc>https://ms-dos.su/kak-sozdat-zagruzochnuyu-fleshku.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/kak-sozdat-zagruzochnuyu-fleshku.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/kak-sozdat-zagruzochnuyu-fleshku.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/kodirovka-cp866.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/kodirovka-cp866.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/kodirovka-cp866.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -506,6 +534,13 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://ms-dos.su/ms-dos-v-virtualbox.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/ms-dos-v-virtualbox.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/ms-dos-v-virtualbox.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ms-dos.su/multiboot-dos-windows.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/multiboot-dos-windows.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/multiboot-dos-windows.html"/>
@@ -551,6 +586,13 @@
     <loc>https://ms-dos.su/oshibka-invalid-media.html</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/oshibka-invalid-media.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/oshibka-invalid-media.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ms-dos.su/oshibka-nepravilnaya-funkciya.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://ms-dos.su/oshibka-nepravilnaya-funkciya.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ms-dos.su/oshibka-nepravilnaya-funkciya.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
